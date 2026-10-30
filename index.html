@@ -1,13 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web || Reza</title>
-</head>
-<body>
-  
-  <h1>Ini branch Reza</h1>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invictus Gen3 — Tak Terkalahkan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
 
+<!-- Tailwind CSS v4 (browser build) -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+
+<style type="text/tailwindcss">
+  @theme {
+    --color-oxblood: #4a0d14;
+    --color-wine: #7a1722;
+    --color-ink: #120b10;
+    --color-bone: #efe6d2;
+    --color-bronze: #d19a45;
+    --font-display: "Big Shoulders Display", Impact, sans-serif;
+    --font-sans: "Manrope", system-ui, sans-serif;
+    --animate-marquee: marquee 28s linear infinite;
+    --animate-float: float 9s ease-in-out infinite;
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes float { 50% { transform: translateY(-28px) scale(1.06); } }
+  }
+
+  /* ---------- Entrance orchestration ---------- */
+  .rise { display:inline-block; transform: translateY(110%) rotate(6deg); transition: transform 1.1s cubic-bezier(.16,1,.3,1); }
+  .go .rise { transform: none; }
+  .fade-in { opacity:0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1); }
+  .go .fade-in { opacity:1; transform:none; }
+  .stamp { opacity:0; transform: scale(2.4) rotate(-14deg); transition: all .6s cubic-bezier(.2,1.6,.4,1); }
+  .go .stamp { opacity:1; transform: scale(1) rotate(-5deg); }
+  .draw { stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw 1.6s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity:0; transform: translateY(40px); transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1); transition-delay: var(--d,0ms); }
+  .reveal.in { opacity:1; transform:none; }
+
+  .outline-text { -webkit-text-stroke: 2px var(--color-bone); color: transparent; }
+  .grain::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:90; opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+
+<body class="grain bg-ink text-bone font-sans antialiased overflow-x-hidden" id="top">
+
+<!-- ================= PRELOADER ================= -->
+<div id="loader" class="fixed inset-0 z-[100] pointer-events-none">
+  <div class="panel absolute inset-x-0 top-0 h-1/2 bg-oxblood transition-transform duration-[1200ms] ease-[cubic-bezier(.76,0,.24,1)]"></div>
+  <div class="panel absolute inset-x-0 bottom-0 h-1/2 bg-oxblood transition-transform duration-[1200ms] ease-[cubic-bezier(.76,0,.24,1)]"></div>
+  <div id="loader-core" class="absolute inset-0 grid place-items-center transition-opacity duration-500">
+    <div class="text-center">
+      <svg viewBox="0 0 100 120" class="mx-auto h-32 w-28" fill="none" stroke="#d19a45" stroke-width="2.5" stroke-linejoin="round">
+        <path class="draw" d="M50 6 L92 20 V58 C92 86 72 104 50 114 C28 104 8 86 8 58 V20 Z"/>
+        <path class="draw" style="animation-delay:.5s" d="M30 60 L50 36 L70 60 M30 78 L50 54 L70 78"/>
+      </svg>
+      <div class="mt-6 font-display text-7xl font-black tabular-nums text-bone" id="pct">0</div>
+      <p class="mt-1 text-sm tracking-widest text-bone/60">menyiapkan barisan…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-5 mix-blend-difference md:px-12">
+  <a href="#top" class="font-display text-2xl font-black tracking-wider">INVICTUS</a>
+  <nav class="hidden gap-8 text-sm md:flex">
+    <a href="#tentang" class="hover:text-bronze transition-colors">Tentang</a>
+    <a href="#pilar" class="hover:text-bronze transition-colors">Pilar</a>
+    <a href="#perjalanan" class="hover:text-bronze transition-colors">Perjalanan</a>
+    <a href="#barisan" class="hover:text-bronze transition-colors">Barisan</a>
+  </nav>
+  <a href="#gabung" class="rounded-full border border-bone px-5 py-2 text-sm font-bold hover:bg-bone hover:text-ink transition-colors">Gabung</a>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-b from-oxblood via-ink to-ink px-6 md:px-12">
+  <!-- spotlight mengikuti kursor -->
+  <div id="spot" class="pointer-events-none absolute inset-0 opacity-70" style="background:radial-gradient(500px circle at var(--x,50%) var(--y,40%), rgba(209,154,69,.22), transparent 60%)"></div>
+  <div class="animate-float absolute -right-32 top-1/4 h-[28rem] w-[28rem] rounded-full bg-wine/50 blur-3xl"></div>
+
+  <p class="fade-in relative text-bronze font-bold" style="transition-delay:1.6s">Angkatan ketiga · Tak pernah menyerah</p>
+
+  <h1 class="relative font-display font-black leading-[.82] tracking-tight text-[clamp(5rem,23vw,22rem)]">
+    <span class="block overflow-hidden pb-[.04em]">
+      <span class="rise" style="transition-delay:.9s">INV</span><span class="rise" style="transition-delay:1s">I</span><span class="rise" style="transition-delay:1.1s">C</span><span class="rise" style="transition-delay:1.2s">T</span><span class="rise" style="transition-delay:1.3s">U</span><span class="rise" style="transition-delay:1.4s">S</span>
+    </span>
+    <span class="flex items-end gap-4 overflow-hidden pb-[.04em] md:gap-8">
+      <span class="rise outline-text" style="transition-delay:1.5s">GEN</span>
+      <span class="rise text-bronze" style="transition-delay:1.65s">3</span>
+      <span class="stamp mb-[.1em] hidden rounded-md border-4 border-bronze px-4 py-1 text-[clamp(1rem,2.4vw,2.2rem)] font-black tracking-widest text-bronze sm:block" style="transition-delay:2.3s">TAK TERKALAHKAN</span>
+    </span>
+  </h1>
+
+  <div class="fade-in relative mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between" style="transition-delay:2.1s">
+    <p class="max-w-md text-lg text-bone/75">Kami bukan yang terkuat sejak awal. Kami yang bertahan paling akhir — bersama, sampai garis finis.</p>
+    <a href="#tentang" class="group inline-flex w-fit items-center gap-3 rounded-full bg-bronze px-7 py-4 font-bold text-ink transition-transform hover:scale-105">
+      Kenali kami
+      <span class="grid h-7 w-7 place-items-center rounded-full bg-ink text-bronze transition-transform group-hover:translate-y-1">↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="overflow-hidden border-y border-bone/15 bg-bronze py-4 text-ink">
+  <div class="animate-marquee flex w-max gap-10 font-display text-4xl font-black whitespace-nowrap">
+    <script>document.write(('<span>SOLIDARITAS ✦</span><span>LOYALITAS ✦</span><span>KEBERANIAN ✦</span><span>KELUARGA ✦</span><span>INVICTUS ✦</span>').repeat(8))</script>
+  </div>
+</div>
+
+<!-- ================= TENTANG + STATS ================= -->
+<section id="tentang" class="mx-auto grid max-w-7xl gap-16 px-6 py-32 md:grid-cols-2 md:px-12">
+  <div class="reveal">
+    <h2 class="font-display text-6xl font-black leading-none md:text-8xl">Invictus itu artinya <span class="text-bronze">tidak pernah kalah.</span></h2>
+  </div>
+  <div class="reveal space-y-6 text-lg leading-relaxed text-bone/75" style="--d:150ms">
+    <p>Dalam bahasa Latin, <em>invictus</em> berarti tak terkalahkan. Bukan karena tidak pernah jatuh, tapi karena selalu bangkit dan tidak pernah berjalan sendirian.</p>
+    <p>Gen3 adalah angkatan yang lahir dari begadang bareng, tawa di tengah tekanan, dan janji untuk saling menjemput kalau ada yang tertinggal.</p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-bone/15 md:col-span-2 md:grid-cols-4">
+    <div class="reveal bg-ink p-8"><div class="font-display text-7xl font-black text-bronze"><span class="count" data-to="120">0</span>+</div><p class="mt-1 text-bone/70">Anggota aktif</p></div>
+    <div class="reveal bg-ink p-8" style="--d:100ms"><div class="font-display text-7xl font-black text-bronze"><span class="count" data-to="36">0</span></div><p class="mt-1 text-bone/70">Kegiatan bersama</p></div>
+    <div class="reveal bg-ink p-8" style="--d:200ms"><div class="font-display text-7xl font-black text-bronze"><span class="count" data-to="3">0</span></div><p class="mt-1 text-bone/70">Tahun kebersamaan</p></div>
+    <div class="reveal bg-ink p-8" style="--d:300ms"><div class="font-display text-7xl font-black text-bronze"><span class="count" data-to="1">0</span></div><p class="mt-1 text-bone/70">Keluarga besar</p></div>
+  </div>
+</section>
+
+<!-- ================= PILAR ================= -->
+<section id="pilar" class="bg-bone px-6 py-32 text-ink md:px-12">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="reveal font-display text-6xl font-black md:text-8xl">Tiga pilar kami</h2>
+    <div class="mt-16 grid gap-6 md:grid-cols-3">
+      <article class="tilt reveal rounded-3xl bg-oxblood p-10 text-bone transition-transform duration-200 will-change-transform">
+        <svg class="h-14 w-14 text-bronze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.500-1-8-4-8-9V6z"/></svg>
+        <h3 class="mt-8 font-display text-4xl font-black">Berani</h3>
+        <p class="mt-3 text-bone/75">Maju duluan saat yang lain ragu, dan siap menanggung risikonya bersama.</p>
+      </article>
+      <article class="tilt reveal rounded-3xl bg-ink p-10 text-bone transition-transform duration-200 will-change-transform" style="--d:120ms">
+        <svg class="h-14 w-14 text-bronze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c0-3.500 3-5 6-5s6 1.500 6 5M12 20c0-3.500 3-5 6-5s4 1.500 4 5"/></svg>
+        <h3 class="mt-8 font-display text-4xl font-black">Solid</h3>
+        <p class="mt-3 text-bone/75">Satu langkah, satu suara. Menang dirayakan bareng, kalah ditanggung bareng.</p>
+      </article>
+      <article class="tilt reveal rounded-3xl bg-wine p-10 text-bone transition-transform duration-200 will-change-transform" style="--d:240ms">
+        <svg class="h-14 w-14 text-bronze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-9M15 6h6v6"/></svg>
+        <h3 class="mt-8 font-display text-4xl font-black">Bertumbuh</h3>
+        <p class="mt-3 text-bone/75">Tidak puas jadi biasa-biasa saja. Belajar, gagal, bangkit, lalu naik level.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERJALANAN (timeline) ================= -->
+<section id="perjalanan" class="mx-auto max-w-4xl px-6 py-32 md:px-12">
+  <h2 class="reveal font-display text-6xl font-black md:text-8xl">Perjalanan kami</h2>
+  <ol class="relative mt-16 space-y-14 border-l-2 border-bronze/40 pl-10">
+    <!-- Ganti isi sesuai cerita angkatanmu -->
+    <li class="reveal relative"><span class="absolute -left-[3.15rem] top-2 h-4 w-4 rounded-full bg-bronze ring-8 ring-bronze/20"></span><time class="font-bold text-bronze">Tahun 1</time><h3 class="font-display text-4xl font-black">Pertama kali berkumpul</h3><p class="mt-2 text-bone/70">Kita masih asing satu sama lain. Dari sinilah nama Invictus lahir.</p></li>
+    <li class="reveal relative"><span class="absolute -left-[3.15rem] top-2 h-4 w-4 rounded-full bg-bronze ring-8 ring-bronze/20"></span><time class="font-bold text-bronze">Tahun 2</time><h3 class="font-display text-4xl font-black">Diuji bersama</h3><p class="mt-2 text-bone/70">Tantangan datang bertubi-tubi, dan kita justru makin dekat.</p></li>
+    <li class="reveal relative"><span class="absolute -left-[3.15rem] top-2 h-4 w-4 rounded-full bg-bronze ring-8 ring-bronze/20"></span><time class="font-bold text-bronze">Tahun 3</time><h3 class="font-display text-4xl font-black">Menjadi keluarga</h3><p class="mt-2 text-bone/70">Bukan lagi sekadar angkatan. Kita saling punya, apa pun yang terjadi.</p></li>
+  </ol>
+</section>
+
+<!-- ================= BARISAN (anggota) ================= -->
+<section id="barisan" class="bg-oxblood px-6 py-32 md:px-12">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="reveal font-display text-6xl font-black md:text-8xl">Barisan Invictus</h2>
+    <p class="reveal mt-4 max-w-lg text-bone/70">Ganti inisial dan nama di bawah ini dengan teman-teman angkatanmu.</p>
+    <div id="members" class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"></div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="gabung" class="relative overflow-hidden px-6 py-40 text-center md:px-12">
+  <div class="animate-float absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-wine/40 blur-3xl"></div>
+  <h2 class="reveal relative font-display text-[clamp(3.5rem,13vw,11rem)] font-black leading-[.85]">Satu barisan.<br><span class="outline-text">Tanpa kalah.</span></h2>
+  <a href="#" class="reveal relative mt-12 inline-block rounded-full bg-bronze px-10 py-5 text-lg font-black text-ink transition-transform hover:scale-110" style="--d:200ms">Ikuti kami di Instagram</a>
+</section>
+
+<footer class="border-t border-bone/15 px-6 py-8 text-center text-sm text-bone/50">
+  © 2026 Invictus Gen3. Dibuat dengan bangga oleh angkatan.
+</footer>
+
+<script>
+  /* ---------- Preloader → hero entrance ---------- */
+  const pct = document.getElementById('pct');
+  const loader = document.getElementById('loader');
+  document.body.style.overflow = 'hidden';
+  let n = 0;
+  const tick = setInterval(() => {
+    n += Math.ceil(Math.random() * 7);
+    if (n >= 100) { n = 100; clearInterval(tick); finish(); }
+    pct.textContent = n;
+  }, 55);
+
+  function finish() {
+    setTimeout(() => {
+      document.getElementById('loader-core').style.opacity = 0;
+      const [top, bottom] = loader.querySelectorAll('.panel');
+      top.style.transform = 'translateY(-100%)';
+      bottom.style.transform = 'translateY(100%)';
+      document.documentElement.classList.add('go');
+      document.body.style.overflow = '';
+      setTimeout(() => loader.remove(), 1400);
+    }, 400);
+  }
+
+  /* ---------- Spotlight kursor di hero ---------- */
+  const hero = document.getElementById('hero');
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--x', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--y', (e.clientY - r.top) + 'px');
+  });
+
+  /* ---------- Scroll reveal + counter ---------- */
+  const countUp = el => {
+    const to = +el.dataset.to, t0 = performance.now(), dur = 1600;
+    const step = t => {
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 4)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.count').forEach(countUp);
+      io.unobserve(e.target);
+    });
+  }, { threshold: .2 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- Kartu 3D tilt ---------- */
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(800px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave', () => card.style.transform = '');
+  });
+
+  /* ---------- Generate anggota (edit daftar ini) ---------- */
+  const names = ['Andi','Bima','Citra','Dewi','Eka','Fajar','Gita','Hana','Indra','Jaya','Kirana','Laras'];
+  const box = document.getElementById('members');
+  names.forEach((nm, i) => {
+    const d = document.createElement('div');
+    d.className = 'reveal group aspect-square rounded-2xl border border-bone/20 p-4 flex flex-col justify-between transition-colors duration-300 hover:bg-bronze hover:text-ink';
+    d.style.setProperty('--d', (i % 6) * 70 + 'ms');
+    d.innerHTML = `<span class="font-display text-6xl font-black text-bronze group-hover:text-ink">${nm[0]}</span><span class="font-bold">${nm}</span>`;
+    box.appendChild(d);
+    io.observe(d);
+  });
+</script>
 </body>
 </html>
