@@ -1,0 +1,289 @@
+{
+  // ===== 🎮 POKÉMON =====
+  "vscode-pokemon.defaultPokemon": [
+    { "type": "pikachu", "name": "Sparky" },
+    { "type": "charizard", "name": "Flame" },
+    { "type": "articuno" },
+    { "type": "mewtwo", "shiny": true },
+    { "type": "random" },
+    { "type": "random", "pool": ["pikachu", "eevee", "gengar", "snorlax"] }
+  ],
+
+  // ===== 🌃 TEMA NEON =====
+  "workbench.colorTheme": "SynthWave '84",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.location": "top",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabCloseButton": "left",
+  "workbench.editor.tabActionLocation": "left",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.showIcons": true,
+  "workbench.list.smoothScrolling": true,
+  "workbench.tree.indent": 18,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.tips.enabled": false,
+  "workbench.layoutControl.enabled": true,
+  "window.commandCenter": true,
+  "window.titleBarStyle": "custom",
+  "breadcrumbs.enabled": true,
+  "problems.decorations.enabled": true,
+
+  // ===== 🔥 FONT =====
+  "editor.fontFamily": "'Fira Code', 'JetBrains Mono', Consolas, monospace",
+  "editor.fontSize": 15,
+  "editor.fontWeight": "600",
+  "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'zero', 'cv14'",
+  "editor.lineHeight": 1.7,
+  "editor.letterSpacing": 0.6,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.padding.top": 24,
+  "editor.padding.bottom": 24,
+
+  // ===== ⚡ KURSOR & ANIMASI =====
+  "editor.cursorStyle": "block",
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSurroundingLines": 5,
+  "editor.smoothScrolling": true,
+  "editor.mouseWheelZoom": true,
+  "editor.roundedSelection": true,
+  "editor.renderLineHighlight": "all",
+  "editor.stickyScroll.enabled": true,
+  "editor.stickyScroll.maxLineCount": 4,
+  "editor.linkedEditing": true,
+  "editor.occurrencesHighlight": "multiFile",
+  "editor.selectionHighlight": true,
+  "editor.folding": true,
+  "editor.foldingHighlight": true,
+  "editor.showFoldingControls": "always",
+  "editor.glyphMargin": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.hover.delay": 200,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.copyWithSyntaxHighlighting": true,
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.scale": 2,
+  "editor.minimap.maxColumn": 80,
+  "editor.scrollbar.verticalScrollbarSize": 10,
+
+  // ===== 🌈 BRACKET & INDENT PELANGI =====
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.guides.indentation": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "indentRainbow.colors": [
+    "rgba(255,46,151,0.10)",
+    "rgba(254,222,93,0.10)",
+    "rgba(114,241,184,0.10)",
+    "rgba(54,249,246,0.10)",
+    "rgba(255,126,219,0.10)",
+    "rgba(184,147,206,0.10)"
+  ],
+  "indentRainbow.ignoreErrorLanguages": ["*"],
+
+  // ===== 💜 WARNA NEON KUSTOM =====
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["comment", "punctuation.definition.comment"],
+        "settings": { "fontStyle": "italic", "foreground": "#6d77b3" }
+      },
+      {
+        "scope": ["keyword", "storage.type", "storage.modifier"],
+        "settings": { "fontStyle": "italic bold" }
+      },
+      {
+        "scope": ["string", "string.quoted"],
+        "settings": { "foreground": "#ff8b39" }
+      },
+      {
+        "scope": ["entity.name.function", "support.function"],
+        "settings": { "fontStyle": "bold" }
+      }
+    ]
+  },
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#00fff2",
+    "editor.lineHighlightBackground": "#ff00ff14",
+    "editor.lineHighlightBorder": "#ff00ff55",
+    "editor.selectionBackground": "#ff00ff44",
+    "editor.findMatchBackground": "#00fff255",
+    "editor.wordHighlightBackground": "#00fff222",
+    "editorLineNumber.foreground": "#6d77b3",
+    "editorLineNumber.activeForeground": "#00fff2",
+    "editorIndentGuide.activeBackground1": "#ff00ff",
+    "editorBracketHighlight.foreground1": "#ff2e97",
+    "editorBracketHighlight.foreground2": "#fede5d",
+    "editorBracketHighlight.foreground3": "#72f1b8",
+    "editorBracketHighlight.foreground4": "#36f9f6",
+    "editorBracketHighlight.foreground5": "#ff7edb",
+    "editorBracketHighlight.foreground6": "#b893ce",
+    "tab.activeBorderTop": "#ff2e97",
+    "tab.activeBorder": "#00fff2",
+    "tab.activeBackground": "#2a2139",
+    "statusBar.background": "#241b2f",
+    "statusBar.foreground": "#00fff2",
+    "statusBar.debuggingBackground": "#ff2e97",
+    "titleBar.activeBackground": "#171520",
+    "titleBar.activeForeground": "#ff7edb",
+    "activityBar.background": "#171520",
+    "activityBar.activeBorder": "#ff2e97",
+    "activityBarBadge.background": "#ff2e97",
+    "scrollbarSlider.background": "#ff2e9740",
+    "scrollbarSlider.hoverBackground": "#ff2e9788",
+    "minimap.selectionHighlight": "#ff2e97",
+    "focusBorder": "#ff2e97",
+    "terminalCursor.foreground": "#00fff2"
+  },
+
+  // ===== 🪄 CUSTOM UI STYLE (glow, animasi pelangi, denyut) =====
+  "custom-ui-style.stylesheet": {
+    "@keyframes rainbow": "0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); }",
+    "@keyframes pulse": "0%, 100% { box-shadow: 0 0 6px #ff2e97; } 50% { box-shadow: 0 0 22px #00fff2; }",
+    ".monaco-editor .cursor": "background: #00fff2 !important; box-shadow: 0 0 10px #00fff2, 0 0 25px #ff2e97; animation: rainbow 4s linear infinite;",
+    ".tab.active": "border-radius: 12px 12px 0 0 !important; animation: pulse 2.5s ease-in-out infinite;",
+    ".monaco-workbench .part.statusbar": "animation: pulse 3s ease-in-out infinite;",
+    ".monaco-editor .current-line": "box-shadow: 0 0 14px #ff00ff66 inset;",
+    ".monaco-editor .suggest-widget": "border-radius: 14px !important; box-shadow: 0 0 25px #ff2e9788 !important;",
+    ".monaco-menu-container .monaco-menu": "border-radius: 14px !important; box-shadow: 0 0 25px #00fff255;",
+    ".monaco-list-row.selected": "border-radius: 8px;",
+    ".monaco-workbench .part.activitybar": "box-shadow: 0 2px 18px #ff2e9766;"
+  },
+
+  // ===== 🎆 POWER MODE (kembang api + layar goyang ringan) =====
+  "powermode.enabled": true,
+  "powermode.presets": "fireworks",
+  "powermode.enableShake": true,
+  "powermode.shakeIntensity": 3,
+  "powermode.comboTimeout": 15,
+  "powermode.maxExplosions": 3,
+  "powermode.explosionSize": 7,
+  "powermode.explosionFrequency": 1,
+  "powermode.enableStatusBarComboCounter": true,
+  "powermode.enableStatusBarStreakCounter": true,
+  "powermode.comboThreshold": 0,
+
+  // ===== 🐱 HEWAN PELIHARAAN =====
+  "vscode-pets.petSize": "large",
+  "vscode-pets.defaultPetType": "cat",
+  "vscode-pets.theme": "forest",
+  "vscode-pets.throwBallWithMouse": true,
+
+  // ===== 🚨 ERROR LENS =====
+  "errorLens.enabled": true,
+  "errorLens.fontStyleItalic": true,
+  "errorLens.gutterIconsEnabled": true,
+  "errorLens.delay": 200,
+  "errorLens.followCursor": "allLines",
+
+  // ===== 🤖 AI: SARAN KODE =====
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.quickSuggestionsDelay": 10,
+  "editor.suggestSelection": "first",
+  "editor.snippetSuggestions": "top",
+  "editor.tabCompletion": "on",
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.suggest.preview": true,
+  "editor.suggest.showStatusBar": true,
+  "editor.parameterHints.enabled": true,
+  "editor.inlayHints.enabled": "on",
+
+  // ===== 🤖 GITHUB COPILOT =====
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "html": true,
+    "css": true,
+    "javascript": true,
+    "scminput": false
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.localeOverride": "id",
+  "chat.agent.enabled": true,
+  "chat.commandCenter.enabled": true,
+
+  // ===== 🤖 CLAUDE CODE =====
+  "claudeCode.preferredLocation": "sidebar",
+  "claudeCode.useTerminal": false,
+
+  // ===== 🧩 BANTUAN KODE =====
+  "emmet.triggerExpansionOnTab": true,
+  "html.autoClosingTags": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.quoteStyle": "double",
+
+  // ===== 💾 SIMPAN & FORMAT =====
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": false,
+  "prettier.semi": true,
+
+  // ===== 🚀 LIVE SERVER =====
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+
+  // ===== 💻 TERMINAL =====
+  "terminal.integrated.fontFamily": "'Fira Code', monospace",
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.cursorStyleInactive": "line",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.lineHeight": 1.4,
+  "terminal.integrated.minimumContrastRatio": 1,
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+
+  // ===== 📁 EXPLORER =====
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.sortOrder": "type",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+
+  // ===== 🌿 GIT =====
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "always",
+  "gitlens.currentLine.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+
+  // ===== 🔒 LAINNYA =====
+  "telemetry.telemetryLevel": "off"
+}
