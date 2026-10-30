@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #0A0A0C;
+    color: #F3F4F6;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Comic Book Heavy Outline Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #101014;
+    border-left: 2px solid #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #FFE600;
+    border: 2px solid #000000;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FACC15;
+  }
+}
+
+@layer utilities {
+  /* Comic Halftone Patterns */
+  .bg-halftone-yellow {
+    background-size: 18px 18px;
+    background-image: radial-gradient(circle, rgba(255, 230, 0, 0.15) 1.5px, transparent 1.5px);
+  }
+
+  .bg-halftone-subtle {
+    background-size: 16px 16px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1.2px, transparent 1.2px);
+  }
+
+  .bg-halftone-paper {
+    background-size: 14px 14px;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1.2px, transparent 1.2px);
+  }
+
+  /* Comic Title Stroke Effect */
+  .comic-stroke {
+    -webkit-text-stroke: 2px #000000;
+    text-shadow: 3px 3px 0px #000000;
+  }
+
+  .comic-stroke-sm {
+    -webkit-text-stroke: 1.2px #000000;
+    text-shadow: 2px 2px 0px #000000;
+  }
+
+  .comic-stroke-yellow {
+    -webkit-text-stroke: 1.5px #000000;
+    text-shadow: 3px 3px 0px #FFE600;
+  }
+
+  /* Comic Panel Box */
+  .comic-box {
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0px 0px #000000;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .comic-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px 0px #FFE600;
+  }
+
+  .comic-box-static {
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0px 0px #000000;
+  }
+
+  .comic-box-yellow {
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0px 0px #FFE600;
+  }
+
+  /* Comic Speech Bubble */
+  .speech-bubble-bottom {
+    position: relative;
+  }
+  .speech-bubble-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 24px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #FAFAF5 transparent;
+    display: block;
+    width: 0;
+  }
+}
