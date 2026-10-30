@@ -3,129 +3,437 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Invictus — cerita, kegiatan, dan wajah-wajah angkatan yang tumbuh bersama." />
+    <meta
+      name="description"
+      content="Invictus — cerita, kegiatan, dan wajah-wajah angkatan yang tumbuh bersama."
+    />
     <meta name="theme-color" content="#ffffff" />
     <title>Invictus — Tak terkalahkan, dari kita untuk kita</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: { cream: "#f3ece2", coffee: "#8a4b24", caramel: "#d9a066" },
-            fontFamily: { sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"] },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+            },
           },
         },
       };
     </script>
   </head>
   <body class="bg-white font-sans text-neutral-900 antialiased">
-    <a href="#main" class="sr-only z-[70] rounded-full bg-neutral-900 px-5 py-3 font-bold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-caramel">Langsung ke konten</a>
+    <a
+      href="#main"
+      class="sr-only z-[70] rounded-full bg-neutral-900 px-5 py-3 font-bold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-caramel"
+      >Langsung ke konten</a
+    >
 
-    <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-neutral-900/10 bg-white/90 backdrop-blur-md transition-shadow duration-300">
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-12" aria-label="Navigasi utama">
-        <a href="#beranda" class="rounded-sm text-2xl font-extrabold tracking-[-0.07em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-4" aria-label="Invictus, ke beranda">Invictus<span class="text-coffee">.</span></a>
-        <button id="menu-button" type="button" class="grid size-11 place-items-center rounded-full border border-neutral-900/15 text-2xl transition hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 lg:hidden" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="primary-menu">
+    <header
+      id="site-header"
+      class="fixed inset-x-0 top-0 z-50 border-b border-neutral-900/10 bg-white/90 backdrop-blur-md transition-shadow duration-300"
+    >
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-12"
+        aria-label="Navigasi utama"
+      >
+        <a
+          href="#beranda"
+          class="rounded-sm text-2xl font-extrabold tracking-[-0.07em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-4"
+          aria-label="Invictus, ke beranda"
+          >Invictus<span class="text-coffee">.</span></a
+        >
+        <button
+          id="menu-button"
+          type="button"
+          class="grid size-11 place-items-center rounded-full border border-neutral-900/15 text-2xl transition hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 lg:hidden"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="primary-menu"
+        >
           <span id="menu-icon" aria-hidden="true">☰</span>
         </button>
-        <div id="primary-menu" class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-neutral-900/10 bg-white px-5 py-4 shadow-lg sm:px-8 lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
-          <a data-nav-link href="#beranda" class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0">Beranda</a>
-          <a data-nav-link href="#tentang" class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0">Tentang</a>
-          <a data-nav-link href="#agenda" class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0">Agenda</a>
-          <a data-nav-link href="#galeri" class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0">Galeri</a>
-          <a data-nav-link href="#anggota" class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0">Anggota</a>
-          <a href="#kontak" class="rounded-full bg-neutral-900 px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2">Hubungi kami</a>
+        <div
+          id="primary-menu"
+          class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-neutral-900/10 bg-white px-5 py-4 shadow-lg sm:px-8 lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none"
+        >
+          <a
+            data-nav-link
+            href="#beranda"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0"
+            >Beranda</a
+          >
+          <a
+            data-nav-link
+            href="#tentang"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0"
+            >Tentang</a
+          >
+          <a
+            data-nav-link
+            href="#agenda"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0"
+            >Agenda</a
+          >
+          <a
+            data-nav-link
+            href="#galeri"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0"
+            >Galeri</a
+          >
+          <a
+            data-nav-link
+            href="#anggota"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-neutral-700 transition hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee lg:px-0"
+            >Anggota</a
+          >
+          <a
+            href="#kontak"
+            class="rounded-full bg-neutral-900 px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2"
+            >Hubungi kami</a
+          >
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <section id="beranda" class="scroll-mt-24 bg-cream px-5 pb-16 pt-32 sm:px-8 sm:pb-24 sm:pt-36 lg:px-12 lg:pt-40">
-        <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <section
+        id="beranda"
+        class="scroll-mt-24 bg-cream px-5 pb-16 pt-32 sm:px-8 sm:pb-24 sm:pt-36 lg:px-12 lg:pt-40"
+      >
+        <div
+          class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16"
+        >
           <div>
-            <p class="mb-5 text-sm font-bold tracking-wide text-coffee">Angkatan Invictus</p>
-            <h1 class="max-w-3xl text-5xl font-extrabold leading-[1.04] tracking-[-0.07em] sm:text-6xl lg:text-7xl xl:text-[84px]">Tak terkalahkan,<br />dari kita untuk kita.</h1>
-            <p class="mt-6 max-w-xl text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8">Invictus berarti tak terkalahkan. Di sini kami menyimpan cerita, kegiatan, dan wajah-wajah angkatan yang tumbuh bersama.</p>
+            <p class="mb-5 text-sm font-bold tracking-wide text-coffee">
+              Angkatan Invictus
+            </p>
+            <h1
+              class="max-w-3xl text-5xl font-extrabold leading-[1.04] tracking-[-0.07em] sm:text-6xl lg:text-7xl xl:text-[84px]"
+            >
+              Tak terkalahkan,<br />dari kita untuk kita.
+            </h1>
+            <p
+              class="mt-6 max-w-xl text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8"
+            >
+              Invictus berarti tak terkalahkan. Di sini kami menyimpan cerita,
+              kegiatan, dan wajah-wajah angkatan yang tumbuh bersama.
+            </p>
             <div class="mt-8 flex flex-wrap gap-3">
-              <a href="#agenda" class="inline-flex min-h-12 items-center justify-center rounded-full bg-neutral-900 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2">Lihat agenda</a>
-              <a href="#anggota" class="inline-flex min-h-12 items-center justify-center rounded-full border border-neutral-900/30 px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5 hover:border-coffee hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2">Kenalan dengan anggota</a>
+              <a
+                href="#agenda"
+                class="inline-flex min-h-12 items-center justify-center rounded-full bg-neutral-900 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2"
+                >Lihat agenda</a
+              >
+              <a
+                href="#anggota"
+                class="inline-flex min-h-12 items-center justify-center rounded-full border border-neutral-900/30 px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5 hover:border-coffee hover:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2"
+                >Kenalan dengan anggota</a
+              >
             </div>
           </div>
-          <div class="rounded-[2rem] bg-neutral-900 p-6 text-white shadow-xl sm:p-9 lg:p-10">
-            <p class="text-sm font-bold text-caramel">Kumpul besar berikutnya</p>
-            <h2 class="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">Malam Keakraban Invictus</h2>
-            <div id="countdown-wrap" class="mt-8 grid grid-cols-4 gap-2 sm:gap-3" aria-label="Hitung mundur acara">
-              <div class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"><p id="count-days" class="text-3xl font-extrabold tabular-nums sm:text-4xl">00</p><p class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs">Hari</p></div>
-              <div class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"><p id="count-hours" class="text-3xl font-extrabold tabular-nums sm:text-4xl">00</p><p class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs">Jam</p></div>
-              <div class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"><p id="count-minutes" class="text-3xl font-extrabold tabular-nums sm:text-4xl">00</p><p class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs">Menit</p></div>
-              <div class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"><p id="count-seconds" class="text-3xl font-extrabold tabular-nums sm:text-4xl">00</p><p class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs">Detik</p></div>
+          <div
+            class="rounded-[2rem] bg-neutral-900 p-6 text-white shadow-xl sm:p-9 lg:p-10"
+          >
+            <p class="text-sm font-bold text-caramel">
+              Kumpul besar berikutnya
+            </p>
+            <h2 class="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Malam Keakraban Invictus
+            </h2>
+            <div
+              id="countdown-wrap"
+              class="mt-8 grid grid-cols-4 gap-2 sm:gap-3"
+              aria-label="Hitung mundur acara"
+            >
+              <div
+                class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"
+              >
+                <p
+                  id="count-days"
+                  class="text-3xl font-extrabold tabular-nums sm:text-4xl"
+                >
+                  00
+                </p>
+                <p
+                  class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs"
+                >
+                  Hari
+                </p>
+              </div>
+              <div
+                class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"
+              >
+                <p
+                  id="count-hours"
+                  class="text-3xl font-extrabold tabular-nums sm:text-4xl"
+                >
+                  00
+                </p>
+                <p
+                  class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs"
+                >
+                  Jam
+                </p>
+              </div>
+              <div
+                class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"
+              >
+                <p
+                  id="count-minutes"
+                  class="text-3xl font-extrabold tabular-nums sm:text-4xl"
+                >
+                  00
+                </p>
+                <p
+                  class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs"
+                >
+                  Menit
+                </p>
+              </div>
+              <div
+                class="rounded-2xl bg-white/10 px-2 py-4 text-center sm:px-3"
+              >
+                <p
+                  id="count-seconds"
+                  class="text-3xl font-extrabold tabular-nums sm:text-4xl"
+                >
+                  00
+                </p>
+                <p
+                  class="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/60 sm:text-xs"
+                >
+                  Detik
+                </p>
+              </div>
             </div>
-            <p id="event-status" class="mt-5 min-h-6 text-sm text-white/70" aria-live="polite">Sabtu, 19 Desember 2026</p>
+            <p
+              id="event-status"
+              class="mt-5 min-h-6 text-sm text-white/70"
+              aria-live="polite"
+            >
+              Sabtu, 19 Desember 2026
+            </p>
           </div>
         </div>
       </section>
 
-      <section aria-label="Statistik angkatan" class="px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
-        <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-5">
-          <div class="text-center"><p class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl" data-target="120" data-suffix="+">0+</p><p class="mt-2 text-sm text-neutral-600">anggota aktif</p></div>
-          <div class="text-center"><p class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl" data-target="8" data-suffix="">0</p><p class="mt-2 text-sm text-neutral-600">divisi</p></div>
-          <div class="text-center"><p class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl" data-target="24" data-suffix="">0</p><p class="mt-2 text-sm text-neutral-600">kegiatan terlaksana</p></div>
-          <div class="text-center"><p class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl" data-target="3" data-suffix="">0</p><p class="mt-2 text-sm text-neutral-600">tahun bersama</p></div>
+      <section
+        aria-label="Statistik angkatan"
+        class="px-5 py-14 sm:px-8 sm:py-16 lg:px-12"
+      >
+        <div
+          class="mx-auto grid max-w-7xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-5"
+        >
+          <div class="text-center">
+            <p
+              class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl"
+              data-target="120"
+              data-suffix="+"
+            >
+              0+
+            </p>
+            <p class="mt-2 text-sm text-neutral-600">anggota aktif</p>
+          </div>
+          <div class="text-center">
+            <p
+              class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl"
+              data-target="8"
+              data-suffix=""
+            >
+              0
+            </p>
+            <p class="mt-2 text-sm text-neutral-600">divisi</p>
+          </div>
+          <div class="text-center">
+            <p
+              class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl"
+              data-target="24"
+              data-suffix=""
+            >
+              0
+            </p>
+            <p class="mt-2 text-sm text-neutral-600">kegiatan terlaksana</p>
+          </div>
+          <div class="text-center">
+            <p
+              class="stat-number text-4xl font-extrabold tracking-tight sm:text-5xl"
+              data-target="3"
+              data-suffix=""
+            >
+              0
+            </p>
+            <p class="mt-2 text-sm text-neutral-600">tahun bersama</p>
+          </div>
         </div>
       </section>
 
-      <section id="tentang" class="scroll-mt-20 bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <section
+        id="tentang"
+        class="scroll-mt-20 bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12"
+      >
         <div class="mx-auto max-w-7xl">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="mb-4 text-sm font-bold text-coffee">Cerita di balik nama</p>
-            <h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">Kenapa Invictus?</h2>
-            <p class="mt-5 text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8">Nama ini kami pilih karena satu keyakinan: angkatan yang saling menjaga tidak mudah dikalahkan, oleh tugas, oleh waktu, atau oleh keadaan.</p>
+            <p class="mb-4 text-sm font-bold text-coffee">
+              Cerita di balik nama
+            </p>
+            <h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">
+              Kenapa Invictus?
+            </h2>
+            <p
+              class="mt-5 text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8"
+            >
+              Nama ini kami pilih karena satu keyakinan: angkatan yang saling
+              menjaga tidak mudah dikalahkan, oleh tugas, oleh waktu, atau oleh
+              keadaan.
+            </p>
           </div>
           <div class="mt-12 grid gap-4 md:grid-cols-3">
-            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8"><span class="text-4xl" aria-hidden="true">🤝</span><h3 class="mt-5 text-2xl font-extrabold">Solid</h3><p class="mt-3 leading-7 text-neutral-700">Tidak ada yang jalan sendirian. Kami berangkat dan pulang bersama.</p></article>
-            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8"><span class="text-4xl" aria-hidden="true">🔥</span><h3 class="mt-5 text-2xl font-extrabold">Berani</h3><p class="mt-3 leading-7 text-neutral-700">Mencoba hal baru lebih dulu, gagal pun kami tertawakan bareng.</p></article>
-            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8"><span class="text-4xl" aria-hidden="true">🌱</span><h3 class="mt-5 text-2xl font-extrabold">Bertumbuh</h3><p class="mt-3 leading-7 text-neutral-700">Setiap kegiatan harus meninggalkan sesuatu yang bisa dipelajari.</p></article>
+            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8">
+              <span class="text-4xl" aria-hidden="true">🤝</span>
+              <h3 class="mt-5 text-2xl font-extrabold">Solid</h3>
+              <p class="mt-3 leading-7 text-neutral-700">
+                Tidak ada yang jalan sendirian. Kami berangkat dan pulang
+                bersama.
+              </p>
+            </article>
+            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8">
+              <span class="text-4xl" aria-hidden="true">🔥</span>
+              <h3 class="mt-5 text-2xl font-extrabold">Berani</h3>
+              <p class="mt-3 leading-7 text-neutral-700">
+                Mencoba hal baru lebih dulu, gagal pun kami tertawakan bareng.
+              </p>
+            </article>
+            <article class="rounded-[1.75rem] bg-white p-7 sm:p-8">
+              <span class="text-4xl" aria-hidden="true">🌱</span>
+              <h3 class="mt-5 text-2xl font-extrabold">Bertumbuh</h3>
+              <p class="mt-3 leading-7 text-neutral-700">
+                Setiap kegiatan harus meninggalkan sesuatu yang bisa dipelajari.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="agenda" class="scroll-mt-20 bg-neutral-900 px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12">
+      <section
+        id="agenda"
+        class="scroll-mt-20 bg-neutral-900 px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12"
+      >
         <div class="mx-auto max-w-7xl">
-          <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div><p class="mb-4 text-sm font-bold text-caramel">Catat tanggalnya</p><h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">Agenda angkatan</h2></div>
-            <p class="max-w-md text-sm leading-6 text-white/65">Tekan “Ingatkan saya” untuk menandai kegiatan yang mau kamu ikuti.</p>
+          <div
+            class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+          >
+            <div>
+              <p class="mb-4 text-sm font-bold text-caramel">
+                Catat tanggalnya
+              </p>
+              <h2
+                class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl"
+              >
+                Agenda angkatan
+              </h2>
+            </div>
+            <p class="max-w-md text-sm leading-6 text-white/65">
+              Tekan “Ingatkan saya” untuk menandai kegiatan yang mau kamu ikuti.
+            </p>
           </div>
           <div id="agenda-list" class="mt-10 grid gap-4 lg:grid-cols-3"></div>
-          <p id="agenda-summary" class="mt-6 min-h-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/75" aria-live="polite">Belum ada kegiatan yang kamu tandai.</p>
+          <p
+            id="agenda-summary"
+            class="mt-6 min-h-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/75"
+            aria-live="polite"
+          >
+            Belum ada kegiatan yang kamu tandai.
+          </p>
         </div>
       </section>
 
-      <section id="galeri" class="scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <section
+        id="galeri"
+        class="scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28 lg:px-12"
+      >
         <div class="mx-auto max-w-7xl">
-          <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <div><p class="mb-4 text-sm font-bold text-coffee">Album angkatan</p><h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">Galeri kenangan</h2></div>
-            <div id="gallery-filters" class="flex flex-wrap gap-2" aria-label="Filter galeri"></div>
+          <div
+            class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"
+          >
+            <div>
+              <p class="mb-4 text-sm font-bold text-coffee">Album angkatan</p>
+              <h2
+                class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl"
+              >
+                Galeri kenangan
+              </h2>
+            </div>
+            <div
+              id="gallery-filters"
+              class="flex flex-wrap gap-2"
+              aria-label="Filter galeri"
+            ></div>
           </div>
-          <div id="gallery-grid" class="mt-9 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4"></div>
+          <div
+            id="gallery-grid"
+            class="mt-9 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4"
+          ></div>
         </div>
       </section>
 
-      <section id="anggota" class="scroll-mt-20 bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <section
+        id="anggota"
+        class="scroll-mt-20 bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12"
+      >
         <div class="mx-auto max-w-7xl">
-          <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div><p class="mb-4 text-sm font-bold text-coffee">Wajah di balik cerita</p><h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">Anggota Invictus</h2></div>
-            <p id="member-count" class="text-sm text-neutral-600" aria-live="polite"></p>
+          <div
+            class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+          >
+            <div>
+              <p class="mb-4 text-sm font-bold text-coffee">
+                Wajah di balik cerita
+              </p>
+              <h2
+                class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl"
+              >
+                Anggota Invictus
+              </h2>
+            </div>
+            <p
+              id="member-count"
+              class="text-sm text-neutral-600"
+              aria-live="polite"
+            ></p>
           </div>
           <div class="mt-8 grid gap-3 sm:grid-cols-[1fr_240px]">
             <label class="sr-only" for="member-search">Cari nama anggota</label>
-            <input id="member-search" type="search" placeholder="Cari nama anggota..." autocomplete="off" class="min-h-12 rounded-full border border-neutral-900/15 bg-white px-5 text-sm outline-none transition placeholder:text-neutral-400 focus:border-coffee focus:ring-2 focus:ring-coffee/20" />
+            <input
+              id="member-search"
+              type="search"
+              placeholder="Cari nama anggota..."
+              autocomplete="off"
+              class="min-h-12 rounded-full border border-neutral-900/15 bg-white px-5 text-sm outline-none transition placeholder:text-neutral-400 focus:border-coffee focus:ring-2 focus:ring-coffee/20"
+            />
             <label class="sr-only" for="division-filter">Filter divisi</label>
-            <select id="division-filter" class="min-h-12 rounded-full border border-neutral-900/15 bg-white px-5 text-sm outline-none transition focus:border-coffee focus:ring-2 focus:ring-coffee/20"></select>
+            <select
+              id="division-filter"
+              class="min-h-12 rounded-full border border-neutral-900/15 bg-white px-5 text-sm outline-none transition focus:border-coffee focus:ring-2 focus:ring-coffee/20"
+            ></select>
           </div>
-          <div id="member-grid" class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
-          <p id="member-empty" class="hidden rounded-2xl bg-white px-5 py-8 text-center text-sm text-neutral-600">Nama tidak ditemukan. Coba kata kunci lain atau pilih “Semua divisi”.</p>
+          <div
+            id="member-grid"
+            class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          ></div>
+          <p
+            id="member-empty"
+            class="hidden rounded-2xl bg-white px-5 py-8 text-center text-sm text-neutral-600"
+          >
+            Nama tidak ditemukan. Coba kata kunci lain atau pilih “Semua
+            divisi”.
+          </p>
         </div>
       </section>
 
@@ -133,86 +441,273 @@
         <div class="mx-auto max-w-4xl text-center">
           <p class="mb-8 text-sm font-bold text-coffee">Kata mereka</p>
           <figure>
-            <blockquote id="quote-text" class="min-h-36 text-3xl font-extrabold leading-tight tracking-[-0.05em] transition-opacity duration-300 sm:min-h-40 sm:text-5xl" aria-live="polite"></blockquote>
-            <figcaption id="quote-author" class="mt-6 text-sm text-neutral-600"></figcaption>
+            <blockquote
+              id="quote-text"
+              class="min-h-36 text-3xl font-extrabold leading-tight tracking-[-0.05em] transition-opacity duration-300 sm:min-h-40 sm:text-5xl"
+              aria-live="polite"
+            ></blockquote>
+            <figcaption
+              id="quote-author"
+              class="mt-6 text-sm text-neutral-600"
+            ></figcaption>
           </figure>
-          <div id="quote-dots" class="mt-8 flex justify-center gap-3" aria-label="Pilih kutipan"></div>
+          <div
+            id="quote-dots"
+            class="mt-8 flex justify-center gap-3"
+            aria-label="Pilih kutipan"
+          ></div>
         </div>
       </section>
 
-      <section id="kontak" class="scroll-mt-20 bg-neutral-900 px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12">
+      <section
+        id="kontak"
+        class="scroll-mt-20 bg-neutral-900 px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12"
+      >
         <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p class="mb-4 text-sm font-bold text-caramel">Ada yang mau disampaikan?</p>
-            <h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">Punya ide atau kabar?</h2>
-            <p class="mt-5 max-w-lg leading-7 text-white/65">Kirim usulan kegiatan, foto, atau pertanyaan. Pengurus akan membalas lewat email.</p>
+            <p class="mb-4 text-sm font-bold text-caramel">
+              Ada yang mau disampaikan?
+            </p>
+            <h2 class="text-4xl font-extrabold tracking-[-0.06em] sm:text-6xl">
+              Punya ide atau kabar?
+            </h2>
+            <p class="mt-5 max-w-lg leading-7 text-white/65">
+              Kirim usulan kegiatan, foto, atau pertanyaan. Pengurus akan
+              membalas lewat email.
+            </p>
             <ul class="mt-8 space-y-4 text-sm text-white/85">
-              <li><a class="rounded-sm transition hover:text-caramel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel" href="mailto:halo@invictus.id">📧 halo@invictus.id</a></li>
-              <li><a class="rounded-sm transition hover:text-caramel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel" href="https://www.instagram.com/invictus.angkatan/">📸 @invictus.angkatan</a></li>
+              <li>
+                <a
+                  class="rounded-sm transition hover:text-caramel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel"
+                  href="mailto:halo@invictus.id"
+                  >📧 halo@invictus.id</a
+                >
+              </li>
+              <li>
+                <a
+                  class="rounded-sm transition hover:text-caramel focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel"
+                  href="https://www.instagram.com/invictus.angkatan/"
+                  >📸 @invictus.angkatan</a
+                >
+              </li>
               <li>📍 Sekretariat angkatan</li>
             </ul>
           </div>
           <form id="contact-form" novalidate class="space-y-5">
             <div>
-              <label for="contact-name" class="mb-2 block text-sm font-bold">Nama</label>
-              <input id="contact-name" name="name" type="text" autocomplete="name" class="min-h-12 w-full rounded-2xl border border-white/20 bg-white/5 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30" placeholder="Nama kamu" aria-describedby="name-error" />
-              <p id="name-error" class="mt-2 hidden text-sm text-rose-300" aria-live="polite"></p>
+              <label for="contact-name" class="mb-2 block text-sm font-bold"
+                >Nama</label
+              >
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                class="min-h-12 w-full rounded-2xl border border-white/20 bg-white/5 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30"
+                placeholder="Nama kamu"
+                aria-describedby="name-error"
+              />
+              <p
+                id="name-error"
+                class="mt-2 hidden text-sm text-rose-300"
+                aria-live="polite"
+              ></p>
             </div>
             <div>
-              <label for="contact-email" class="mb-2 block text-sm font-bold">Email</label>
-              <input id="contact-email" name="email" type="email" autocomplete="email" class="min-h-12 w-full rounded-2xl border border-white/20 bg-white/5 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30" placeholder="nama@email.com" aria-describedby="email-error" />
-              <p id="email-error" class="mt-2 hidden text-sm text-rose-300" aria-live="polite"></p>
+              <label for="contact-email" class="mb-2 block text-sm font-bold"
+                >Email</label
+              >
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                class="min-h-12 w-full rounded-2xl border border-white/20 bg-white/5 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30"
+                placeholder="nama@email.com"
+                aria-describedby="email-error"
+              />
+              <p
+                id="email-error"
+                class="mt-2 hidden text-sm text-rose-300"
+                aria-live="polite"
+              ></p>
             </div>
             <div>
-              <div class="mb-2 flex items-center justify-between gap-3"><label for="contact-message" class="text-sm font-bold">Pesan</label><span id="message-count" class="text-xs text-white/55">0/300</span></div>
-              <textarea id="contact-message" name="message" rows="4" maxlength="300" class="w-full resize-y rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30" placeholder="Tulis pesanmu di sini..." aria-describedby="message-count message-error"></textarea>
-              <p id="message-error" class="mt-2 hidden text-sm text-rose-300" aria-live="polite"></p>
+              <div class="mb-2 flex items-center justify-between gap-3">
+                <label for="contact-message" class="text-sm font-bold"
+                  >Pesan</label
+                ><span id="message-count" class="text-xs text-white/55"
+                  >0/300</span
+                >
+              </div>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                maxlength="300"
+                class="w-full resize-y rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-caramel focus:ring-2 focus:ring-caramel/30"
+                placeholder="Tulis pesanmu di sini..."
+                aria-describedby="message-count message-error"
+              ></textarea>
+              <p
+                id="message-error"
+                class="mt-2 hidden text-sm text-rose-300"
+                aria-live="polite"
+              ></p>
             </div>
-            <button type="submit" class="min-h-12 rounded-full bg-caramel px-7 py-3 text-sm font-extrabold text-neutral-900 transition hover:-translate-y-0.5 hover:bg-[#e6b47f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">Kirim pesan</button>
-            <p id="form-success" class="hidden rounded-2xl border border-emerald-300/30 bg-emerald-400/10 px-4 py-3 text-sm leading-6 text-emerald-200" role="status" aria-live="polite"></p>
+            <button
+              type="submit"
+              class="min-h-12 rounded-full bg-caramel px-7 py-3 text-sm font-extrabold text-neutral-900 transition hover:-translate-y-0.5 hover:bg-[#e6b47f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+            >
+              Kirim pesan
+            </button>
+            <p
+              id="form-success"
+              class="hidden rounded-2xl border border-emerald-300/30 bg-emerald-400/10 px-4 py-3 text-sm leading-6 text-emerald-200"
+              role="status"
+              aria-live="polite"
+            ></p>
           </form>
         </div>
       </section>
     </main>
 
     <footer class="bg-neutral-900 px-5 pb-8 text-white sm:px-8 lg:px-12">
-      <div class="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/15 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
-        <p>© <span id="footer-year"></span> Angkatan Invictus. Tak terkalahkan.</p>
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/15 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <p>
+          © <span id="footer-year"></span> Angkatan Invictus. Tak terkalahkan.
+        </p>
         <p>Dibuat oleh dan untuk angkatan.</p>
       </div>
     </footer>
 
-    <button id="back-to-top" type="button" aria-label="Kembali ke atas" class="fixed bottom-5 right-5 z-40 hidden size-12 items-center justify-center rounded-full bg-neutral-900 text-2xl font-bold text-white shadow-lg transition hover:-translate-y-1 hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 sm:bottom-8 sm:right-8">↑</button>
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Kembali ke atas"
+      class="fixed bottom-5 right-5 z-40 hidden size-12 items-center justify-center rounded-full bg-neutral-900 text-2xl font-bold text-white shadow-lg transition hover:-translate-y-1 hover:bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 sm:bottom-8 sm:right-8"
+    >
+      ↑
+    </button>
 
-    <div id="lightbox" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/95 p-4 text-white sm:p-8" role="dialog" aria-modal="true" aria-label="Tampilan galeri layar penuh" aria-hidden="true">
-      <button id="lightbox-close" type="button" aria-label="Tutup galeri" class="absolute right-4 top-4 grid size-12 place-items-center rounded-full bg-white/10 text-3xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel">×</button>
-      <button id="lightbox-prev" type="button" aria-label="Gambar sebelumnya" class="absolute left-2 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-2xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel sm:left-8">←</button>
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/95 p-4 text-white sm:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Tampilan galeri layar penuh"
+      aria-hidden="true"
+    >
+      <button
+        id="lightbox-close"
+        type="button"
+        aria-label="Tutup galeri"
+        class="absolute right-4 top-4 grid size-12 place-items-center rounded-full bg-white/10 text-3xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel"
+      >
+        ×
+      </button>
+      <button
+        id="lightbox-prev"
+        type="button"
+        aria-label="Gambar sebelumnya"
+        class="absolute left-2 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-2xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel sm:left-8"
+      >
+        ←
+      </button>
       <figure id="lightbox-content" class="w-full max-w-3xl text-center">
-        <div id="lightbox-art" class="mx-auto flex aspect-square max-h-[70vh] w-full max-w-[70vh] items-center justify-center rounded-[2rem] bg-gradient-to-br from-amber-200 to-orange-400 text-8xl sm:text-9xl" aria-hidden="true"></div>
-        <figcaption id="lightbox-caption" class="mt-5 text-lg font-bold"></figcaption>
+        <div
+          id="lightbox-art"
+          class="mx-auto flex aspect-square max-h-[70vh] w-full max-w-[70vh] items-center justify-center rounded-[2rem] bg-gradient-to-br from-amber-200 to-orange-400 text-8xl sm:text-9xl"
+          aria-hidden="true"
+        ></div>
+        <figcaption
+          id="lightbox-caption"
+          class="mt-5 text-lg font-bold"
+        ></figcaption>
         <p id="lightbox-count" class="mt-2 text-sm text-white/60"></p>
       </figure>
-      <button id="lightbox-next" type="button" aria-label="Gambar berikutnya" class="absolute right-2 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-2xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel sm:right-8">→</button>
+      <button
+        id="lightbox-next"
+        type="button"
+        aria-label="Gambar berikutnya"
+        class="absolute right-2 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-2xl transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel sm:right-8"
+      >
+        →
+      </button>
     </div>
 
     <script>
       const EVENT_DATE = "2026-12-19T18:00:00+07:00";
 
       const AGENDA = [
-        { date: "19 Des 2026", title: "Malam Keakraban", description: "Makan malam bersama, pengumuman, dan hiburan." },
-        { date: "09 Jan 2027", title: "Turnamen Futsal Invictus", description: "Antardivisi, terbuka untuk semua anggota." },
-        { date: "23 Jan 2027", title: "Bakti Sosial", description: "Kunjungan dan donasi buku untuk panti asuhan." },
+        {
+          date: "19 Des 2026",
+          title: "Malam Keakraban",
+          description: "Makan malam bersama, pengumuman, dan hiburan.",
+        },
+        {
+          date: "09 Jan 2027",
+          title: "Turnamen Futsal Invictus",
+          description: "Antardivisi, terbuka untuk semua anggota.",
+        },
+        {
+          date: "23 Jan 2027",
+          title: "Bakti Sosial",
+          description: "Kunjungan dan donasi buku untuk panti asuhan.",
+        },
       ];
 
       const GALLERY = [
-        { emoji: "🎤", caption: "Malam keakraban penuh cerita", category: "Kegiatan", gradient: "from-rose-200 to-orange-300" },
-        { emoji: "⚽", caption: "Final futsal antardivisi", category: "Olahraga", gradient: "from-lime-200 to-emerald-400" },
-        { emoji: "🍜", caption: "Makan bareng satu angkatan", category: "Kebersamaan", gradient: "from-amber-200 to-orange-400" },
-        { emoji: "🏕️", caption: "Hari seru di alam terbuka", category: "Kegiatan", gradient: "from-sky-200 to-indigo-300" },
-        { emoji: "🏐", caption: "Pertandingan voli persahabatan", category: "Olahraga", gradient: "from-yellow-200 to-amber-400" },
-        { emoji: "📸", caption: "Foto bareng satu angkatan", category: "Kebersamaan", gradient: "from-fuchsia-200 to-pink-400" },
-        { emoji: "📚", caption: "Berbagi buku dan cerita", category: "Kegiatan", gradient: "from-teal-200 to-cyan-400" },
-        { emoji: "🎂", caption: "Perayaan kecil penuh tawa", category: "Kebersamaan", gradient: "from-violet-200 to-purple-400" },
+        {
+          emoji: "🎤",
+          caption: "Malam keakraban penuh cerita",
+          category: "Kegiatan",
+          gradient: "from-rose-200 to-orange-300",
+        },
+        {
+          emoji: "⚽",
+          caption: "Final futsal antardivisi",
+          category: "Olahraga",
+          gradient: "from-lime-200 to-emerald-400",
+        },
+        {
+          emoji: "🍜",
+          caption: "Makan bareng satu angkatan",
+          category: "Kebersamaan",
+          gradient: "from-amber-200 to-orange-400",
+        },
+        {
+          emoji: "🏕️",
+          caption: "Hari seru di alam terbuka",
+          category: "Kegiatan",
+          gradient: "from-sky-200 to-indigo-300",
+        },
+        {
+          emoji: "🏐",
+          caption: "Pertandingan voli persahabatan",
+          category: "Olahraga",
+          gradient: "from-yellow-200 to-amber-400",
+        },
+        {
+          emoji: "📸",
+          caption: "Foto bareng satu angkatan",
+          category: "Kebersamaan",
+          gradient: "from-fuchsia-200 to-pink-400",
+        },
+        {
+          emoji: "📚",
+          caption: "Berbagi buku dan cerita",
+          category: "Kegiatan",
+          gradient: "from-teal-200 to-cyan-400",
+        },
+        {
+          emoji: "🎂",
+          caption: "Perayaan kecil penuh tawa",
+          category: "Kebersamaan",
+          gradient: "from-violet-200 to-purple-400",
+        },
       ];
 
       const MEMBERS = [
@@ -230,15 +725,42 @@
         { name: "Citra Lestari", division: "Konsumsi" },
       ];
 
-      const DIVISIONS = ["Semua divisi", "Ketua", "Sekretaris", "Bendahara", "Acara", "Humas", "Dokumentasi", "Olahraga", "Konsumsi"];
-
-      const QUOTES = [
-        { text: "Kalau capek, kita istirahat bareng. Kalau menang, kita rayakan bareng.", author: "Aditya", role: "ketua angkatan" },
-        { text: "Invictus bukan soal tidak pernah jatuh, tapi tidak pernah bangun sendirian.", author: "Binar", role: "sekretaris" },
-        { text: "Kenangan terbaik selalu datang dari kegiatan yang awalnya kami kira merepotkan.", author: "Dinda", role: "divisi acara" },
+      const DIVISIONS = [
+        "Semua divisi",
+        "Ketua",
+        "Sekretaris",
+        "Bendahara",
+        "Acara",
+        "Humas",
+        "Dokumentasi",
+        "Olahraga",
+        "Konsumsi",
       ];
 
-      const GALLERY_CATEGORIES = ["Semua", "Kegiatan", "Olahraga", "Kebersamaan"];
+      const QUOTES = [
+        {
+          text: "Kalau capek, kita istirahat bareng. Kalau menang, kita rayakan bareng.",
+          author: "Aditya",
+          role: "ketua angkatan",
+        },
+        {
+          text: "Invictus bukan soal tidak pernah jatuh, tapi tidak pernah bangun sendirian.",
+          author: "Binar",
+          role: "sekretaris",
+        },
+        {
+          text: "Kenangan terbaik selalu datang dari kegiatan yang awalnya kami kira merepotkan.",
+          author: "Dinda",
+          role: "divisi acara",
+        },
+      ];
+
+      const GALLERY_CATEGORIES = [
+        "Semua",
+        "Kegiatan",
+        "Olahraga",
+        "Kebersamaan",
+      ];
       const markedAgenda = new Set();
       let activeGalleryCategory = "Semua";
       let activeGalleryIndex = 0;
@@ -255,7 +777,10 @@
         menu.classList.toggle("hidden", !isOpen);
         menu.classList.toggle("flex", isOpen);
         menuButton.setAttribute("aria-expanded", String(isOpen));
-        menuButton.setAttribute("aria-label", isOpen ? "Tutup menu navigasi" : "Buka menu navigasi");
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Tutup menu navigasi" : "Buka menu navigasi",
+        );
         document.querySelector("#menu-icon").textContent = isOpen ? "×" : "☰";
       }
 
@@ -272,7 +797,10 @@
       });
 
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+        if (
+          event.key === "Escape" &&
+          menuButton.getAttribute("aria-expanded") === "true"
+        ) {
           setMenuOpen(false);
           menuButton.focus();
         }
@@ -284,7 +812,8 @@
         const status = document.querySelector("#event-status");
         if (remaining <= 0) {
           countdown.classList.add("hidden");
-          status.textContent = "Acara sedang berlangsung atau sudah selesai. Sampai jumpa di kegiatan berikutnya!";
+          status.textContent =
+            "Acara sedang berlangsung atau sudah selesai. Sampai jumpa di kegiatan berikutnya!";
           return false;
         }
 
@@ -296,7 +825,10 @@
           "#count-seconds": seconds % 60,
         };
         Object.entries(values).forEach(([selector, value]) => {
-          document.querySelector(selector).textContent = String(value).padStart(2, "0");
+          document.querySelector(selector).textContent = String(value).padStart(
+            2,
+            "0",
+          );
         });
         return true;
       }
@@ -325,7 +857,9 @@
               <h3 class="mt-4 text-xl font-extrabold">${item.title}</h3>
               <p class="mt-3 flex-1 text-sm leading-6 text-white/65">${item.description}</p>
               <button type="button" data-agenda-index="${index}" aria-pressed="${isMarked}" class="mt-6 min-h-11 w-fit rounded-full px-5 py-3 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 ${
-                isMarked ? "bg-caramel text-neutral-900 hover:bg-[#e6b47f]" : "border border-white/25 text-white hover:border-caramel hover:text-caramel"
+                isMarked
+                  ? "bg-caramel text-neutral-900 hover:bg-[#e6b47f]"
+                  : "border border-white/25 text-white hover:border-caramel hover:text-caramel"
               }">${isMarked ? "Sudah ditandai ✓" : "Ingatkan saya"}</button>
             </article>`;
         }).join("");
@@ -348,32 +882,52 @@
         container.innerHTML = GALLERY_CATEGORIES.map((category) => {
           const active = activeGalleryCategory === category;
           return `<button type="button" data-gallery-filter="${category}" aria-pressed="${active}" class="rounded-full px-4 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 ${
-            active ? "bg-neutral-900 text-white" : "border border-neutral-900/15 text-neutral-700 hover:border-coffee hover:text-coffee"
+            active
+              ? "bg-neutral-900 text-white"
+              : "border border-neutral-900/15 text-neutral-700 hover:border-coffee hover:text-coffee"
           }">${category}</button>`;
         }).join("");
-        container.querySelectorAll("[data-gallery-filter]").forEach((button) => {
-          button.addEventListener("click", () => {
-            activeGalleryCategory = button.dataset.galleryFilter;
-            renderGalleryFilters();
-            renderGallery();
-            document.querySelector(`[data-gallery-filter="${activeGalleryCategory}"]`).focus();
+        container
+          .querySelectorAll("[data-gallery-filter]")
+          .forEach((button) => {
+            button.addEventListener("click", () => {
+              activeGalleryCategory = button.dataset.galleryFilter;
+              renderGalleryFilters();
+              renderGallery();
+              document
+                .querySelector(
+                  `[data-gallery-filter="${activeGalleryCategory}"]`,
+                )
+                .focus();
+            });
           });
-        });
       }
 
       function renderGallery() {
         const container = document.querySelector("#gallery-grid");
-        const visibleItems = GALLERY.map((item, index) => ({ ...item, index }))
-          .filter((item) => activeGalleryCategory === "Semua" || item.category === activeGalleryCategory);
-        container.innerHTML = visibleItems.map((item) => `
+        const visibleItems = GALLERY.map((item, index) => ({
+          ...item,
+          index,
+        })).filter(
+          (item) =>
+            activeGalleryCategory === "Semua" ||
+            item.category === activeGalleryCategory,
+        );
+        container.innerHTML = visibleItems
+          .map(
+            (item) => `
           <button type="button" data-gallery-index="${item.index}" aria-label="Buka galeri: ${item.caption}" class="group overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${item.gradient} text-left transition hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-coffee focus-visible:ring-offset-2">
             <span class="flex aspect-square flex-col items-center justify-center p-3 text-center">
               <span class="text-5xl transition-transform duration-300 group-hover:scale-110 sm:text-6xl" aria-hidden="true">${item.emoji}</span>
               <span class="mt-4 text-xs font-extrabold leading-5 text-neutral-900 sm:text-sm">${item.caption}</span>
             </span>
-          </button>`).join("");
+          </button>`,
+          )
+          .join("");
         container.querySelectorAll("[data-gallery-index]").forEach((button) => {
-          button.addEventListener("click", () => openLightbox(Number(button.dataset.galleryIndex), button));
+          button.addEventListener("click", () =>
+            openLightbox(Number(button.dataset.galleryIndex), button),
+          );
         });
       }
 
@@ -383,7 +937,8 @@
         art.className = `mx-auto flex aspect-square max-h-[70vh] w-full max-w-[70vh] items-center justify-center rounded-[2rem] bg-gradient-to-br ${item.gradient} text-8xl sm:text-9xl`;
         art.textContent = item.emoji;
         document.querySelector("#lightbox-caption").textContent = item.caption;
-        document.querySelector("#lightbox-count").textContent = `${activeGalleryIndex + 1}/${GALLERY.length} · ${item.category}`;
+        document.querySelector("#lightbox-count").textContent =
+          `${activeGalleryIndex + 1}/${GALLERY.length} · ${item.category}`;
       }
 
       function openLightbox(index, trigger) {
@@ -403,17 +958,25 @@
         lightbox.classList.remove("flex");
         lightbox.setAttribute("aria-hidden", "true");
         document.body.classList.remove("overflow-hidden");
-        if (lastGalleryTrigger && lastGalleryTrigger.isConnected) lastGalleryTrigger.focus();
+        if (lastGalleryTrigger && lastGalleryTrigger.isConnected)
+          lastGalleryTrigger.focus();
       }
 
       function moveLightbox(direction) {
-        activeGalleryIndex = (activeGalleryIndex + direction + GALLERY.length) % GALLERY.length;
+        activeGalleryIndex =
+          (activeGalleryIndex + direction + GALLERY.length) % GALLERY.length;
         updateLightbox();
       }
 
-      document.querySelector("#lightbox-close").addEventListener("click", closeLightbox);
-      document.querySelector("#lightbox-prev").addEventListener("click", () => moveLightbox(-1));
-      document.querySelector("#lightbox-next").addEventListener("click", () => moveLightbox(1));
+      document
+        .querySelector("#lightbox-close")
+        .addEventListener("click", closeLightbox);
+      document
+        .querySelector("#lightbox-prev")
+        .addEventListener("click", () => moveLightbox(-1));
+      document
+        .querySelector("#lightbox-next")
+        .addEventListener("click", () => moveLightbox(1));
       lightbox.addEventListener("click", (event) => {
         if (event.target === lightbox) closeLightbox();
       });
@@ -423,7 +986,9 @@
         if (event.key === "ArrowLeft") moveLightbox(-1);
         if (event.key === "ArrowRight") moveLightbox(1);
         if (event.key === "Tab") {
-          const focusable = [...lightbox.querySelectorAll("button:not(:disabled)")];
+          const focusable = [
+            ...lightbox.querySelectorAll("button:not(:disabled)"),
+          ];
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
           if (event.shiftKey && document.activeElement === first) {
@@ -437,29 +1002,51 @@
       });
 
       function getInitials(name) {
-        return name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+        return name
+          .split(/\s+/)
+          .slice(0, 2)
+          .map((part) => part[0])
+          .join("")
+          .toUpperCase();
       }
 
       function renderDivisionOptions() {
-        document.querySelector("#division-filter").innerHTML = DIVISIONS.map((division) =>
-          `<option value="${division === "Semua divisi" ? "" : division}">${division}</option>`,
+        document.querySelector("#division-filter").innerHTML = DIVISIONS.map(
+          (division) =>
+            `<option value="${division === "Semua divisi" ? "" : division}">${division}</option>`,
         ).join("");
       }
 
       function renderMembers() {
-        const searchTerm = document.querySelector("#member-search").value.trim().toLocaleLowerCase("id");
-        const selectedDivision = document.querySelector("#division-filter").value;
+        const searchTerm = document
+          .querySelector("#member-search")
+          .value.trim()
+          .toLocaleLowerCase("id");
+        const selectedDivision =
+          document.querySelector("#division-filter").value;
         const matches = MEMBERS.filter((member) => {
-          const matchesName = member.name.toLocaleLowerCase("id").includes(searchTerm);
-          return matchesName && (!selectedDivision || member.division === selectedDivision);
+          const matchesName = member.name
+            .toLocaleLowerCase("id")
+            .includes(searchTerm);
+          return (
+            matchesName &&
+            (!selectedDivision || member.division === selectedDivision)
+          );
         });
-        document.querySelector("#member-count").textContent = `Menampilkan ${matches.length} dari ${MEMBERS.length} anggota`;
-        document.querySelector("#member-empty").classList.toggle("hidden", matches.length !== 0);
-        document.querySelector("#member-grid").innerHTML = matches.map((member) => `
+        document.querySelector("#member-count").textContent =
+          `Menampilkan ${matches.length} dari ${MEMBERS.length} anggota`;
+        document
+          .querySelector("#member-empty")
+          .classList.toggle("hidden", matches.length !== 0);
+        document.querySelector("#member-grid").innerHTML = matches
+          .map(
+            (member) => `
           <article class="flex items-center gap-4 rounded-[1.5rem] bg-white p-4 sm:p-5">
             <span class="grid size-14 shrink-0 place-items-center rounded-full bg-neutral-900 text-sm font-extrabold tracking-wide text-caramel" aria-hidden="true">${getInitials(member.name)}</span>
             <span class="min-w-0"><span class="block truncate font-extrabold">${member.name}</span><span class="mt-1 block text-sm text-neutral-600">${member.division}</span></span>
-          </article>`).join("");
+          </article>`,
+          )
+          .join("");
       }
 
       function renderQuote(index) {
@@ -468,17 +1055,20 @@
         text.classList.add("opacity-0");
         window.setTimeout(() => {
           text.textContent = `“${quote.text}”`;
-          document.querySelector("#quote-author").textContent = `${quote.author}, ${quote.role}`;
+          document.querySelector("#quote-author").textContent =
+            `${quote.author}, ${quote.role}`;
           text.classList.remove("opacity-0");
         }, 180);
-        document.querySelectorAll("[data-quote-index]").forEach((dot, dotIndex) => {
-          const active = dotIndex === index;
-          dot.setAttribute("aria-pressed", String(active));
-          dot.setAttribute("aria-label", `Tampilkan kutipan ${dotIndex + 1}`);
-          dot.className = `size-3 rounded-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 ${
-            active ? "bg-coffee" : "bg-neutral-300 hover:bg-coffee/60"
-          }`;
-        });
+        document
+          .querySelectorAll("[data-quote-index]")
+          .forEach((dot, dotIndex) => {
+            const active = dotIndex === index;
+            dot.setAttribute("aria-pressed", String(active));
+            dot.setAttribute("aria-label", `Tampilkan kutipan ${dotIndex + 1}`);
+            dot.className = `size-3 rounded-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2 ${
+              active ? "bg-coffee" : "bg-neutral-300 hover:bg-coffee/60"
+            }`;
+          });
       }
 
       function startQuoteTimer() {
@@ -490,8 +1080,9 @@
       }
 
       const quoteDots = document.querySelector("#quote-dots");
-      quoteDots.innerHTML = QUOTES.map((_, index) =>
-        `<button type="button" data-quote-index="${index}" class="size-3 rounded-full bg-neutral-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2" aria-label="Tampilkan kutipan ${index + 1}" aria-pressed="false"></button>`,
+      quoteDots.innerHTML = QUOTES.map(
+        (_, index) =>
+          `<button type="button" data-quote-index="${index}" class="size-3 rounded-full bg-neutral-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coffee focus-visible:ring-offset-2" aria-label="Tampilkan kutipan ${index + 1}" aria-pressed="false"></button>`,
       ).join("");
       quoteDots.querySelectorAll("[data-quote-index]").forEach((dot) => {
         dot.addEventListener("click", () => {
@@ -503,8 +1094,12 @@
       renderQuote(activeQuoteIndex);
       startQuoteTimer();
 
-      document.querySelector("#member-search").addEventListener("input", renderMembers);
-      document.querySelector("#division-filter").addEventListener("change", renderMembers);
+      document
+        .querySelector("#member-search")
+        .addEventListener("input", renderMembers);
+      document
+        .querySelector("#division-filter")
+        .addEventListener("change", renderMembers);
       renderAgenda();
       renderGalleryFilters();
       renderGallery();
@@ -536,14 +1131,31 @@
         const nameError = name ? "" : "Nama wajib diisi.";
         const emailError = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
           ? ""
-          : email ? "Format email belum benar. Contoh: nama@email.com." : "Email wajib diisi.";
-        const messageError = message.length >= 10
-          ? ""
-          : message ? "Pesan minimal 10 karakter." : "Pesan wajib diisi (minimal 10 karakter).";
+          : email
+            ? "Format email belum benar. Contoh: nama@email.com."
+            : "Email wajib diisi.";
+        const messageError =
+          message.length >= 10
+            ? ""
+            : message
+              ? "Pesan minimal 10 karakter."
+              : "Pesan wajib diisi (minimal 10 karakter).";
 
-        setFieldError(nameInput, document.querySelector("#name-error"), nameError);
-        setFieldError(emailInput, document.querySelector("#email-error"), emailError);
-        setFieldError(messageInput, document.querySelector("#message-error"), messageError);
+        setFieldError(
+          nameInput,
+          document.querySelector("#name-error"),
+          nameError,
+        );
+        setFieldError(
+          emailInput,
+          document.querySelector("#email-error"),
+          emailError,
+        );
+        setFieldError(
+          messageInput,
+          document.querySelector("#message-error"),
+          messageError,
+        );
         if (nameError || emailError || messageError) {
           form.querySelector('[aria-invalid="true"]').focus();
           return;
@@ -554,64 +1166,89 @@
         success.classList.remove("hidden");
         form.reset();
         messageCount.textContent = "0/300";
-        [nameInput, emailInput, messageInput].forEach((field) => field.setAttribute("aria-invalid", "false"));
+        [nameInput, emailInput, messageInput].forEach((field) =>
+          field.setAttribute("aria-invalid", "false"),
+        );
       });
 
       form.querySelectorAll("input, textarea").forEach((field) => {
         field.addEventListener("input", () => {
           if (field.getAttribute("aria-invalid") !== "true") return;
-          const error = document.querySelector(`#${field.id.replace("contact-", "")}-error`);
-          if (field === nameInput && field.value.trim()) setFieldError(field, error, "");
-          if (field === emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())) setFieldError(field, error, "");
-          if (field === messageInput && field.value.trim().length >= 10) setFieldError(field, error, "");
+          const error = document.querySelector(
+            `#${field.id.replace("contact-", "")}-error`,
+          );
+          if (field === nameInput && field.value.trim())
+            setFieldError(field, error, "");
+          if (
+            field === emailInput &&
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())
+          )
+            setFieldError(field, error, "");
+          if (field === messageInput && field.value.trim().length >= 10)
+            setFieldError(field, error, "");
         });
       });
 
       const backToTop = document.querySelector("#back-to-top");
-      window.addEventListener("scroll", () => {
-        header.classList.toggle("shadow-md", window.scrollY > 8);
-        backToTop.classList.toggle("hidden", window.scrollY <= 600);
-        backToTop.classList.toggle("flex", window.scrollY > 600);
-      }, { passive: true });
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("shadow-md", window.scrollY > 8);
+          backToTop.classList.toggle("hidden", window.scrollY <= 600);
+          backToTop.classList.toggle("flex", window.scrollY > 600);
+        },
+        { passive: true },
+      );
 
-      backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      backToTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      );
 
       if ("IntersectionObserver" in window) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            document.querySelectorAll("[data-nav-link]").forEach((link) => {
-              const isActive = link.getAttribute("href") === `#${entry.target.id}`;
-              link.classList.toggle("font-extrabold", isActive);
-              link.classList.toggle("text-coffee", isActive);
-              link.classList.toggle("text-neutral-700", !isActive);
-              if (isActive) link.setAttribute("aria-current", "location");
-              else link.removeAttribute("aria-current");
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              document.querySelectorAll("[data-nav-link]").forEach((link) => {
+                const isActive =
+                  link.getAttribute("href") === `#${entry.target.id}`;
+                link.classList.toggle("font-extrabold", isActive);
+                link.classList.toggle("text-coffee", isActive);
+                link.classList.toggle("text-neutral-700", !isActive);
+                if (isActive) link.setAttribute("aria-current", "location");
+                else link.removeAttribute("aria-current");
+              });
             });
-          });
-        }, { rootMargin: "-30% 0px -60% 0px" });
-        document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
+          },
+          { rootMargin: "-30% 0px -60% 0px" },
+        );
+        document
+          .querySelectorAll("main section[id]")
+          .forEach((section) => sectionObserver.observe(section));
       }
 
       const statElements = document.querySelectorAll(".stat-number");
       if ("IntersectionObserver" in window) {
-        const statObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const element = entry.target;
-            const target = Number(element.dataset.target);
-            const suffix = element.dataset.suffix;
-            const start = performance.now();
-            const duration = 900;
-            function animateStat(now) {
-              const progress = Math.min((now - start) / duration, 1);
-              element.textContent = `${Math.floor(target * progress)}${suffix}`;
-              if (progress < 1) requestAnimationFrame(animateStat);
-            }
-            requestAnimationFrame(animateStat);
-            observer.unobserve(element);
-          });
-        }, { threshold: 0.5 });
+        const statObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const element = entry.target;
+              const target = Number(element.dataset.target);
+              const suffix = element.dataset.suffix;
+              const start = performance.now();
+              const duration = 900;
+              function animateStat(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                element.textContent = `${Math.floor(target * progress)}${suffix}`;
+                if (progress < 1) requestAnimationFrame(animateStat);
+              }
+              requestAnimationFrame(animateStat);
+              observer.unobserve(element);
+            });
+          },
+          { threshold: 0.5 },
+        );
         statElements.forEach((stat) => statObserver.observe(stat));
       } else {
         statElements.forEach((stat) => {
@@ -619,7 +1256,8 @@
         });
       }
 
-      document.querySelector("#footer-year").textContent = new Date().getFullYear();
+      document.querySelector("#footer-year").textContent =
+        new Date().getFullYear();
     </script>
   </body>
 </html>
