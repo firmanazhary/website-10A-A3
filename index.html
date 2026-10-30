@@ -3,9 +3,820 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="theme-color" content="#f3efe6" />
+    <meta
+      name="description"
+      content="INVICTUS — one class, countless stories."
+    />
+    <title>INVICTUS — Class Archive</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/output.css" />
+    <!-- Tailwind configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: "#f3efe6",
+              ink: "#24231f",
+              rust: "#a64d3c",
+              olive: "#737b62",
+              mustard: "#e8c66f",
+            },
+            fontFamily: {
+              sans: ["DM Sans", "sans-serif"],
+              mono: ["DM Mono", "monospace"],
+              hand: ["Caveat", "cursive"],
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="output.css" />
   </head>
-  <body>
-    <h1>ini branch hiraki</h1>
+
+  <body class="bg-paper text-ink font-sans antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <a href="#home" class="brand" aria-label="Invictus home">
+        <span class="brand-kicker">the class archive of</span>
+        <span class="brand-name">INVICTUS<span>.</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#memories">Memories</a>
+        <a href="#members">Members</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#about">Our story</a>
+      </nav>
+
+      <span class="header-year"> CLASS OF <b>2026</b> </span>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Open navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      hidden
+      aria-label="Mobile navigation"
+    >
+      <a href="#home">Home <span>01</span></a>
+      <a href="#memories">Memories <span>02</span></a>
+      <a href="#members">Members <span>03</span></a>
+      <a href="#achievements">Achievements <span>04</span></a>
+      <a href="#about">Our story <span>05</span></a>
+    </nav>
+
+    <main id="main">
+      <!-- HERO -->
+      <section id="home" class="hero-section">
+        <div class="hero-topline">
+          <span>AN ARCHIVE OF US</span>
+          <span>ISSUE NO. 01 <i>—</i> 2026</span>
+        </div>
+
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <span class="hero-spark">✳</span>
+
+            <p class="eyebrow">Not just classmates. A whole chapter.</p>
+
+            <h1>
+              One class.<br />
+              Countless <em>stories.</em>
+            </h1>
+
+            <p class="hero-description">
+              Different minds, familiar faces, and a thousand little moments in
+              between. This is our corner of the internet — a place to keep the
+              memories close.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-6">
+              <a href="#memories" class="button-primary">
+                Explore our story <span>↗</span>
+              </a>
+
+              <a href="#members" class="text-cta">
+                Meet the people <span>↓</span>
+              </a>
+            </div>
+
+            <p class="hero-handwritten">
+              made of memories &amp; mischief <span>♡</span>
+            </p>
+          </div>
+
+          <div class="hero-art">
+            <figure class="hero-photo hero-photo-main">
+              <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85"
+                alt="A group of friends spending time together"
+              />
+              <span class="photo-index">FIG. 01</span>
+              <figcaption>the people who made it count</figcaption>
+            </figure>
+
+            <figure class="hero-photo hero-photo-small">
+              <img
+                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85"
+                alt="A warm sunset over a landscape"
+              />
+              <figcaption>a view worth remembering</figcaption>
+            </figure>
+
+            <span class="hero-tape"></span>
+            <span class="hero-doodle hero-doodle-one">✳</span>
+            <span class="hero-doodle hero-doodle-two">↗</span>
+
+            <span class="hero-side-note">
+              same place,<br />different dreams.
+            </span>
+
+            <div class="hero-stamp">
+              INVICTUS<br />
+              <span>✳</span><br />
+              EST. 2026
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottomline">
+          <span>SCROLL TO LOOK BACK</span>
+          <span>↓</span>
+          <span>BUILT TO REMEMBER</span>
+        </div>
+      </section>
+
+      <!-- QUICK NAVIGATION -->
+      <section class="quick-strip" aria-label="Explore the archive">
+        <a href="#memories" class="quick-item">
+          <span class="quick-number">01 /</span>
+          <span class="quick-title">The memories</span>
+          <span class="quick-arrow">↗</span>
+        </a>
+
+        <a href="#gallery" class="quick-item">
+          <span class="quick-number">02 /</span>
+          <span class="quick-title">The gallery</span>
+          <span class="quick-arrow">↗</span>
+        </a>
+
+        <a href="#members" class="quick-item">
+          <span class="quick-number">03 /</span>
+          <span class="quick-title">The people</span>
+          <span class="quick-arrow">↗</span>
+        </a>
+
+        <a href="#achievements" class="quick-item">
+          <span class="quick-number">04 /</span>
+          <span class="quick-title">The milestones</span>
+          <span class="quick-arrow">↗</span>
+        </a>
+      </section>
+
+      <!-- MEMORIES -->
+      <section id="memories" class="memories-section section-wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">01 — The moments</p>
+            <h2>
+              Little things.<br />
+              <em>Big memories.</em>
+            </h2>
+          </div>
+
+          <div class="section-intro-aside">
+            <p>
+              Not every moment made it into a photograph. These are a few of the
+              ones that did.
+            </p>
+
+            <a href="#gallery" class="underlined-link">
+              Go to the gallery <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="memory-layout">
+          <figure class="memory-feature">
+            <span class="tape tape-feature"></span>
+
+            <img
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85"
+              alt="Students gathered at an event"
+            />
+
+            <figcaption>
+              <span>01 / THE BIG DAYS</span>
+              <b>All of us, in one frame.</b>
+            </figcaption>
+          </figure>
+
+          <div class="memory-side">
+            <figure class="memory-small memory-small-top">
+              <span class="memory-label">THE IN-BETWEEN</span>
+              <img
+                src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=85"
+                alt="Friends walking together"
+              />
+              <figcaption>the ordinary days</figcaption>
+            </figure>
+
+            <figure class="memory-small memory-small-bottom">
+              <img
+                src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&q=85"
+                alt="A group playing football"
+              />
+              <figcaption>friendly competition</figcaption>
+            </figure>
+          </div>
+
+          <aside class="memory-note">
+            <span class="note-star">✳</span>
+            <p class="handwritten">
+              "Somehow, the little things became the big things."
+            </p>
+            <span class="note-credit">— A NOTE TO OURSELVES</span>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FEATURED IMAGE + GALLERY -->
+      <section id="gallery" class="gallery-section">
+        <div class="gallery-heading">
+          <div>
+            <p class="eyebrow">02 — The archive</p>
+            <h2>
+              Moments in<br />
+              <em>the making.</em>
+            </h2>
+          </div>
+
+          <div class="gallery-heading-right">
+            <p>
+              A collection of snapshots, celebrations, and the everyday in
+              between. Add your own favourites as the years go by.
+            </p>
+            <span class="gallery-counter">
+              A FEW OF OUR FAVOURITES <b>✳</b>
+            </span>
+          </div>
+        </div>
+
+        <div class="featured-gallery">
+          <figure class="featured-image">
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1500&q=85"
+              alt="Students smiling together in a group"
+            />
+
+            <figcaption>
+              <span>FEATURED FRAME / 001</span>
+              <b>Here, and nowhere else.</b>
+            </figcaption>
+
+            <span class="featured-corner">✳</span>
+          </figure>
+
+          <div class="gallery-thumbs">
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=700&q=85"
+                alt="Friends celebrating together"
+              />
+              <figcaption>02 — celebrations</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=700&q=85"
+                alt="Friends walking together"
+              />
+              <figcaption>03 — ordinary days</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=85"
+                alt="A classroom filled with desks"
+              />
+              <figcaption>04 — familiar places</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS -->
+      <section id="achievements" class="achievements-section section-wrap">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow">03 — The milestones</p>
+            <h2>
+              Small wins.<br />
+              <em>Shared pride.</em>
+            </h2>
+          </div>
+
+          <div class="section-intro-aside">
+            <p>
+              Big stages, quiet progress, and everything worth celebrating.
+              Here's a preview of our achievements.
+            </p>
+
+            <a href="#achievement-list" class="underlined-link">
+              View all achievements <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div id="achievement-list" class="achievement-grid">
+          <article class="achievement-card achievement-card-dark">
+            <div class="achievement-top">
+              <span>01 / ACADEMIC</span>
+              <span>✳</span>
+            </div>
+
+            <div class="achievement-illustration illustration-book">
+              <span>Ａ</span>
+              <i>✦</i>
+            </div>
+
+            <p class="achievement-status">ADD YOUR MILESTONE</p>
+            <h3>Academic<br />achievement title</h3>
+            <p class="achievement-description">
+              Add a short description of the award, competition, or academic
+              milestone here.
+            </p>
+            <span class="achievement-date">YEAR / EVENT</span>
+          </article>
+
+          <article class="achievement-card">
+            <div class="achievement-top">
+              <span>02 / COMPETITION</span>
+              <span>✳</span>
+            </div>
+
+            <div class="achievement-illustration illustration-trophy">✧</div>
+
+            <p class="achievement-status">ADD YOUR MILESTONE</p>
+            <h3>Competition<br />achievement title</h3>
+            <p class="achievement-description">
+              Mention the competition, the participants, and what made this
+              moment special.
+            </p>
+            <span class="achievement-date">YEAR / EVENT</span>
+          </article>
+
+          <article class="achievement-card">
+            <div class="achievement-top">
+              <span>03 / COMMUNITY</span>
+              <span>✳</span>
+            </div>
+
+            <div class="achievement-illustration illustration-star">✳</div>
+
+            <p class="achievement-status">ADD YOUR MILESTONE</p>
+            <h3>Community<br />achievement title</h3>
+            <p class="achievement-description">
+              Celebrate a project, contribution, performance, or shared effort
+              from the class.
+            </p>
+            <span class="achievement-date">YEAR / EVENT</span>
+          </article>
+        </div>
+
+        <p class="section-footnote">
+          <span>NOTE</span>
+          Replace these sample cards with your actual class achievements.
+        </p>
+      </section>
+
+      <!-- MEMBERS -->
+      <section id="members" class="members-section">
+        <div class="members-inner">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">04 — The people</p>
+              <h2>
+                Different paths.<br />
+                <em>One archive.</em>
+              </h2>
+            </div>
+
+            <div class="section-intro-aside">
+              <p>
+                The faces behind the stories. From the first day to the
+                unexpected plot twists, every person has a place here.
+              </p>
+
+              <span class="member-total">
+                <b>12</b> PEOPLE IN THIS SAMPLE DIRECTORY
+              </span>
+            </div>
+          </div>
+
+          <div class="member-toolbar">
+            <div class="filter-list" role="group" aria-label="Filter members">
+              <button
+                class="filter-chip is-selected"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                Everyone <span>12</span>
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter="original"
+                aria-pressed="false"
+              >
+                Original <span>4</span>
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter="joined"
+                aria-pressed="false"
+              >
+                Joined later <span>4</span>
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter="transferred"
+                aria-pressed="false"
+              >
+                Transferred <span>4</span>
+              </button>
+            </div>
+
+            <button
+              class="view-all-button"
+              id="view-all-members"
+              type="button"
+              aria-expanded="false"
+            >
+              View all members <span>↗</span>
+            </button>
+          </div>
+
+          <div class="member-grid" id="member-grid" aria-live="polite">
+            <!-- Replace these sample names and portraits with actual members. -->
+
+            <article class="member-card" data-group="original">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 01"
+                />
+                <span>01</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 01</h3>
+                <p>ORIGINAL</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="original">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 02"
+                />
+                <span>02</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 02</h3>
+                <p>ORIGINAL</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="joined">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 03"
+                />
+                <span>03</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 03</h3>
+                <p>JOINED LATER</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="original">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 04"
+                />
+                <span>04</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 04</h3>
+                <p>ORIGINAL</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="transferred">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 05"
+                />
+                <span>05</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 05</h3>
+                <p>TRANSFERRED</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="joined">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 06"
+                />
+                <span>06</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 06</h3>
+                <p>JOINED LATER</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="original">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 07"
+                />
+                <span>07</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 07</h3>
+                <p>ORIGINAL</p>
+              </div>
+            </article>
+
+            <article class="member-card" data-group="transferred">
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 08"
+                />
+                <span>08</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 08</h3>
+                <p>TRANSFERRED</p>
+              </div>
+            </article>
+
+            <!-- Initially hidden members -->
+
+            <article
+              class="member-card member-extra"
+              data-group="joined"
+              hidden
+            >
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 09"
+                />
+                <span>09</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 09</h3>
+                <p>JOINED LATER</p>
+              </div>
+            </article>
+
+            <article
+              class="member-card member-extra"
+              data-group="transferred"
+              hidden
+            >
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 10"
+                />
+                <span>10</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 10</h3>
+                <p>TRANSFERRED</p>
+              </div>
+            </article>
+
+            <article
+              class="member-card member-extra"
+              data-group="joined"
+              hidden
+            >
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 11"
+                />
+                <span>11</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 11</h3>
+                <p>JOINED LATER</p>
+              </div>
+            </article>
+
+            <article
+              class="member-card member-extra"
+              data-group="transferred"
+              hidden
+            >
+              <div class="member-image">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=650&q=85"
+                  alt="Portrait placeholder for member 12"
+                />
+                <span>12</span>
+              </div>
+              <div class="member-meta">
+                <h3>Member 12</h3>
+                <p>TRANSFERRED</p>
+              </div>
+            </article>
+          </div>
+
+          <p class="member-empty" id="member-empty" hidden>
+            No members in this category yet.
+          </p>
+
+          <div class="members-bottom">
+            <span>EVERY FACE HAS A STORY.</span>
+            <span>INVICTUS / 2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="about-section">
+        <div class="about-left">
+          <p class="eyebrow">05 — A note from us</p>
+          <h2>
+            We were here.<br />
+            <em>We mattered.</em>
+          </h2>
+        </div>
+
+        <div class="about-right">
+          <p class="about-lead">
+            A class is more than a room, a timetable, or a list of names.
+          </p>
+
+          <p>
+            It's the people we met, the things we learned, the jokes that never
+            got old, and the moments we didn't realise we'd miss. INVICTUS is
+            our little time capsule — a reminder of where we started and the
+            stories we carry forward.
+          </p>
+
+          <span class="about-signature"> with love, INVICTUS <b>♡</b> </span>
+        </div>
+
+        <span class="about-asterisk">✳</span>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <a href="#home" class="footer-brand"> INVICTUS<span>.</span> </a>
+
+        <p>One class. Countless stories. Always part of the same chapter.</p>
+
+        <div class="footer-bottom">
+          <span>© 2026 INVICTUS CLASS ARCHIVE</span>
+          <a href="#home">BACK TO TOP ↑</a>
+          <span>MADE TO REMEMBER</span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- INTERACTIONS -->
+    <script>
+      // Mobile navigation
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileNav = document.querySelector("#mobile-nav");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation" : "Close navigation",
+        );
+
+        mobileNav.hidden = isOpen;
+      });
+
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.hidden = true;
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        });
+      });
+
+      // Member filtering
+      const filterButtons = [...document.querySelectorAll("[data-filter]")];
+
+      const memberCards = [...document.querySelectorAll(".member-card")];
+
+      const viewAllButton = document.querySelector("#view-all-members");
+      const emptyMessage = document.querySelector("#member-empty");
+
+      let activeFilter = "all";
+      let expandedMembers = false;
+
+      function renderMembers() {
+        let visibleCount = 0;
+
+        memberCards.forEach((card) => {
+          const matchesFilter =
+            activeFilter === "all" || card.dataset.group === activeFilter;
+
+          const isExtra = card.classList.contains("member-extra");
+
+          const shouldShow =
+            matchesFilter &&
+            (activeFilter !== "all" || expandedMembers || !isExtra);
+
+          card.hidden = !shouldShow;
+
+          if (shouldShow) visibleCount++;
+        });
+
+        emptyMessage.hidden = visibleCount !== 0;
+
+        viewAllButton.hidden = activeFilter !== "all";
+
+        viewAllButton.setAttribute("aria-expanded", String(expandedMembers));
+
+        viewAllButton.innerHTML = expandedMembers
+          ? "Show fewer <span>↑</span>"
+          : "View all members <span>↗</span>";
+      }
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeFilter = button.dataset.filter;
+          expandedMembers = false;
+
+          filterButtons.forEach((item) => {
+            const selected = item === button;
+
+            item.classList.toggle("is-selected", selected);
+            item.setAttribute("aria-pressed", String(selected));
+          });
+
+          renderMembers();
+        });
+      });
+
+      viewAllButton.addEventListener("click", () => {
+        expandedMembers = !expandedMembers;
+        renderMembers();
+      });
+
+      renderMembers();
+    </script>
   </body>
 </html>
