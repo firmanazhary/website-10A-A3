@@ -166,7 +166,32 @@
     };
   }
 
-  const Data = { schedule: seedSchedule(), media: [], src: { schedule: 'seed', gallery: 'kosong' }, galleryLocal: false, published: null };
+  function normalizeTimeline(list) {
+    if (!Array.isArray(list)) return [];
+    return list.map((t, i) => t && (t.title || t.date) ? {
+      id: String(t.id || uid()),
+      date: /^\d{4}-\d{2}-\d{2}$/.test(t.date || '') ? t.date : '',
+      title: String(t.title || ''),
+      desc: String(t.desc || ''),
+      mediaId: t.mediaId ? String(t.mediaId) : '',
+      order: Number.isFinite(+t.order) ? +t.order : i
+    } : null).filter(Boolean).sort((a, b) => a.order - b.order);
+  }
+  function normalizeNotes(list) {
+    if (!Array.isArray(list)) return [];
+    return list.map((n, i) => n && n.text ? {
+      id: String(n.id || uid()),
+      text: String(n.text),
+      by: String(n.by || ''),
+      order: Number.isFinite(+n.order) ? +n.order : i
+    } : null).filter(Boolean).sort((a, b) => a.order - b.order);
+  }
+
+  const Data = {
+    schedule: seedSchedule(), media: [], timeline: [], notes: [],
+    src: { schedule: 'seed', gallery: 'kosong', timeline: 'kosong', notes: 'kosong' },
+    galleryLocal: false, published: null
+  };
 
   async function loadAll() {
     let pub = null;
@@ -185,6 +210,21 @@
     else if (pub && Array.isArray(pub.gallery)) { Data.media = pub.gallery.map(normalizeMedia).filter(Boolean); Data.src.gallery = 'terbit'; }
     else { Data.media = []; Data.src.gallery = 'kosong'; }
     Data.media.sort((a, b) => a.order - b.order);
+
+    for (const key of ['timeline', 'notes']) {
+      let local = null; try { local = await Store.get(key); } catch (e) { }
+      const norm = key === 'timeline' ? normalizeTimeline : normalizeNotes;
+      if (local) { Data[key] = norm(local); Data.src[key] = 'lokal'; }
+      else if (pub && Array.isArray(pub[key])) { Data[key] = norm(pub[key]); Data.src[key] = 'terbit'; }
+      else { Data[key] = []; Data.src[key] = 'kosong'; }
+    }
+  }
+  async function saveList(key, list) {
+    const norm = key === 'timeline' ? normalizeTimeline(list) : normalizeNotes(list);
+    norm.forEach((x, i) => x.order = i);
+    await Store.set(key, norm);
+    Data[key] = norm; Data.src[key] = 'lokal';
+    if (key === 'timeline') Jejak.render(); else Tembok.render();
   }
   async function saveSchedule(s) {
     s.updatedAt = new Date().toISOString(); s.seeded = false;
@@ -342,7 +382,7 @@
     function renderFilters() {
       filters.innerHTML = CATS.map(c => {
         const n = c.id === 'all' ? Data.media.length : Data.media.filter(m => m.category === c.id).length;
-        return `<button class="fx-pill" data-cat="${c.id}" aria-pressed="${c.id === cat}">${esc(c.name)}<sup>${n}</sup></button>`;
+        return `<button class="chip" data-cat="${c.id}" aria-pressed="${c.id === cat}">${esc(c.name)}<sup>${n}</sup></button>`;
       }).join('');
     }
     function itemHTML(m, i, set) {
@@ -553,6 +593,170 @@
   })();
 
   /* =========================================================
+     JEJAK — garis waktu angkatan
+     ========================================================= */
+  const Jejak = (() => {
+    const wrap = $('#jjWrap'); if (!wrap) return { render() { } };
+    function render() {
+      const list = Data.timeline;
+      if (!list.length) {
+        wrap.innerHTML = `<div class="jj-empty"><b>Garis waktu masih kosong.</b>
+          <p>Jejak angkatan hanya diisi dengan tanggal dan kegiatan yang benar-benar terjadi. Admin bisa menambahkannya lewat panel admin.</p></div>`;
+        return;
+      }
+      wrap.innerHTML = `<div class="jj-line">${list.map((t, i) => {
+        const m = t.mediaId ? Data.media.find(x => x.id === t.mediaId) : null;
+        const thumb = m ? thumbURL(m) : '';
+        return `<div class="jj-item fx-rise" data-id="${esc(t.id)}">
+          <button class="jj-btn" type="button" aria-expanded="false" aria-controls="jjp-${esc(t.id)}">
+            <span class="jj-date">${t.date ? fmtDate(t.date, true) : '—'}</span>
+            <span class="jj-ttl">${esc(t.title || 'Tanpa judul')}</span>
+            <span class="jj-mark" aria-hidden="true">+</span>
+          </button>
+          <div class="jj-panel" id="jjp-${esc(t.id)}"><div class="jj-inner"><div class="jj-body">
+            <p>${t.desc ? esc(t.desc) : 'Belum ada keterangan untuk jejak ini.'}</p>
+            ${thumb ? `<button class="jj-shot" type="button" data-media="${esc(m.id)}" aria-label="Buka foto ${esc(m.title || t.title)}"><img src="${esc(thumb)}" alt="" loading="lazy"></button>` : ''}
+          </div></div></div>
+        </div>`;
+      }).join('')}</div>`;
+      reveal($$('.fx-rise', wrap));
+    }
+    wrap.addEventListener('click', e => {
+      const shot = e.target.closest('.jj-shot');
+      if (shot) {
+        const m = Data.media.find(x => x.id === shot.dataset.media);
+        if (m) Lightbox.open([m], 0, shot);
+        return;
+      }
+      const btn = e.target.closest('.jj-btn'); if (!btn) return;
+      const panel = $('#' + btn.getAttribute('aria-controls')), was = btn.getAttribute('aria-expanded') === 'true';
+      $$('.jj-btn[aria-expanded="true"]', wrap).forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        $('#' + b.getAttribute('aria-controls')).classList.remove('open');
+      });
+      if (!was) { btn.setAttribute('aria-expanded', 'true'); panel.classList.add('open'); }
+      setTimeout(refreshST, 600);
+    });
+    wrap.addEventListener('pointerover', e => { if (e.target.closest('.jj-btn, .jj-shot')) cur('view'); });
+    wrap.addEventListener('pointerout', e => { if (e.target.closest('.jj-btn, .jj-shot')) cur(''); });
+    return { render };
+  })();
+
+  /* =========================================================
+     TEMBOK ANGKATAN — pesan + kanvas coretan
+     ========================================================= */
+  const Tembok = (() => {
+    const notesEl = $('#tbNotes'), canvas = $('#tbCanvas'), tools = $('#tbTools');
+    if (!notesEl || !canvas) return { render() { } };
+    const CANS = ['#C8FF1E', '#7A3BFF', '#FF5A1F', '#EDE8DA'];
+    const TAG_KEY = 'inv-tag-v1', MAX_PTS = 6000;
+    const ctx = canvas.getContext('2d');
+    let strokes = [], live = null, can = 0, W = 0, H = 0, pts = 0;
+
+    /* --- pesan --- */
+    function renderNotes() {
+      const list = Data.notes;
+      if (!list.length) {
+        notesEl.innerHTML = `<div class="tb-empty"><b>Belum ada pesan di tembok.</b>
+          <p>Ruang ini untuk kutipan dan pesan asli dari anggota Generasi 03. Tidak ada yang dikarang: pesan muncul setelah admin menambahkannya.</p></div>`;
+        return;
+      }
+      notesEl.innerHTML = list.map(n => `<button class="note" type="button" data-id="${esc(n.id)}">
+        <span class="note-q">${esc(n.text)}</span>
+        ${n.by ? `<span class="note-by">— ${esc(n.by)}</span>` : ''}
+        <span class="note-more">buka</span></button>`).join('');
+    }
+    notesEl.addEventListener('click', e => {
+      const b = e.target.closest('.note'); if (!b) return;
+      const open = b.classList.toggle('open');
+      $('.note-more', b).textContent = open ? 'tutup' : 'buka';
+      refreshST();
+    });
+    notesEl.addEventListener('pointerover', e => { if (e.target.closest('.note')) cur('view'); });
+    notesEl.addEventListener('pointerout', e => { if (e.target.closest('.note')) cur(''); });
+
+    /* --- kanvas coretan (tersimpan di browser pengunjung saja) --- */
+    function size() {
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      if (!W || !H) return;
+      canvas.width = W * (window.devicePixelRatio > 1 ? 2 : 1);
+      canvas.height = H * (window.devicePixelRatio > 1 ? 2 : 1);
+      const k = canvas.width / W;
+      ctx.setTransform(k, 0, 0, k, 0, 0);
+      redraw();
+    }
+    function paint(stroke, from = 1) {
+      const col = CANS[stroke.c] || CANS[0], abs = stroke.p.map(([x, y]) => [x * W, y * H]);
+      if (abs.length === 1) { blob(abs[0][0], abs[0][1], stroke.r, col); return; }
+      for (let i = Math.max(1, from); i < abs.length; i++) line(abs[i - 1], abs[i], stroke.r, col);
+    }
+    function blob(x, y, r, col) {
+      if (typeof sprayBlob === 'function') sprayBlob(ctx, x, y, r, col, .85);
+      else { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, r * .6, 0, 6.283); ctx.fill(); }
+    }
+    function line(a, b, r, col) {
+      if (typeof sprayLine === 'function') sprayLine(ctx, [a, b], r, col, .55, Math.random);
+      else { ctx.strokeStyle = col; ctx.lineWidth = r; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
+    }
+    function redraw() {
+      ctx.clearRect(0, 0, W, H);
+      strokes.forEach(s => paint(s, 0));
+    }
+    function save() {
+      try { localStorage.setItem(TAG_KEY, JSON.stringify(strokes)); } catch (e) { }
+    }
+    function load() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(TAG_KEY) || '[]');
+        if (Array.isArray(raw)) strokes = raw.filter(s => s && Array.isArray(s.p) && s.p.length).slice(-400);
+      } catch (e) { strokes = []; }
+      pts = strokes.reduce((a, s) => a + s.p.length, 0);
+    }
+    const at = e => { const r = canvas.getBoundingClientRect(); return [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height]; };
+    canvas.addEventListener('pointerdown', e => {
+      e.preventDefault(); canvas.setPointerCapture(e.pointerId);
+      live = { c: can, r: 13, p: [at(e)] }; strokes.push(live); pts++;
+      paint(live, 0);
+    });
+    canvas.addEventListener('pointermove', e => {
+      if (!live) { cur('spray'); return; }
+      const p = at(e), last = live.p[live.p.length - 1];
+      if (Math.hypot(p[0] - last[0], p[1] - last[1]) < .004) return;
+      live.p.push(p); pts++;
+      paint(live, live.p.length - 1);
+      if (pts > MAX_PTS) { up(); }
+    });
+    const up = () => {
+      if (!live) return;
+      live = null;
+      while (pts > MAX_PTS && strokes.length > 1) { pts -= strokes.shift().p.length; redraw(); }
+      save();
+    };
+    canvas.addEventListener('pointerup', up);
+    canvas.addEventListener('pointercancel', up);
+    canvas.addEventListener('pointerenter', () => cur('spray'));
+    canvas.addEventListener('pointerleave', () => { up(); cur(''); });
+
+    tools.innerHTML = CANS.map((c, i) => `<button class="tb-can" type="button" data-can="${i}" aria-pressed="${i === 0}" aria-label="Warna ${i + 1}" style="background:${c};color:${c}"></button>`).join('')
+      + `<button class="adm-b" type="button" data-act="clear">Bersihkan</button>`;
+    tools.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.can !== undefined) {
+        can = +b.dataset.can;
+        $$('[data-can]', tools).forEach(x => x.setAttribute('aria-pressed', +x.dataset.can === can));
+      } else if (b.dataset.act === 'clear') {
+        strokes = []; pts = 0; redraw(); save();
+      }
+    });
+
+    load();
+    if ('ResizeObserver' in window) new ResizeObserver(() => size()).observe(canvas);
+    else addEventListener('resize', size);
+    requestAnimationFrame(size);
+    return { render: renderNotes };
+  })();
+
+  /* =========================================================
      AUTENTIKASI ADMIN (gerbang sisi klien — lihat ADMIN.md)
      ========================================================= */
   const DEFAULT_HASH = 'da577dfaf8c09e90a0d593c61887bc0643f6fa075f3080f3fa7b0f0db4c1d925';
@@ -712,7 +916,7 @@
 
     /* ---------- kerangka panel ---------- */
     function renderPanel() {
-      const tabs = [['jadwal', 'Jadwal piket'], ['galeri', 'Galeri'], ['setelan', 'Data & keamanan']];
+      const tabs = [['jadwal', 'Jadwal piket'], ['jejak', 'Jejak'], ['galeri', 'Galeri'], ['tembok', 'Tembok'], ['setelan', 'Data & keamanan']];
       el.innerHTML = `<div class="adm-bar">
           <div class="adm-brand">Panel admin<small>Sumber jadwal: ${Data.src.schedule} · galeri: ${Data.src.gallery}</small></div>
           <div class="adm-tabs" role="tablist">${tabs.map(([id, n]) => `<button class="adm-b" role="tab" data-tab="${id}" aria-selected="${tab === id}">${n}</button>`).join('')}</div>
@@ -729,7 +933,11 @@
         dirty = false; draft = null; Auth.logout(); toast('Sudah keluar'); renderLogin();
       };
       const body = $('#admBody', el);
-      if (tab === 'jadwal') renderJadwal(body); else if (tab === 'galeri') renderGaleri(body); else renderSetelan(body);
+      if (tab === 'jadwal') renderJadwal(body);
+      else if (tab === 'jejak') renderJejakAdmin(body);
+      else if (tab === 'galeri') renderGaleri(body);
+      else if (tab === 'tembok') renderTembokAdmin(body);
+      else renderSetelan(body);
     }
 
     /* ---------- JADWAL ---------- */
@@ -822,7 +1030,108 @@
         }
       };
     }
-    function updateBrand() { const s = $('.adm-brand small', el); if (s) s.textContent = `Sumber jadwal: ${Data.src.schedule} · galeri: ${Data.src.gallery}`; }
+    function updateBrand() { const s = $('.adm-brand small', el); if (s) s.textContent = `Jadwal: ${Data.src.schedule} · galeri: ${Data.src.gallery} · jejak: ${Data.src.timeline} · tembok: ${Data.src.notes}`; }
+
+    /* ---------- JEJAK ---------- */
+    function renderJejakAdmin(body) {
+      const list = Data.timeline;
+      const mediaOpts = sel => `<option value="">Tanpa foto</option>` + Data.media.filter(m => m.type === 'image')
+        .map(m => `<option value="${esc(m.id)}"${m.id === sel ? ' selected' : ''}>${esc(m.title || 'Tanpa judul')}</option>`).join('');
+      body.innerHTML = `
+        <div class="adm-card">
+          <h3>Tambah jejak</h3>
+          <p>Hanya isi dengan tanggal dan kegiatan yang benar-benar terjadi. Fotonya diambil dari galeri yang sudah diunggah.</p>
+          <form id="jjForm" class="adm-grid2" style="margin-top:14px;align-items:end">
+            <label>Tanggal<input type="date" name="date" required></label>
+            <label>Judul<input name="title" maxlength="80" placeholder="mis. Classmeeting" required></label>
+            <label style="grid-column:1/-1">Keterangan<textarea name="desc" maxlength="600" placeholder="Apa yang terjadi hari itu"></textarea></label>
+            <label>Foto dari galeri<select name="mediaId">${mediaOpts('')}</select></label>
+            <div><button class="adm-b pri" type="submit">Tambahkan jejak</button></div>
+          </form>
+        </div>
+        <div class="adm-card">
+          <h3>Jejak tersimpan</h3><p class="adm-note">${list.length} entri. Perubahan tersimpan otomatis.</p>
+          <div class="adm-items">${list.length ? list.map((t, i) => `<article class="adm-item" data-id="${esc(t.id)}">
+            <div class="adm-item-top"><b>${String(i + 1).padStart(2, '0')} · ${esc(t.title || 'Tanpa judul')}</b>
+              <div class="adm-row"><button class="adm-b" data-act="up" aria-label="Naikkan">&#8593;</button><button class="adm-b" data-act="down" aria-label="Turunkan">&#8595;</button><button class="adm-b warn" data-act="del">Hapus</button></div></div>
+            <div class="adm-grid2">
+              <label>Tanggal<input type="date" name="date" value="${esc(t.date)}"></label>
+              <label>Judul<input name="title" value="${esc(t.title)}" maxlength="80"></label>
+            </div>
+            <label>Keterangan<textarea name="desc" maxlength="600">${esc(t.desc)}</textarea></label>
+            <label>Foto dari galeri<select name="mediaId">${mediaOpts(t.mediaId)}</select></label>
+          </article>`).join('') : '<p class="adm-note">Belum ada jejak.</p>'}</div>
+        </div>`;
+      $('#jjForm', body).onsubmit = async e => {
+        e.preventDefault(); const f = e.target;
+        const item = { id: uid(), date: f.date.value, title: f.title.value.trim(), desc: f.desc.value.trim(), mediaId: f.mediaId.value };
+        if (!item.title) return;
+        const next = [...Data.timeline, item].sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999'));
+        try { await saveList('timeline', next); renderJejakAdmin(body); updateBrand(); toast('Jejak ditambahkan'); }
+        catch (err) { toast('Gagal menyimpan: ' + err.message, true); }
+      };
+      bindListEditor(body, 'timeline', () => renderJejakAdmin(body));
+    }
+
+    /* ---------- TEMBOK ---------- */
+    function renderTembokAdmin(body) {
+      const list = Data.notes;
+      body.innerHTML = `
+        <div class="adm-card">
+          <h3>Tambah pesan</h3>
+          <p>Tulis ulang pesan asli dari anggota. Jangan mengarang ucapan atas nama orang lain.</p>
+          <form id="tbForm" style="display:grid;gap:12px;margin-top:14px">
+            <label>Pesan<textarea name="text" maxlength="400" placeholder="Isi pesan atau kutipan" required></textarea></label>
+            <div class="adm-row"><label style="flex:1 1 220px">Dari<input name="by" maxlength="60" placeholder="Nama anggota"></label>
+            <button class="adm-b pri" type="submit">Tempel ke tembok</button></div>
+          </form>
+        </div>
+        <div class="adm-card">
+          <h3>Pesan di tembok</h3><p class="adm-note">${list.length} pesan. Perubahan tersimpan otomatis.</p>
+          <div class="adm-items">${list.length ? list.map((n, i) => `<article class="adm-item" data-id="${esc(n.id)}">
+            <div class="adm-item-top"><b>${String(i + 1).padStart(2, '0')}${n.by ? ' · ' + esc(n.by) : ''}</b>
+              <div class="adm-row"><button class="adm-b" data-act="up" aria-label="Naikkan">&#8593;</button><button class="adm-b" data-act="down" aria-label="Turunkan">&#8595;</button><button class="adm-b warn" data-act="del">Hapus</button></div></div>
+            <label>Pesan<textarea name="text" maxlength="400">${esc(n.text)}</textarea></label>
+            <label>Dari<input name="by" value="${esc(n.by)}" maxlength="60"></label>
+          </article>`).join('') : '<p class="adm-note">Belum ada pesan.</p>'}</div>
+        </div>`;
+      $('#tbForm', body).onsubmit = async e => {
+        e.preventDefault(); const f = e.target;
+        const text = f.text.value.trim(); if (!text) return;
+        try { await saveList('notes', [...Data.notes, { id: uid(), text, by: f.by.value.trim() }]); renderTembokAdmin(body); updateBrand(); toast('Pesan ditempel'); }
+        catch (err) { toast('Gagal menyimpan: ' + err.message, true); }
+      };
+      bindListEditor(body, 'notes', () => renderTembokAdmin(body));
+    }
+
+    /* penyunting bersama untuk jejak & tembok */
+    function bindListEditor(body, key, rerender) {
+      const timers = new Map();
+      const commit = async () => { try { await saveList(key, Data[key]); } catch (err) { toast('Gagal menyimpan: ' + err.message, true); } };
+      const onEdit = e => {
+        const t = e.target, card = t.closest('.adm-item'); if (!card || !t.name) return;
+        const item = Data[key].find(x => x.id === card.dataset.id); if (!item) return;
+        item[t.name] = t.value;
+        clearTimeout(timers.get(item.id));
+        timers.set(item.id, setTimeout(commit, e.type === 'change' ? 0 : 450));
+      };
+      body.addEventListener('input', onEdit);
+      body.addEventListener('change', onEdit);
+      body.addEventListener('click', async e => {
+        const b = e.target.closest('button[data-act]'); if (!b) return;
+        const card = b.closest('.adm-item'); if (!card) return;
+        const list = [...Data[key]], i = list.findIndex(x => x.id === card.dataset.id);
+        if (b.dataset.act === 'del') {
+          if (!confirm('Hapus entri ini? Tindakan ini tidak bisa dibatalkan.')) return;
+          list.splice(i, 1);
+        } else {
+          const j = i + (b.dataset.act === 'up' ? -1 : 1); if (j < 0 || j >= list.length) return;
+          [list[i], list[j]] = [list[j], list[i]];
+        }
+        const y = el.scrollTop;
+        try { await saveList(key, list); rerender(); el.scrollTop = y; updateBrand(); } catch (err) { toast('Gagal menyimpan: ' + err.message, true); }
+      });
+    }
 
     /* ---------- GALERI ---------- */
     let upDefaults = { category: 'kegiatan', date: ymd(today()) };
@@ -956,6 +1265,7 @@
             <h3>Cadangan dan penerbitan</h3>
             <p>Ekspor menghasilkan <code>konten.json</code> berisi jadwal dan galeri (foto/video unggahan ikut tersemat). Taruh di folder <code>data/</code> situs agar semua pengunjung melihatnya.</p>
             <dl class="adm-kv"><dt>Jadwal</dt><dd>${Data.src.schedule}</dd><dt>Galeri</dt><dd>${Data.src.gallery} · ${Data.media.length} media</dd>
+            <dt>Jejak</dt><dd>${Data.src.timeline} · ${Data.timeline.length} entri</dd><dt>Tembok</dt><dd>${Data.src.notes} · ${Data.notes.length} pesan</dd>
             <dt>Penyimpanan</dt><dd>${Store.persistent ? 'IndexedDB' : 'memori sementara (hilang saat halaman ditutup)'}${est ? ` · terpakai ${fmtBytes(est.usage || 0)} dari ${fmtBytes(est.quota || 0)}` : ''}</dd>
             <dt>Konten terbit</dt><dd>${Data.published ? 'data/konten.json ditemukan' : location.protocol === 'file:' ? 'tidak dibaca (halaman dibuka sebagai file lokal)' : 'belum ada data/konten.json'}</dd></dl>
             <div class="adm-row" style="margin-top:14px">
@@ -993,7 +1303,7 @@
               src: m.blob ? await blobToDataURL(m.blob) : m.src, poster: m.thumb ? await blobToDataURL(m.thumb) : m.poster
             });
           }
-          const out = { format: 'invictus-g3-konten', version: 1, exportedAt: new Date().toISOString(), schedule: Data.schedule, gallery };
+          const out = { format: 'invictus-g3-konten', version: 2, exportedAt: new Date().toISOString(), schedule: Data.schedule, timeline: Data.timeline, notes: Data.notes, gallery };
           const blob = new Blob([JSON.stringify(out, null, 1)], { type: 'application/json' }), a = document.createElement('a');
           a.href = URL.createObjectURL(blob); a.download = 'konten.json'; document.body.appendChild(a); a.click(); a.remove();
           setTimeout(() => URL.revokeObjectURL(a.href), 4000);
@@ -1005,9 +1315,11 @@
         const file = e.target.files[0]; e.target.value = ''; if (!file) return;
         try {
           const j = JSON.parse(await file.text());
-          if (!j || (!j.schedule && !Array.isArray(j.gallery))) throw new Error('Bukan berkas konten INVICTUS');
-          if (!confirm('Impor akan MENGGANTI jadwal dan galeri lokal dengan isi berkas ini. Lanjutkan?')) return;
+          if (!j || (!j.schedule && !Array.isArray(j.gallery) && !Array.isArray(j.timeline) && !Array.isArray(j.notes))) throw new Error('Bukan berkas konten INVICTUS');
+          if (!confirm('Impor akan MENGGANTI jadwal, jejak, tembok, dan galeri lokal dengan isi berkas ini. Lanjutkan?')) return;
           if (j.schedule) await saveSchedule(normalizeSchedule(j.schedule));
+          if (Array.isArray(j.timeline)) await saveList('timeline', j.timeline);
+          if (Array.isArray(j.notes)) await saveList('notes', j.notes);
           if (Array.isArray(j.gallery)) {
             await Store.clearMedia(); [...urlCache.keys()].forEach(k => URL.revokeObjectURL(urlCache.get(k))); urlCache.clear();
             const items = [];
@@ -1023,10 +1335,12 @@
         } catch (err) { toast('Impor gagal: ' + err.message, true); }
       };
       $('[data-act="reset"]', body).onclick = async () => {
-        if (!confirm('Hapus semua jadwal dan media yang tersimpan di browser ini? Situs kembali ke konten terbit. Foto/video unggahan yang belum diekspor akan hilang permanen.')) return;
+        if (!confirm('Hapus semua jadwal, jejak, pesan tembok, dan media yang tersimpan di browser ini? Situs kembali ke konten terbit. Foto/video unggahan yang belum diekspor akan hilang permanen.')) return;
         await Store.del('schedule'); await Store.del('galleryLocal'); await Store.clearMedia();
+        await Store.del('timeline'); await Store.del('notes');
         [...urlCache.keys()].forEach(k => URL.revokeObjectURL(urlCache.get(k))); urlCache.clear();
-        await loadAll(); draft = null; dirty = false; Piket.render(); publicRefresh(); updateBrand(); renderSetelan(body); toast('Data lokal dihapus');
+        await loadAll(); draft = null; dirty = false;
+        Piket.render(); Jejak.render(); Tembok.render(); publicRefresh(); updateBrand(); renderSetelan(body); toast('Data lokal dihapus');
       };
     }
 
@@ -1043,6 +1357,6 @@
 
   /* ---------- mulai ---------- */
   loadAll().catch(err => console.warn('[INVICTUS] gagal memuat data', err)).finally(() => {
-    Piket.render(); Galeri.render(); checkHash();
+    Piket.render(); Galeri.render(); Jejak.render(); Tembok.render(); checkHash();
   });
 })();
