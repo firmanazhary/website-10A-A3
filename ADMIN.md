@@ -1,14 +1,40 @@
 # INVICTUS — Generasi 03
 
 Identitas digital, buku tahunan interaktif, dan arsip kenangan angkatan.
-Arah visual: **graffiti vandalism × brutalist editorial**.
+Satu situs, **dua mode tampilan** yang bisa ditukar lewat tombol di navbar.
+
+## Mode tampilan
+
+| | GRAVITY | GRAFFITI |
+| --- | --- | --- |
+| Rasa | Futuristik, minimal, sinematik | Brutal, mentah, jalanan |
+| Warna | Hitam, putih tulang, ungu | Aspal, dirty white, acid lime, ungu, oranye |
+| Huruf | Unbounded | Anton + Space Grotesk + Permanent Marker |
+| Bentuk | Membulat, garis tipis, cahaya ungu | Bersudut, garis tebal, bayangan padat |
+| Bagian Cerita | Jatuh dari orbit: garis meteor + penghitung ketinggian | Tembok yang makin penuh coretan |
+| Bagian Jalanan | Huruf hitam polos di permukaan bulan | Huruf stiker berwarna |
+| Anggota | Foto bundar mengorbit | Kartu stiker hitam-putih |
+| Transisi masuk | Tarikan gravitasi: garis tersedot ke satu titik | Semburan cat menutup layar lalu terkikis |
+
+- Tombolnya ada di kanan atas, ikut terlihat saat menggulir, dan jalan di HP.
+- Pilihan tersimpan di browser (`localStorage`, kunci `inv-mode`), jadi tetap
+  terpakai selama pengunjung memakai situs dan saat halaman dimuat ulang.
+- Berganti mode **tidak memuat ulang halaman**: posisi gulir dikunci ke bagian
+  yang sedang dilihat, dan data anggota, galeri, jadwal, jejak, serta tembok
+  tidak tersentuh.
+- Mode bawaan saat pertama membuka: **Graffiti**. Untuk menggantinya, ubah
+  `let m = 'graffiti'` pada skrip kecil di `<head>` `index.html`.
+- Teks yang berbeda antar mode ditulis pada atribut `data-alt` di `index.html`.
+- Warna kanvas diatur `MODE_INK` di `assets/engine.js`; padanan HTML-nya ada di
+  `assets/wall.css` (graffiti) dan `assets/gravity.css` (gravity).
 
 ## Struktur berkas
 
 | Berkas | Isi |
 | --- | --- |
 | `index.html` | Struktur halaman saja (9 bagian), tanpa CSS/JS sebaris |
-| `assets/wall.css` | Sistem visual: token warna, tipografi, tekstur, loader, kursor, menu, hero, cerita, jalanan, anggota, profil, footer |
+| `assets/wall.css` | Sistem visual mode Graffiti: token warna, tipografi, tekstur, loader, kursor, menu, pemilih mode, hero, cerita, jalanan, anggota, profil, footer |
+| `assets/gravity.css` | Semua penyesuaian mode Gravity (`[data-mode="gravity"]`) |
 | `assets/fitur.css` | Piket, jejak, galeri, lightbox, tembok, panel admin |
 | `assets/engine.js` | Data anggota, logo asli, mesin situs (kanvas, fisika, orbit, profil, footer) |
 | `assets/fitur.js` | Data & fitur: piket, jejak, galeri, tembok, panel admin |

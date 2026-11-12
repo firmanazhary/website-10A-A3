@@ -12,10 +12,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@200..900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="assets/wall.css">
   <link rel="stylesheet" href="assets/fitur.css">
+  <link rel="stylesheet" href="assets/gravity.css">
+  <script>
+    /* Mode dipasang sebelum halaman digambar supaya tidak ada kedipan tema. */
+    (() => {
+      let m = 'graffiti';
+      try { const v = localStorage.getItem('inv-mode'); if (v === 'gravity' || v === 'graffiti') m = v; } catch (e) { }
+      document.documentElement.dataset.mode = m;
+    })();
+  </script>
 </head>
 
 <body>
@@ -23,7 +32,7 @@
 
   <div class="loader" id="loader" aria-hidden="true">
     <div class="ld-inner">
-      <span class="ld-tag">menyiapkan kaleng cat</span>
+      <span class="ld-tag" data-alt="Menghitung gaya tarik">menyiapkan kaleng cat</span>
       <div class="ld-num" id="ldNum">0</div>
       <div class="ld-bar"><i></i></div>
       <p class="ld-txt">Invictus — Generasi 03</p>
@@ -46,6 +55,11 @@
         <a href="#galeri" data-g>Galeri</a>
         <a href="#tembok" data-g>Tembok</a>
       </nav>
+      <div class="mode-switch" id="modeSwitch" role="radiogroup" aria-label="Mode tampilan" data-g>
+        <span class="mode-thumb" aria-hidden="true"></span>
+        <button class="mode-opt" type="button" role="radio" aria-checked="false" data-pick="gravity">Gravity</button>
+        <button class="mode-opt" type="button" role="radio" aria-checked="true" data-pick="graffiti">Graffiti</button>
+      </div>
       <button class="nav-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" data-g>Menu</button>
       <button class="nav-btn" id="btnCollapse" aria-pressed="false" data-g>Runtuhkan</button>
     </div>
@@ -65,6 +79,7 @@
     </ul>
     <div class="menu-foot">
       <span>Invictus — Generasi 03</span>
+      <button class="menu-wreck" type="button" id="menuCollapse">Runtuhkan halaman</button>
       <span>Tak terkalahkan</span>
     </div>
   </nav>
@@ -86,8 +101,7 @@
       <div class="hero-ui">
         <div class="hero-top">
           <p class="hero-gen" data-g>Generasi<b>03</b></p>
-          <p class="hero-hint" data-g>Gerakkan kursor untuk menarik logo. <b>Klik</b> untuk menyemprot. Stikernya bisa
-            diseret.</p>
+          <p class="hero-hint" data-g data-alt="Gerakkan kursor untuk menarik logo. &lt;b&gt;Klik&lt;/b&gt; untuk melepasnya. Kepingannya bisa diseret.">Gerakkan kursor untuk menarik logo. <b>Klik</b> untuk menyemprot. Stikernya bisa diseret.</p>
         </div>
         <div class="hero-bottom">
           <p class="hero-slogan" data-g>Tak terkalahkan.</p>
@@ -110,8 +124,8 @@
         <div class="story-ui">
           <div class="story-top">
             <div data-g>
-              <span class="head-num">02 — Cerita kami</span>
-              <h2>Tembok ini<br>kami isi<br>sendiri.</h2>
+              <span class="head-num" data-alt="02 — Jatuh">02 — Cerita kami</span>
+              <h2 data-alt="Jatuh dengan&lt;br&gt;sengaja, lalu&lt;br&gt;berdiri.">Tembok ini<br>kami isi<br>sendiri.</h2>
             </div>
             <div class="story-meter" data-g>
               <b id="altNum">0</b>
@@ -133,7 +147,7 @@
       <canvas id="landCanvas" aria-label="Huruf INVICTUS yang bisa diseret dan dilempar"></canvas>
       <div class="street-ui">
         <div class="street-copy" data-g>
-          <span class="head-num" style="color:var(--uv)">03 — Jalanan</span>
+          <span class="head-num" style="color:var(--uv)" data-alt="03 — Mendarat">03 — Jalanan</span>
           <h2>Mendarat.</h2>
           <p>Seret, lempar, dan tumpuk hurufnya. Klik ruang kosong untuk membuat ledakan kecil.</p>
         </div>
@@ -270,7 +284,7 @@
       <div class="tb-notes" id="tbNotes"></div>
       <div class="tb-spray">
         <div class="tb-head">
-          <h3>Tandai temboknya.</h3>
+          <h3 data-alt="Tinggalkan jejakmu.">Tandai temboknya.</h3>
           <div class="tb-tools" id="tbTools"></div>
         </div>
         <canvas id="tbCanvas" aria-label="Tembok coretan. Seret untuk menyemprot cat."></canvas>
@@ -349,7 +363,7 @@
     </div>
 
     <div class="wm">
-      <p class="wm-hint" data-g>sapu tulisannya</p>
+      <p class="wm-hint" data-g data-alt="Sapu tulisannya dengan kursor.">sapu tulisannya</p>
       <canvas id="wmCanvas" aria-label="Tulisan INVICTUS bergaya grafiti"></canvas>
     </div>
 
@@ -363,6 +377,7 @@
   <div class="flash" id="flash" aria-hidden="true"></div>
   <button class="rebuild" id="rebuild">Bangun ulang<small>Puing bisa diseret dan dilempar</small></button>
   <div class="egg" id="egg" aria-hidden="true"><span>Tak terkalahkan</span></div>
+  <canvas class="mode-fx" id="modeFx" aria-hidden="true"></canvas>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

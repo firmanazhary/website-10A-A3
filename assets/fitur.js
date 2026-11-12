@@ -648,7 +648,11 @@
   const Tembok = (() => {
     const notesEl = $('#tbNotes'), canvas = $('#tbCanvas'), tools = $('#tbTools');
     if (!notesEl || !canvas) return { render() { } };
-    const CANS = ['#C8FF1E', '#7A3BFF', '#FF5A1F', '#EDE8DA'];
+    const CANS_BY_MODE = {
+      graffiti: ['#C8FF1E', '#7A3BFF', '#FF5A1F', '#EDE8DA'],
+      gravity: ['#8F78FF', '#6B4CFF', '#F2F0EA', '#CFCCC4']
+    };
+    let CANS = CANS_BY_MODE[document.documentElement.dataset.mode] || CANS_BY_MODE.graffiti;
     const TAG_KEY = 'inv-tag-v1', MAX_PTS = 6000;
     const ctx = canvas.getContext('2d');
     let strokes = [], live = null, can = 0, W = 0, H = 0, pts = 0;
@@ -737,8 +741,16 @@
     canvas.addEventListener('pointerenter', () => cur('spray'));
     canvas.addEventListener('pointerleave', () => { up(); cur(''); });
 
-    tools.innerHTML = CANS.map((c, i) => `<button class="tb-can" type="button" data-can="${i}" aria-pressed="${i === 0}" aria-label="Warna ${i + 1}" style="background:${c};color:${c}"></button>`).join('')
-      + `<button class="adm-b" type="button" data-act="clear">Bersihkan</button>`;
+    function renderTools() {
+      tools.innerHTML = CANS.map((c, i) => `<button class="tb-can" type="button" data-can="${i}" aria-pressed="${i === can}" aria-label="Warna ${i + 1}" style="background:${c};color:${c}"></button>`).join('')
+        + `<button class="adm-b" type="button" data-act="clear">Bersihkan</button>`;
+    }
+    renderTools();
+    /* kaleng cat ikut berganti saat mode diganti */
+    document.addEventListener('inv:mode', e => {
+      CANS = CANS_BY_MODE[e.detail] || CANS_BY_MODE.graffiti;
+      renderTools(); redraw();
+    });
     tools.addEventListener('click', e => {
       const b = e.target.closest('button'); if (!b) return;
       if (b.dataset.can !== undefined) {
