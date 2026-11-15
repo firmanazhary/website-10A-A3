@@ -1,0 +1,252 @@
+/* =========================================================
+   INVICTUS — PERAN HURUF
+   Tiga suara, masing-masing punya tugas sendiri:
+
+   Unbounded         → judul dan angka besar. Suara utama, lantang.
+   Instrument Serif  → kalimat yang dibaca: esai pendek, manifesto,
+                       baris kedua judul. Suara manusia, lebih pelan.
+   IBM Plex Mono     → label, tanggal, hitungan, tombol. Terasa seperti
+                       telemetri, cocok dengan tema orbit dan gravitasi.
+
+   Berkas ini dimuat paling akhir, jadi menjadi satu-satunya tempat
+   yang menentukan jenis huruf tiap peran.
+   ========================================================= */
+
+/* ---------- judul: lebih rapat, baris lebih seimbang ---------- */
+.ag-head h2,
+.pk-head h2,
+.gl-head h2,
+.land-copy h2,
+.end-destroy p {
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.title {
+  letter-spacing: -.03em;
+}
+
+/* baris kedua judul: serif miring, dibesarkan sedikit karena
+   x-height Instrument Serif lebih kecil dari Unbounded */
+.ag-head h2 em,
+.pk-head h2 em,
+.gl-head h2 em,
+.gl-vhead h3 em,
+.end-destroy p em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.14em;
+  letter-spacing: -.015em;
+  line-height: .9;
+}
+
+/* ---------- kalimat yang dibaca ---------- */
+.ag-side p,
+.pk-side p,
+.gl-side p:not(.gl-count),
+.land-copy p,
+.end-say {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.36;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+/* warna mengikuti latar: terang di bagian gelap, tinta di bagian kertas */
+.ag-side p,
+.gl-side p:not(.gl-count),
+.end-say {
+  color: var(--haze);
+}
+
+.pk-side p,
+.land-copy p {
+  color: var(--dust);
+}
+
+.manifesto p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -.01em;
+}
+
+.gl-empty p,
+.pk-off,
+.lb-cap p,
+.gl-cap-t i,
+.pk-tasks h3 small {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.gl-empty p,
+.lb-cap p {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.gl-cap-t i {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.pk-tasks h3 small,
+.pk-off {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* keterangan di bawah label tidak ikut kapital */
+.pk-tasks h3 small {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- label, angka, tombol ---------- */
+.nav-right,
+.nav-right button,
+.hero-meta .hint,
+.hero-meta .gen,
+.alt-label,
+.controls button,
+.ag-mode button,
+.fx-pill,
+.core small,
+.sat-name,
+.pf-meta,
+.pf-nav button,
+.end-grid h3,
+.end-grid p,
+.end-grid a,
+.wm-hint,
+.end-base,
+.nuke span,
+.rebuild,
+.ld-txt,
+.magnet span,
+.pk-weeklabel,
+.pk-t-kicker,
+.pk-t-date,
+.pk-ddate,
+.pk-now,
+.pk-chip,
+.pk-badge,
+.pk-tasks h3,
+.pk-tasks li span,
+.pk-tasks li small,
+.pk-ring small,
+.pk-empty,
+.pk-t-crew small,
+.gl-kicker,
+.gl-count,
+.gl-cap-m,
+.gl-open,
+.gl-play,
+.gl-vhead p,
+.lb-count,
+.lb-meta,
+.lb-btn,
+.adm-link {
+  font-family: var(--mono);
+  font-weight: 400;
+  letter-spacing: .01em;
+}
+
+/* angka besar tetap Unbounded walau induknya mono */
+.hero-meta .gen b,
+.pk-ring span,
+.lb-count b {
+  font-family: var(--font);
+}
+
+/* label kecil berhuruf kapital: dipakai hemat, hanya untuk penanda bagian */
+.end-grid h3,
+.pk-t-kicker,
+.gl-kicker,
+.hero-meta .gen,
+.pk-tasks h3,
+.pk-weeklabel,
+.gl-count {
+  font-size: var(--t-micro);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero-meta .gen b {
+  letter-spacing: -.02em;
+  text-transform: none;
+}
+
+/* tombol: mono, lebih tipis, lebih presisi */
+.nav-right button,
+.controls button,
+.ag-mode button,
+.fx-pill,
+.pf-nav button,
+.lb-btn {
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+
+.pk-chip {
+  font-size: 10px;
+}
+
+/* nama orang memakai serif, sama seperti daftar Waktu SMP */
+.pk-crew b {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.end-grid p,
+.end-grid a {
+  font-size: 13px;
+}
+
+.hero-meta .hint,
+.alt-label,
+.wm-hint,
+.end-base,
+.pf-meta {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.alt-label {
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity: 1;
+  color: currentColor;
+}
+
+/* ---------- panel admin: label mono supaya mudah dipindai ---------- */
+.adm label,
+.adm-note,
+.adm-b,
+.adm-brand small,
+.adm-chip,
+.adm-tog,
+.adm-m-thumb span,
+.adm-toast {
+  font-family: var(--mono);
+  letter-spacing: .01em;
+}
+
+.adm input,
+.adm select,
+.adm textarea {
+  font-family: var(--mono);
+  font-size: 13px;
+}
