@@ -1,0 +1,26 @@
+{
+  "name": "website-10a-a3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firmanazhary/website-10A-A3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/firmanazhary/website-10A-A3/issues"
+  },
+  "homepage": "https://github.com/firmanazhary/website-10A-A3#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.4",
+    "tailwindcss": "^4.3.4"
+  }
+}
