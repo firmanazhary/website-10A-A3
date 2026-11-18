@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // =================================================================
+  // DATA 33 ANGGOTA INVICTUS (SILAKAN ISI / UBAH DATA DI SINI)
+  // =================================================================
+  const MEMBERS_DATA = Array.from({ length: 33 }, (_, i) => {
+    const numStr = String(i + 1).padStart(2, "0");
+    return {
+      number: numStr,
+      name: `[Nama Anggota ${numStr}]`,
+      role: "[Jabatan]",
+      photo: `./assets/member-${numStr}.jpg`,
+      fallbackPhoto: `https://picsum.photos/seed/invictus-${numStr}/500/680`,
+      birthDate: "[Tanggal Lahir]",
+      age: "[Umur] Tahun",
+      portfolioUrl: "https://example.com",
+      portfolioLabel: `portfolio-${numStr}.invictus.id`,
+      linkedinUrl: "https://linkedin.com",
+      linkedinLabel: `in/anggota-${numStr}`,
+      instagramUrl: "https://instagram.com",
+      instagramLabel: `@invictus_${numStr}`,
+    };
+  });
+
+  // =================================================================
+  // REFERENSI ELEMEN DOM
+  // =================================================================
   const navContainer = document.getElementById("navContainer");
   const mainNav = document.getElementById("mainNav");
   const menuToggleBtn = document.getElementById("menuToggleBtn");
@@ -15,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const marqueeGroup = marqueeTrack?.querySelector("[data-marquee-group]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // Elemen transisi scroll About -> Anggota & Carousel 33 Anggota
+  // Elemen Scroll Transition About -> Anggota & Carousel
   const scrollWrapper = document.getElementById("jelajahi");
   const stickyStage = document.getElementById("stickyStage");
   const photoSlot = document.getElementById("photoSlot");
@@ -34,6 +59,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevMemberBtn = document.getElementById("prevMemberBtn");
   const nextMemberBtn = document.getElementById("nextMemberBtn");
 
+  // Elemen Modal Detail Profil Anggota
+  const memberModalBackdrop = document.getElementById("memberModalBackdrop");
+  const memberModalCard = document.getElementById("memberModalCard");
+  const closeMemberModalBtn = document.getElementById("closeMemberModalBtn");
+  const modalMemberPhoto = document.getElementById("modalMemberPhoto");
+  const modalMemberBadge = document.getElementById("modalMemberBadge");
+  const modalMemberName = document.getElementById("modalMemberName");
+  const modalMemberRole = document.getElementById("modalMemberRole");
+  const modalMemberDob = document.getElementById("modalMemberDob");
+  const modalMemberAge = document.getElementById("modalMemberAge");
+  const modalMemberPortfolio = document.getElementById("modalMemberPortfolio");
+  const modalMemberPortfolioLabel = document.getElementById(
+    "modalMemberPortfolioLabel",
+  );
+  const modalMemberLinkedin = document.getElementById("modalMemberLinkedin");
+  const modalMemberLinkedinLabel = document.getElementById(
+    "modalMemberLinkedinLabel",
+  );
+  const modalMemberIg = document.getElementById("modalMemberIg");
+  const modalMemberIgLabel = document.getElementById("modalMemberIgLabel");
+  const modalPrevBtn = document.getElementById("modalPrevBtn");
+  const modalNextBtn = document.getElementById("modalNextBtn");
+  const modalCounterText = document.getElementById("modalCounterText");
+
   const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
   const clamp01 = (value) => clamp(value, 0, 1);
   const segmentProgress = (progress, start, end) =>
@@ -46,9 +95,102 @@ document.addEventListener("DOMContentLoaded", () => {
   let scrollBoost = 0;
   let isMenuOpen = false;
   let activeNavKey = "home";
+  let currentModalIndex = -1;
 
   // -----------------------------------------------------------------
-  // 1. Hamburger Menu Toggle & Sinkronisasi Menu Aktif
+  // 1. Modal Profil Anggota (Buka / Tutup / Navigasi)
+  // -----------------------------------------------------------------
+  function openMemberModal(index) {
+    const total = MEMBERS_DATA.length;
+    const safeIdx = ((index % total) + total) % total;
+    currentModalIndex = safeIdx;
+    const member = MEMBERS_DATA[safeIdx];
+
+    if (modalMemberPhoto) {
+      modalMemberPhoto.src = member.photo;
+      modalMemberPhoto.alt = `Foto ${member.name}`;
+      modalMemberPhoto.onerror = function () {
+        this.onerror = null;
+        this.src = member.fallbackPhoto;
+      };
+    }
+    if (modalMemberBadge) {
+      modalMemberBadge.textContent = `INVICTUS • #${member.number}`;
+    }
+    if (modalMemberName) {
+      modalMemberName.textContent = member.name;
+    }
+    if (modalMemberRole) {
+      modalMemberRole.textContent = member.role;
+    }
+    if (modalMemberDob) {
+      modalMemberDob.textContent = member.birthDate;
+    }
+    if (modalMemberAge) {
+      modalMemberAge.textContent = member.age;
+    }
+    if (modalMemberPortfolio) {
+      modalMemberPortfolio.href = member.portfolioUrl;
+    }
+    if (modalMemberPortfolioLabel) {
+      modalMemberPortfolioLabel.textContent = member.portfolioLabel;
+    }
+    if (modalMemberLinkedin) {
+      modalMemberLinkedin.href = member.linkedinUrl;
+    }
+    if (modalMemberLinkedinLabel) {
+      modalMemberLinkedinLabel.textContent = member.linkedinLabel;
+    }
+    if (modalMemberIg) {
+      modalMemberIg.href = member.instagramUrl;
+    }
+    if (modalMemberIgLabel) {
+      modalMemberIgLabel.textContent = member.instagramLabel;
+    }
+    if (modalCounterText) {
+      modalCounterText.textContent = `${member.number} / ${String(total).padStart(2, "0")}`;
+    }
+
+    if (memberModalBackdrop && memberModalCard) {
+      memberModalBackdrop.classList.remove("pointer-events-none", "opacity-0");
+      memberModalBackdrop.classList.add("pointer-events-auto", "opacity-100");
+      memberModalCard.classList.remove("scale-95", "opacity-0");
+      memberModalCard.classList.add("scale-100", "opacity-100");
+    }
+  }
+
+  function closeMemberModal() {
+    currentModalIndex = -1;
+    if (memberModalBackdrop && memberModalCard) {
+      memberModalBackdrop.classList.add("pointer-events-none", "opacity-0");
+      memberModalBackdrop.classList.remove("pointer-events-auto", "opacity-100");
+      memberModalCard.classList.add("scale-95", "opacity-0");
+      memberModalCard.classList.remove("scale-100", "opacity-100");
+    }
+  }
+
+  closeMemberModalBtn?.addEventListener("click", closeMemberModal);
+
+  memberModalBackdrop?.addEventListener("click", (e) => {
+    if (e.target === memberModalBackdrop) {
+      closeMemberModal();
+    }
+  });
+
+  modalPrevBtn?.addEventListener("click", () => {
+    if (currentModalIndex >= 0) {
+      openMemberModal(currentModalIndex - 1);
+    }
+  });
+
+  modalNextBtn?.addEventListener("click", () => {
+    if (currentModalIndex >= 0) {
+      openMemberModal(currentModalIndex + 1);
+    }
+  });
+
+  // -----------------------------------------------------------------
+  // 2. Hamburger Menu Toggle & Sinkronisasi Menu Aktif
   // -----------------------------------------------------------------
   function highlightNavLink(targetKey) {
     if (activeNavKey === targetKey) return;
@@ -110,75 +252,77 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && isMenuOpen) {
-      setMenuOpen(false);
+    if (e.key === "Escape") {
+      if (currentModalIndex >= 0) {
+        closeMemberModal();
+      } else if (isMenuOpen) {
+        setMenuOpen(false);
+      }
+    } else if (currentModalIndex >= 0 && e.key === "ArrowLeft") {
+      openMemberModal(currentModalIndex - 1);
+    } else if (currentModalIndex >= 0 && e.key === "ArrowRight") {
+      openMemberModal(currentModalIndex + 1);
     }
   });
 
   // -----------------------------------------------------------------
-  // 2. Render 33 Kartu Anggota & Pengukuran Posisi Foto
+  // 3. Render 33 Kartu Anggota Sejajar (Tanpa Nonjol, Klik -> Buka Modal)
   // -----------------------------------------------------------------
-  const TOTAL_MEMBERS = 33;
+  const TOTAL_MEMBERS = MEMBERS_DATA.length;
   const CARD_WIDTH = 190;
-  const CARD_GAP = 28;
+  const CARD_GAP = 26;
   const CARD_STEP = CARD_WIDTH + CARD_GAP;
   const cardItems = [];
 
   if (carouselTrack) {
     for (let i = 0; i < TOTAL_MEMBERS; i++) {
-      const numStr = String(i + 1).padStart(2, "0");
+      const member = MEMBERS_DATA[i];
 
-      const item = document.createElement("article");
+      const item = document.createElement("button");
+      item.type = "button";
+      item.setAttribute("aria-label", `Lihat profil ${member.name}`);
       item.className =
-        "absolute left-0 top-1/2 flex w-[190px] -translate-y-1/2 flex-col items-center select-none will-change-transform";
+        "group absolute left-0 top-1/2 flex w-[190px] -translate-y-1/2 cursor-pointer flex-col items-center text-center select-none will-change-transform focus:outline-none";
 
       const frame = document.createElement("div");
       frame.className =
-        "relative h-[250px] w-[190px] overflow-hidden rounded-[36px] bg-neutral-200 shadow-md will-change-transform";
+        "relative h-[260px] w-[190px] overflow-hidden rounded-[36px] bg-neutral-200 shadow-sm transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl";
 
       const img = document.createElement("img");
-      img.src = `./assets/member-${numStr}.jpg`;
-      img.alt = `Anggota ${numStr}`;
+      img.src = member.photo;
+      img.alt = member.name;
       img.loading = "lazy";
-      img.className = "h-full w-full object-cover object-center";
+      img.className =
+        "h-full w-full object-cover object-center grayscale transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0";
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = member.fallbackPhoto;
+      };
 
-      const overlay = document.createElement("div");
-      overlay.className =
-        "pointer-events-none absolute inset-x-0 bottom-0 flex h-24 items-end justify-center gap-2 bg-gradient-to-t from-black/65 via-black/25 to-transparent pb-3.5 opacity-0 will-change-transform";
-      overlay.innerHTML = `
-        <span class="grid h-7 w-7 place-items-center rounded-full bg-white/30 text-white backdrop-blur-md">
-          <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.9 3.9 0 0 1-1.4-.9 3.9 3.9 0 0 1-.9-1.4c-.2-.4-.4-1.1-.4-2.2-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4 1.3-.1 1.6-.1 4.9-.1zm0 3.4a6.4 6.4 0 1 0 0 12.8 6.4 6.4 0 0 0 0-12.8zm0 10.5a4.1 4.1 0 1 1 0-8.2 4.1 4.1 0 0 1 0 8.2zm6.7-12.3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-          </svg>
-        </span>
-        <span class="grid h-7 w-7 place-items-center rounded-full bg-white/30 text-white backdrop-blur-md">
-          <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/>
-          </svg>
-        </span>
-        <span class="grid h-7 w-7 place-items-center rounded-full bg-white/30 text-white backdrop-blur-md">
-          <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.2 2.25h3.3l-7.2 8.23L22.8 21.75h-6.6l-5.2-6.8-5.9 6.8H1.8l7.7-8.8L1.3 2.25h6.8l4.7 6.2 5.4-6.2z"/>
-          </svg>
-        </span>
-      `;
+      const badge = document.createElement("span");
+      badge.className =
+        "pointer-events-none absolute top-3 left-3 rounded-full bg-black/50 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100";
+      badge.textContent = `#${member.number}`;
 
       frame.appendChild(img);
-      frame.appendChild(overlay);
+      frame.appendChild(badge);
 
       const meta = document.createElement("div");
-      meta.className =
-        "mt-3 flex flex-col items-center text-center will-change-transform";
+      meta.className = "mt-3 flex flex-col items-center text-center";
       meta.innerHTML = `
-        <p class="text-xs font-semibold text-neutral-900">[Nama Anggota]</p>
-        <p class="mt-0.5 text-[11px] font-medium text-neutral-500">[Jabatan]</p>
+        <p class="text-xs font-semibold text-neutral-900 transition-colors group-hover:text-black">${member.name}</p>
+        <p class="mt-0.5 text-[11px] font-medium text-neutral-500">${member.role}</p>
       `;
 
       item.appendChild(frame);
       item.appendChild(meta);
-      carouselTrack.appendChild(item);
 
-      cardItems.push({ item, frame, overlay, meta });
+      item.addEventListener("click", () => {
+        openMemberModal(i);
+      });
+
+      carouselTrack.appendChild(item);
+      cardItems.push({ item });
     }
   }
 
@@ -214,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", measureLayout, { passive: true });
   measureLayout();
 
-  // Kontrol gerak otomatis ke arah kanan & tombol navigasi 33 anggota
+  // Kontrol pergeseran carousel (halus ke kanan & tombol panah < >)
   let driftOffset = 0;
   let targetDriftOffset = 0;
   let isHoveringCarousel = false;
@@ -235,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -----------------------------------------------------------------
-  // 3. Loop Utama requestAnimationFrame
+  // 4. Loop Utama requestAnimationFrame
   // -----------------------------------------------------------------
   let posX = -groupWidth;
   let lastFrameTime = performance.now();
@@ -381,24 +525,25 @@ document.addEventListener("DOMContentLoaded", () => {
         titleWords[w].style.transform = `translate3d(0, ${yPercent}%, 0)`;
       }
 
-      // TAHAP 5 (0.66 - 1.0): Carousel 33 anggota meluncur mengikuti scroll,
-      // kartu ke-3 di tengah saat progress = 1, lalu otomatis berjalan ke kanan
-      const carouselT = easeOutCubic(segmentProgress(progress, 0.66, 1.0));
+      // TAHAP 5 (0.66 - 1.0): Barisan 33 card sejajar rapi tanpa nonjol
+      const carouselT = easeOutCubic(segmentProgress(progress, 0.66, 0.98));
 
-      if (progress >= 0.985) {
-        if (!isHoveringCarousel && !reducedMotion.matches) {
-          targetDriftOffset -= dt * 0.45;
-        }
-      } else {
+      if (
+        progress >= 0.985 &&
+        !isHoveringCarousel &&
+        currentModalIndex < 0 &&
+        !reducedMotion.matches
+      ) {
+        targetDriftOffset -= dt * 0.35;
+      } else if (progress < 0.985) {
         targetDriftOffset = 0;
       }
 
       driftOffset += (targetDriftOffset - driftOffset) * Math.min(1, dt * 8);
 
       const activeIndex =
-        (((2 + driftOffset) % TOTAL_MEMBERS) + TOTAL_MEMBERS) % TOTAL_MEMBERS;
+        (((3 + driftOffset) % TOTAL_MEMBERS) + TOTAL_MEMBERS) % TOTAL_MEMBERS;
       const enterFromRightOffset = (1 - carouselT) * (viewportWidth * 0.75);
-      const focusRadius = CARD_STEP * 1.15;
 
       for (let i = 0; i < TOTAL_MEMBERS; i++) {
         let rel = i - activeIndex;
@@ -408,23 +553,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardCenterX =
           viewportWidth / 2 + rel * CARD_STEP + enterFromRightOffset;
         const cardLeftX = cardCenterX - CARD_WIDTH / 2;
-        const distFromCenter = Math.abs(cardCenterX - viewportWidth / 2);
 
-        const rawFocus = clamp01(1 - distFromCenter / focusRadius);
-        const focus = easeInOutCubic(rawFocus);
-
-        const scale = 1 + 0.45 * focus;
-        const grayscale = 1 - focus;
-        const labelOpacity = 0.45 + 0.55 * focus;
-        const metaTranslateY = focus * 56;
-
-        const entry = cardItems[i];
-        entry.item.style.transform = `translate3d(${cardLeftX.toFixed(2)}px, -50%, 0)`;
-        entry.frame.style.transform = `scale(${scale.toFixed(4)})`;
-        entry.frame.style.filter = `grayscale(${grayscale.toFixed(3)})`;
-        entry.overlay.style.opacity = focus.toFixed(3);
-        entry.meta.style.opacity = labelOpacity.toFixed(3);
-        entry.meta.style.transform = `translate3d(0, ${metaTranslateY.toFixed(2)}px, 0)`;
+        cardItems[i].item.style.transform = `translate3d(${cardLeftX.toFixed(2)}px, -50%, 0)`;
       }
 
       if (carouselProgressBar) {
@@ -446,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.requestAnimationFrame(animateFrame);
 
   // -----------------------------------------------------------------
-  // 4. Tombol "Until when?" Scroll ke Section Jelajahi
+  // 5. Tombol "Until when?" Scroll ke Section Jelajahi
   // -----------------------------------------------------------------
   untilWhenBtn?.addEventListener("click", () => {
     jelajahiStack?.scrollIntoView({ behavior: "smooth" });
