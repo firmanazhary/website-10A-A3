@@ -763,6 +763,30 @@
         background: transparent;
         border-top: 1px solid rgba(255, 255, 255, 0.07);
       }
+      /* jadwal piket */
+      #piket { background: rgba(255,255,255,.025); }
+      .piket-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .piket-day {
+        padding: 1.25rem;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--glass);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.025);
+      }
+      .piket-day h3 {
+        color: var(--yl);
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+      .piket-day ol { padding-left: 1.35rem; }
+      .piket-day li { padding: .3rem 0 .3rem .25rem; color: #f2efe8; }
+      .piket-day li::marker { color: var(--yl); font-weight: 800; }
+      .piket-note { margin-top: 1.2rem; opacity: .65; font-size: .9rem; }
     </style>
   </head>
   <body>
@@ -775,7 +799,7 @@
       >
       <div>
         <a href="#about">About</a><a href="#memories">Memories</a
-        ><a href="#members">Members</a><a href="#timeline">Journey</a
+        ><a href="#members">Members</a><a href="#piket">Piket</a><a href="#timeline">Journey</a
         ><a href="#wall">Wall</a>
       </div>
     </nav>
@@ -829,6 +853,17 @@
       <div class="grid" id="grid"></div>
     </section>
 
+    <section id="piket" class="wrap">
+      <h2>ROSTER PIKET</h2>
+      <p class="lead">Jadwal piket mingguan INVICTUS. Anggota dibagi menjadi Kelas 1 dan Kelas 2. Dua nama Kelas 2 masih menunggu konfirmasi.</p>
+      <div class="tools">
+        <span class="btn on" aria-label="Jadwal piket lima hari sekolah">Senin — Jumat</span>
+        <span class="btn">27 Anggota · 2 Kelas · 5 Hari</span>
+      </div>
+      <div class="piket-grid" id="piketGrid" aria-live="polite"></div>
+      <p class="piket-note">Jadwal contoh untuk 27 anggota: 6 orang pada Senin dan Selasa, lalu 5 orang pada Rabu, Kamis, dan Jumat. Nama yang belum diketahui ditandai sementara.</p>
+    </section>
+
     <section id="timeline" class="wrap">
       <h2>OUR JOURNEY</h2>
       <div class="tabs" id="tabs" role="tablist"></div>
@@ -879,7 +914,7 @@
         story:
           "[Tulis cerita singkat angkatan INVICTUS di sini: bagaimana kalian bertemu, apa yang membuat kalian berbeda, dan apa yang ingin diingat selamanya.]",
         stats: [
-          ["[00]", "Anggota"],
+          ["27", "Anggota"],
           ["[00]", "Kelas"],
           ["[00]", "Tahun bersama"],
           ["∞", "Kenangan"],
@@ -930,12 +965,32 @@
           story: "[Cerita di balik foto 8]",
         },
       ];
-      const MEMBERS = Array.from({ length: 18 }, (_, i) => ({
-        name:
-          "Nama Anggota " + String(i + 1).padStart(2, "0") + " [placeholder]",
-        group: ["Kelas A", "Kelas B", "Kelas C"][i % 3],
-        bio: "[Deskripsi singkat anggota, ganti dengan data asli.]",
-      }));
+      const CLASS_1 = [
+        "Haidar", "Baim", "Reza", "Raqilla", "Nabigh", "Vitto", "Hilmi",
+        "Hiraki", "Ibam", "Rhapip", "Apip", "Pakih", "Satria", "Ajam",
+      ];
+      // Dua nama Kelas 2 belum diberikan, jadi sementara ditandai agar mudah diganti.
+      const CLASS_2 = [
+        "Akmal", "Fatih", "Almer", "Qaisar", "Fajri", "Rafi", "Alzawawu",
+        "Aqrom", "Yusuf", "Fadhli", "Alfath", "Nama anggota 12 (belum diisi)",
+        "Nama anggota 13 (belum diisi)",
+      ];
+      const MEMBERS = [
+        ...CLASS_1.map((name) => ({ name, group: "Kelas 1", bio: "Anggota INVICTUS — Kelas 1." })),
+        ...CLASS_2.map((name) => ({ name, group: "Kelas 2", bio: "Anggota INVICTUS — Kelas 2." })),
+      ];
+      // Jadwal contoh Senin–Jumat untuk seluruh 27 anggota.
+      const PIKET_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
+      const PIKET_COUNTS = [6, 6, 5, 5, 5];
+      function renderPiket() {
+        let cursor = 0;
+        $("#piketGrid").innerHTML = PIKET_DAYS.map((day, index) => {
+          const names = MEMBERS.slice(cursor, cursor + PIKET_COUNTS[index]);
+          cursor += PIKET_COUNTS[index];
+          return `<article class="piket-day"><h3>${day}</h3><ol>${names.map((m) => `<li>${m.name} <small>— ${m.group}</small></li>`).join("")}</ol></article>`;
+        }).join("");
+      }
+
       const EVENTS = [
         {
           date: "[Tanggal]",
@@ -1179,6 +1234,7 @@
         );
       };
       render();
+      renderPiket();
       /* timeline */
       let ti = 0;
       const tabs = $("#tabs"),
