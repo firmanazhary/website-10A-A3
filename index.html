@@ -803,33 +803,118 @@
       inset: 0;
       display: grid;
       place-items: center;
-      perspective: 900px
+      perspective: 1400px;
+      padding: calc(env(safe-area-inset-top, 0px) + 76px) var(--pad) calc(env(safe-area-inset-bottom, 0px) + 28px)
     }
 
+    .pf-stage {
+      width: min(1080px, 100%);
+      max-height: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(14px, 2vw, 28px);
+      align-items: stretch;
+      transform-style: preserve-3d;
+      will-change: transform
+    }
+
+    /* kartu 1: foto wajah */
     .pf-photo {
-      width: min(62vw, 52vh, 440px);
-      aspect-ratio: 1;
-      border-radius: 50%;
+      position: relative;
+      margin: 0;
+      min-height: 0;
+      aspect-ratio: 4/5;
+      max-height: calc(100vh - 150px);
+      justify-self: center;
+      width: 100%;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 0 0 1px var(--line-2);
+      background: var(--deck);
+      box-shadow: 0 0 0 1px var(--line), 0 40px 90px -30px rgba(107, 76, 255, .55);
       will-change: transform
     }
 
     .pf-photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover
+      object-fit: cover;
+      display: block
     }
 
-    .pf-info {
+    .pf-photo::after {
+      content: "";
       position: absolute;
-      left: var(--pad);
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
-      right: var(--pad);
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent 38%);
+      pointer-events: none
+    }
+
+    .pf-tag,
+    .pf-no {
+      position: absolute;
+      z-index: 1;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase
+    }
+
+    .pf-tag {
+      top: 16px;
+      left: 16px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--uv);
+      color: #fff
+    }
+
+    .pf-no {
+      left: 18px;
+      bottom: 16px;
+      color: var(--star)
+    }
+
+    /* kartu 2: identitas */
+    .pf-card {
+      position: relative;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px
+      gap: 28px;
+      padding: clamp(22px, 3.2vw, 44px);
+      border-radius: 28px;
+      background: linear-gradient(160deg, rgba(242, 240, 234, .09), rgba(242, 240, 234, .02));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+      will-change: transform
+    }
+
+    .pf-card::before {
+      content: "";
+      position: absolute;
+      width: 70%;
+      aspect-ratio: 1;
+      right: -25%;
+      top: -30%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(107, 76, 255, .5), transparent 65%);
+      filter: blur(30px);
+      pointer-events: none
+    }
+
+    .pf-card>* {
+      position: relative
+    }
+
+    .pf-kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0
     }
 
     .pf-name .w {
@@ -837,17 +922,18 @@
     }
 
     .pf-name[data-long] {
-      font-size: clamp(30px, 4.6vw, 80px)
+      font-size: clamp(26px, 3.6vw, 58px)
     }
 
     .pf-name {
-      font-size: clamp(34px, 6.4vw, 112px);
+      margin: 14px 0 0;
+      font-size: clamp(30px, 4.6vw, 76px);
       font-weight: 900;
-      line-height: .95;
+      line-height: .98;
       letter-spacing: -.03em;
       display: flex;
       flex-wrap: wrap;
-      max-width: 14ch
+      column-gap: .28em
     }
 
     .pf-name .l {
@@ -861,14 +947,74 @@
     }
 
     .pf-name .sp {
-      width: .3em
+      display: none
     }
 
-    .pf-meta {
+    .pf-motto {
+      margin: 0;
+      padding-left: 18px;
+      border-left: 2px solid var(--uv);
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.3vw, 34px);
+      line-height: 1.25;
+      color: var(--star)
+    }
+
+    .pf-motto.empty {
+      color: var(--mute);
+      font-style: italic
+    }
+
+    .pf-link {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 8px 8px 22px;
+      border-radius: 999px;
+      background: var(--star);
+      color: var(--void);
       font-size: 13px;
-      color: var(--haze);
-      text-align: right;
-      line-height: 1.7
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .3s, color .3s, transform .3s var(--ease)
+    }
+
+    .pf-link i {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--void);
+      color: var(--star);
+      font-style: normal;
+      font-size: 16px;
+      transition: transform .35s var(--ease), background .3s
+    }
+
+    .pf-link:hover {
+      background: var(--uv);
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    .pf-link:hover i {
+      transform: rotate(45deg);
+      background: #fff;
+      color: var(--uv)
+    }
+
+    .pf-link[aria-disabled="true"] {
+      background: transparent;
+      color: var(--mute);
+      box-shadow: inset 0 0 0 1px var(--line);
+      pointer-events: none;
+      padding-right: 22px
+    }
+
+    .pf-link[aria-disabled="true"] i {
+      display: none
     }
 
     .pf-nav {
@@ -1236,16 +1382,18 @@
         display: none
       }
 
-      .pf-info {
-        flex-direction: column;
-        align-items: flex-start
+      .pf-stage {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+        max-height: 100%
       }
 
-      .pf-meta {
-        text-align: left
+      .pf-photo {
+        aspect-ratio: 1;
+        max-height: 40vh
       }
 
-      .sat {
+.sat {
         width: 13%
       }
     }
@@ -1427,16 +1575,26 @@
       <div class="pf-row"></div>
     </div>
     <div class="pf-center">
-      <figure class="pf-photo" id="pfPhoto"><img id="pfImg" alt=""></figure>
+      <div class="pf-stage" id="pfStage">
+        <figure class="pf-photo" id="pfPhoto">
+          <img id="pfImg" alt="">
+          <span class="pf-tag" id="pfTag"></span>
+          <span class="pf-no" id="pfNo"></span>
+        </figure>
+        <div class="pf-card" id="pfCard">
+          <div>
+            <p class="pf-kicker" id="pfMeta"></p>
+            <h3 class="pf-name" id="pfName"></h3>
+          </div>
+          <blockquote class="pf-motto" id="pfMotto"></blockquote>
+          <a class="pf-link" id="pfLink" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
     </div>
     <div class="pf-nav">
       <button id="pfPrev">Sebelumnya</button>
       <button id="pfNext">Berikutnya</button>
       <button id="pfClose">Tutup</button>
-    </div>
-    <div class="pf-info">
-      <h3 class="pf-name" id="pfName"></h3>
-      <p class="pf-meta" id="pfMeta"></p>
     </div>
   </div>
 
@@ -1507,23 +1665,25 @@
        Taruh foto di folder "foto/" dengan nama file sesuai kolom foto.
        Kalau fotonya belum ada, otomatis tampil inisial.
        ========================================================= */
+    /* Opsional per anggota: tambahkan  motto: "...", portfolio: "https://..."
+       contoh: { nama: "Fajri Ahmad", foto: "...", motto: "Pelan asal sampai", portfolio: "https://fajri.dev" } */
     const KELAS = {
       /* Kelas 10A */
       A: [
-        { nama: "Abdurrahman Afif", foto: "foto/abdurrahman-afif.jpg" },
-        { nama: "Azzam Al Ghifary", foto: "foto/azzam-al-ghifary.jpg" },
-        { nama: "Ghaisan Raqilla Manan", foto: "foto/ghaisan-raqilla-manan.jpg" },
-        { nama: "Haidar Mahya Sabillilah", foto: "foto/haidar-mahya-sabillilah.jpg" },
-        { nama: "Hilmi Romzi Nagib", foto: "foto/hilmi-romzi-nagib.jpg" },
-        { nama: "Hiraki Prayata Annangadipa", foto: "foto/hiraki-prayata-annangadipa.jpg" },
-        { nama: "Ibrahim Omar", foto: "foto/ibrahim-omar.jpg" },
-        { nama: "Muhammad Fakhril Fakih", foto: "foto/muhammad-fakhril-fakih.jpg" },
+        { nama: "Abdurrahman Afif", foto: "foto/abdurrahman-afif.jpg", motto: "jangan hidup di dalam zona nyaman karena manusia butuh pengalaman", portfolio: "https://afifaja.vercel.app/" },
+        { nama: "Azzam Al Ghifary", foto: "foto/azzam-al-ghifary.png", motto: "Fokus pada tujuan sendiri, bukan kesibukan orang lain.", portfolio: "https://portofolio-azam.vercel.app/" },
+        { nama: "Ghaisan Raqilla Manan", foto: "foto/ghaisan-raqilla-manan.jpeg", motto: "Work in silence, let your success be your noise.", portfolio: "https://raqilla.vercel.app/" },
+        { nama: "Haidar Mahya Sabillilah", foto: "foto/haidar-mahya-sabillilah.png", motto: "Dream big", portfolio: "https://mahyaa-portfolio-mhy.vercel.app/" },
+        { nama: "Hilmi Romzi Nagib", foto: "foto/hilmi-romzi-nagib.webp", motto: "Apa yang ditabur dengan sabar, akan dituai pada waktu yang tepat.", portfolio: "https://portfolio-hilmi-v2.vercel.app/" },
+        { nama: "Hiraki Prayata Annangadipa", foto: "foto/hiraki-prayata-annangadipa.jpg", motto: "To be a star, you must burn.", portfolio: "https://hirakoyy.github.io/Portfolio/" },
+        { nama: "Ibrahim Omar", foto: "foto/ibrahim-omar.jpg", motto: "You never FAIL until You Stop Trying.", portfolio: "https://omarinspace.github.io/IbrahimOmar-Portfolio-V2/" },
+        { nama: "Muhammad Fakhril Fakih", foto: "foto/muhammad-fakhril-fakih.jpg", motto: "Upgrade your life in silence.", portfolio: "https://fakeeh.vercel.app/" },
         { nama: "Muhammad Rhafif Ash-Shiddiq", foto: "foto/muhammad-rhafif-ash-shiddiq.jpg" },
         { nama: "Nabigh Habibie Ghany", foto: "foto/nabigh-habibie-ghany.jpg" },
         { nama: "Reza Khoirul Azzam", foto: "foto/reza-khoirul-azzam.jpg" },
         { nama: "Satria Rupawan", foto: "foto/satria-rupawan.jpg" },
-        { nama: "Syalendra Ebrahim Kamil", foto: "foto/syalendra-ebrahim-kamil.jpg" },
-        { nama: "Vittorio Veneto Setiantara", foto: "foto/vittorio-veneto-setiantara.jpg" }
+        { nama: "Syalendra Ebrahim Kamil", foto: "foto/syalendra-ebrahim-kamil.jpg", motto: "BELIEVE IN YOUR DREAM", portfolio: "https://syaelndr-portfolio-rhrj.vercel.app/" },
+        { nama: "Vittorio Veneto Setiantara", foto: "foto/vittorio-veneto-setiantara.png", motto: "hanya meraka yang berani gagal, yang meraih banyak hal", portfolio: "https://veneto-portfolio.vercel.app/" }
       ],
       /* Kelas 10B */
       B: [
@@ -2044,6 +2204,7 @@
        PROFIL
        ========================================================= */
     const profile = document.getElementById('profile'), pfImg = document.getElementById('pfImg'), pfPhoto = document.getElementById('pfPhoto');
+    const pfStage = document.getElementById('pfStage'), pfCard = document.getElementById('pfCard'), pfTag = document.getElementById('pfTag'), pfNo = document.getElementById('pfNo'), pfMotto = document.getElementById('pfMotto'), pfLink = document.getElementById('pfLink');
     const pfName = document.getElementById('pfName'), pfMeta = document.getElementById('pfMeta'), pfRows = [...document.querySelectorAll('.pf-row')];
     let pfIndex = -1, pfOpen = false, pfLastFocus = null;
     function fillProfile(i, dir = 0) {
@@ -2052,12 +2213,22 @@
       pfName.innerHTML = m.nama.split(' ').map(w => `<span class="w">${[...w].map(c => `<span class="l"><span>${c}</span></span>`).join('')}</span>`).join('<span class="sp"></span>');
       pfName.toggleAttribute('data-long', m.nama.length > 16);
       pfName.setAttribute('aria-label', m.nama);
-      pfMeta.innerHTML = `${namaKelas(m.kelas)}<br>Anggota ${m.no} dari ${m.of}`;
+      const safeUrl = /^https?:\/\//i.test(m.portfolio || '') ? m.portfolio : '';
+      pfMeta.textContent = 'Generasi 03 \u00B7 INVICTUS';
+      pfTag.textContent = namaKelas(m.kelas);
+      pfNo.textContent = String(m.no).padStart(2, '0') + ' / ' + String(m.of).padStart(2, '0');
+      pfMotto.textContent = m.motto ? '\u201C' + m.motto + '\u201D' : 'Motto belum diisi.';
+      pfMotto.classList.toggle('empty', !m.motto);
+      if (safeUrl) { pfLink.href = safeUrl; pfLink.removeAttribute('aria-disabled'); pfLink.removeAttribute('tabindex'); pfLink.innerHTML = 'Lihat portfolio <i>\u2197</i>'; }
+      else { pfLink.removeAttribute('href'); pfLink.setAttribute('aria-disabled', 'true'); pfLink.tabIndex = -1; pfLink.textContent = 'Portfolio belum ada'; }
       const rowTxt = (m.nama + '\u2003\u2003').repeat(12);
       pfRows.forEach(r => { r.textContent = rowTxt; r.dataset.u = r.scrollWidth / 12; });
       if (REDUCED) return;
       gsap.fromTo(pfPhoto, { y: dir ? 0 : -innerHeight, x: dir * innerWidth * .6, rotation: dir ? dir * 20 : rand(-25, 25), scale: dir ? .7 : 1 },
         { y: 0, x: 0, rotation: 0, scale: 1, duration: dir ? .9 : 1.3, ease: dir ? 'expo.out' : 'bounce.out' });
+      gsap.fromTo(pfCard, { x: dir ? dir * innerWidth * .4 : 0, y: dir ? 0 : innerHeight * .5, opacity: 0, rotation: dir ? dir * 4 : 3 },
+        { x: 0, y: 0, opacity: 1, rotation: 0, duration: dir ? .8 : 1.1, ease: 'expo.out', delay: dir ? .05 : .25 });
+      gsap.fromTo([pfMotto, pfLink], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out', stagger: .12, delay: dir ? .3 : .75 });
       gsap.fromTo(pfName.querySelectorAll('.l > span'), { yPercent: -120 }, { yPercent: 0, duration: .9, ease: 'bounce.out', stagger: .035, delay: dir ? .05 : .35 });
     }
     function openProfile(i, x = innerWidth / 2, y = innerHeight / 2) {
@@ -2092,7 +2263,7 @@
       pfRows.forEach((r, i) => { const u = +r.dataset.u || 1000; let x = (pfT * (i % 2 ? .6 : -.8)) % u; if (x > 0) x -= u; r.style.transform = `translateX(${x}px)`; });
       if (!COARSE) {
         const rx = (mouse.y / innerHeight - .5) * -16, ry = (mouse.x / innerWidth - .5) * 16;
-        pfPhoto.style.rotate = `x ${rx.toFixed(2)}deg`; pfPhoto.parentElement.style.transform = `rotateY(${ry.toFixed(2)}deg)`;
+        pfStage.style.transform = `rotateX(${(rx / 2).toFixed(2)}deg) rotateY(${(ry / 2).toFixed(2)}deg)`;
       }
     }
 
