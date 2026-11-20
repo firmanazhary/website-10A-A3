@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invictus — Class Archive</title>
     <link rel="stylesheet" href="./output.css" />
+    <style>
+      /* Layer transisi langsung dari Members ke Galeri di dalam 1 stage */
+      #jelajahi {
+        height: 680vh;
+      }
+
+      #morphHeroPhoto,
+      #galeriTilesLayer,
+      #galeriHeaderContainer {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #morphHeroPhoto {
+        z-index: 34;
+      }
+
+      #galeriTilesLayer {
+        z-index: 35;
+      }
+
+      #galeriHeaderContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 40;
+      }
+
+      #galeriTilesLayer.is-active article {
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      #galeriTilesLayer.is-active article:hover .galeri-tile-img {
+        transform: scale(1.04);
+      }
+
+      .galeri-tile-img {
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      #galeriFilterBar.is-active {
+        pointer-events: auto;
+      }
+    </style>
   </head>
   <body
     class="bg-[#0a0a0b] font-sans text-white antialiased selection:bg-white selection:text-neutral-950"
@@ -72,7 +118,7 @@
               <span class="font-mono text-[10px] opacity-60">00</span>
             </a>
             <a
-              href="#jelajahi"
+              href="#about"
               data-nav-target="about"
               class="nav-menu-link flex items-center justify-between rounded-2xl px-4 py-2.5 text-xs font-medium text-white/90 transition hover:bg-white/10"
             >
@@ -110,6 +156,21 @@
             >
               <span>Wall</span>
               <span class="font-mono text-[10px] text-neutral-500">05</span>
+            </a>
+            <a
+              href="#piket"
+              data-nav-target="piket"
+              class="nav-menu-link flex items-center justify-between rounded-2xl px-4 py-2.5 text-xs font-medium text-white/90 transition hover:bg-white/10"
+            >
+              <span>Jadwal Piket</span>
+              <span class="font-mono text-[10px] text-neutral-500">06</span>
+            </a>
+            <a
+              href="./admin.html"
+              class="nav-admin-link"
+            >
+              <span>Admin Panel</span>
+              <span class="font-mono text-[10px]">ADMIN &nearr;</span>
             </a>
           </div>
         </div>
@@ -182,7 +243,7 @@
     </section>
 
     <!-- ===================================================================
-         3. PANEL 2: LAPISAN BERTUMPUK (TAGLINE + SCROLL TRANSITION ABOUT -> ANGGOTA)
+         3. PANEL 2: LAPISAN BERTUMPUK (TAGLINE + ABOUT -> MEMBERS -> GALERI)
          =================================================================== -->
     <div
       id="jelajahiStack"
@@ -249,23 +310,31 @@
       </div>
 
       <!-- =================================================================
-           WRAPPER SCROLL-SCRUBBED ABOUT -> ANGGOTA (280vh, STAGE 1 LAYAR)
+           WRAPPER SCROLL-SCRUBBED TUNGGAL: ABOUT -> MEMBERS -> GALERI
            ================================================================= -->
       <section
         id="jelajahi"
-        aria-label="About dan Anggota Invictus"
-        class="h-[280vh] relative w-full bg-[#FFFFFF] text-neutral-950"
+        aria-label="About, Anggota, dan Galeri Invictus"
+        class="relative w-full bg-[#FFFFFF] text-neutral-950"
       >
-        <!-- Jangkar navigasi #about (progress = 0) & #members (progress = 1) -->
+        <!-- Jangkar navigasi #about, #members, dan #gallery -->
         <div
           id="about"
           aria-hidden="true"
-          class="pointer-events-none absolute inset-x-0 top-0 h-screen"
+          style="top: 0; height: 100vh"
+          class="pointer-events-none absolute inset-x-0"
         ></div>
         <div
           id="members"
           aria-hidden="true"
-          class="pointer-events-none absolute inset-x-0 bottom-0 h-screen"
+          style="top: 34%; height: 100vh"
+          class="pointer-events-none absolute inset-x-0"
+        ></div>
+        <div
+          id="gallery"
+          aria-hidden="true"
+          style="top: 86%; height: 100vh"
+          class="pointer-events-none absolute inset-x-0"
         ></div>
 
         <!-- PANGGUNG STICKY 1 LAYAR PENUH (h-screen) -->
@@ -273,9 +342,9 @@
           id="stickyStage"
           class="sticky top-0 h-screen overflow-hidden w-full bg-[#FFFFFF]"
         >
-          <!-- Indikator Section Pojok Kanan Atas -->
+          <!-- Indikator Section Pojok Kanan Atas (001 ABOUT -> 002 ANGGOTA -> 003 GALERI) -->
           <div
-            class="pointer-events-none absolute top-20 right-6 z-40 h-5 w-40 text-right text-white mix-blend-difference sm:right-10"
+            class="pointer-events-none absolute top-20 right-6 z-50 h-5 w-44 text-right text-white mix-blend-difference sm:right-10"
           >
             <span
               id="navLabelAbout"
@@ -289,12 +358,19 @@
             >
               002 &middot; ANGGOTA
             </span>
+            <span
+              id="navLabelGaleri"
+              class="absolute right-0 top-0 text-[11px] font-medium uppercase tracking-[0.24em] opacity-0 will-change-transform"
+            >
+              003 &middot; GALERI
+            </span>
           </div>
 
           <!-- =============================================================
-               TAHAP 1 & 2: SECTION ABOUT (LATAR PUTIH + FOTO MEMBESAR)
+               TAHAP 1: SECTION ABOUT (LATAR PUTIH + FOTO MEMBESAR)
                ============================================================= -->
           <div
+            id="aboutStageLayer"
             class="relative flex h-screen w-full items-center bg-[#FFFFFF] px-6 py-16 sm:px-10"
           >
             <div
@@ -385,14 +461,17 @@
           </div>
 
           <!-- =============================================================
-               TAHAP 3 & 4: KARTU PUTIH ANGGOTA — SEMUA 33 CARD TERPANDANG SEKALIGUS
+               TAHAP 2: KARTU PUTIH ANGGOTA — SEMUA 33 CARD TERPANDANG SEKALIGUS
                ============================================================= -->
           <div
             id="anggotaCard"
             class="absolute inset-x-[3vw] top-[3.5vh] bottom-[3.5vh] z-30 flex flex-col justify-between overflow-hidden rounded-[36px] sm:rounded-[44px] bg-white px-5 py-5 shadow-2xl will-change-transform sm:px-8 sm:py-6"
           >
             <!-- Header Section Anggota -->
-            <div class="flex shrink-0 flex-col items-center text-center">
+            <div
+              id="membersHeader"
+              class="flex shrink-0 flex-col items-center text-center will-change-transform"
+            >
               <span
                 id="anggotaPill"
                 class="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 will-change-transform"
@@ -434,7 +513,8 @@
               </h2>
 
               <p class="mt-1 text-[11px] font-medium text-neutral-400">
-                33 Anggota &bull; Klik kartu untuk melihat profil lengkap
+                33 Anggota &bull; Klik kartu untuk melihat profil atau mengganti
+                foto
               </p>
             </div>
 
@@ -451,150 +531,132 @@
               </div>
             </div>
           </div>
+
+          <!-- =============================================================
+               TAHAP 3: GALERI MOMEN (HEADER + FILTER + 6 KEPING FOTO)
+               ============================================================= -->
+          <div
+            id="morphHeroPhoto"
+            aria-hidden="true"
+            class="pointer-events-none absolute overflow-hidden bg-neutral-900 bg-no-repeat will-change-transform"
+          ></div>
+
+          <div
+            id="galeriTilesLayer"
+            class="pointer-events-none absolute inset-0"
+          ></div>
+
+          <div
+            id="galeriHeaderContainer"
+            class="pointer-events-none absolute inset-x-0 top-0 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-16 text-center sm:pt-20"
+          >
+            <span
+              id="galeriPill"
+              class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3.5 py-1 text-[11px] font-semibold tracking-[0.2em] text-neutral-300 uppercase opacity-0 backdrop-blur-md will-change-transform"
+            >
+              003 &bull; GALERI
+            </span>
+
+            <h2
+              class="mt-2.5 flex flex-wrap items-baseline justify-center gap-x-3 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            >
+              <span class="inline-block overflow-hidden pb-1">
+                <span
+                  data-galeri-word
+                  class="inline-block will-change-transform"
+                  style="transform: translate3d(0, 110%, 0)"
+                >
+                  Galeri
+                </span>
+              </span>
+              <span class="inline-block overflow-hidden pb-1">
+                <span
+                  data-galeri-word
+                  class="inline-block font-script text-5xl font-normal leading-none text-white sm:text-7xl lg:text-8xl will-change-transform"
+                  style="transform: translate3d(0, 110%, 0)"
+                >
+                  Momen
+                </span>
+              </span>
+            </h2>
+
+            <!-- Filter Pills: Semua / Acara / Kelas / Momen -->
+            <div
+              id="galeriFilterBar"
+              role="group"
+              aria-label="Filter kategori galeri"
+              class="pointer-events-none mt-4 flex flex-wrap items-center justify-center gap-2 opacity-0 will-change-transform"
+            >
+              <button
+                type="button"
+                data-filter="Semua"
+                aria-pressed="true"
+                class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full bg-white px-5 py-2 text-xs font-semibold text-neutral-950 transition"
+              >
+                Semua
+              </button>
+              <button
+                type="button"
+                data-filter="Acara"
+                aria-pressed="false"
+                class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
+              >
+                Acara
+              </button>
+              <button
+                type="button"
+                data-filter="Kelas"
+                aria-pressed="false"
+                class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
+              >
+                Kelas
+              </button>
+              <button
+                type="button"
+                data-filter="Momen"
+                aria-pressed="false"
+                class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
+              >
+                Momen
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
 
     <!-- ===================================================================
-         4. SECTION GALERI & TRANSISI SCROLL-SCRUBBED (MEMBERS -> GALERI)
+         4. SECTION JADWAL PIKET KELAS (DIKONTROL LEWAT PANEL ADMIN)
          =================================================================== -->
-    <section
-      id="gallery"
-      aria-label="Galeri Momen Invictus"
-      style="--batch-photo: url(&quot;./asset/DSC08675.JPG&quot;)"
-      class="relative z-20 h-[560vh] w-full bg-[#0b0b0b] text-white"
-    >
-      <!-- Stage Sticky 1 Layar Penuh -->
-      <div
-        id="galeriStickyStage"
-        class="sticky top-0 h-screen w-full overflow-hidden bg-[#0b0b0b]"
-      >
-        <!-- Label Section Pojok Kanan Atas (002 · ANGGOTA -> 003 · GALERI) -->
-        <div
-          class="pointer-events-none absolute top-20 right-6 z-40 h-5 w-44 text-right text-white mix-blend-difference sm:right-10"
-        >
-          <span
-            id="galeriCornerAnggota"
-            class="absolute top-0 right-0 text-[11px] font-medium tracking-[0.24em] uppercase will-change-transform"
-          >
-            002 &middot; ANGGOTA
-          </span>
-          <span
-            id="galeriCornerGaleri"
-            class="absolute top-0 right-0 text-[11px] font-medium tracking-[0.24em] uppercase opacity-0 will-change-transform"
-          >
-            003 &middot; GALERI
-          </span>
+    <section id="piket" aria-label="Jadwal Piket Kelas Invictus">
+      <div class="piket-container">
+        <div class="piket-header">
+          <span class="piket-pill">004 &bull; JADWAL PIKET</span>
+          <h2 class="piket-title">Jadwal Piket Kelas</h2>
+          <p id="piketNoteDisplay" class="piket-note-banner">
+            Piket dilaksanakan pukul 06.45 WIB sebelum jam pelajaran pertama dimulai.
+          </p>
         </div>
 
-        <!-- LAYER TRANSISI 1: Duplikat Kartu Putih Members (Memudar di balik foto) -->
-        <div
-          id="morphMembersCard"
-          aria-hidden="true"
-          class="pointer-events-none absolute z-10 rounded-[44px] bg-white shadow-2xl will-change-transform"
-        ></div>
-
-        <!-- LAYER TRANSISI 2: 4 Kartu Samping Members (Meluncur ke tengah & memudar) -->
-        <div
-          id="morphSideCardsLayer"
-          aria-hidden="true"
-          class="pointer-events-none absolute inset-0 z-20"
-        ></div>
-
-        <!-- LAYER TRANSISI 3: Kartu Tengah Membesar & Zoom-Out ke Foto Angkatan -->
-        <div
-          id="morphHeroPhoto"
-          aria-hidden="true"
-          class="pointer-events-none absolute z-30 overflow-hidden bg-neutral-900 bg-no-repeat will-change-transform"
-        ></div>
-
-        <!-- LAYER GALERI: 6 Keping Foto (3 Kolom Tinggi Berbeda) -->
-        <div
-          id="galeriTilesLayer"
-          class="pointer-events-none absolute inset-0 z-30"
-        ></div>
-
-        <!-- HEADER GALERI & FILTER PILLS -->
-        <div
-          id="galeriHeaderContainer"
-          class="pointer-events-none relative z-40 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-16 text-center sm:pt-20"
-        >
-          <span
-            id="galeriPill"
-            class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3.5 py-1 text-[11px] font-semibold tracking-[0.2em] text-neutral-300 uppercase opacity-0 backdrop-blur-md will-change-transform"
-          >
-            003 &bull; GALERI
-          </span>
-
-          <h2
-            class="mt-2.5 flex flex-wrap items-baseline justify-center gap-x-3 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
-          >
-            <span class="inline-block overflow-hidden pb-1">
-              <span
-                data-galeri-word
-                class="inline-block will-change-transform"
-                style="transform: translate3d(0, 110%, 0)"
-              >
-                Galeri
-              </span>
-            </span>
-            <span class="inline-block overflow-hidden pb-1">
-              <span
-                data-galeri-word
-                class="inline-block font-script text-5xl font-normal leading-none text-white sm:text-7xl lg:text-8xl will-change-transform"
-                style="transform: translate3d(0, 110%, 0)"
-              >
-                Momen
-              </span>
-            </span>
-          </h2>
-
-          <!-- Filter Pills: Semua / Acara / Kelas / Momen -->
-          <div
-            id="galeriFilterBar"
-            role="group"
-            aria-label="Filter kategori galeri"
-            class="pointer-events-auto mt-4 flex flex-wrap items-center justify-center gap-2 opacity-0 will-change-transform"
-          >
-            <button
-              type="button"
-              data-filter="Semua"
-              aria-pressed="true"
-              class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full bg-white px-5 py-2 text-xs font-semibold text-neutral-950 transition"
-            >
-              Semua
-            </button>
-            <button
-              type="button"
-              data-filter="Acara"
-              aria-pressed="false"
-              class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
-            >
-              Acara
-            </button>
-            <button
-              type="button"
-              data-filter="Kelas"
-              aria-pressed="false"
-              class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
-            >
-              Kelas
-            </button>
-            <button
-              type="button"
-              data-filter="Momen"
-              aria-pressed="false"
-              class="galeri-filter-btn min-h-[44px] min-w-[44px] cursor-pointer rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-medium text-white/85 backdrop-blur-md transition hover:bg-white/20"
-            >
-              Momen
-            </button>
+        <div class="piket-controls-row">
+          <div id="piketDayFilterBar" class="piket-day-tabs" role="tablist">
+            <!-- Tombol filter hari dirender otomatis oleh script.js -->
           </div>
+
+          <a href="./admin.html" class="piket-admin-shortcut">
+            <span>Kelola di Admin Panel</span>
+            <span>&nearr;</span>
+          </a>
+        </div>
+
+        <div id="piketCardsGrid" class="piket-grid">
+          <!-- Kartu jadwal piket Senin - Sabtu dirender otomatis oleh script.js -->
         </div>
       </div>
     </section>
 
     <!-- ===================================================================
-         5. MODAL POPUP DETAIL PROFIL ANGGOTA (MUNCUL SAAT CARD DIKLIK)
+         4. MODAL POPUP DETAIL PROFIL ANGGOTA (MUNCUL SAAT CARD DIKLIK)
          =================================================================== -->
     <div
       id="memberModalBackdrop"
@@ -630,7 +692,7 @@
         </button>
 
         <div class="grid grid-cols-1 sm:grid-cols-12">
-          <!-- Kolom Foto Anggota -->
+          <!-- Kolom Foto Anggota + Tombol Ganti Foto -->
           <div
             class="relative h-72 w-full overflow-hidden bg-neutral-100 sm:col-span-5 sm:h-full sm:min-h-[410px]"
           >
@@ -640,8 +702,14 @@
               alt="Foto Anggota"
               class="h-full w-full object-cover object-center"
             />
+            <input
+              type="file"
+              id="memberPhotoFileInput"
+              accept="image/*"
+              class="hidden"
+            />
             <div
-              class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-4"
+              class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4"
             >
               <span
                 id="modalMemberBadge"
@@ -649,6 +717,24 @@
               >
                 INVICTUS &bull; #01
               </span>
+
+              <div class="pointer-events-auto flex items-center gap-1.5">
+                <button
+                  type="button"
+                  id="resetMemberPhotoBtn"
+                  title="Kembalikan foto awal"
+                  class="hidden cursor-pointer rounded-full border border-white/25 bg-black/55 px-2.5 py-1 text-[10px] font-semibold text-white/90 backdrop-blur-md transition hover:bg-red-500 hover:text-white"
+                >
+                  Reset
+                </button>
+                <button
+                  type="button"
+                  id="changeMemberPhotoBtn"
+                  class="cursor-pointer rounded-full border border-white/30 bg-white/90 px-3 py-1 text-[10px] font-semibold text-neutral-950 shadow-sm backdrop-blur-md transition hover:bg-white"
+                >
+                  Ganti Foto
+                </button>
+              </div>
             </div>
           </div>
 
@@ -676,6 +762,12 @@
               >
                 [Jabatan]
               </p>
+
+              <!-- Moto Anggota -->
+              <div class="member-motto-box">
+                <span class="member-motto-label">Moto</span>
+                <span id="modalMemberMotto">“Tak terkalahkan bersama Invictus.”</span>
+              </div>
 
               <!-- Tanggal Lahir & Umur -->
               <div class="mt-5 grid grid-cols-2 gap-3">
@@ -834,6 +926,106 @@
                 <span>&rarr;</span>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         5. LIGHTBOX MODAL GALERI MOMEN (MUNCUL SAAT KEPING FOTO DIKLIK)
+         =================================================================== -->
+    <div
+      id="galleryLightboxBackdrop"
+      class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 opacity-0 backdrop-blur-xl transition-opacity duration-300"
+    >
+      <div
+        id="galleryLightboxCard"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightboxTitle"
+        class="relative w-full max-w-4xl scale-95 overflow-hidden rounded-[32px] border border-white/15 bg-neutral-950 text-white opacity-0 shadow-2xl transition-all duration-300 ease-out"
+      >
+        <button
+          type="button"
+          id="closeLightboxBtn"
+          aria-label="Tutup pratinjau galeri"
+          class="absolute top-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition hover:bg-white hover:text-neutral-950"
+        >
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div
+          class="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900"
+        >
+          <img
+            id="lightboxPhoto"
+            src=""
+            alt="Foto Momen Invictus"
+            class="h-full w-full object-cover object-center"
+          />
+        </div>
+
+        <div
+          class="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+        >
+          <div>
+            <div class="flex items-center gap-2.5">
+              <span
+                id="lightboxNumber"
+                class="font-mono text-xs font-semibold tracking-widest text-neutral-400"
+              >
+                01 / 06
+              </span>
+              <span
+                id="lightboxCategory"
+                class="rounded-full border border-white/15 bg-white/10 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90"
+              >
+                Acara
+              </span>
+            </div>
+            <h3
+              id="lightboxTitle"
+              class="mt-1.5 text-lg font-bold tracking-tight text-white sm:text-xl"
+            >
+              [Judul momen]
+            </h3>
+            <p
+              id="lightboxDesc"
+              class="mt-1 text-xs leading-relaxed text-neutral-400"
+            >
+              [Deskripsi singkat momen kebersamaan angkatan Invictus]
+            </p>
+          </div>
+
+          <div class="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              id="lightboxPrevBtn"
+              class="flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white hover:text-neutral-950"
+            >
+              <span>&larr;</span>
+              <span>Sebelumnya</span>
+            </button>
+            <button
+              type="button"
+              id="lightboxNextBtn"
+              class="flex cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white hover:text-neutral-950"
+            >
+              <span>Berikutnya</span>
+              <span>&rarr;</span>
+            </button>
           </div>
         </div>
       </div>

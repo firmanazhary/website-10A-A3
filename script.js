@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   // =================================================================
-  // KONFIGURASI UTAMA ANIMASI & DATA (MUDAH DIUBAH)
+  // KONFIGURASI UTAMA ANIMASI & STORAGE KEYS (TERHUBUNG KE ADMIN.HTML)
   // =================================================================
+  const STORAGE_KEYS = {
+    members: "invictus_admin_members_v1",
+    piket: "invictus_admin_piket_v1",
+    customPhotos: "invictus_custom_member_photos_v1",
+  };
+
   const GALLERY_CONFIG = {
     batchPhotoUrl: "./asset/DSC08675.JPG",
     batchPhotoFallback:
@@ -22,27 +28,158 @@ document.addEventListener("DOMContentLoaded", () => {
     dimmedTileOpacity: 0.18,
   };
 
+  // Foto cadangan jika file foto per anggota belum diisi di folder asset/members/
+  const DEFAULT_MEMBER_LOGO = "./asset/IVCS Logo (4).jpg";
+
   // =================================================================
-  // DATA 33 ANGGOTA INVICTUS (SILAKAN ISI / UBAH DATA DI SINI)
+  // DATA DEFAULT 33 ANGGOTA INVICTUS (DAPAT DIEDIT LEWAT ADMIN.HTML)
   // =================================================================
-  const MEMBERS_DATA = Array.from({ length: 33 }, (_, i) => {
-    const numStr = String(i + 1).padStart(2, "0");
+  function createDefaultMembers() {
+    return Array.from({ length: 33 }, (_, idx) => {
+      const numStr = String(idx + 1).padStart(2, "0");
+      return {
+        number: numStr,
+        name: `[Nama Anggota ${numStr}]`,
+        role: "[Jabatan]",
+        motto:
+          "Tak terkalahkan bukan berarti tak pernah jatuh, tapi selalu bangkit bersama.",
+        photo: `./asset/members/${numStr}.jpg`,
+        birthDate: "[Tanggal Lahir]",
+        age: "[Umur] Tahun",
+        portfolioUrl: "https://example.com",
+        portfolioLabel: `portfolio-${numStr}.invictus.id`,
+        linkedinUrl: "https://linkedin.com",
+        linkedinLabel: `in/anggota-${numStr}`,
+        instagramUrl: "https://instagram.com",
+        instagramLabel: `@invictus_${numStr}`,
+      };
+    });
+  }
+
+  function loadCustomMemberPhotos() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.customPhotos);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function saveCustomMemberPhotos(map) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.customPhotos, JSON.stringify(map));
+    } catch {
+      // Abaikan jika kuota storage penuh
+    }
+  }
+
+  let customMemberPhotos = loadCustomMemberPhotos();
+
+  function loadMembersData() {
+    const defaults = createDefaultMembers();
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.members);
+      if (!raw) return defaults;
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed) || parsed.length === 0) return defaults;
+      return parsed.map((item, i) => ({
+        ...defaults[i % defaults.length],
+        ...item,
+        number: String(
+          item.number || String(i + 1).padStart(2, "0"),
+        ).padStart(2, "0"),
+      }));
+    } catch {
+      return defaults;
+    }
+  }
+
+  function saveMembersData(list) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.members, JSON.stringify(list));
+    } catch {
+      // Abaikan jika kuota storage penuh
+    }
+  }
+
+  // =================================================================
+  // DATA DEFAULT JADWAL PIKET (DAPAT DIKONTROL LEWAT ADMIN.HTML)
+  // =================================================================
+  const PIKET_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+  function createDefaultPiket() {
     return {
-      number: numStr,
-      name: `[Nama Anggota ${numStr}]`,
-      role: "[Jabatan]",
-      photo: `asset/IVCS Logo (4).jpg`,
-      fallbackPhoto: `https://picsum.photos/seed/invictus-${numStr}/500/680`,
-      birthDate: "[Tanggal Lahir]",
-      age: "[Umur] Tahun",
-      portfolioUrl: "https://example.com",
-      portfolioLabel: `portfolio-${numStr}.invictus.id`,
-      linkedinUrl: "https://linkedin.com",
-      linkedinLabel: `in/anggota-${numStr}`,
-      instagramUrl: "https://instagram.com",
-      instagramLabel: `@invictus_${numStr}`,
+      note: "Piket dilaksanakan pukul 06.45 WIB sebelum jam pelajaran pertama dimulai.",
+      schedule: {
+        Senin: [
+          { memberNumber: "01", customName: "", task: "Sapu Lantai" },
+          { memberNumber: "02", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "03", customName: "", task: "Buang Sampah" },
+          { memberNumber: "04", customName: "", task: "Rapikan Meja" },
+          { memberNumber: "05", customName: "", task: "Cek Kebersihan" },
+          { memberNumber: "06", customName: "", task: "Jendela & Kipas" },
+        ],
+        Selasa: [
+          { memberNumber: "07", customName: "", task: "Sapu Lantai" },
+          { memberNumber: "08", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "09", customName: "", task: "Buang Sampah" },
+          { memberNumber: "10", customName: "", task: "Rapikan Meja" },
+          { memberNumber: "11", customName: "", task: "Cek Kebersihan" },
+          { memberNumber: "12", customName: "", task: "Jendela & Kipas" },
+        ],
+        Rabu: [
+          { memberNumber: "13", customName: "", task: "Sapu Lantai" },
+          { memberNumber: "14", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "15", customName: "", task: "Buang Sampah" },
+          { memberNumber: "16", customName: "", task: "Rapikan Meja" },
+          { memberNumber: "17", customName: "", task: "Cek Kebersihan" },
+          { memberNumber: "18", customName: "", task: "Jendela & Kipas" },
+        ],
+        Kamis: [
+          { memberNumber: "19", customName: "", task: "Sapu Lantai" },
+          { memberNumber: "20", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "21", customName: "", task: "Buang Sampah" },
+          { memberNumber: "22", customName: "", task: "Rapikan Meja" },
+          { memberNumber: "23", customName: "", task: "Cek Kebersihan" },
+          { memberNumber: "24", customName: "", task: "Jendela & Kipas" },
+        ],
+        Jumat: [
+          { memberNumber: "25", customName: "", task: "Sapu Lantai" },
+          { memberNumber: "26", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "27", customName: "", task: "Buang Sampah" },
+          { memberNumber: "28", customName: "", task: "Rapikan Meja" },
+          { memberNumber: "29", customName: "", task: "Cek Kebersihan" },
+        ],
+        Sabtu: [
+          { memberNumber: "30", customName: "", task: "Sabtu Bersih" },
+          { memberNumber: "31", customName: "", task: "Pel & Papan Tulis" },
+          { memberNumber: "32", customName: "", task: "Buang Sampah" },
+          { memberNumber: "33", customName: "", task: "Rapikan Kelas" },
+        ],
+      },
     };
-  });
+  }
+
+  function loadPiketData() {
+    const defaults = createDefaultPiket();
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.piket);
+      if (!raw) return defaults;
+      const parsed = JSON.parse(raw);
+      return {
+        note: parsed.note || defaults.note,
+        schedule: {
+          ...defaults.schedule,
+          ...(parsed.schedule || {}),
+        },
+      };
+    } catch {
+      return defaults;
+    }
+  }
+
+  let MEMBERS_DATA = loadMembersData();
+  let PIKET_DATA = loadPiketData();
 
   // =================================================================
   // DATA 6 KEPING GALERI MOMEN (MUDAH DIGANTI FOTO, JUDUL, & KATEGORI)
@@ -52,36 +189,42 @@ document.addEventListener("DOMContentLoaded", () => {
       number: "01",
       title: "[Judul momen]",
       category: "Acara",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
     {
       number: "02",
       title: "[Judul momen]",
       category: "Kelas",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
     {
       number: "03",
       title: "[Judul momen]",
       category: "Momen",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
     {
       number: "04",
       title: "[Judul momen]",
       category: "Acara",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
     {
       number: "05",
       title: "[Judul momen]",
       category: "Kelas",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
     {
       number: "06",
       title: "[Judul momen]",
       category: "Momen",
+      description: "[Deskripsi singkat momen kebersamaan angkatan Invictus]",
       photo: GALLERY_CONFIG.batchPhotoUrl,
     },
   ];
@@ -105,9 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const marqueeGroup = marqueeTrack?.querySelector("[data-marquee-group]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // Elemen Scroll Transition About -> Anggota & Grid 33 Anggota
   const scrollWrapper = document.getElementById("jelajahi");
   const stickyStage = document.getElementById("stickyStage");
+  const aboutStageLayer = document.getElementById("aboutStageLayer");
   const photoSlot = document.getElementById("photoSlot");
   const aboutTextCol = document.getElementById("aboutTextCol");
   const expandingPhotoBox = document.getElementById("expandingPhotoBox");
@@ -115,16 +258,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollCue = document.getElementById("scrollCue");
   const navLabelAbout = document.getElementById("navLabelAbout");
   const navLabelAnggota = document.getElementById("navLabelAnggota");
+  const navLabelGaleri = document.getElementById("navLabelGaleri");
+
   const anggotaCard = document.getElementById("anggotaCard");
+  const membersHeader = document.getElementById("membersHeader");
   const anggotaPill = document.getElementById("anggotaPill");
   const titleWords = Array.from(document.querySelectorAll("[data-title-word]"));
+  const membersGridWrapper = document.getElementById("membersGridWrapper");
   const membersGrid = document.getElementById("membersGrid");
 
-  // Elemen Galeri & Transisi Members -> Galeri
-  const gallerySection = document.getElementById("gallery");
-  const galeriStickyStage = document.getElementById("galeriStickyStage");
-  const morphMembersCard = document.getElementById("morphMembersCard");
-  const morphSideCardsLayer = document.getElementById("morphSideCardsLayer");
   const morphHeroPhoto = document.getElementById("morphHeroPhoto");
   const galeriTilesLayer = document.getElementById("galeriTilesLayer");
   const galeriHeaderContainer = document.getElementById(
@@ -138,8 +280,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = Array.from(
     document.querySelectorAll(".galeri-filter-btn"),
   );
-  const cornerAnggota = document.getElementById("galeriCornerAnggota");
-  const cornerGaleri = document.getElementById("galeriCornerGaleri");
+
+  // Elemen Jadwal Piket
+  const piketSection = document.getElementById("piket");
+  const piketNoteDisplay = document.getElementById("piketNoteDisplay");
+  const piketDayFilterBar = document.getElementById("piketDayFilterBar");
+  const piketCardsGrid = document.getElementById("piketCardsGrid");
 
   // Elemen Modal Detail Profil Anggota
   const memberModalBackdrop = document.getElementById("memberModalBackdrop");
@@ -149,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalMemberBadge = document.getElementById("modalMemberBadge");
   const modalMemberName = document.getElementById("modalMemberName");
   const modalMemberRole = document.getElementById("modalMemberRole");
+  const modalMemberMotto = document.getElementById("modalMemberMotto");
   const modalMemberDob = document.getElementById("modalMemberDob");
   const modalMemberAge = document.getElementById("modalMemberAge");
   const modalMemberPortfolio = document.getElementById("modalMemberPortfolio");
@@ -164,6 +311,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalPrevBtn = document.getElementById("modalPrevBtn");
   const modalNextBtn = document.getElementById("modalNextBtn");
   const modalCounterText = document.getElementById("modalCounterText");
+  const changeMemberPhotoBtn = document.getElementById("changeMemberPhotoBtn");
+  const resetMemberPhotoBtn = document.getElementById("resetMemberPhotoBtn");
+  const memberPhotoFileInput = document.getElementById("memberPhotoFileInput");
+
+  // Elemen Lightbox Modal Galeri Momen
+  const galleryLightboxBackdrop = document.getElementById(
+    "galleryLightboxBackdrop",
+  );
+  const galleryLightboxCard = document.getElementById("galleryLightboxCard");
+  const closeLightboxBtn = document.getElementById("closeLightboxBtn");
+  const lightboxPhoto = document.getElementById("lightboxPhoto");
+  const lightboxNumber = document.getElementById("lightboxNumber");
+  const lightboxCategory = document.getElementById("lightboxCategory");
+  const lightboxTitle = document.getElementById("lightboxTitle");
+  const lightboxDesc = document.getElementById("lightboxDesc");
+  const lightboxPrevBtn = document.getElementById("lightboxPrevBtn");
+  const lightboxNextBtn = document.getElementById("lightboxNextBtn");
 
   const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
   const clamp01 = (value) => clamp(value, 0, 1);
@@ -178,23 +342,103 @@ document.addEventListener("DOMContentLoaded", () => {
   let isMenuOpen = false;
   let activeNavKey = "home";
   let currentModalIndex = -1;
+  let currentLightboxIndex = -1;
+  let activePiketFilter = "Semua";
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function normalizeExternalUrl(url) {
+    if (!url || url === "#") return "#";
+    return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+  }
+
+  function formatPortfolioLabel(url, fallbackLabel) {
+    if (!url || url === "#") return fallbackLabel || "-";
+    try {
+      const parsed = new URL(url.startsWith("http") ? url : `https://${url}`);
+      return (
+        parsed.hostname.replace(/^www\./, "") +
+        (parsed.pathname !== "/" ? parsed.pathname : "")
+      );
+    } catch {
+      return url;
+    }
+  }
 
   // -----------------------------------------------------------------
-  // 1. Modal Profil Anggota (Buka / Tutup / Navigasi)
+  // Penyimpanan & Helper Foto Per-Card Anggota
   // -----------------------------------------------------------------
+  function getMemberPhotoSource(member) {
+    return customMemberPhotos[member.number] || member.photo;
+  }
+
+  function applyMemberImgFallback(imgEl, member) {
+    const num = member?.number || "01";
+    imgEl.dataset.fallbackStep = "0";
+    imgEl.onerror = function () {
+      const step = Number(this.dataset.fallbackStep || "0");
+      if (step === 0 && this.getAttribute("src") !== DEFAULT_MEMBER_LOGO) {
+        this.dataset.fallbackStep = "1";
+        this.src = DEFAULT_MEMBER_LOGO;
+      } else {
+        this.onerror = null;
+        this.src = `https://picsum.photos/seed/invictus-${num}/500/680`;
+      }
+    };
+    imgEl.src = member ? getMemberPhotoSource(member) : DEFAULT_MEMBER_LOGO;
+  }
+
+  function resizeImageToDataUrl(file, maxDimension = 720) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const tempImg = new Image();
+        tempImg.onload = () => {
+          const ratio = Math.min(
+            1,
+            maxDimension / Math.max(tempImg.width, tempImg.height),
+          );
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(tempImg.width * ratio);
+          canvas.height = Math.round(tempImg.height * ratio);
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", 0.85));
+        };
+        tempImg.onerror = reject;
+        tempImg.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // -----------------------------------------------------------------
+  // 1. Modal Profil Anggota & Lightbox Galeri
+  // -----------------------------------------------------------------
+  const gridCardElements = [];
+  const gridCardImgElements = [];
+
   function openMemberModal(index) {
     const total = MEMBERS_DATA.length;
+    if (total === 0) return;
     const safeIdx = ((index % total) + total) % total;
     currentModalIndex = safeIdx;
     const member = MEMBERS_DATA[safeIdx];
 
     if (modalMemberPhoto) {
-      modalMemberPhoto.src = member.photo;
       modalMemberPhoto.alt = `Foto ${member.name}`;
-      modalMemberPhoto.onerror = function () {
-        this.onerror = null;
-        this.src = member.fallbackPhoto;
-      };
+      applyMemberImgFallback(modalMemberPhoto, member);
+    }
+    if (resetMemberPhotoBtn) {
+      const hasCustom = Boolean(customMemberPhotos[member.number]);
+      resetMemberPhotoBtn.classList.toggle("hidden", !hasCustom);
     }
     if (modalMemberBadge) {
       modalMemberBadge.textContent = `INVICTUS • #${member.number}`;
@@ -203,31 +447,39 @@ document.addEventListener("DOMContentLoaded", () => {
       modalMemberName.textContent = member.name;
     }
     if (modalMemberRole) {
-      modalMemberRole.textContent = member.role;
+      modalMemberRole.textContent = member.role || "Anggota Invictus";
+    }
+    if (modalMemberMotto) {
+      modalMemberMotto.textContent = member.motto
+        ? `“${member.motto}”`
+        : "“Tak terkalahkan bersama Invictus.”";
     }
     if (modalMemberDob) {
-      modalMemberDob.textContent = member.birthDate;
+      modalMemberDob.textContent = member.birthDate || "-";
     }
     if (modalMemberAge) {
-      modalMemberAge.textContent = member.age;
+      modalMemberAge.textContent = member.age || "-";
     }
     if (modalMemberPortfolio) {
-      modalMemberPortfolio.href = member.portfolioUrl;
+      modalMemberPortfolio.href = normalizeExternalUrl(member.portfolioUrl);
     }
     if (modalMemberPortfolioLabel) {
-      modalMemberPortfolioLabel.textContent = member.portfolioLabel;
+      modalMemberPortfolioLabel.textContent = formatPortfolioLabel(
+        member.portfolioUrl,
+        member.portfolioLabel,
+      );
     }
     if (modalMemberLinkedin) {
-      modalMemberLinkedin.href = member.linkedinUrl;
+      modalMemberLinkedin.href = normalizeExternalUrl(member.linkedinUrl);
     }
     if (modalMemberLinkedinLabel) {
-      modalMemberLinkedinLabel.textContent = member.linkedinLabel;
+      modalMemberLinkedinLabel.textContent = member.linkedinLabel || "LinkedIn";
     }
     if (modalMemberIg) {
-      modalMemberIg.href = member.instagramUrl;
+      modalMemberIg.href = normalizeExternalUrl(member.instagramUrl);
     }
     if (modalMemberIgLabel) {
-      modalMemberIgLabel.textContent = member.instagramLabel;
+      modalMemberIgLabel.textContent = member.instagramLabel || "Instagram";
     }
     if (modalCounterText) {
       modalCounterText.textContent = `${member.number} / ${String(total).padStart(2, "0")}`;
@@ -251,24 +503,142 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Event ganti foto per satuan card langsung dari Modal (tersinkron ke Admin juga)
+  changeMemberPhotoBtn?.addEventListener("click", () => {
+    if (currentModalIndex >= 0) {
+      memberPhotoFileInput?.click();
+    }
+  });
+
+  memberPhotoFileInput?.addEventListener("change", async (e) => {
+    const file = e.target.files?.[0];
+    if (!file || currentModalIndex < 0) return;
+
+    const member = MEMBERS_DATA[currentModalIndex];
+    try {
+      const dataUrl = await resizeImageToDataUrl(file);
+      customMemberPhotos[member.number] = dataUrl;
+      saveCustomMemberPhotos(customMemberPhotos);
+
+      MEMBERS_DATA[currentModalIndex].photo = dataUrl;
+      saveMembersData(MEMBERS_DATA);
+
+      if (modalMemberPhoto) {
+        modalMemberPhoto.onerror = null;
+        modalMemberPhoto.src = dataUrl;
+      }
+      const cardImg = gridCardImgElements[currentModalIndex];
+      if (cardImg) {
+        cardImg.onerror = null;
+        cardImg.src = dataUrl;
+      }
+      resetMemberPhotoBtn?.classList.remove("hidden");
+      renderPiketSection();
+    } finally {
+      memberPhotoFileInput.value = "";
+    }
+  });
+
+  resetMemberPhotoBtn?.addEventListener("click", () => {
+    if (currentModalIndex < 0) return;
+    const member = MEMBERS_DATA[currentModalIndex];
+    delete customMemberPhotos[member.number];
+    saveCustomMemberPhotos(customMemberPhotos);
+
+    const defaultPhotoPath = `./asset/members/${member.number}.jpg`;
+    MEMBERS_DATA[currentModalIndex].photo = defaultPhotoPath;
+    saveMembersData(MEMBERS_DATA);
+
+    if (modalMemberPhoto) {
+      applyMemberImgFallback(modalMemberPhoto, MEMBERS_DATA[currentModalIndex]);
+    }
+    const cardImg = gridCardImgElements[currentModalIndex];
+    if (cardImg) {
+      applyMemberImgFallback(cardImg, MEMBERS_DATA[currentModalIndex]);
+    }
+    resetMemberPhotoBtn.classList.add("hidden");
+    renderPiketSection();
+  });
+
+  function openGalleryLightbox(index) {
+    const total = GALLERY_ITEMS.length;
+    const safeIdx = ((index % total) + total) % total;
+    currentLightboxIndex = safeIdx;
+    const item = GALLERY_ITEMS[safeIdx];
+
+    if (lightboxPhoto) {
+      lightboxPhoto.src =
+        item.photo === GALLERY_CONFIG.batchPhotoUrl
+          ? resolvedPhotoUrl
+          : item.photo;
+      lightboxPhoto.alt = item.title;
+      lightboxPhoto.onerror = function () {
+        this.onerror = null;
+        this.src = GALLERY_CONFIG.batchPhotoFallback;
+      };
+    }
+    if (lightboxNumber) {
+      lightboxNumber.textContent = `${item.number} / ${String(total).padStart(2, "0")}`;
+    }
+    if (lightboxCategory) {
+      lightboxCategory.textContent = item.category;
+    }
+    if (lightboxTitle) {
+      lightboxTitle.textContent = item.title;
+    }
+    if (lightboxDesc) {
+      lightboxDesc.textContent = item.description || "";
+    }
+
+    if (galleryLightboxBackdrop && galleryLightboxCard) {
+      galleryLightboxBackdrop.classList.remove(
+        "pointer-events-none",
+        "opacity-0",
+      );
+      galleryLightboxBackdrop.classList.add(
+        "pointer-events-auto",
+        "opacity-100",
+      );
+      galleryLightboxCard.classList.remove("scale-95", "opacity-0");
+      galleryLightboxCard.classList.add("scale-100", "opacity-100");
+    }
+  }
+
+  function closeGalleryLightbox() {
+    currentLightboxIndex = -1;
+    if (galleryLightboxBackdrop && galleryLightboxCard) {
+      galleryLightboxBackdrop.classList.add("pointer-events-none", "opacity-0");
+      galleryLightboxBackdrop.classList.remove(
+        "pointer-events-auto",
+        "opacity-100",
+      );
+      galleryLightboxCard.classList.add("scale-95", "opacity-0");
+      galleryLightboxCard.classList.remove("scale-100", "opacity-100");
+    }
+  }
+
   closeMemberModalBtn?.addEventListener("click", closeMemberModal);
-
   memberModalBackdrop?.addEventListener("click", (e) => {
-    if (e.target === memberModalBackdrop) {
-      closeMemberModal();
-    }
+    if (e.target === memberModalBackdrop) closeMemberModal();
   });
-
   modalPrevBtn?.addEventListener("click", () => {
-    if (currentModalIndex >= 0) {
-      openMemberModal(currentModalIndex - 1);
-    }
+    if (currentModalIndex >= 0) openMemberModal(currentModalIndex - 1);
+  });
+  modalNextBtn?.addEventListener("click", () => {
+    if (currentModalIndex >= 0) openMemberModal(currentModalIndex + 1);
   });
 
-  modalNextBtn?.addEventListener("click", () => {
-    if (currentModalIndex >= 0) {
-      openMemberModal(currentModalIndex + 1);
-    }
+  closeLightboxBtn?.addEventListener("click", closeGalleryLightbox);
+  galleryLightboxBackdrop?.addEventListener("click", (e) => {
+    if (e.target === galleryLightboxBackdrop) closeGalleryLightbox();
+  });
+  lightboxPrevBtn?.addEventListener("click", () => {
+    if (currentLightboxIndex >= 0)
+      openGalleryLightbox(currentLightboxIndex - 1);
+  });
+  lightboxNextBtn?.addEventListener("click", () => {
+    if (currentLightboxIndex >= 0)
+      openGalleryLightbox(currentLightboxIndex + 1);
   });
 
   // -----------------------------------------------------------------
@@ -335,11 +705,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (currentModalIndex >= 0) {
+      if (currentLightboxIndex >= 0) {
+        closeGalleryLightbox();
+      } else if (currentModalIndex >= 0) {
         closeMemberModal();
       } else if (isMenuOpen) {
         setMenuOpen(false);
       }
+    } else if (currentLightboxIndex >= 0 && e.key === "ArrowLeft") {
+      openGalleryLightbox(currentLightboxIndex - 1);
+    } else if (currentLightboxIndex >= 0 && e.key === "ArrowRight") {
+      openGalleryLightbox(currentLightboxIndex + 1);
     } else if (currentModalIndex >= 0 && e.key === "ArrowLeft") {
       openMemberModal(currentModalIndex - 1);
     } else if (currentModalIndex >= 0 && e.key === "ArrowRight") {
@@ -350,16 +726,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------------------------
   // 3. Render Semua 33 Kartu Anggota dalam Grid Terpandang Sekaligus
   // -----------------------------------------------------------------
-  const TOTAL_MEMBERS = MEMBERS_DATA.length;
-  const gridCardElements = [];
+  const HERO_MEMBER_INDEX = 16; // Kartu #17 (tengah baris ke-2)
 
-  if (membersGrid) {
-    for (let i = 0; i < TOTAL_MEMBERS; i++) {
+  function renderMembersGrid() {
+    if (!membersGrid) return;
+    membersGrid.innerHTML = "";
+    gridCardElements.length = 0;
+    gridCardImgElements.length = 0;
+
+    for (let i = 0; i < MEMBERS_DATA.length; i++) {
       const member = MEMBERS_DATA[i];
 
       const cardBtn = document.createElement("button");
       cardBtn.type = "button";
-      if (i === 16) {
+      if (i === HERO_MEMBER_INDEX) {
         cardBtn.id = "hero-member";
       }
       cardBtn.setAttribute("aria-label", `Lihat profil ${member.name}`);
@@ -371,15 +751,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-[20px] bg-neutral-200 shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:ring-neutral-950/20";
 
       const img = document.createElement("img");
-      img.src = member.photo;
       img.alt = member.name;
       img.loading = "lazy";
       img.className =
         "h-full w-full object-cover object-center grayscale transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0";
-      img.onerror = function () {
-        this.onerror = null;
-        this.src = member.fallbackPhoto;
-      };
+      applyMemberImgFallback(img, member);
 
       const badge = document.createElement("span");
       badge.className =
@@ -392,8 +768,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const meta = document.createElement("div");
       meta.className = "mt-1.5 w-full px-0.5 text-center";
       meta.innerHTML = `
-        <p class="truncate text-[10px] sm:text-[11px] font-semibold leading-tight text-neutral-900 transition-colors group-hover:text-black">${member.name}</p>
-        <p class="truncate text-[9px] sm:text-[10px] font-medium leading-tight text-neutral-500">${member.role}</p>
+        <p class="truncate text-[10px] sm:text-[11px] font-semibold leading-tight text-neutral-900 transition-colors group-hover:text-black">${escapeHtml(member.name)}</p>
+        <p class="truncate text-[9px] sm:text-[10px] font-medium leading-tight text-neutral-500">${escapeHtml(member.motto || member.role)}</p>
       `;
 
       cardBtn.appendChild(frame);
@@ -405,11 +781,159 @@ document.addEventListener("DOMContentLoaded", () => {
 
       membersGrid.appendChild(cardBtn);
       gridCardElements.push(cardBtn);
+      gridCardImgElements.push(img);
     }
   }
 
+  renderMembersGrid();
+
   // -----------------------------------------------------------------
-  // 4. Setup Galeri Momen (6 Keping 3 Kolom + Filter Kategori)
+  // 4. Render Jadwal Piket Kelas (Dinamis dari PIKET_DATA & MEMBERS_DATA)
+  // -----------------------------------------------------------------
+  function getTodayIndonesianDay() {
+    const map = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    return map[new Date().getDay()] || "Senin";
+  }
+
+  function renderPiketSection() {
+    if (piketNoteDisplay) {
+      piketNoteDisplay.textContent =
+        PIKET_DATA.note ||
+        "Piket dilaksanakan pukul 06.45 WIB sebelum jam pelajaran pertama dimulai.";
+    }
+
+    const todayName = getTodayIndonesianDay();
+
+    if (piketDayFilterBar) {
+      const filters = ["Semua", ...PIKET_DAYS];
+      piketDayFilterBar.innerHTML = "";
+      filters.forEach((day) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `piket-day-btn ${activePiketFilter === day ? "is-active" : ""}`;
+        btn.textContent = day === "Semua" ? "Semua Hari" : day;
+        if (day === todayName) {
+          const dot = document.createElement("span");
+          dot.style.cssText =
+            "width:6px;height:6px;border-radius:999px;background:#22c55e;display:inline-block;";
+          btn.appendChild(dot);
+        }
+        btn.addEventListener("click", () => {
+          activePiketFilter = day;
+          renderPiketSection();
+        });
+        piketDayFilterBar.appendChild(btn);
+      });
+    }
+
+    if (piketCardsGrid) {
+      piketCardsGrid.innerHTML = "";
+      const visibleDays =
+        activePiketFilter === "Semua"
+          ? PIKET_DAYS
+          : PIKET_DAYS.filter((d) => d === activePiketFilter);
+
+      visibleDays.forEach((day) => {
+        const entries = PIKET_DATA.schedule[day] || [];
+        const isToday = day === todayName;
+
+        const card = document.createElement("article");
+        card.className = `piket-day-card ${isToday ? "is-today" : ""}`;
+
+        const head = document.createElement("div");
+        head.className = "piket-card-head";
+        head.innerHTML = `
+          <div>
+            <span class="piket-day-name">${day}</span>
+            ${isToday ? '<span class="piket-today-badge">Hari Ini</span>' : ""}
+          </div>
+          <span class="piket-count-badge">${entries.length} Petugas</span>
+        `;
+        card.appendChild(head);
+
+        const list = document.createElement("div");
+        list.className = "piket-staff-list";
+
+        if (entries.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "piket-empty";
+          empty.textContent = "Belum ada petugas piket yang dijadwalkan.";
+          list.appendChild(empty);
+        } else {
+          entries.forEach((entry) => {
+            const memberIdx = MEMBERS_DATA.findIndex(
+              (m) => m.number === entry.memberNumber,
+            );
+            const linkedMember = memberIdx >= 0 ? MEMBERS_DATA[memberIdx] : null;
+            const displayName = linkedMember
+              ? linkedMember.name
+              : entry.customName || "Anggota Invictus";
+            const subLabel = linkedMember
+              ? `#${linkedMember.number}`
+              : "Petugas";
+
+            const row = document.createElement("div");
+            row.className = `piket-staff-item ${linkedMember ? "is-clickable" : ""}`;
+            if (linkedMember) {
+              row.title = `Klik untuk melihat profil ${displayName}`;
+              row.addEventListener("click", () => openMemberModal(memberIdx));
+            }
+
+            const left = document.createElement("div");
+            left.className = "piket-staff-left";
+
+            const avatar = document.createElement("img");
+            avatar.className = "piket-avatar";
+            avatar.alt = displayName;
+            applyMemberImgFallback(avatar, linkedMember);
+
+            const info = document.createElement("div");
+            info.className = "piket-staff-info";
+            info.innerHTML = `
+              <div class="piket-staff-name">${escapeHtml(displayName)}</div>
+              <div class="piket-staff-num">${escapeHtml(subLabel)}</div>
+            `;
+
+            left.appendChild(avatar);
+            left.appendChild(info);
+
+            const taskBadge = document.createElement("span");
+            taskBadge.className = "piket-task-tag";
+            taskBadge.textContent = entry.task || "Piket Kelas";
+
+            row.appendChild(left);
+            row.appendChild(taskBadge);
+            list.appendChild(row);
+          });
+        }
+
+        card.appendChild(list);
+        piketCardsGrid.appendChild(card);
+      });
+    }
+  }
+
+  renderPiketSection();
+
+  // Sinkronisasi otomatis antar-tab saat Admin menyimpan perubahan
+  window.addEventListener("storage", (e) => {
+    if (
+      e.key === STORAGE_KEYS.members ||
+      e.key === STORAGE_KEYS.customPhotos
+    ) {
+      customMemberPhotos = loadCustomMemberPhotos();
+      MEMBERS_DATA = loadMembersData();
+      renderMembersGrid();
+      renderPiketSection();
+      measureLayout();
+    } else if (e.key === STORAGE_KEYS.piket) {
+      PIKET_DATA = loadPiketData();
+      renderPiketSection();
+    }
+  });
+
+  // -----------------------------------------------------------------
+  // 5. Setup Galeri Momen (6 Keping 3 Kolom + Filter Kategori + Lightbox)
   // -----------------------------------------------------------------
   let resolvedPhotoUrl = GALLERY_CONFIG.batchPhotoUrl;
   let photoNaturalRatio = 1.5;
@@ -430,35 +954,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   preloadBatchImg.src = GALLERY_CONFIG.batchPhotoUrl;
 
-  // 4 kartu samping untuk animasi runtuh ke tengah (Tahap 1 Galeri)
-  const sideSourceCards = [
-    gridCardElements[14],
-    gridCardElements[15],
-    gridCardElements[17],
-    gridCardElements[18],
-  ].filter(Boolean);
-
-  const sideProxyNodes = [];
-  if (morphSideCardsLayer) {
-    sideSourceCards.forEach((origCard) => {
-      const imgEl = origCard.querySelector("img");
-      const proxy = document.createElement("div");
-      proxy.className =
-        "absolute overflow-hidden rounded-[20px] bg-neutral-200 shadow-md will-change-transform";
-      if (imgEl) {
-        const cloneImg = document.createElement("img");
-        cloneImg.src = imgEl.currentSrc || imgEl.src;
-        cloneImg.alt = "";
-        cloneImg.className =
-          "h-full w-full object-cover object-center grayscale";
-        proxy.appendChild(cloneImg);
-      }
-      morphSideCardsLayer.appendChild(proxy);
-      sideProxyNodes.push(proxy);
-    });
-  }
-
-  // Render 6 keping foto galeri
   const tileNodes = [];
   if (galeriTilesLayer) {
     GALLERY_ITEMS.forEach((item, idx) => {
@@ -467,8 +962,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const tileOuter = document.createElement("article");
       tileOuter.className =
-        "pointer-events-auto absolute overflow-hidden bg-neutral-900 shadow-2xl will-change-transform";
+        "absolute overflow-hidden bg-neutral-900 shadow-2xl will-change-transform";
       tileOuter.dataset.category = item.category;
+      tileOuter.setAttribute("role", "button");
+      tileOuter.setAttribute("tabindex", "0");
+      tileOuter.setAttribute(
+        "aria-label",
+        `Buka foto ${item.number}: ${item.title}`,
+      );
 
       const tileFilterWrap = document.createElement("div");
       tileFilterWrap.className =
@@ -476,7 +977,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const tileImgLayer = document.createElement("div");
       tileImgLayer.className =
-        "absolute -inset-[18px] bg-no-repeat will-change-transform";
+        "galeri-tile-img absolute -inset-[18px] bg-no-repeat will-change-transform";
       tileImgLayer.style.backgroundImage = `url('${item.photo}')`;
 
       const scrim = document.createElement("div");
@@ -500,6 +1001,16 @@ document.addEventListener("DOMContentLoaded", () => {
       tileFilterWrap.appendChild(label);
       tileOuter.appendChild(tileFilterWrap);
       galeriTilesLayer.appendChild(tileOuter);
+
+      tileOuter.addEventListener("click", () => {
+        openGalleryLightbox(idx);
+      });
+      tileOuter.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openGalleryLightbox(idx);
+        }
+      });
 
       tileNodes.push({
         idx,
@@ -550,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -----------------------------------------------------------------
-  // 5. Pengukuran Layout & Geometri (Aman terhadap Transform & Resize)
+  // 6. Pengukuran Layout & Geometri
   // -----------------------------------------------------------------
   let slotMetrics = { left: 0, top: 0, width: 400, height: 300 };
   let stageMetrics = { width: window.innerWidth, height: window.innerHeight };
@@ -592,7 +1103,6 @@ document.addEventListener("DOMContentLoaded", () => {
       groupWidth = marqueeGroup.offsetWidth;
     }
 
-    // Ukuran foto angkatan "cover" seukuran viewport
     let coverW, coverH;
     if (vw / vh > photoNaturalRatio) {
       coverW = vw;
@@ -604,7 +1114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const offsetFotoX = (vw - coverW) / 2;
     const offsetFotoY = (vh - coverH) / 2;
 
-    // Posisi alami kartu putih Members (tanpa terpengaruh translateY scroll)
     let cardRect = {
       left: vw * 0.03,
       top: vh * 0.035,
@@ -646,28 +1155,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    const sideRects = sideSourceCards.map((el) => {
-      const frameEl = el.querySelector("div") || el;
-      const off = anggotaCard
-        ? getOffsetInside(frameEl, anggotaCard)
-        : { left: 0, top: 0 };
-      return {
-        left: cardRect.left + off.left,
-        top: cardRect.top + off.top,
-        width: frameEl.offsetWidth,
-        height: frameEl.offsetHeight,
-      };
-    });
-
     const headerH = galeriHeaderContainer
       ? galeriHeaderContainer.offsetHeight
-      : 210;
+      : 220;
     const sidePad = Math.max(24, Math.min(64, vw * 0.05));
     const areaLeft = sidePad;
     const areaW = vw - sidePad * 2;
-    const areaTop = Math.min(vh * 0.34, Math.max(195, headerH + 20));
+    const areaTop = Math.max(headerH + 18, Math.min(vh * 0.36, headerH + 28));
     const areaBottom = vh - Math.max(24, vh * 0.045);
-    const areaH = Math.max(240, areaBottom - areaTop);
+    const areaH = Math.max(220, areaBottom - areaTop);
 
     galleryMetrics = {
       vw,
@@ -676,9 +1172,7 @@ document.addEventListener("DOMContentLoaded", () => {
       coverH,
       offsetFotoX,
       offsetFotoY,
-      cardRect,
       heroRect,
-      sideRects,
       areaLeft,
       areaTop,
       areaW,
@@ -690,7 +1184,7 @@ document.addEventListener("DOMContentLoaded", () => {
   measureLayout();
 
   // -----------------------------------------------------------------
-  // 6. Loop Utama requestAnimationFrame
+  // 7. Loop Utama requestAnimationFrame
   // -----------------------------------------------------------------
   let posX = -groupWidth;
   let lastFrameTime = performance.now();
@@ -703,14 +1197,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
 
-    // Akselerasi marquee saat scroll
     const deltaY = Math.abs(scrollY - lastScrollY);
     lastScrollY = scrollY;
     if (deltaY > 0) {
       scrollBoost = Math.min(950, scrollBoost + deltaY * 7.5);
     }
 
-    // Navbar Glass Pill saat di-scroll
     if (navContainer) {
       const isScrolled = scrollY > 24;
       navContainer.classList.toggle("max-w-4xl", isScrolled);
@@ -727,7 +1219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       mainNav.classList.toggle("shadow-[0_12px_40px_rgba(0,0,0,0.6)]", showPill);
     }
 
-    // Efek bertumpuk Hero -> JelajahiStack
     if (heroContent && jelajahiStack && vh > 0) {
       if (reducedMotion.matches) {
         heroContent.style.transform = "scale(1)";
@@ -741,7 +1232,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Infinite Marquee bergerak ke kanan
     if (marqueeTrack && groupWidth > 0) {
       if (!reducedMotion.matches) {
         const currentSpeed = baseMarqueeSpeed + scrollBoost;
@@ -757,23 +1247,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Transisi Scroll: About -> Anggota (progress 0..1)
-    const galRect = gallerySection?.getBoundingClientRect();
-    const isInGallery = galRect ? galRect.top <= vh * 0.5 : false;
-
     if (scrollWrapper && stickyStage && expandingPhotoBox && anggotaCard) {
       const rect = scrollWrapper.getBoundingClientRect();
       const maxScroll = scrollWrapper.offsetHeight - vh;
-      const progress = maxScroll > 0 ? clamp01(-rect.top / maxScroll) : 0;
+      const totalProgress = maxScroll > 0 ? clamp01(-rect.top / maxScroll) : 0;
+      const rm = reducedMotion.matches;
 
-      if (isInGallery) {
-        highlightNavLink("gallery");
+      const progress = clamp01(totalProgress / 0.31);
+      const gProgress = clamp01((totalProgress - 0.36) / 0.64);
+
+      const piketTop = piketSection
+        ? piketSection.getBoundingClientRect().top
+        : Infinity;
+
+      if (piketTop <= vh * 0.45) {
+        highlightNavLink("piket");
       } else if (rect.top > vh * 0.4) {
         highlightNavLink("home");
-      } else if (progress < 0.52) {
+      } else if (totalProgress < 0.18) {
         highlightNavLink("about");
-      } else {
+      } else if (totalProgress < 0.56) {
         highlightNavLink("members");
+      } else {
+        highlightNavLink("gallery");
       }
 
       if (scrollCue) {
@@ -810,12 +1306,8 @@ document.addEventListener("DOMContentLoaded", () => {
         expandingPhotoImg.style.filter = `brightness(${brightnessVal.toFixed(3)})`;
       }
 
-      const labelT = easeInOutCubic(segmentProgress(progress, 0.36, 0.52));
-      if (navLabelAbout && navLabelAnggota) {
-        navLabelAbout.style.opacity = String(1 - labelT);
-        navLabelAbout.style.transform = `translate3d(0, ${-labelT * 8}px, 0)`;
-        navLabelAnggota.style.opacity = String(labelT);
-        navLabelAnggota.style.transform = `translate3d(0, ${(1 - labelT) * 8}px, 0)`;
+      if (aboutStageLayer) {
+        aboutStageLayer.style.opacity = gProgress > 0.12 ? "0" : "1";
       }
 
       const cardInT = easeOutCubic(segmentProgress(progress, 0.52, 0.74));
@@ -836,248 +1328,270 @@ document.addEventListener("DOMContentLoaded", () => {
         titleWords[w].style.transform = `translate3d(0, ${yPercent}%, 0)`;
       }
 
-      const gridBaseT = segmentProgress(progress, 0.72, 0.98);
-      for (let i = 0; i < gridCardElements.length; i++) {
-        const staggerStart = (i / TOTAL_MEMBERS) * 0.45;
-        const itemT = easeOutCubic(
-          clamp01((gridBaseT - staggerStart) / (1 - staggerStart)),
-        );
-        gridCardElements[i].style.opacity = String(itemT);
-        gridCardElements[i].style.transform = `translate3d(0, ${(1 - itemT) * 18}px, 0)`;
-      }
-    }
-
-    // ---------------------------------------------------------------
-    // Transisi Scroll: Members -> Galeri (progress 0..1)
-    // ---------------------------------------------------------------
-    if (gallerySection && galeriStickyStage && galleryMetrics) {
-      const rect = gallerySection.getBoundingClientRect();
-      const maxScroll = gallerySection.offsetHeight - vh;
-      const gProgress = maxScroll > 0 ? clamp01(-rect.top / maxScroll) : 0;
-      const rm = reducedMotion.matches;
-
-      const {
-        vw,
-        vh: stageH,
-        coverW,
-        coverH,
-        offsetFotoX,
-        offsetFotoY,
-        cardRect,
-        heroRect,
-        sideRects,
-        areaLeft,
-        areaTop,
-        areaW,
-        areaH,
-      } = galleryMetrics;
-
-      // TAHAP 1 (0 – 0.2): Kartu samping meluncur ke tengah, mengecil (0.6), & memudar
-      const sideT = rm
+      const membersExitT = rm
         ? gProgress > 0
           ? 1
           : 0
-        : easeInOutCubic(segmentProgress(gProgress, 0, 0.2));
-      const heroCenterX = heroRect.left + heroRect.width / 2;
-      const heroCenterY = heroRect.top + heroRect.height / 2;
+        : easeInOutCubic(segmentProgress(gProgress, 0, 0.22));
 
-      sideProxyNodes.forEach((proxy, i) => {
-        const sr = sideRects[i];
-        if (!sr) return;
-        const sCenterX = sr.left + sr.width / 2;
-        const sCenterY = sr.top + sr.height / 2;
-        const dx = (heroCenterX - sCenterX) * sideT;
-        const dy = (heroCenterY - sCenterY) * sideT;
-        const sc = 1 - 0.4 * sideT;
-        const op = 1 - sideT;
+      if (membersHeader) {
+        membersHeader.style.opacity = String(1 - membersExitT);
+        membersHeader.style.transform = `translate3d(0, ${-membersExitT * 18}px, 0)`;
+      }
 
-        proxy.style.left = `${sr.left}px`;
-        proxy.style.top = `${sr.top}px`;
-        proxy.style.width = `${sr.width}px`;
-        proxy.style.height = `${sr.height}px`;
-        proxy.style.opacity = String(op);
-        proxy.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${sc})`;
-      });
+      const heroCardFadeOut = rm
+        ? gProgress > 0.04
+          ? 1
+          : 0
+        : segmentProgress(gProgress, 0.02, 0.1);
 
-      // TAHAP 2 (0.15 – 0.45): Foto tengah membesar fullscreen & zoom-out ke foto angkatan
+      const gridBaseT = segmentProgress(progress, 0.72, 0.98);
+      const totalMembers = gridCardElements.length || 33;
+      for (let i = 0; i < gridCardElements.length; i++) {
+        const staggerStart = (i / totalMembers) * 0.45;
+        const itemInT = easeOutCubic(
+          clamp01((gridBaseT - staggerStart) / (1 - staggerStart)),
+        );
+
+        if (i === HERO_MEMBER_INDEX) {
+          const op = itemInT * (1 - heroCardFadeOut);
+          gridCardElements[i].style.opacity = String(op);
+          gridCardElements[i].style.transform = `translate3d(0, ${(1 - itemInT) * 18}px, 0) scale(1)`;
+        } else {
+          const op = itemInT * (1 - membersExitT);
+          const sc = 1 - 0.26 * membersExitT;
+          gridCardElements[i].style.opacity = String(op);
+          gridCardElements[i].style.transform = `translate3d(0, ${(1 - itemInT) * 18}px, 0) scale(${sc.toFixed(4)})`;
+        }
+      }
+
       const whiteCardFade =
         1 -
         (rm
-          ? gProgress > 0.28
+          ? gProgress > 0.25
             ? 1
             : 0
-          : easeOutCubic(segmentProgress(gProgress, 0.28, 0.42)));
-      if (morphMembersCard) {
-        morphMembersCard.style.left = `${cardRect.left}px`;
-        morphMembersCard.style.top = `${cardRect.top}px`;
-        morphMembersCard.style.width = `${cardRect.width}px`;
-        morphMembersCard.style.height = `${cardRect.height}px`;
-        morphMembersCard.style.borderRadius = `${cardRect.radius}px`;
-        morphMembersCard.style.opacity = String(whiteCardFade);
-      }
+          : easeOutCubic(segmentProgress(gProgress, 0.16, 0.42)));
 
-      const expandT = rm
-        ? gProgress > 0.15
+      anggotaCard.style.opacity = String(whiteCardFade);
+      anggotaCard.style.pointerEvents =
+        progress > 0.7 && gProgress < 0.18 ? "auto" : "none";
+
+      const bgDarkT = rm
+        ? gProgress > 0.2
           ? 1
           : 0
-        : easeOutCubic(segmentProgress(gProgress, 0.15, 0.45));
-      const curHeroLeft = heroRect.left + (0 - heroRect.left) * expandT;
-      const curHeroTop = heroRect.top + (0 - heroRect.top) * expandT;
-      const curHeroW = heroRect.width + (vw - heroRect.width) * expandT;
-      const curHeroH = heroRect.height + (stageH - heroRect.height) * expandT;
-      const curHeroRadius = heroRect.radius * (1 - expandT);
+        : easeInOutCubic(segmentProgress(gProgress, 0.16, 0.42));
+      const bgChannel = Math.round(255 - (255 - 11) * bgDarkT);
+      stickyStage.style.backgroundColor = `rgb(${bgChannel}, ${bgChannel}, ${bgChannel})`;
 
-      const zoomFactorStart = GALLERY_CONFIG.heroInitialZoom;
-      const startBgW = coverW * zoomFactorStart;
-      const startBgH = coverH * zoomFactorStart;
-      const startBgX =
-        heroRect.width * GALLERY_CONFIG.heroFaceFocusX -
-        startBgW * GALLERY_CONFIG.heroFaceFocusX;
-      const startBgY =
-        heroRect.height * GALLERY_CONFIG.heroFaceFocusY -
-        startBgH * GALLERY_CONFIG.heroFaceFocusY;
-
-      const curBgW = startBgW + (coverW - startBgW) * expandT;
-      const curBgH = startBgH + (coverH - startBgH) * expandT;
-      const curBgX = startBgX + (offsetFotoX - startBgX) * expandT;
-      const curBgY = startBgY + (offsetFotoY - startBgY) * expandT;
-
-      if (morphHeroPhoto) {
-        morphHeroPhoto.style.opacity = gProgress < 0.45 ? "1" : "0";
-        morphHeroPhoto.style.left = `${curHeroLeft}px`;
-        morphHeroPhoto.style.top = `${curHeroTop}px`;
-        morphHeroPhoto.style.width = `${curHeroW}px`;
-        morphHeroPhoto.style.height = `${curHeroH}px`;
-        morphHeroPhoto.style.borderRadius = `${curHeroRadius}px`;
-        morphHeroPhoto.style.backgroundSize = `${curBgW}px ${curBgH}px`;
-        morphHeroPhoto.style.backgroundPosition = `${curBgX}px ${curBgY}px`;
-      }
-
-      // Label pojok atas: "002 · ANGGOTA" -> "003 · GALERI" (p > 0.55)
-      const cornerT = rm
+      const aboutToAnggotaT = easeInOutCubic(segmentProgress(progress, 0.36, 0.52));
+      const anggotaToGaleriT = rm
         ? gProgress > 0.55
           ? 1
           : 0
         : easeInOutCubic(segmentProgress(gProgress, 0.5, 0.6));
-      if (cornerAnggota && cornerGaleri) {
-        cornerAnggota.style.opacity = String(1 - cornerT);
-        cornerAnggota.style.transform = `translate3d(0, ${-cornerT * 8}px, 0)`;
-        cornerGaleri.style.opacity = String(cornerT);
-        cornerGaleri.style.transform = `translate3d(0, ${(1 - cornerT) * 8}px, 0)`;
+
+      if (navLabelAbout && navLabelAnggota && navLabelGaleri) {
+        navLabelAbout.style.opacity = String(1 - aboutToAnggotaT);
+        navLabelAbout.style.transform = `translate3d(0, ${-aboutToAnggotaT * 8}px, 0)`;
+
+        navLabelAnggota.style.opacity = String(
+          aboutToAnggotaT * (1 - anggotaToGaleriT),
+        );
+        navLabelAnggota.style.transform = `translate3d(0, ${(1 - aboutToAnggotaT) * 8 - anggotaToGaleriT * 8}px, 0)`;
+
+        navLabelGaleri.style.opacity = String(anggotaToGaleriT);
+        navLabelGaleri.style.transform = `translate3d(0, ${(1 - anggotaToGaleriT) * 8}px, 0)`;
       }
 
-      // TAHAP 3 (0.45 – 0.72) & TAHAP 5 (0.8 – 1): 6 Keping & Parallax
-      const GAP = GALLERY_CONFIG.tileGap;
-      const initColW = vw / 3;
-      const targetColW = (areaW - GAP * 2) / 3;
-      const targetAvailH = areaH - GAP;
+      if (galleryMetrics) {
+        const {
+          vw,
+          vh: stageH,
+          coverW,
+          coverH,
+          offsetFotoX,
+          offsetFotoY,
+          heroRect,
+          areaLeft,
+          areaTop,
+          areaW,
+          areaH,
+        } = galleryMetrics;
 
-      const parallaxT = rm
-        ? gProgress > 0.8
-          ? 1
-          : 0
-        : easeInOutCubic(segmentProgress(gProgress, 0.8, 1.0));
-      const colDirections = [-1, 1, -1];
+        const gridScrollTop = membersGridWrapper?.scrollTop || 0;
+        const startLeft = heroRect.left;
+        const startTop = heroRect.top - gridScrollTop;
 
-      tileNodes.forEach((tile) => {
-        const { idx, colIdx, rowIdx, item, outer, imgLayer, label } = tile;
-        const ratios = GALLERY_CONFIG.columnHeightRatios[colIdx];
-
-        const initLeft = colIdx * initColW;
-        const initTop = rowIdx === 0 ? 0 : stageH * ratios[0];
-        const initW = initColW;
-        const initH = stageH * ratios[rowIdx];
-
-        const targetLeft = areaLeft + colIdx * (targetColW + GAP);
-        const targetTop =
-          rowIdx === 0
-            ? areaTop
-            : areaTop + targetAvailH * ratios[0] + GAP;
-        const targetW = targetColW;
-        const targetH = targetAvailH * ratios[rowIdx];
-
-        const staggerStart = 0.45 + idx * 0.025;
-        const staggerEnd = 0.66 + idx * 0.025;
-        const rawTileT = rm
-          ? gProgress > staggerStart
+        const morphInOpacity = rm
+          ? gProgress > 0
             ? 1
             : 0
-          : segmentProgress(gProgress, staggerStart, staggerEnd);
-        const tileT = rm ? rawTileT : easeOutCubic(rawTileT);
+          : segmentProgress(gProgress, 0.0, 0.08);
 
-        const curLeft = initLeft + (targetLeft - initLeft) * tileT;
-        const curTop = initTop + (targetTop - initTop) * tileT;
-        const curW = initW + (targetW - initW) * tileT;
-        const curH = initH + (targetH - initH) * tileT;
-        const curRadius = GALLERY_CONFIG.tileRadius * tileT;
+        const expandGalleryT = rm
+          ? gProgress > 0.12
+            ? 1
+            : 0
+          : easeOutCubic(segmentProgress(gProgress, 0.12, 0.45));
 
-        const rotDir = colIdx % 2 === 0 ? 1 : -1;
-        const rotateDeg =
-          rotDir *
-          GALLERY_CONFIG.tileMaxRotateDeg *
-          Math.sin(rawTileT * Math.PI);
+        const curHeroLeft = startLeft + (0 - startLeft) * expandGalleryT;
+        const curHeroTop = startTop + (0 - startTop) * expandGalleryT;
+        const curHeroW =
+          heroRect.width + (vw - heroRect.width) * expandGalleryT;
+        const curHeroH =
+          heroRect.height + (stageH - heroRect.height) * expandGalleryT;
+        const curHeroRadius = heroRect.radius * (1 - expandGalleryT);
 
-        const colDir = colDirections[colIdx];
-        const colShiftY = colDir * GALLERY_CONFIG.colParallaxY * parallaxT;
-        const imgShiftY = -colDir * GALLERY_CONFIG.imgParallaxY * parallaxT;
+        const zoomFactorStart = GALLERY_CONFIG.heroInitialZoom;
+        const startBgW = coverW * zoomFactorStart;
+        const startBgH = coverH * zoomFactorStart;
+        const startBgX =
+          heroRect.width * GALLERY_CONFIG.heroFaceFocusX -
+          startBgW * GALLERY_CONFIG.heroFaceFocusX;
+        const startBgY =
+          heroRect.height * GALLERY_CONFIG.heroFaceFocusY -
+          startBgH * GALLERY_CONFIG.heroFaceFocusY;
 
-        outer.style.opacity = gProgress >= 0.45 ? "1" : "0";
-        outer.style.left = `${curLeft}px`;
-        outer.style.top = `${curTop}px`;
-        outer.style.width = `${curW}px`;
-        outer.style.height = `${curH}px`;
-        outer.style.borderRadius = `${curRadius}px`;
-        outer.style.transform = `translate3d(0, ${colShiftY}px, 0) rotate(${rotateDeg.toFixed(3)}deg)`;
+        const curBgW = startBgW + (coverW - startBgW) * expandGalleryT;
+        const curBgH = startBgH + (coverH - startBgH) * expandGalleryT;
+        const curBgX = startBgX + (offsetFotoX - startBgX) * expandGalleryT;
+        const curBgY = startBgY + (offsetFotoY - startBgY) * expandGalleryT;
 
-        const BLEED = 18;
-        if (item.photo === GALLERY_CONFIG.batchPhotoUrl) {
-          imgLayer.style.backgroundSize = `${coverW}px ${coverH}px`;
-          imgLayer.style.backgroundPosition = `${offsetFotoX - curLeft + BLEED}px ${offsetFotoY - curTop + BLEED}px`;
-        } else {
-          imgLayer.style.backgroundSize = "cover";
-          imgLayer.style.backgroundPosition = "center";
+        if (morphHeroPhoto) {
+          morphHeroPhoto.style.opacity =
+            gProgress > 0 && gProgress < 0.45 ? String(morphInOpacity) : "0";
+          morphHeroPhoto.style.left = `${curHeroLeft}px`;
+          morphHeroPhoto.style.top = `${curHeroTop}px`;
+          morphHeroPhoto.style.width = `${curHeroW}px`;
+          morphHeroPhoto.style.height = `${curHeroH}px`;
+          morphHeroPhoto.style.borderRadius = `${curHeroRadius}px`;
+          morphHeroPhoto.style.backgroundSize = `${curBgW}px ${curBgH}px`;
+          morphHeroPhoto.style.backgroundPosition = `${curBgX}px ${curBgY}px`;
         }
-        imgLayer.style.transform = `translate3d(0, ${imgShiftY}px, 0)`;
 
-        const labelT = rm
-          ? gProgress > 0.72
+        const GAP = GALLERY_CONFIG.tileGap;
+        const initColW = vw / 3;
+        const targetColW = (areaW - GAP * 2) / 3;
+        const targetAvailH = areaH - GAP;
+
+        const parallaxT = rm
+          ? gProgress > 0.8
             ? 1
             : 0
-          : easeOutCubic(segmentProgress(gProgress, 0.72, 0.86));
-        label.style.opacity = String(labelT);
-        label.style.transform = `translate3d(0, ${(1 - labelT) * 10}px, 0)`;
-      });
+          : easeInOutCubic(segmentProgress(gProgress, 0.8, 1.0));
+        const colDirections = [-1, 1, -1];
 
-      // TAHAP 4 (0.6 – 0.86): Pill, Judul kata demi kata, & Filter Pills
-      const pillT = rm
-        ? gProgress > 0.6
-          ? 1
-          : 0
-        : easeOutCubic(segmentProgress(gProgress, 0.6, 0.7));
-      if (galeriPill) {
-        galeriPill.style.opacity = String(pillT);
-        galeriPill.style.transform = `translate3d(0, ${(1 - pillT) * 14}px, 0)`;
-      }
+        if (galeriTilesLayer) {
+          galeriTilesLayer.style.opacity = gProgress >= 0.45 ? "1" : "0";
+          galeriTilesLayer.classList.toggle("is-active", gProgress >= 0.55);
+        }
 
-      galeriWords.forEach((wordEl, wIdx) => {
-        const wStart = 0.62 + wIdx * 0.04;
-        const wEnd = wStart + 0.12;
-        const wt = rm
-          ? gProgress > wStart
+        tileNodes.forEach((tile) => {
+          const { idx, colIdx, rowIdx, item, outer, imgLayer, label } = tile;
+          const ratios = GALLERY_CONFIG.columnHeightRatios[colIdx];
+
+          const initLeft = colIdx * initColW;
+          const initTop = rowIdx === 0 ? 0 : stageH * ratios[0];
+          const initW = initColW;
+          const initH = stageH * ratios[rowIdx];
+
+          const targetLeft = areaLeft + colIdx * (targetColW + GAP);
+          const targetTop =
+            rowIdx === 0
+              ? areaTop
+              : areaTop + targetAvailH * ratios[0] + GAP;
+          const targetW = targetColW;
+          const targetH = targetAvailH * ratios[rowIdx];
+
+          const staggerStart = 0.45 + idx * 0.025;
+          const staggerEnd = 0.66 + idx * 0.025;
+          const rawTileT = rm
+            ? gProgress > staggerStart
+              ? 1
+              : 0
+            : segmentProgress(gProgress, staggerStart, staggerEnd);
+          const tileT = rm ? rawTileT : easeOutCubic(rawTileT);
+
+          const curLeft = initLeft + (targetLeft - initLeft) * tileT;
+          const curTop = initTop + (targetTop - initTop) * tileT;
+          const curW = initW + (targetW - initW) * tileT;
+          const curH = initH + (targetH - initH) * tileT;
+          const curRadius = GALLERY_CONFIG.tileRadius * tileT;
+
+          const rotDir = colIdx % 2 === 0 ? 1 : -1;
+          const rotateDeg =
+            rotDir *
+            GALLERY_CONFIG.tileMaxRotateDeg *
+            Math.sin(rawTileT * Math.PI);
+
+          const colDir = colDirections[colIdx];
+          const colShiftY = colDir * GALLERY_CONFIG.colParallaxY * parallaxT;
+          const imgShiftY = -colDir * GALLERY_CONFIG.imgParallaxY * parallaxT;
+
+          outer.style.opacity = gProgress >= 0.45 ? "1" : "0";
+          outer.style.left = `${curLeft}px`;
+          outer.style.top = `${curTop}px`;
+          outer.style.width = `${curW}px`;
+          outer.style.height = `${curH}px`;
+          outer.style.borderRadius = `${curRadius}px`;
+          outer.style.transform = `translate3d(0, ${colShiftY}px, 0) rotate(${rotateDeg.toFixed(3)}deg)`;
+
+          const BLEED = 18;
+          if (item.photo === GALLERY_CONFIG.batchPhotoUrl) {
+            imgLayer.style.backgroundSize = `${coverW}px ${coverH}px`;
+            imgLayer.style.backgroundPosition = `${offsetFotoX - curLeft + BLEED}px ${offsetFotoY - curTop + BLEED}px`;
+          } else {
+            imgLayer.style.backgroundSize = "cover";
+            imgLayer.style.backgroundPosition = "center";
+          }
+          imgLayer.style.transform = `translate3d(0, ${imgShiftY}px, 0)`;
+
+          const labelT = rm
+            ? gProgress > 0.72
+              ? 1
+              : 0
+            : easeOutCubic(segmentProgress(gProgress, 0.72, 0.86));
+          label.style.opacity = String(labelT);
+          label.style.transform = `translate3d(0, ${(1 - labelT) * 10}px, 0)`;
+        });
+
+        if (galeriHeaderContainer) {
+          galeriHeaderContainer.style.opacity = gProgress >= 0.58 ? "1" : "0";
+        }
+
+        const pillT = rm
+          ? gProgress > 0.6
             ? 1
             : 0
-          : easeOutCubic(segmentProgress(gProgress, wStart, wEnd));
-        wordEl.style.transform = `translate3d(0, ${(1 - wt) * 110}%, 0)`;
-      });
+          : easeOutCubic(segmentProgress(gProgress, 0.6, 0.7));
+        if (galeriPill) {
+          galeriPill.style.opacity = String(pillT);
+          galeriPill.style.transform = `translate3d(0, ${(1 - pillT) * 14}px, 0)`;
+        }
 
-      const filterT = rm
-        ? gProgress > 0.74
-          ? 1
-          : 0
-        : easeOutCubic(segmentProgress(gProgress, 0.74, 0.86));
-      if (galeriFilterBar) {
-        galeriFilterBar.style.opacity = String(filterT);
-        galeriFilterBar.style.transform = `translate3d(0, ${(1 - filterT) * 14}px, 0)`;
+        galeriWords.forEach((wordEl, wIdx) => {
+          const wStart = 0.62 + wIdx * 0.04;
+          const wEnd = wStart + 0.12;
+          const wt = rm
+            ? gProgress > wStart
+              ? 1
+              : 0
+            : easeOutCubic(segmentProgress(gProgress, wStart, wEnd));
+          wordEl.style.transform = `translate3d(0, ${(1 - wt) * 110}%, 0)`;
+        });
+
+        const filterT = rm
+          ? gProgress > 0.74
+            ? 1
+            : 0
+          : easeOutCubic(segmentProgress(gProgress, 0.74, 0.86));
+        if (galeriFilterBar) {
+          galeriFilterBar.style.opacity = String(filterT);
+          galeriFilterBar.style.transform = `translate3d(0, ${(1 - filterT) * 14}px, 0)`;
+          galeriFilterBar.classList.toggle("is-active", gProgress >= 0.76);
+        }
       }
     }
 
@@ -1087,7 +1601,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.requestAnimationFrame(animateFrame);
 
   // -----------------------------------------------------------------
-  // 7. Tombol "Until when?" Scroll ke Section Jelajahi
+  // 8. Tombol "Until when?" Scroll ke Section Jelajahi
   // -----------------------------------------------------------------
   untilWhenBtn?.addEventListener("click", () => {
     jelajahiStack?.scrollIntoView({ behavior: "smooth" });

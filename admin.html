@@ -1,0 +1,1575 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invictus — Admin Panel</title>
+    <style>
+      :root {
+        --bg: #09090b;
+        --panel: #111114;
+        --panel-2: #18181c;
+        --border: rgba(255, 255, 255, 0.11);
+        --border-strong: rgba(255, 255, 255, 0.24);
+        --text: #fafafa;
+        --muted: #a1a1aa;
+        --accent: #ffffff;
+        --accent-text: #09090b;
+        --danger: #ef4444;
+        --success: #22c55e;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+      }
+
+      /* LOGIN SCREEN */
+      .login-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: radial-gradient(circle at top, #18181b 0%, #09090b 70%);
+      }
+
+      .login-overlay.is-hidden {
+        display: none;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 32px 28px;
+        border-radius: 28px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+        text-align: center;
+      }
+
+      .brand-kicker {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .login-title {
+        margin-top: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .login-desc {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .login-form {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: var(--panel-2);
+        color: var(--text);
+        font-size: 13.5px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-field:focus {
+        border-color: var(--accent);
+      }
+
+      .btn {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.18s ease;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: var(--accent-text);
+      }
+
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+
+      .btn-secondary {
+        background: var(--panel-2);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--border-strong);
+        background: #222228;
+      }
+
+      .btn-danger {
+        background: rgba(239, 68, 68, 0.12);
+        border-color: rgba(239, 68, 68, 0.3);
+        color: #fca5a5;
+      }
+
+      .btn-danger:hover {
+        background: var(--danger);
+        color: #ffffff;
+      }
+
+      .login-hint {
+        margin-top: 14px;
+        font-size: 11.5px;
+        color: #71717a;
+      }
+
+      .login-error {
+        font-size: 12px;
+        color: #f87171;
+        min-height: 18px;
+      }
+
+      /* ADMIN SHELL */
+      .admin-shell {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px 20px 80px;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 22px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        margin-bottom: 24px;
+      }
+
+      .topbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .topbar-badge {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #09090b;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .topbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* TABS */
+      .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .tab-btn {
+        cursor: pointer;
+        padding: 11px 20px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .tab-btn:hover {
+        color: var(--text);
+        border-color: var(--border-strong);
+      }
+
+      .tab-btn.is-active {
+        background: var(--accent);
+        color: var(--accent-text);
+        border-color: var(--accent);
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.is-active {
+        display: block;
+      }
+
+      /* TOOLBAR & SEARCH */
+      .section-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .search-box {
+        max-width: 340px;
+        width: 100%;
+      }
+
+      /* MEMBER CARDS GRID IN ADMIN */
+      .admin-members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+      }
+
+      .admin-member-card {
+        border-radius: 22px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 14px;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .admin-member-card:hover {
+        border-color: var(--border-strong);
+        transform: translateY(-2px);
+      }
+
+      .member-card-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .member-thumb {
+        width: 54px;
+        height: 68px;
+        border-radius: 14px;
+        object-fit: cover;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .member-card-meta {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .member-num {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .member-name {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2px;
+      }
+
+      .member-motto-preview {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .member-link-pill {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        color: #d4d4d8;
+        background: var(--panel-2);
+        padding: 6px 10px;
+        border-radius: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* PIKET ADMIN LAYOUT */
+      .piket-admin-grid {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      @media (max-width: 860px) {
+        .piket-admin-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card-box {
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        padding: 20px;
+      }
+
+      .card-box-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .form-label {
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .task-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .task-chip {
+        cursor: pointer;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--panel-2);
+        color: #d4d4d8;
+        font-size: 11px;
+      }
+
+      .task-chip:hover {
+        border-color: var(--accent);
+        color: #ffffff;
+      }
+
+      .day-pills-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .day-pill {
+        cursor: pointer;
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--panel-2);
+        color: var(--muted);
+        font-size: 12.5px;
+        font-weight: 600;
+      }
+
+      .day-pill.is-active {
+        background: #ffffff;
+        color: #09090b;
+        border-color: #ffffff;
+      }
+
+      .piket-roster-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .roster-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: var(--panel-2);
+      }
+
+      .roster-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .roster-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #27272a;
+        flex-shrink: 0;
+      }
+
+      .roster-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      /* MODAL EDIT MEMBER */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+      }
+
+      .modal-backdrop.is-open {
+        display: flex;
+      }
+
+      .modal-dialog {
+        width: 100%;
+        max-width: 620px;
+        max-height: 92vh;
+        overflow-y: auto;
+        border-radius: 28px;
+        border: 1px solid var(--border-strong);
+        background: var(--panel);
+        padding: 24px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+
+      .photo-upload-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: var(--panel-2);
+        margin-bottom: 16px;
+      }
+
+      .photo-preview-lg {
+        width: 76px;
+        height: 96px;
+        border-radius: 16px;
+        object-fit: cover;
+        background: #27272a;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 540px) {
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 120;
+        padding: 12px 18px;
+        border-radius: 14px;
+        background: #ffffff;
+        color: #09090b;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+        transform: translateY(20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.25s ease;
+      }
+
+      .toast.is-visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===============================================================
+         LOGIN OVERLAY ADMIN
+         =============================================================== -->
+    <div id="loginOverlay" class="login-overlay">
+      <div class="login-card">
+        <div class="brand-kicker">INVICTUS ARCHIVE</div>
+        <h1 class="login-title">Admin Panel</h1>
+        <p class="login-desc">
+          Masukkan PIN Admin untuk mengelola data anggota (nama, moto, portofolio, foto) dan jadwal piket kelas.
+        </p>
+
+        <form id="loginForm" class="login-form">
+          <input
+            type="password"
+            id="pinInput"
+            class="input-field"
+            placeholder="Masukkan PIN Admin..."
+            autocomplete="current-password"
+            required
+          />
+          <div id="loginError" class="login-error"></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            Masuk ke Dashboard
+          </button>
+        </form>
+
+        <p class="login-hint">
+          PIN Default: <strong>1234</strong> &bull;
+          <a href="./index.html" style="color: #d4d4d8">Kembali ke Website</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===============================================================
+         DASHBOARD UTAMA ADMIN
+         =============================================================== -->
+    <div class="admin-shell">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-kicker" style="color: #fff">INVICTUS</span>
+          <span class="topbar-badge">ADMIN SYSTEM</span>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="./index.html" class="btn btn-secondary">
+            <span>Lihat Website</span>
+            <span>&nearr;</span>
+          </a>
+          <button type="button" id="exportJsonBtn" class="btn btn-secondary">
+            Export Backup (.json)
+          </button>
+          <button type="button" id="importJsonBtn" class="btn btn-secondary">
+            Import Backup
+          </button>
+          <input type="file" id="importJsonInput" accept="application/json" hidden />
+          <button type="button" id="changePinBtn" class="btn btn-secondary">
+            Ganti PIN
+          </button>
+          <button type="button" id="logoutBtn" class="btn btn-danger">
+            Keluar
+          </button>
+        </div>
+      </header>
+
+      <!-- NAVIGASI TAB ADMIN -->
+      <div class="nav-tabs" role="tablist">
+        <button type="button" class="tab-btn is-active" data-tab="membersTab">
+          1. Kelola Members (33 Anggota)
+        </button>
+        <button type="button" class="tab-btn" data-tab="piketTab">
+          2. Kelola Jadwal Piket
+        </button>
+      </div>
+
+      <!-- =============================================================
+           TAB 1: KELOLA MEMBERS (NAMA, LINK PORTOFOLIO, FOTO, MOTO)
+           ============================================================= -->
+      <section id="membersTab" class="tab-panel is-active">
+        <div class="section-toolbar">
+          <input
+            type="search"
+            id="memberSearchInput"
+            class="input-field search-box"
+            placeholder="Cari nomor (#01), nama, atau moto..."
+          />
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <button type="button" id="resetMembersBtn" class="btn btn-danger">
+              Reset Data Member Default
+            </button>
+          </div>
+        </div>
+
+        <div id="adminMembersGrid" class="admin-members-grid"></div>
+      </section>
+
+      <!-- =============================================================
+           TAB 2: KELOLA JADWAL PIKET
+           ============================================================= -->
+      <section id="piketTab" class="tab-panel">
+        <!-- Pengaturan Catatan / Jam Piket -->
+        <div class="card-box" style="margin-bottom: 20px">
+          <div class="card-box-title">Catatan &amp; Jam Piket Kelas</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <input
+              type="text"
+              id="piketNoteInput"
+              class="input-field"
+              style="flex: 1; min-width: 240px"
+              placeholder="Contoh: Piket dilaksanakan pukul 06.45 WIB sebelum jam pertama."
+            />
+            <button type="button" id="savePiketNoteBtn" class="btn btn-primary">
+              Simpan Catatan
+            </button>
+          </div>
+        </div>
+
+        <div class="piket-admin-grid">
+          <!-- Kolom Kiri: Form Tambah Petugas Piket -->
+          <div class="card-box">
+            <div class="card-box-title">Tambah Petugas Piket</div>
+
+            <form id="addPiketForm">
+              <div class="form-group">
+                <label class="form-label" for="piketDaySelect">Hari Piket</label>
+                <select id="piketDaySelect" class="input-field">
+                  <option value="Senin">Senin</option>
+                  <option value="Selasa">Selasa</option>
+                  <option value="Rabu">Rabu</option>
+                  <option value="Kamis">Kamis</option>
+                  <option value="Jumat">Jumat</option>
+                  <option value="Sabtu">Sabtu</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="piketMemberSelect">Pilih Anggota</label>
+                <select id="piketMemberSelect" class="input-field"></select>
+              </div>
+
+              <div id="customNameGroup" class="form-group" style="display: none">
+                <label class="form-label" for="piketCustomNameInput">Nama Manual</label>
+                <input
+                  type="text"
+                  id="piketCustomNameInput"
+                  class="input-field"
+                  placeholder="Ketik nama petugas..."
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="piketTaskInput">Tugas Piket</label>
+                <input
+                  type="text"
+                  id="piketTaskInput"
+                  class="input-field"
+                  value="Sapu Lantai"
+                  placeholder="Misal: Sapu Lantai, Pel, Buang Sampah"
+                  required
+                />
+                <div class="task-chips">
+                  <button type="button" class="task-chip" data-task="Sapu Lantai">Sapu Lantai</button>
+                  <button type="button" class="task-chip" data-task="Pel & Papan Tulis">Pel &amp; Papan Tulis</button>
+                  <button type="button" class="task-chip" data-task="Buang Sampah">Buang Sampah</button>
+                  <button type="button" class="task-chip" data-task="Rapikan Meja">Rapikan Meja</button>
+                  <button type="button" class="task-chip" data-task="Jendela & Kipas">Jendela &amp; Kipas</button>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%">
+                + Tambahkan ke Jadwal
+              </button>
+            </form>
+          </div>
+
+          <!-- Kolom Kanan: Daftar Petugas Per Hari -->
+          <div class="card-box">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 14px;
+              "
+            >
+              <div class="card-box-title" style="margin-bottom: 0">
+                Daftar Petugas Piket
+              </div>
+              <button type="button" id="resetPiketBtn" class="btn btn-danger" style="padding: 6px 12px; font-size: 12px">
+                Reset Jadwal Default
+              </button>
+            </div>
+
+            <div id="adminDayPills" class="day-pills-row"></div>
+            <div id="adminPiketRoster" class="piket-roster-list"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===============================================================
+         MODAL EDIT MEMBER
+         =============================================================== -->
+    <div id="editMemberModal" class="modal-backdrop">
+      <div class="modal-dialog" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 id="editModalHeading" style="font-size: 18px; font-weight: 700">
+            Edit Anggota #01
+          </h2>
+          <button type="button" id="closeEditModalBtn" class="btn btn-secondary" style="padding: 6px 12px">
+            Tutup &times;
+          </button>
+        </div>
+
+        <form id="editMemberForm">
+          <!-- Upload / URL Foto -->
+          <div class="photo-upload-row">
+            <img id="editPhotoPreview" src="" alt="Preview" class="photo-preview-lg" />
+            <div style="flex: 1; min-width: 0">
+              <div class="form-label" style="margin-bottom: 8px">Foto Anggota</div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px">
+                <button type="button" id="uploadPhotoTriggerBtn" class="btn btn-primary" style="padding: 7px 13px; font-size: 12px">
+                  Upload Foto dari Perangkat
+                </button>
+                <button type="button" id="resetSinglePhotoBtn" class="btn btn-secondary" style="padding: 7px 13px; font-size: 12px">
+                  Pakai Foto Default
+                </button>
+                <input type="file" id="editPhotoFileInput" accept="image/*" hidden />
+              </div>
+              <input
+                type="text"
+                id="editPhotoUrlInput"
+                class="input-field"
+                style="font-size: 12px; padding: 8px 10px"
+                placeholder="Atau masukkan URL / path foto (misal: ./asset/members/01.jpg)"
+              />
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="form-group">
+              <label class="form-label" for="editNameInput">Nama Lengkap *</label>
+              <input type="text" id="editNameInput" class="input-field" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="editRoleInput">Jabatan / Peran</label>
+              <input type="text" id="editRoleInput" class="input-field" placeholder="Misal: Ketua Kelas / Anggota" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="editMottoInput">Moto *</label>
+            <textarea
+              id="editMottoInput"
+              class="input-field"
+              rows="2"
+              placeholder="Tulis moto hidup atau kutipan favorit anggota..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="editPortfolioInput">Link Portofolio</label>
+            <input
+              type="text"
+              id="editPortfolioInput"
+              class="input-field"
+              placeholder="https://portofolio-kamu.com"
+            />
+          </div>
+
+          <div class="two-col">
+            <div class="form-group">
+              <label class="form-label" for="editDobInput">Tanggal Lahir</label>
+              <input type="text" id="editDobInput" class="input-field" placeholder="12 Agustus 2008" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editAgeInput">Umur</label>
+              <input type="text" id="editAgeInput" class="input-field" placeholder="18 Tahun" />
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="form-group">
+              <label class="form-label" for="editIgInput">Instagram (@username)</label>
+              <input type="text" id="editIgInput" class="input-field" placeholder="@invictus_01" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editLinkedinInput">Link LinkedIn</label>
+              <input type="text" id="editLinkedinInput" class="input-field" placeholder="https://linkedin.com/in/..." />
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px">
+            <button type="button" id="cancelEditModalBtn" class="btn btn-secondary">
+              Batal
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Simpan Perubahan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">Tersimpan!</div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const STORAGE_KEYS = {
+          members: "invictus_admin_members_v1",
+          piket: "invictus_admin_piket_v1",
+          customPhotos: "invictus_custom_member_photos_v1",
+          pin: "invictus_admin_pin_v1",
+        };
+        const SESSION_AUTH_KEY = "invictus_admin_logged_in";
+        const DEFAULT_PIN = "1234";
+        const DEFAULT_MEMBER_LOGO = "./asset/IVCS Logo (4).jpg";
+        const PIKET_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+        function createDefaultMembers() {
+          return Array.from({ length: 33 }, (_, idx) => {
+            const numStr = String(idx + 1).padStart(2, "0");
+            return {
+              number: numStr,
+              name: `[Nama Anggota ${numStr}]`,
+              role: "[Jabatan]",
+              motto: "Tak terkalahkan bukan berarti tak pernah jatuh, tapi selalu bangkit bersama.",
+              photo: `./asset/members/${numStr}.jpg`,
+              birthDate: "[Tanggal Lahir]",
+              age: "[Umur] Tahun",
+              portfolioUrl: "https://example.com",
+              portfolioLabel: `portfolio-${numStr}.invictus.id`,
+              linkedinUrl: "https://linkedin.com",
+              linkedinLabel: `in/anggota-${numStr}`,
+              instagramUrl: "https://instagram.com",
+              instagramLabel: `@invictus_${numStr}`,
+            };
+          });
+        }
+
+        function createDefaultPiket() {
+          return {
+            note: "Piket dilaksanakan pukul 06.45 WIB sebelum jam pelajaran pertama dimulai.",
+            schedule: {
+              Senin: [
+                { memberNumber: "01", customName: "", task: "Sapu Lantai" },
+                { memberNumber: "02", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "03", customName: "", task: "Buang Sampah" },
+                { memberNumber: "04", customName: "", task: "Rapikan Meja" },
+                { memberNumber: "05", customName: "", task: "Cek Kebersihan" },
+                { memberNumber: "06", customName: "", task: "Jendela & Kipas" },
+              ],
+              Selasa: [
+                { memberNumber: "07", customName: "", task: "Sapu Lantai" },
+                { memberNumber: "08", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "09", customName: "", task: "Buang Sampah" },
+                { memberNumber: "10", customName: "", task: "Rapikan Meja" },
+                { memberNumber: "11", customName: "", task: "Cek Kebersihan" },
+                { memberNumber: "12", customName: "", task: "Jendela & Kipas" },
+              ],
+              Rabu: [
+                { memberNumber: "13", customName: "", task: "Sapu Lantai" },
+                { memberNumber: "14", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "15", customName: "", task: "Buang Sampah" },
+                { memberNumber: "16", customName: "", task: "Rapikan Meja" },
+                { memberNumber: "17", customName: "", task: "Cek Kebersihan" },
+                { memberNumber: "18", customName: "", task: "Jendela & Kipas" },
+              ],
+              Kamis: [
+                { memberNumber: "19", customName: "", task: "Sapu Lantai" },
+                { memberNumber: "20", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "21", customName: "", task: "Buang Sampah" },
+                { memberNumber: "22", customName: "", task: "Rapikan Meja" },
+                { memberNumber: "23", customName: "", task: "Cek Kebersihan" },
+                { memberNumber: "24", customName: "", task: "Jendela & Kipas" },
+              ],
+              Jumat: [
+                { memberNumber: "25", customName: "", task: "Sapu Lantai" },
+                { memberNumber: "26", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "27", customName: "", task: "Buang Sampah" },
+                { memberNumber: "28", customName: "", task: "Rapikan Meja" },
+                { memberNumber: "29", customName: "", task: "Cek Kebersihan" },
+              ],
+              Sabtu: [
+                { memberNumber: "30", customName: "", task: "Sabtu Bersih" },
+                { memberNumber: "31", customName: "", task: "Pel & Papan Tulis" },
+                { memberNumber: "32", customName: "", task: "Buang Sampah" },
+                { memberNumber: "33", customName: "", task: "Rapikan Kelas" },
+              ],
+            },
+          };
+        }
+
+        function loadMembers() {
+          const defaults = createDefaultMembers();
+          let customPhotos = {};
+          try {
+            customPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.customPhotos) || "{}");
+          } catch {}
+          try {
+            const raw = localStorage.getItem(STORAGE_KEYS.members);
+            const list = raw ? JSON.parse(raw) : defaults;
+            const validList = Array.isArray(list) && list.length ? list : defaults;
+            return validList.map((m, idx) => {
+              const num = String(m.number || String(idx + 1).padStart(2, "0")).padStart(2, "0");
+              return {
+                ...defaults[idx % defaults.length],
+                ...m,
+                number: num,
+                photo: customPhotos[num] || m.photo || `./asset/members/${num}.jpg`,
+              };
+            });
+          } catch {
+            return defaults;
+          }
+        }
+
+        function saveMembers(list) {
+          localStorage.setItem(STORAGE_KEYS.members, JSON.stringify(list));
+        }
+
+        function loadPiket() {
+          const defaults = createDefaultPiket();
+          try {
+            const raw = localStorage.getItem(STORAGE_KEYS.piket);
+            if (!raw) return defaults;
+            const parsed = JSON.parse(raw);
+            return {
+              note: parsed.note || defaults.note,
+              schedule: { ...defaults.schedule, ...(parsed.schedule || {}) },
+            };
+          } catch {
+            return defaults;
+          }
+        }
+
+        function savePiket(data) {
+          localStorage.setItem(STORAGE_KEYS.piket, JSON.stringify(data));
+        }
+
+        let members = loadMembers();
+        let piket = loadPiket();
+        let activePiketDay = "Senin";
+        let editingMemberIndex = -1;
+
+        const toastEl = document.getElementById("toast");
+        let toastTimer = null;
+        function showToast(msg) {
+          toastEl.textContent = msg;
+          toastEl.classList.add("is-visible");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 2600);
+        }
+
+        function applyFallback(imgEl, member) {
+          const num = member?.number || "01";
+          imgEl.dataset.step = "0";
+          imgEl.onerror = function () {
+            if (this.dataset.step === "0" && this.getAttribute("src") !== DEFAULT_MEMBER_LOGO) {
+              this.dataset.step = "1";
+              this.src = DEFAULT_MEMBER_LOGO;
+            } else {
+              this.onerror = null;
+              this.src = `https://picsum.photos/seed/invictus-${num}/400/500`;
+            }
+          };
+          imgEl.src = member?.photo || DEFAULT_MEMBER_LOGO;
+        }
+
+        function compressImage(file, maxDim = 560) {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const img = new Image();
+              img.onload = () => {
+                const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.round(img.width * scale);
+                canvas.height = Math.round(img.height * scale);
+                canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL("image/jpeg", 0.82));
+              };
+              img.onerror = reject;
+              img.src = reader.result;
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+        }
+
+        // -------------------------------------------------------------
+        // AUTH / LOGIN PIN
+        // -------------------------------------------------------------
+        const loginOverlay = document.getElementById("loginOverlay");
+        const loginForm = document.getElementById("loginForm");
+        const pinInput = document.getElementById("pinInput");
+        const loginError = document.getElementById("loginError");
+
+        function getSavedPin() {
+          return localStorage.getItem(STORAGE_KEYS.pin) || DEFAULT_PIN;
+        }
+
+        if (sessionStorage.getItem(SESSION_AUTH_KEY) === "1") {
+          loginOverlay.classList.add("is-hidden");
+        }
+
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (pinInput.value.trim() === getSavedPin()) {
+            sessionStorage.setItem(SESSION_AUTH_KEY, "1");
+            loginOverlay.classList.add("is-hidden");
+            loginError.textContent = "";
+          } else {
+            loginError.textContent = "PIN salah. Coba lagi (default: 1234).";
+          }
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          sessionStorage.removeItem(SESSION_AUTH_KEY);
+          pinInput.value = "";
+          loginOverlay.classList.remove("is-hidden");
+        });
+
+        document.getElementById("changePinBtn").addEventListener("click", () => {
+          const newPin = prompt("Masukkan PIN Admin baru (minimal 4 karakter):", getSavedPin());
+          if (newPin && newPin.trim().length >= 4) {
+            localStorage.setItem(STORAGE_KEYS.pin, newPin.trim());
+            showToast("PIN Admin berhasil diperbarui!");
+          } else if (newPin !== null) {
+            alert("PIN minimal 4 karakter.");
+          }
+        });
+
+        // -------------------------------------------------------------
+        // TAB SWITCHING
+        // -------------------------------------------------------------
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("is-active"));
+            document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("is-active"));
+            btn.classList.add("is-active");
+            document.getElementById(btn.dataset.tab).classList.add("is-active");
+          });
+        });
+
+        // -------------------------------------------------------------
+        // TAB 1: KELOLA MEMBERS
+        // -------------------------------------------------------------
+        const adminMembersGrid = document.getElementById("adminMembersGrid");
+        const memberSearchInput = document.getElementById("memberSearchInput");
+
+        function renderAdminMembers() {
+          const query = (memberSearchInput.value || "").toLowerCase().trim();
+          adminMembersGrid.innerHTML = "";
+
+          members.forEach((m, idx) => {
+            const match =
+              !query ||
+              m.number.includes(query) ||
+              (m.name || "").toLowerCase().includes(query) ||
+              (m.motto || "").toLowerCase().includes(query);
+            if (!match) return;
+
+            const card = document.createElement("div");
+            card.className = "admin-member-card";
+
+            const top = document.createElement("div");
+            top.className = "member-card-top";
+
+            const thumb = document.createElement("img");
+            thumb.className = "member-thumb";
+            thumb.alt = m.name;
+            applyFallback(thumb, m);
+
+            const meta = document.createElement("div");
+            meta.className = "member-card-meta";
+            meta.innerHTML = `
+              <div class="member-num">#${m.number} &bull; ${escapeHtml(m.role || "Anggota")}</div>
+              <div class="member-name">${escapeHtml(m.name)}</div>
+            `;
+
+            top.appendChild(thumb);
+            top.appendChild(meta);
+
+            const mottoEl = document.createElement("div");
+            mottoEl.className = "member-motto-preview";
+            mottoEl.textContent = m.motto ? `“${m.motto}”` : "Belum ada moto.";
+
+            const linkEl = document.createElement("div");
+            linkEl.className = "member-link-pill";
+            linkEl.textContent = m.portfolioUrl || "Belum ada link portofolio";
+
+            const editBtn = document.createElement("button");
+            editBtn.type = "button";
+            editBtn.className = "btn btn-secondary";
+            editBtn.style.width = "100%";
+            editBtn.textContent = "Edit Nama, Moto, Portofolio & Foto";
+            editBtn.addEventListener("click", () => openEditMemberModal(idx));
+
+            card.appendChild(top);
+            card.appendChild(mottoEl);
+            card.appendChild(linkEl);
+            card.appendChild(editBtn);
+            adminMembersGrid.appendChild(card);
+          });
+        }
+
+        memberSearchInput.addEventListener("input", renderAdminMembers);
+
+        document.getElementById("resetMembersBtn").addEventListener("click", () => {
+          if (confirm("Kembalikan semua data 33 anggota ke pengaturan awal?")) {
+            localStorage.removeItem(STORAGE_KEYS.customPhotos);
+            members = createDefaultMembers();
+            saveMembers(members);
+            renderAdminMembers();
+            populateMemberSelect();
+            renderAdminPiket();
+            showToast("Data member di-reset ke default.");
+          }
+        });
+
+        // MODAL EDIT MEMBER
+        const editMemberModal = document.getElementById("editMemberModal");
+        const editModalHeading = document.getElementById("editModalHeading");
+        const editPhotoPreview = document.getElementById("editPhotoPreview");
+        const editPhotoFileInput = document.getElementById("editPhotoFileInput");
+        const editPhotoUrlInput = document.getElementById("editPhotoUrlInput");
+        const editNameInput = document.getElementById("editNameInput");
+        const editRoleInput = document.getElementById("editRoleInput");
+        const editMottoInput = document.getElementById("editMottoInput");
+        const editPortfolioInput = document.getElementById("editPortfolioInput");
+        const editDobInput = document.getElementById("editDobInput");
+        const editAgeInput = document.getElementById("editAgeInput");
+        const editIgInput = document.getElementById("editIgInput");
+        const editLinkedinInput = document.getElementById("editLinkedinInput");
+
+        function openEditMemberModal(idx) {
+          editingMemberIndex = idx;
+          const m = members[idx];
+          editModalHeading.textContent = `Edit Anggota #${m.number}`;
+          applyFallback(editPhotoPreview, m);
+          editPhotoUrlInput.value = m.photo || "";
+          editNameInput.value = m.name || "";
+          editRoleInput.value = m.role || "";
+          editMottoInput.value = m.motto || "";
+          editPortfolioInput.value = m.portfolioUrl || "";
+          editDobInput.value = m.birthDate || "";
+          editAgeInput.value = m.age || "";
+          editIgInput.value = m.instagramLabel || "";
+          editLinkedinInput.value = m.linkedinUrl || "";
+          editMemberModal.classList.add("is-open");
+        }
+
+        function closeEditMemberModal() {
+          editingMemberIndex = -1;
+          editMemberModal.classList.remove("is-open");
+        }
+
+        document.getElementById("closeEditModalBtn").addEventListener("click", closeEditMemberModal);
+        document.getElementById("cancelEditModalBtn").addEventListener("click", closeEditMemberModal);
+        editMemberModal.addEventListener("click", (e) => {
+          if (e.target === editMemberModal) closeEditMemberModal();
+        });
+
+        document.getElementById("uploadPhotoTriggerBtn").addEventListener("click", () => {
+          editPhotoFileInput.click();
+        });
+
+        editPhotoFileInput.addEventListener("change", async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          const dataUrl = await compressImage(file);
+          editPhotoUrlInput.value = dataUrl;
+          editPhotoPreview.onerror = null;
+          editPhotoPreview.src = dataUrl;
+          editPhotoFileInput.value = "";
+        });
+
+        editPhotoUrlInput.addEventListener("input", () => {
+          const val = editPhotoUrlInput.value.trim();
+          if (val) {
+            editPhotoPreview.src = val;
+          }
+        });
+
+        document.getElementById("resetSinglePhotoBtn").addEventListener("click", () => {
+          if (editingMemberIndex < 0) return;
+          const num = members[editingMemberIndex].number;
+          const defPath = `./asset/members/${num}.jpg`;
+          editPhotoUrlInput.value = defPath;
+          applyFallback(editPhotoPreview, { number: num, photo: defPath });
+        });
+
+        document.getElementById("editMemberForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (editingMemberIndex < 0) return;
+          const m = members[editingMemberIndex];
+          const igHandle = editIgInput.value.trim();
+          const cleanIg = igHandle.replace(/^@/, "");
+
+          members[editingMemberIndex] = {
+            ...m,
+            photo: editPhotoUrlInput.value.trim() || `./asset/members/${m.number}.jpg`,
+            name: editNameInput.value.trim() || m.name,
+            role: editRoleInput.value.trim() || "Anggota",
+            motto: editMottoInput.value.trim(),
+            portfolioUrl: editPortfolioInput.value.trim() || "https://example.com",
+            birthDate: editDobInput.value.trim() || "-",
+            age: editAgeInput.value.trim() || "-",
+            instagramLabel: igHandle || m.instagramLabel,
+            instagramUrl: cleanIg ? `https://instagram.com/${cleanIg}` : m.instagramUrl,
+            linkedinUrl: editLinkedinInput.value.trim() || m.linkedinUrl,
+          };
+
+          try {
+            const map = JSON.parse(localStorage.getItem(STORAGE_KEYS.customPhotos) || "{}");
+            const savedPhoto = members[editingMemberIndex].photo;
+            if (savedPhoto && savedPhoto.startsWith("data:image")) {
+              map[m.number] = savedPhoto;
+            } else {
+              delete map[m.number];
+            }
+            localStorage.setItem(STORAGE_KEYS.customPhotos, JSON.stringify(map));
+          } catch {}
+          saveMembers(members);
+          renderAdminMembers();
+          populateMemberSelect();
+          renderAdminPiket();
+          closeEditMemberModal();
+          showToast(`Data anggota #${m.number} berhasil disimpan!`);
+        });
+
+        // -------------------------------------------------------------
+        // TAB 2: KELOLA JADWAL PIKET
+        // -------------------------------------------------------------
+        const piketNoteInput = document.getElementById("piketNoteInput");
+        const piketDaySelect = document.getElementById("piketDaySelect");
+        const piketMemberSelect = document.getElementById("piketMemberSelect");
+        const customNameGroup = document.getElementById("customNameGroup");
+        const piketCustomNameInput = document.getElementById("piketCustomNameInput");
+        const piketTaskInput = document.getElementById("piketTaskInput");
+        const adminDayPills = document.getElementById("adminDayPills");
+        const adminPiketRoster = document.getElementById("adminPiketRoster");
+
+        piketNoteInput.value = piket.note || "";
+
+        document.getElementById("savePiketNoteBtn").addEventListener("click", () => {
+          piket.note = piketNoteInput.value.trim();
+          savePiket(piket);
+          showToast("Catatan jadwal piket disimpan!");
+        });
+
+        function populateMemberSelect() {
+          piketMemberSelect.innerHTML = "";
+          members.forEach((m) => {
+            const opt = document.createElement("option");
+            opt.value = m.number;
+            opt.textContent = `#${m.number} — ${m.name}`;
+            piketMemberSelect.appendChild(opt);
+          });
+          const customOpt = document.createElement("option");
+          customOpt.value = "CUSTOM";
+          customOpt.textContent = "+ Input Nama Manual...";
+          piketMemberSelect.appendChild(customOpt);
+        }
+
+        populateMemberSelect();
+
+        piketMemberSelect.addEventListener("change", () => {
+          customNameGroup.style.display =
+            piketMemberSelect.value === "CUSTOM" ? "flex" : "none";
+        });
+
+        piketDaySelect.addEventListener("change", () => {
+          activePiketDay = piketDaySelect.value;
+          renderAdminPiket();
+        });
+
+        document.querySelectorAll(".task-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            piketTaskInput.value = chip.dataset.task;
+          });
+        });
+
+        document.getElementById("addPiketForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const day = piketDaySelect.value;
+          const selectedVal = piketMemberSelect.value;
+          const task = piketTaskInput.value.trim() || "Piket Kelas";
+
+          const newEntry =
+            selectedVal === "CUSTOM"
+              ? {
+                  memberNumber: "",
+                  customName: piketCustomNameInput.value.trim() || "Petugas Piket",
+                  task,
+                }
+              : {
+                  memberNumber: selectedVal,
+                  customName: "",
+                  task,
+                };
+
+          if (!piket.schedule[day]) piket.schedule[day] = [];
+          piket.schedule[day].push(newEntry);
+          savePiket(piket);
+          activePiketDay = day;
+          piketCustomNameInput.value = "";
+          renderAdminPiket();
+          showToast(`Petugas ditambahkan ke hari ${day}!`);
+        });
+
+        document.getElementById("resetPiketBtn").addEventListener("click", () => {
+          if (confirm("Kembalikan jadwal piket Senin–Sabtu ke pengaturan awal?")) {
+            piket = createDefaultPiket();
+            piketNoteInput.value = piket.note;
+            savePiket(piket);
+            renderAdminPiket();
+            showToast("Jadwal piket di-reset ke default.");
+          }
+        });
+
+        function renderAdminPiket() {
+          adminDayPills.innerHTML = "";
+          PIKET_DAYS.forEach((day) => {
+            const count = (piket.schedule[day] || []).length;
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = `day-pill ${activePiketDay === day ? "is-active" : ""}`;
+            btn.textContent = `${day} (${count})`;
+            btn.addEventListener("click", () => {
+              activePiketDay = day;
+              piketDaySelect.value = day;
+              renderAdminPiket();
+            });
+            adminDayPills.appendChild(btn);
+          });
+
+          const list = piket.schedule[activePiketDay] || [];
+          adminPiketRoster.innerHTML = "";
+
+          if (list.length === 0) {
+            adminPiketRoster.innerHTML = `
+              <div style="padding: 28px; text-align: center; color: #71717a; border: 1px dashed rgba(255,255,255,0.12); border-radius: 16px; font-size: 13px;">
+                Belum ada petugas piket untuk hari <strong>${activePiketDay}</strong>. Tambahkan lewat formulir di samping.
+              </div>
+            `;
+            return;
+          }
+
+          list.forEach((entry, index) => {
+            const linked = members.find((m) => m.number === entry.memberNumber);
+            const name = linked ? linked.name : entry.customName || "Petugas";
+            const sub = linked ? `#${linked.number} • ${linked.role || "Anggota"}` : "Input Manual";
+
+            const row = document.createElement("div");
+            row.className = "roster-row";
+
+            const left = document.createElement("div");
+            left.className = "roster-left";
+
+            const img = document.createElement("img");
+            img.className = "roster-avatar";
+            img.alt = name;
+            applyFallback(img, linked);
+
+            const info = document.createElement("div");
+            info.style.minWidth = "0";
+            info.innerHTML = `
+              <div style="font-size: 13.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(name)}</div>
+              <div style="font-size: 11.5px; color: #a1a1aa;">${escapeHtml(sub)} &bull; <strong style="color: #fff;">${escapeHtml(entry.task)}</strong></div>
+            `;
+
+            left.appendChild(img);
+            left.appendChild(info);
+
+            const actions = document.createElement("div");
+            actions.className = "roster-actions";
+
+            if (index > 0) {
+              const upBtn = document.createElement("button");
+              upBtn.type = "button";
+              upBtn.className = "btn btn-secondary";
+              upBtn.style.padding = "6px 10px";
+              upBtn.textContent = "↑";
+              upBtn.title = "Geser naik";
+              upBtn.addEventListener("click", () => {
+                [list[index - 1], list[index]] = [list[index], list[index - 1]];
+                savePiket(piket);
+                renderAdminPiket();
+              });
+              actions.appendChild(upBtn);
+            }
+
+            if (index < list.length - 1) {
+              const downBtn = document.createElement("button");
+              downBtn.type = "button";
+              downBtn.className = "btn btn-secondary";
+              downBtn.style.padding = "6px 10px";
+              downBtn.textContent = "↓";
+              downBtn.title = "Geser turun";
+              downBtn.addEventListener("click", () => {
+                [list[index + 1], list[index]] = [list[index], list[index + 1]];
+                savePiket(piket);
+                renderAdminPiket();
+              });
+              actions.appendChild(downBtn);
+            }
+
+            const delBtn = document.createElement("button");
+            delBtn.type = "button";
+            delBtn.className = "btn btn-danger";
+            delBtn.style.padding = "6px 12px";
+            delBtn.style.fontSize = "12px";
+            delBtn.textContent = "Hapus";
+            delBtn.addEventListener("click", () => {
+              list.splice(index, 1);
+              savePiket(piket);
+              renderAdminPiket();
+              showToast("Petugas dihapus dari jadwal.");
+            });
+
+            actions.appendChild(delBtn);
+            row.appendChild(left);
+            row.appendChild(actions);
+            adminPiketRoster.appendChild(row);
+          });
+        }
+
+        // -------------------------------------------------------------
+        // EXPORT & IMPORT BACKUP JSON
+        // -------------------------------------------------------------
+        document.getElementById("exportJsonBtn").addEventListener("click", () => {
+          const payload = {
+            exportedAt: new Date().toISOString(),
+            members,
+            piket,
+          };
+          const blob = new Blob([JSON.stringify(payload, null, 2)], {
+            type: "application/json",
+          });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "invictus-data-backup.json";
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast("Backup JSON berhasil diunduh!");
+        });
+
+        const importJsonInput = document.getElementById("importJsonInput");
+        document.getElementById("importJsonBtn").addEventListener("click", () => {
+          importJsonInput.click();
+        });
+
+        importJsonInput.addEventListener("change", (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(reader.result);
+              if (Array.isArray(parsed.members)) {
+                members = parsed.members;
+                saveMembers(members);
+              }
+              if (parsed.piket && parsed.piket.schedule) {
+                piket = parsed.piket;
+                piketNoteInput.value = piket.note || "";
+                savePiket(piket);
+              }
+              renderAdminMembers();
+              populateMemberSelect();
+              renderAdminPiket();
+              showToast("Data backup berhasil dipulihkan!");
+            } catch {
+              alert("File JSON tidak valid.");
+            } finally {
+              importJsonInput.value = "";
+            }
+          };
+          reader.readAsText(file);
+        });
+
+        function escapeHtml(str) {
+          return String(str || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        renderAdminMembers();
+        renderAdminPiket();
+      });
+    </script>
+  </body>
+</html>
