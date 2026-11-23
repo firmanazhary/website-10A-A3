@@ -1,0 +1,63 @@
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html { scroll-padding-top: 2rem; }
+body { background: #F6F5EF; color: #182421; }
+::selection { background: #C69A55; color: #182421; }
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.24em] text-sage;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-7 bg-gold;
+  }
+  .section-title {
+    @apply font-display text-3xl font-extrabold leading-tight tracking-[-.045em] text-ink sm:text-4xl lg:text-5xl;
+  }
+  .section-copy { @apply mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-base; }
+  .soft-card { @apply rounded-2xl border border-ink/5 bg-paper shadow-card; }
+  .focus-ring { @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold; }
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+.hero-glow {
+  background: radial-gradient(circle at 66% 45%, rgba(198,154,85,.22), transparent 28%), radial-gradient(circle at 18% 85%, rgba(120,144,131,.2), transparent 35%);
+}
+.hero-word {
+  -webkit-text-stroke: 1px rgba(246,245,239,.17);
+  color: transparent;
+}
+.member-card.is-moved { opacity: .48; filter: grayscale(1); }
+.member-card.is-moved:hover { opacity: .72; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.menu-panel[hidden] { display: none; }
+.menu-panel { transform-origin: top right; animation: menu-in .18s ease-out; }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.gallery-button img { transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.gallery-button:hover img { transform: scale(1.045); }
+dialog::backdrop { background: rgba(9, 18, 15, .82); backdrop-filter: blur(8px); }
+#lightbox:not([open]) { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}

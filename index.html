@@ -1,0 +1,343 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#182421">
+  <meta name="description" content="INVICTUS — Angkatan 3 Pondok Tahfizh Plus Abu Dzar. Datang, Bertahan, Menang, Tak Terkalahkan.">
+  <title>INVICTUS — Angkatan 3 | Pondok Tahfizh Plus Abu Dzar</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/output.css">
+  <script src="./js/main.js" defer></script>
+</head>
+<body class="font-sans antialiased">
+  <a href="#main-content" class="focus-ring sr-only fixed left-4 top-4 z-[100] rounded-lg bg-paper px-4 py-3 text-sm font-semibold text-ink focus:not-sr-only">Lewati ke konten</a>
+
+  <!-- HEADER / NAVIGASI -->
+  <header class="absolute inset-x-0 top-0 z-50 px-4 pt-5 sm:px-8 lg:px-12">
+    <div class="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-ink/35 px-4 py-3 text-paper shadow-lg shadow-black/5 backdrop-blur-xl sm:px-5">
+      <a href="#beranda" class="focus-ring inline-flex items-center gap-3 rounded-lg" aria-label="INVICTUS, kembali ke beranda">
+        <span class="grid h-9 w-9 place-items-center rounded-xl border border-gold/40 bg-white/5 font-display text-sm font-extrabold text-gold">I.</span>
+        <span>
+          <span class="block font-display text-sm font-extrabold tracking-[.18em]">INVICTUS</span>
+          <span class="mt-0.5 block text-[9px] uppercase tracking-[.2em] text-white/55">Angkatan Ketiga</span>
+        </span>
+      </a>
+
+      <div class="relative">
+        <button id="menu-toggle" type="button" class="focus-ring inline-flex min-h-11 items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-4 text-xs font-semibold tracking-wide text-paper transition hover:bg-white/10" aria-expanded="false" aria-controls="menu-panel">
+          <span id="menu-toggle-label">Menu</span>
+          <span class="grid h-5 w-5 content-center gap-[5px]" aria-hidden="true">
+            <span id="menu-line-one" class="block h-px w-5 bg-current transition-transform"></span>
+            <span id="menu-line-two" class="block h-px w-5 bg-current transition-opacity"></span>
+          </span>
+        </button>
+        <nav id="menu-panel" class="menu-panel absolute right-0 top-[calc(100%+12px)] w-[min(19rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#20352E] p-3 text-paper shadow-2xl shadow-black/25" aria-label="Navigasi utama" hidden>
+          <p class="px-3 pb-2 pt-2 text-[9px] font-bold uppercase tracking-[.22em] text-gold">Jelajahi INVICTUS</p>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#beranda">Beranda <span aria-hidden="true">↗</span></a>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#tentang">Tentang <span aria-hidden="true">↗</span></a>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#angkatan">Angkatan <span aria-hidden="true">↗</span></a>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#jadwal">Jadwal Piket <span aria-hidden="true">↗</span></a>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#galeri">Galeri <span aria-hidden="true">↗</span></a>
+          <a class="menu-link focus-ring flex min-h-11 items-center justify-between rounded-xl px-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#kontak">Kontak / Footer <span aria-hidden="true">↗</span></a>
+          <p class="mt-2 border-t border-white/10 px-3 pt-3 text-[10px] leading-5 text-white/40">Datang. Bertahan. Menang.</p>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section id="beranda" class="relative isolate min-h-[760px] overflow-hidden bg-ink px-5 pb-20 pt-36 text-paper sm:min-h-[790px] sm:px-8 lg:px-12 lg:pt-44">
+      <div class="hero-glow absolute inset-0 -z-10"></div>
+      <div class="hero-grid absolute inset-0 -z-10 opacity-70"></div>
+      <div class="absolute -right-28 top-36 -z-10 h-[28rem] w-[28rem] rounded-full border border-white/10 sm:right-0 sm:top-28 sm:h-[38rem] sm:w-[38rem]"></div>
+      <div class="absolute -right-10 top-52 -z-10 h-[21rem] w-[21rem] rounded-full border border-gold/20 sm:right-16 sm:top-44 sm:h-[30rem] sm:w-[30rem]"></div>
+      <div class="absolute bottom-0 left-0 -z-10 h-32 w-full bg-gradient-to-t from-ink to-transparent"></div>
+
+      <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
+        <div class="relative z-10 reveal">
+          <p class="eyebrow text-gold before:bg-gold">Satu cerita, satu keluarga</p>
+          <p class="mt-7 text-xs font-semibold uppercase tracking-[.2em] text-white/55">Angkatan 3 — Pondok Tahfizh Plus Abu Dzar</p>
+          <h1 class="mt-3 font-display text-[clamp(4.1rem,14vw,8.8rem)] font-extrabold leading-[.83] tracking-[-.085em] text-paper">INVICTUS<span class="text-gold">.</span></h1>
+          <p class="mt-8 max-w-xl font-display text-xl font-semibold leading-snug tracking-[-.03em] text-white sm:text-2xl">Datang, Bertahan, Menang, <span class="text-gold">Tak Terkalahkan.</span></p>
+          <p class="mt-5 max-w-lg text-sm leading-7 text-white/55">Bukan hanya tentang siapa yang memulai perjalanan, tetapi tentang mereka yang terus melangkah, tumbuh, dan menjaga cerita tetap hidup.</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#angkatan" class="focus-ring inline-flex min-h-12 items-center gap-3 rounded-xl bg-gold px-5 text-xs font-bold text-ink transition hover:bg-[#d6ad6d]">Lihat Angkatan <span aria-hidden="true">↗</span></a>
+            <a href="#jadwal" class="focus-ring inline-flex min-h-12 items-center rounded-xl border border-white/20 px-5 text-xs font-semibold text-white transition hover:bg-white/10">Jadwal Piket</a>
+            <a href="#galeri" class="focus-ring inline-flex min-h-12 items-center rounded-xl border border-white/20 px-5 text-xs font-semibold text-white transition hover:bg-white/10">Galeri Kenangan</a>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-[31rem] reveal" aria-label="Ilustrasi identitas INVICTUS">
+          <div class="absolute -inset-5 rounded-[2.5rem] border border-white/10"></div>
+          <div class="relative aspect-[4/4.5] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#38584b] via-[#233c34] to-[#172721] p-6 shadow-2xl shadow-black/30 sm:p-8">
+            <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,.18) 1px, transparent 1px); background-size: 22px 22px;"></div>
+            <div class="absolute -right-16 -top-10 h-64 w-64 rounded-full border border-gold/20"></div>
+            <div class="absolute -right-7 top-8 h-44 w-44 rounded-full border border-gold/20"></div>
+            <div class="relative flex h-full flex-col justify-between">
+              <div class="flex items-start justify-between">
+                <span class="text-[10px] font-bold uppercase tracking-[.22em] text-white/45">Pondok Tahfizh Plus</span>
+                <span class="rounded-full border border-gold/30 px-3 py-1.5 text-[9px] font-bold tracking-[.18em] text-gold">EST. ANGKATAN 03</span>
+              </div>
+              <div class="relative py-3 text-center">
+                <div class="mx-auto grid h-36 w-36 place-items-center rounded-full border border-gold/35 bg-ink/20 shadow-[0_0_70px_rgba(198,154,85,.13)] sm:h-44 sm:w-44">
+                  <div class="grid h-28 w-28 place-items-center rounded-full border border-white/15 sm:h-36 sm:w-36">
+                    <span class="font-display text-7xl font-extrabold tracking-[-.1em] text-gold sm:text-8xl">III</span>
+                  </div>
+                </div>
+                <p class="mt-7 font-display text-3xl font-extrabold tracking-[.18em] text-white sm:text-4xl">INVICTUS</p>
+                <p class="mt-3 text-[9px] font-semibold uppercase tracking-[.28em] text-white/40">Datang • Bertahan • Menang</p>
+              </div>
+              <div class="flex items-end justify-between border-t border-white/10 pt-5">
+                <span class="max-w-[11rem] text-[10px] leading-5 text-white/45">Sebuah perjalanan yang dirangkai bersama.</span>
+                <span class="font-display text-3xl font-extrabold text-white/15">03</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -left-5 rounded-2xl border border-white/10 bg-[#20372f]/90 px-4 py-3 shadow-xl backdrop-blur sm:-left-10 sm:px-5">
+            <p class="text-[9px] uppercase tracking-[.2em] text-white/45">Our identity</p>
+            <p class="mt-1 font-display text-sm font-bold text-gold">Tak Terkalahkan.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto mt-20 flex max-w-7xl items-center justify-between border-t border-white/10 pt-5 text-[9px] font-semibold uppercase tracking-[.2em] text-white/35">
+        <span>Angkatan Ketiga · Abu Dzar</span>
+        <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span> Satu angkatan, banyak cerita</span>
+      </div>
+    </section>
+
+    <!-- TENTANG + STATISTIK -->
+    <section id="tentang" class="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div class="reveal">
+            <p class="eyebrow">Tentang perjalanan</p>
+            <h2 class="section-title mt-5">Bertumbuh dalam cerita yang sama.</h2>
+          </div>
+          <div class="reveal lg:pb-1">
+            <p class="section-copy mt-0">Perjalanan INVICTUS dimulai dengan 33 orang saat SMP. Seiring waktu, jalan pendidikan membawa sebagian teman ke tempat yang berbeda. Sebagian tetap melanjutkan perjalanan di pondok, dan delapan teman baru menjadi bagian dari keluarga saat SMA.</p>
+            <p class="mt-3 max-w-2xl text-sm leading-7 text-muted">Jumlah boleh berubah, tetapi kenangan, pelajaran, dan persaudaraan tetap menjadi bagian dari cerita angkatan ini.</p>
+          </div>
+        </div>
+
+        <div class="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <article class="soft-card reveal p-5 sm:p-6">
+            <span class="text-[9px] font-bold uppercase tracking-[.18em] text-muted">Awal SMP</span>
+            <p class="mt-5 font-display text-4xl font-extrabold tracking-[-.06em] text-ink" data-count="33">0</p>
+            <p class="mt-2 text-xs font-semibold text-forest">33 Awal</p>
+          </article>
+          <article class="soft-card reveal p-5 sm:p-6">
+            <span class="text-[9px] font-bold uppercase tracking-[.18em] text-muted">Pindah sekolah</span>
+            <p class="mt-5 font-display text-4xl font-extrabold tracking-[-.06em] text-ink" data-count="15">0</p>
+            <p class="mt-2 text-xs font-semibold text-muted">15 Pindah</p>
+          </article>
+          <article class="soft-card reveal p-5 sm:p-6">
+            <span class="text-[9px] font-bold uppercase tracking-[.18em] text-muted">Lanjut di pondok</span>
+            <p class="mt-5 font-display text-4xl font-extrabold tracking-[-.06em] text-ink" data-count="18">0</p>
+            <p class="mt-2 text-xs font-semibold text-forest">18 Lanjut</p>
+          </article>
+          <article class="soft-card reveal p-5 sm:p-6">
+            <span class="text-[9px] font-bold uppercase tracking-[.18em] text-muted">Teman baru</span>
+            <p class="mt-5 font-display text-4xl font-extrabold tracking-[-.06em] text-ink" data-count="8">0</p>
+            <p class="mt-2 text-xs font-semibold text-gold">8 Baru</p>
+          </article>
+          <article class="soft-card reveal col-span-2 bg-forest p-5 text-paper sm:col-span-1 sm:p-6">
+            <span class="text-[9px] font-bold uppercase tracking-[.18em] text-white/55">Total SMA</span>
+            <p class="mt-5 font-display text-4xl font-extrabold tracking-[-.06em] text-gold" data-count="26">0</p>
+            <p class="mt-2 text-xs font-semibold text-white/75">26 Bersama di SMA</p>
+          </article>
+        </div>
+        <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[10px] text-muted">
+          <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-forest"></span> 18 santri lama yang lanjut</span>
+          <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-gold"></span> 8 teman baru saat SMA</span>
+          <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-muted/40"></span> 15 teman melanjutkan di sekolah lain</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAFTAR ANGKATAN -->
+    <section id="angkatan" class="bg-[#ECEFE9] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+          <div class="reveal">
+            <p class="eyebrow">Orang-orang di balik cerita</p>
+            <h2 class="section-title mt-5">Keluarga INVICTUS.</h2>
+            <p class="section-copy">Daftar anggota disusun dari status perjalanan mereka. Nama yang tampil masih berupa placeholder dan dapat diganti melalui satu file JavaScript.</p>
+          </div>
+          <div class="reveal flex w-full flex-col gap-3 sm:flex-row lg:max-w-[31rem]">
+            <label class="flex-1">
+              <span class="sr-only">Cari nama anggota</span>
+              <input id="member-search" type="search" placeholder="Cari nama anggota..." class="focus-ring min-h-12 w-full rounded-xl border border-ink/10 bg-paper px-4 text-sm text-ink placeholder:text-muted/60">
+            </label>
+            <label class="sm:w-44">
+              <span class="sr-only">Filter status anggota</span>
+              <select id="member-filter" class="focus-ring min-h-12 w-full rounded-xl border border-ink/10 bg-paper px-4 text-sm text-ink">
+                <option value="all">Semua status</option>
+                <option value="continuing">Lanjut SMA</option>
+                <option value="new">Baru</option>
+                <option value="moved">Pindah</option>
+              </select>
+            </label>
+            <label class="sm:w-40">
+              <span class="sr-only">Filter kelas anggota</span>
+              <select id="member-class-filter" class="focus-ring min-h-12 w-full rounded-xl border border-ink/10 bg-paper px-4 text-sm text-ink">
+                <option value="all">Semua kelas</option>
+                <option value="10A">Kelas 10A</option>
+                <option value="10B">Kelas 10B</option>
+                <option value="none">Sekolah lain</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-9 flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 pb-4">
+          <p id="member-count" class="text-xs font-semibold text-forest" aria-live="polite">Memuat anggota...</p>
+          <p class="text-[10px] text-muted">Pilih filter untuk melihat perjalanan tiap anggota.</p>
+        </div>
+        <div id="member-list" class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5" aria-live="polite">
+          <p class="col-span-full py-10 text-center text-sm text-muted">Daftar anggota sedang dimuat...</p>
+        </div>
+        <p class="mt-6 text-[10px] leading-5 text-muted">Catatan: placeholder nama sengaja digunakan karena daftar nama asli belum diberikan. Silakan ganti data pada bagian <code class="rounded bg-white px-1.5 py-0.5 text-forest">members</code> di <code class="rounded bg-white px-1.5 py-0.5 text-forest">js/main.js</code>.</p>
+      </div>
+    </section>
+
+    <!-- JADWAL PIKET -->
+    <section id="jadwal" class="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-10 lg:grid-cols-[.78fr_1.22fr]">
+          <div class="reveal">
+            <p class="eyebrow">Tugas bersama</p>
+            <h2 class="section-title mt-5">Jadwal piket, satu tim.</h2>
+            <p class="section-copy">Jadwal otomatis mengikuti tanggal hari ini. Gunakan tombol navigasi untuk melihat pembagian minggu sebelumnya atau berikutnya.</p>
+            <div class="mt-8 rounded-2xl border border-forest/10 bg-mist p-5 sm:p-6">
+              <p class="text-[10px] font-bold uppercase tracking-[.2em] text-forest">Sistem rotasi</p>
+              <p class="mt-3 text-sm leading-7 text-muted">Setiap hari mendapat dua petugas. Urutan bergeser setiap minggu supaya pembagian tugas tetap berputar dan kesempatan bertugas lebih merata.</p>
+              <p class="mt-4 border-t border-forest/10 pt-4 text-[10px] leading-5 text-muted">Jadwal ini adalah template awal. Sesuaikan daftar anggota kelas dan jumlah petugas per hari di bagian <code class="rounded bg-white px-1 py-0.5 text-forest">dutyConfig</code> pada <code class="rounded bg-white px-1 py-0.5 text-forest">js/main.js</code>.</p>
+            </div>
+          </div>
+
+          <div class="soft-card reveal overflow-hidden">
+            <div class="border-b border-ink/5 bg-paper p-5 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-[9px] font-bold uppercase tracking-[.2em] text-muted">Kalender piket</p>
+                  <h3 id="week-label" class="mt-2 font-display text-xl font-extrabold tracking-[-.04em] text-ink sm:text-2xl">Minggu berjalan</h3>
+                  <p id="week-range" class="mt-1 text-xs text-muted">Memuat tanggal...</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button id="week-prev" type="button" class="focus-ring grid h-10 w-10 place-items-center rounded-xl border border-ink/10 text-ink transition hover:bg-mist" aria-label="Lihat minggu sebelumnya">←</button>
+                  <button id="week-next" type="button" class="focus-ring grid h-10 w-10 place-items-center rounded-xl border border-ink/10 text-ink transition hover:bg-mist" aria-label="Lihat minggu berikutnya">→</button>
+                </div>
+              </div>
+              <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+                <div class="inline-flex rounded-xl bg-mist p-1" role="group" aria-label="Pilih kelas">
+                  <button type="button" class="class-tab focus-ring min-h-10 rounded-lg bg-forest px-5 text-xs font-bold text-white" data-class="10A" aria-pressed="true">Kelas 10A</button>
+                  <button type="button" class="class-tab focus-ring min-h-10 rounded-lg px-5 text-xs font-bold text-muted transition hover:text-ink" data-class="10B" aria-pressed="false">Kelas 10B</button>
+                </div>
+                <span id="duty-class-count" class="text-[10px] font-semibold text-muted">14 anggota</span>
+              </div>
+            </div>
+            <div class="p-4 sm:p-6">
+              <div id="duty-schedule" class="space-y-2" aria-live="polite">
+                <p class="py-8 text-center text-sm text-muted">Jadwal sedang disiapkan...</p>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center gap-4 border-t border-ink/5 pt-4 text-[10px] text-muted">
+                <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-gold"></span> Hari ini</span>
+                <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-forest"></span> Hari terjadwal</span>
+              </div>
+              <p id="week-note" class="mt-4 text-[10px] leading-5 text-muted"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri" class="bg-ink px-5 py-24 text-paper sm:px-8 lg:px-12 lg:py-32">
+      <div class="mx-auto max-w-7xl">
+        <div class="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">
+          <div class="reveal">
+            <p class="eyebrow text-gold before:bg-gold">Arsip kenangan</p>
+            <h2 class="mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-.045em] text-paper sm:text-4xl lg:text-5xl">Sebelum semua cerita<br>menjadi kenangan.</h2>
+            <p class="mt-4 max-w-xl text-sm leading-7 text-white/50">Potongan momen perjalanan INVICTUS saat masa SMP. Klik foto untuk melihatnya lebih dekat.</p>
+          </div>
+          <p class="reveal max-w-[15rem] text-[10px] leading-6 text-white/35">Placeholder gambar tersedia di folder <code class="rounded bg-white/10 px-1.5 py-0.5 text-gold">assets/img/</code>. Ganti file gambarnya dengan foto kenangan kalian.</p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4" id="gallery-grid">
+          <button type="button" class="gallery-button focus-ring group relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#294238] text-left sm:row-span-2 sm:aspect-auto" data-full="./assets/img/kenangan-01.svg" data-caption="Momen kebersamaan — placeholder foto 01">
+            <img src="./assets/img/kenangan-01.svg" alt="Placeholder foto kebersamaan santri INVICTUS pada masa SMP" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"></span>
+            <span class="absolute bottom-0 left-0 p-4 sm:p-5"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">01 / Kebersamaan</span><span class="mt-1 block font-display text-sm font-bold text-white sm:text-base">Satu langkah, satu cerita</span></span>
+            <span class="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full border border-white/30 bg-ink/30 text-white opacity-0 backdrop-blur transition group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">↗</span>
+          </button>
+          <button type="button" class="gallery-button focus-ring group relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#294238] text-left" data-full="./assets/img/kenangan-02.svg" data-caption="Hari-hari di pondok — placeholder foto 02">
+            <img src="./assets/img/kenangan-02.svg" alt="Placeholder suasana aktivitas santri di pondok" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></span><span class="absolute bottom-0 left-0 p-4"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">02 / Keseharian</span><span class="mt-1 block text-sm font-bold text-white">Hari-hari di pondok</span></span>
+          </button>
+          <button type="button" class="gallery-button focus-ring group relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#294238] text-left" data-full="./assets/img/kenangan-03.svg" data-caption="Belajar dan bertumbuh — placeholder foto 03">
+            <img src="./assets/img/kenangan-03.svg" alt="Placeholder momen belajar bersama di kelas" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></span><span class="absolute bottom-0 left-0 p-4"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">03 / Perjuangan</span><span class="mt-1 block text-sm font-bold text-white">Belajar dan bertumbuh</span></span>
+          </button>
+          <button type="button" class="gallery-button focus-ring group relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#294238] text-left" data-full="./assets/img/kenangan-04.svg" data-caption="Momen sederhana yang berharga — placeholder foto 04">
+            <img src="./assets/img/kenangan-04.svg" alt="Placeholder momen sederhana bersama teman-teman" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></span><span class="absolute bottom-0 left-0 p-4"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">04 / Momen</span><span class="mt-1 block text-sm font-bold text-white">Hal kecil, arti besar</span></span>
+          </button>
+          <button type="button" class="gallery-button focus-ring group relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#294238] text-left" data-full="./assets/img/kenangan-05.svg" data-caption="Tawa yang selalu diingat — placeholder foto 05">
+            <img src="./assets/img/kenangan-05.svg" alt="Placeholder kenangan saat bercanda dan tertawa bersama" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></span><span class="absolute bottom-0 left-0 p-4"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">05 / Persahabatan</span><span class="mt-1 block text-sm font-bold text-white">Tawa yang diingat</span></span>
+          </button>
+          <button type="button" class="gallery-button focus-ring group relative col-span-2 aspect-[16/7] overflow-hidden rounded-2xl bg-[#294238] text-left sm:col-span-1 sm:aspect-[4/3]" data-full="./assets/img/kenangan-06.svg" data-caption="Sampai bertemu di cerita berikutnya — placeholder foto 06">
+            <img src="./assets/img/kenangan-06.svg" alt="Placeholder foto bersama sebagai penutup kenangan masa SMP" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></span><span class="absolute bottom-0 left-0 p-4"><span class="block text-[9px] font-bold uppercase tracking-[.2em] text-gold">06 / Kenangan</span><span class="mt-1 block text-sm font-bold text-white">Sampai jumpa lagi</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK / FOOTER -->
+    <footer id="kontak" class="bg-[#111C18] px-5 pb-8 pt-20 text-paper sm:px-8 lg:px-12 lg:pt-24">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-10 border-b border-white/10 pb-14 md:grid-cols-[1.2fr_.8fr] md:items-end">
+          <div class="reveal">
+            <p class="eyebrow text-gold before:bg-gold">Cerita kita belum selesai</p>
+            <h2 class="mt-5 max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-[-.05em] sm:text-4xl lg:text-5xl">Tetap terhubung.<br><span class="text-gold">Tetap INVICTUS.</span></h2>
+            <p class="mt-5 max-w-lg text-sm leading-7 text-white/45">Punya foto, cerita, atau pembaruan data angkatan? Hubungi pengurus dan bantu lengkapi arsip perjalanan kita.</p>
+          </div>
+          <div class="reveal rounded-2xl border border-white/10 bg-white/[.04] p-5 sm:p-6">
+            <p class="text-[9px] font-bold uppercase tracking-[.2em] text-white/40">Kontak angkatan</p>
+            <p class="mt-3 font-display text-lg font-bold text-white">Punya sesuatu untuk dibagikan?</p>
+            <a href="mailto:email-angkatan@example.com?subject=Arsip%20INVICTUS" class="focus-ring mt-5 inline-flex min-h-11 items-center gap-3 rounded-xl bg-gold px-4 text-xs font-bold text-ink transition hover:bg-[#d6ad6d]">Hubungi pengurus <span aria-hidden="true">↗</span></a>
+            <p class="mt-3 text-[9px] leading-5 text-white/35">Ganti alamat email placeholder di <code class="rounded bg-white/10 px-1 py-0.5 text-gold">index.html</code> dengan email pengurus.</p>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between gap-5 pt-7 sm:flex-row sm:items-center">
+          <a href="#beranda" class="focus-ring inline-flex w-fit items-center gap-3 rounded-lg">
+            <span class="grid h-9 w-9 place-items-center rounded-xl border border-gold/40 font-display text-sm font-extrabold text-gold">I.</span>
+            <span><span class="block font-display text-sm font-extrabold tracking-[.18em]">INVICTUS</span><span class="mt-0.5 block text-[9px] uppercase tracking-[.18em] text-white/35">Angkatan 3 · Abu Dzar</span></span>
+          </a>
+          <p class="text-[10px] leading-5 text-white/35">© <span id="current-year"></span> INVICTUS. Dibuat untuk menyimpan cerita bersama.</p>
+          <a href="#beranda" class="focus-ring w-fit rounded-lg text-[10px] font-semibold text-white/50 transition hover:text-gold">Kembali ke atas ↑</a>
+        </div>
+        <p class="pt-7 text-center text-[9px] font-semibold uppercase tracking-[.22em] text-white/20">Datang · Bertahan · Menang · Tak Terkalahkan</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- LIGHTBOX GALERI -->
+  <dialog id="lightbox" class="m-auto w-[min(92vw,58rem)] max-w-none overflow-hidden rounded-2xl border border-white/10 bg-[#111C18] p-0 text-white shadow-2xl" aria-label="Tampilan foto galeri">
+    <div class="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3 sm:px-5">
+      <p id="lightbox-caption" class="text-xs font-semibold text-white/80">Foto kenangan</p>
+      <button id="lightbox-close" type="button" class="focus-ring grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/15 text-lg text-white transition hover:bg-white/10" aria-label="Tutup foto">×</button>
+    </div>
+    <div class="grid min-h-48 place-items-center bg-black/20 p-2 sm:p-4">
+      <img id="lightbox-image" src="" alt="" class="max-h-[75vh] max-w-full rounded-lg object-contain">
+    </div>
+  </dialog>
+</body>
+</html>
