@@ -1418,6 +1418,283 @@
         }
       }
     </style>
+
+    <style id="invictus-typography-layout">
+      /* Typography and layout refinement */
+      body {
+        font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+        line-height: 1.68;
+        letter-spacing: 0.005em;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+        text-wrap: balance;
+      }
+      section h2 {
+        max-width: 12ch;
+        margin-bottom: 1.25rem;
+        line-height: 0.98;
+      }
+      .lead {
+        max-width: 58ch;
+        font-size: clamp(1rem, 1.4vw, 1.12rem);
+        line-height: 1.8;
+        margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+      }
+      .class-roster {
+        margin-top: clamp(2rem, 4vw, 3rem);
+      }
+      .class-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        padding-bottom: 0.85rem;
+        margin-bottom: 1.15rem;
+        border-bottom: 1px solid currentColor;
+        font-size: clamp(1.45rem, 3vw, 2.15rem);
+        line-height: 1.15;
+        letter-spacing: -0.035em;
+      }
+      .class-heading small {
+        margin: 0;
+        font-size: 0.68rem;
+        line-height: 1.4;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+      }
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 185px), 1fr));
+        gap: clamp(0.8rem, 1.5vw, 1.15rem);
+        margin-top: 0;
+      }
+      .mc h3 {
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        overflow-wrap: anywhere;
+      }
+      .mc .fc div {
+        padding: 1rem;
+      }
+      .mc .fc small {
+        display: inline-block;
+        margin-top: 0.3rem;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+      }
+      .mc .bc {
+        gap: 0.25rem;
+        padding: clamp(0.85rem, 1.5vw, 1.15rem);
+        font-size: 0.88rem;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+      }
+      .mc .bc h3 {
+        margin-bottom: 0.45rem;
+        line-height: 1.08;
+      }
+      .piket-day h3 {
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+      }
+      .piket-day li {
+        line-height: 1.5;
+      }
+      .piket-note {
+        max-width: 65ch;
+        line-height: 1.7;
+      }
+      @media (max-width: 620px) {
+        .class-heading {
+          align-items: center;
+        }
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.7rem;
+        }
+        .mc .bc {
+          font-size: 0.78rem;
+          line-height: 1.45;
+        }
+        .mc .bc h3 {
+          font-size: 1.12rem;
+        }
+      }
+      @media (max-width: 360px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <style id="invictus-interactive-navigation">
+      nav {
+        min-height: 82px;
+        gap: 1.5rem;
+        padding-inline: clamp(1rem, 4vw, 4rem);
+        background: rgba(10, 13, 38, 0.76);
+        -webkit-backdrop-filter: blur(20px) saturate(145%);
+        backdrop-filter: blur(20px) saturate(145%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 38px rgba(0, 0, 0, 0.13);
+      }
+      #logo {
+        flex-shrink: 0;
+        font-size: clamp(1.35rem, 2vw, 1.8rem);
+      }
+      #logo img {
+        width: clamp(42px, 4.5vw, 56px);
+        height: clamp(42px, 4.5vw, 56px);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.3rem;
+        padding: 0.42rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.055);
+      }
+      nav .nav-links a {
+        position: relative;
+        isolation: isolate;
+        padding: 0.68rem 1rem;
+        border-radius: 999px;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.88rem;
+        font-weight: 650;
+        letter-spacing: 0.015em;
+        transition:
+          color 0.25s ease,
+          background 0.25s ease,
+          transform 0.25s ease;
+      }
+      nav .nav-links a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background: linear-gradient(135deg, var(--yl), #ffe7a3);
+        opacity: 0;
+        transform: scale(0.82);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+      nav .nav-links a:hover {
+        color: #11142f;
+        transform: translateY(-2px);
+      }
+      nav .nav-links a:hover::after,
+      nav .nav-links a.on::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+      nav .nav-links a.on {
+        color: #11142f;
+        background: transparent;
+      }
+      .nav-toggle {
+        display: none;
+      }
+      @media (max-width: 760px) {
+        nav {
+          min-height: 70px;
+          padding: 9px 1rem;
+        }
+        .nav-toggle {
+          display: flex;
+          width: 46px;
+          height: 46px;
+          flex: 0 0 46px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 15px;
+          background: rgba(255, 255, 255, 0.08);
+          cursor: pointer;
+          transition:
+            background 0.25s ease,
+            border-color 0.25s ease;
+        }
+        .nav-toggle:hover {
+          background: rgba(255, 255, 255, 0.16);
+          border-color: var(--yl);
+        }
+        .nav-toggle span {
+          width: 19px;
+          height: 2px;
+          border-radius: 3px;
+          background: white;
+          transition: transform 0.25s ease;
+        }
+        nav.menu-open .nav-toggle span:first-child {
+          transform: translateY(4px) rotate(45deg);
+        }
+        nav.menu-open .nav-toggle span:last-child {
+          transform: translateY(-4px) rotate(-45deg);
+        }
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 1rem;
+          right: 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.35rem;
+          padding: 0.65rem;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 20px;
+          background: rgba(12, 15, 43, 0.96);
+          -webkit-backdrop-filter: blur(22px);
+          backdrop-filter: blur(22px);
+          box-shadow: 0 22px 55px rgba(0, 0, 0, 0.38);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateY(-9px) scale(0.98);
+          transform-origin: top right;
+          transition:
+            opacity 0.22s ease,
+            transform 0.22s ease,
+            visibility 0.22s;
+        }
+        nav.menu-open .nav-links {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateY(0) scale(1);
+        }
+        nav .nav-links a {
+          width: 100%;
+          padding: 0.85rem 1rem;
+          font-size: 0.95rem;
+        }
+        nav .nav-links a:hover {
+          transform: translateX(4px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .nav-links,
+        .nav-links a,
+        .nav-links a::after,
+        .nav-toggle,
+        .nav-toggle span {
+          transition: none !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav>
@@ -1427,11 +1704,23 @@
           alt="Logo IVCS"
         />INVICTUS✦</span
       >
-      <div>
-        <a href="#about">About</a><a href="#memories">Memories</a
-        ><a href="#members">Members</a><a href="#piket">Piket</a
-        ><a href="#timeline">Journey</a><a href="#wall">Wall</a>
+      <div class="nav-links" id="primary-navigation">
+        <a href="#about">About</a>
+        <a href="#memories">Memories</a>
+        <a href="#members">Members</a>
+        <a href="#piket">Piket</a>
+        <a href="#timeline">Journey</a>
+        <a href="#wall">Wall</a>
       </div>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <span></span><span></span>
+      </button>
     </nav>
 
     <section id="home" class="wrap">
@@ -1495,7 +1784,7 @@
 
     <section id="members" class="wrap">
       <h2>THE CLASS</h2>
-      <p class="lead">27 anggota INVICTUS, terbagi dalam dua kelas.</p>
+      <p class="lead">Kenali 27 anggota INVICTUS dari kelas 10A dan 10B.</p>
       <div class="tools">
         <label for="q" style="position: absolute; left: -9999px"
           >Cari anggota</label
@@ -1505,11 +1794,11 @@
         <button class="btn" id="rnd">Pilih acak</button>
       </div>
       <div class="class-roster">
-        <h3 class="class-heading">KELAS 1 <small>14 ANGGOTA</small></h3>
+        <h3 class="class-heading">10A <small>14 ANGGOTA</small></h3>
         <div class="grid" id="class1Grid"></div>
       </div>
       <div class="class-roster">
-        <h3 class="class-heading">KELAS 2 <small>13 ANGGOTA</small></h3>
+        <h3 class="class-heading">10B <small>13 ANGGOTA</small></h3>
         <div class="grid" id="class2Grid"></div>
       </div>
     </section>
@@ -1517,20 +1806,20 @@
     <section id="piket" class="wrap">
       <h2>ROSTER PIKET</h2>
       <p class="lead">
-        Jadwal piket mingguan INVICTUS dipisahkan berdasarkan kelas. Setiap hari
-        terdiri dari 2–3 orang untuk masing-masing kelas.
+        Jadwal piket mingguan INVICTUS untuk kelas 10A dan 10B. Setiap hari
+        terdiri dari 2–3 anggota di setiap kelas.
       </p>
       <div class="class-roster">
-        <h3 class="class-heading">PIKET KELAS 1 <small>14 ANGGOTA</small></h3>
+        <h3 class="class-heading">PIKET 10A <small>14 ANGGOTA</small></h3>
         <div class="piket-grid" id="piketGrid1" aria-live="polite"></div>
       </div>
       <div class="class-roster">
-        <h3 class="class-heading">PIKET KELAS 2 <small>13 ANGGOTA</small></h3>
+        <h3 class="class-heading">PIKET 10B <small>13 ANGGOTA</small></h3>
         <div class="piket-grid" id="piketGrid2" aria-live="polite"></div>
       </div>
       <p class="piket-note">
-        Pembagian dibuat merata dari Senin sampai Sabtu. Nama anggota Kelas 2
-        yang belum dikonfirmasi masih menggunakan label sementara.
+        Pembagian dibuat merata dari Senin sampai Sabtu. Nama anggota 10B yang
+        belum dikonfirmasi masih menggunakan label sementara.
       </p>
     </section>
 
@@ -1690,7 +1979,7 @@
         "Satria",
         "Ajam",
       ];
-      // Dua nama Kelas 2 belum diberikan, jadi sementara ditandai agar mudah diganti.
+      // Dua nama 10B belum diberikan, jadi sementara ditandai agar mudah diganti.
       const CLASS_2 = [
         "Akmal",
         "Fatih",
@@ -1715,129 +2004,135 @@
         Hiraki: "INVICTUS-assets/hiraki.jpg",
         Satria: "INVICTUS-assets/satria.png",
         Vitto: "INVICTUS-assets/vitto.png",
+        Baim: "INVICTUS-assets/Baim.png",
+        Ibam: "INVICTUS-assets/Ibam.png",
+        Nabigh: "INVICTUS-assets/Nabigh.jpg",
+        Raqilla: "INVICTUS-assets/Raqilla.jpeg",
+        Reza: "INVICTUS-assets/Reza.png",
+        Rhapip: "INVICTUS-assets/Rhapip.png",
       };
       // EDIT DATA PROFIL DI BAGIAN INI: isi bio dan portfolioUrl untuk setiap anggota.
       // Contoh portfolioUrl: "https://namasitus.com"
       const MEMBER_PROFILES = {
         Haidar: {
-          bio: "Tulis deskripsi singkat tentang Haidar di sini.",
+          bio: "Penuh rasa ingin tahu, menyukai teknologi, dan selalu tertarik mencoba hal baru. Punya mimpi besar untuk masa depan.",
           portfolioUrl: "",
         },
         Baim: {
-          bio: "Tulis deskripsi singkat tentang Baim di sini.",
+          bio: "Pribadi yang membawa warna tersendiri dalam pertemanan. Selalu punya cara untuk membuat suasana lebih hidup.",
           portfolioUrl: "",
         },
         Reza: {
-          bio: "Tulis deskripsi singkat tentang Reza di sini.",
+          bio: "Sosok yang terus berkembang, menikmati setiap proses, dan percaya bahwa pengalaman adalah bagian dari perjalanan.",
           portfolioUrl: "",
         },
         Raqilla: {
-          bio: "Tulis deskripsi singkat tentang Raqilla di sini.",
+          bio: "Memiliki semangat untuk belajar dan berkembang. Selalu ada cerita menarik di setiap langkah perjalanannya.",
           portfolioUrl: "",
         },
         Nabigh: {
-          bio: "Tulis deskripsi singkat tentang Nabigh di sini.",
+          bio: "Penuh potensi dan memiliki perjalanan sendiri untuk mencapai hal-hal hebat di masa depan.",
           portfolioUrl: "",
         },
         Vitto: {
-          bio: "Tulis deskripsi singkat tentang Vitto di sini.",
+          bio: "Membawa energi dan cerita unik dalam kebersamaan. Setiap momen menjadi bagian dari kenangan yang berharga.",
           portfolioUrl: "",
         },
         Hilmi: {
-          bio: "Tulis deskripsi singkat tentang Hilmi di sini.",
+          bio: "Terus melangkah dengan caranya sendiri. Menjadikan setiap pengalaman sebagai kesempatan untuk bertumbuh.",
           portfolioUrl: "",
         },
         Hiraki: {
-          bio: "Tulis deskripsi singkat tentang Hiraki di sini.",
+          bio: "Memiliki karakter yang khas dan selalu menjadi bagian dari cerita perjalanan INVICTUS.",
           portfolioUrl: "",
         },
         Ibam: {
-          bio: "Tulis deskripsi singkat tentang Ibam di sini.",
+          bio: "Satu dari sekian banyak karakter unik yang membuat kebersamaan angkatan ini semakin berwarna.",
           portfolioUrl: "",
         },
         Rhapip: {
-          bio: "Tulis deskripsi singkat tentang Rhapip di sini.",
+          bio: "Menjalani hari dengan cerita dan pengalaman yang berbeda. Setiap langkah punya makna tersendiri.",
           portfolioUrl: "",
         },
         Apip: {
-          bio: "Tulis deskripsi singkat tentang Apip di sini.",
+          bio: "Punya warna tersendiri dalam lingkungan pertemanan. Menjadi bagian dari cerita yang tak terlupakan.",
           portfolioUrl: "",
         },
         Pakih: {
-          bio: "Tulis deskripsi singkat tentang Pakih di sini.",
+          bio: "Terus mengukir pengalaman dan membangun cerita bersama. Karena setiap perjalanan punya kenangannya.",
           portfolioUrl: "",
         },
         Satria: {
-          bio: "Tulis deskripsi singkat tentang Satria di sini.",
+          bio: "Semangat untuk terus maju dan mencoba hal baru. Perjalanan hari ini adalah awal dari cerita besar esok hari.",
           portfolioUrl: "",
         },
         Ajam: {
-          bio: "Tulis deskripsi singkat tentang Ajam di sini.",
+          bio: "Memiliki keunikan tersendiri yang melengkapi keberagaman karakter dalam keluarga INVICTUS.",
           portfolioUrl: "",
         },
         Akmal: {
-          bio: "Tulis deskripsi singkat tentang Akmal di sini.",
+          bio: "Selalu punya ruang untuk berkembang dan menciptakan pengalaman baru bersama teman-teman.",
           portfolioUrl: "",
         },
         Fatih: {
-          bio: "Tulis deskripsi singkat tentang Fatih di sini.",
+          bio: "Bagian dari perjalanan yang penuh cerita, persahabatan, dan pengalaman yang akan selalu dikenang.",
           portfolioUrl: "",
         },
         Almer: {
-          bio: "Tulis deskripsi singkat tentang Almer di sini.",
+          bio: "Membawa cerita dan keunikan tersendiri. Setiap pertemuan menjadi bagian dari perjalanan bersama.",
           portfolioUrl: "",
         },
         Qaisar: {
-          bio: "Tulis deskripsi singkat tentang Qaisar di sini.",
+          bio: "Terus bertumbuh, belajar dari pengalaman, dan melangkah menuju versi terbaik dirinya.",
           portfolioUrl: "",
         },
         Fajri: {
-          bio: "Tulis deskripsi singkat tentang Fajri di sini.",
+          bio: "Memiliki perjalanan unik yang menjadi bagian dari kisah besar keluarga INVICTUS.",
           portfolioUrl: "",
         },
         Rafi: {
-          bio: "Tulis deskripsi singkat tentang Rafi di sini.",
+          bio: "Menikmati proses, mengumpulkan pengalaman, dan menciptakan kenangan bersama teman seperjuangan.",
           portfolioUrl: "",
         },
         Alzawawu: {
-          bio: "Tulis deskripsi singkat tentang Alzawawu di sini.",
+          bio: "Sosok dengan cerita tersendiri yang ikut memberikan warna dalam perjalanan angkatan.",
           portfolioUrl: "",
         },
         Aqrom: {
-          bio: "Tulis deskripsi singkat tentang Aqrom di sini.",
+          bio: "Selalu ada pengalaman baru untuk diceritakan. Bagian kecil dari kisah besar yang bernama INVICTUS.",
           portfolioUrl: "",
         },
         Yusuf: {
-          bio: "Tulis deskripsi singkat tentang Yusuf di sini.",
+          bio: "Melangkah dengan tujuan dan harapan. Setiap pengalaman menjadi bekal untuk masa depan.",
           portfolioUrl: "",
         },
         Fadhli: {
-          bio: "Tulis deskripsi singkat tentang Fadhli di sini.",
+          bio: "Memiliki cerita dan perjalanan yang tidak tergantikan dalam kebersamaan angkatan ini.",
           portfolioUrl: "",
         },
         Alfath: {
-          bio: "Tulis deskripsi singkat tentang Alfath di sini.",
+          bio: "Terus mencari pengalaman, membangun kenangan, dan menjadi bagian dari perjalanan yang berharga.",
           portfolioUrl: "",
         },
         "Nama anggota 12 (belum diisi)": {
-          bio: "Tulis deskripsi singkat tentang Nama anggota 12 (belum diisi) di sini.",
+          bio: "Satu dari bagian keluarga INVICTUS yang memiliki cerita dan perjalanan uniknya sendiri.",
           portfolioUrl: "",
         },
         "Nama anggota 13 (belum diisi)": {
-          bio: "Tulis deskripsi singkat tentang Nama anggota 13 (belum diisi) di sini.",
+          bio: "Setiap anggota punya cerita. Inilah salah satu bagian dari perjalanan panjang INVICTUS.",
           portfolioUrl: "",
         },
       };
       const MEMBERS = [
         ...CLASS_1.map((name) => ({
           name,
-          group: "Kelas 1",
+          group: "10A",
           ...(MEMBER_PROFILES[name] || {}),
           src: MEMBER_PHOTOS[name] || null,
         })),
         ...CLASS_2.map((name) => ({
           name,
-          group: "Kelas 2",
+          group: "10B",
           ...(MEMBER_PROFILES[name] || {}),
           src: MEMBER_PHOTOS[name] || null,
         })),
@@ -2097,8 +2392,8 @@
             : "<p>Tidak ada anggota yang cocok.</p>";
         };
 
-        $("#class1Grid").innerHTML = renderCards("Kelas 1");
-        $("#class2Grid").innerHTML = renderCards("Kelas 2");
+        $("#class1Grid").innerHTML = renderCards("10A");
+        $("#class2Grid").innerHTML = renderCards("10B");
       }
       $("#q").oninput = render;
       chips(
@@ -2277,6 +2572,30 @@
         { rootMargin: "-45% 0px -50% 0px" },
       );
       document.querySelectorAll("section[id]").forEach((s) => so.observe(s));
+
+      /* navigasi mobile: buka/tutup menu dan tutup setelah memilih section */
+      const navToggle = document.querySelector(".nav-toggle");
+      const navigation = document.querySelector("nav");
+      const closeNavigation = () => {
+        navigation.classList.remove("menu-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Buka menu navigasi");
+      };
+      navToggle.addEventListener("click", () => {
+        const isOpen = navigation.classList.toggle("menu-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+        navToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Tutup menu navigasi" : "Buka menu navigasi",
+        );
+      });
+      links.forEach((link) => link.addEventListener("click", closeNavigation));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeNavigation();
+      });
+      document.addEventListener("click", (event) => {
+        if (!navigation.contains(event.target)) closeNavigation();
+      });
 
       /* UX polish: reveal on scroll, compact navigation, and hero pointer glow */
       document.body.classList.add("reveal-ready");
