@@ -1,822 +1,1337 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f3efe6" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>INVICTUS — Gen 03 · Tak Terkalahkan</title>
     <meta
       name="description"
-      content="INVICTUS — one class, countless stories."
+      content="Situs angkatan INVICTUS Gen 03: tiga puluh tiga anak SMP, satu nama, tak terkalahkan."
     />
-    <title>INVICTUS — Class Archive</title>
-
+    <meta name="theme-color" content="#0A0612" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/output.css" />
-    <!-- Tailwind configuration -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              paper: "#f3efe6",
-              ink: "#24231f",
-              rust: "#a64d3c",
-              olive: "#737b62",
-              mustard: "#e8c66f",
-            },
-            fontFamily: {
-              sans: ["DM Sans", "sans-serif"],
-              mono: ["DM Mono", "monospace"],
-              hand: ["Caveat", "cursive"],
-            },
-          },
-        },
-      };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="output.css" />
-  </head>
-
-  <body class="bg-paper text-ink font-sans antialiased">
-    <a href="#main" class="skip-link">Skip to content</a>
-
-    <!-- HEADER -->
-    <header class="site-header">
-      <a href="#home" class="brand" aria-label="Invictus home">
-        <span class="brand-kicker">the class archive of</span>
-        <span class="brand-name">INVICTUS<span>.</span></span>
-      </a>
-
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#home" class="active">Home</a>
-        <a href="#memories">Memories</a>
-        <a href="#members">Members</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#about">Our story</a>
-      </nav>
-
-      <span class="header-year"> CLASS OF <b>2026</b> </span>
-
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        aria-label="Open navigation"
-      >
-        <span></span>
-        <span></span>
-      </button>
-    </header>
-
-    <nav
-      class="mobile-nav"
-      id="mobile-nav"
-      hidden
-      aria-label="Mobile navigation"
-    >
-      <a href="#home">Home <span>01</span></a>
-      <a href="#memories">Memories <span>02</span></a>
-      <a href="#members">Members <span>03</span></a>
-      <a href="#achievements">Achievements <span>04</span></a>
-      <a href="#about">Our story <span>05</span></a>
-    </nav>
-
-    <main id="main">
-      <!-- HERO -->
-      <section id="home" class="hero-section">
-        <div class="hero-topline">
-          <span>AN ARCHIVE OF US</span>
-          <span>ISSUE NO. 01 <i>—</i> 2026</span>
-        </div>
-
-        <div class="hero-layout">
-          <div class="hero-copy">
-            <span class="hero-spark">✳</span>
-
-            <p class="eyebrow">Not just classmates. A whole chapter.</p>
-
-            <h1>
-              One class.<br />
-              Countless <em>stories.</em>
-            </h1>
-
-            <p class="hero-description">
-              Different minds, familiar faces, and a thousand little moments in
-              between. This is our corner of the internet — a place to keep the
-              memories close.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-6">
-              <a href="#memories" class="button-primary">
-                Explore our story <span>↗</span>
-              </a>
-
-              <a href="#members" class="text-cta">
-                Meet the people <span>↓</span>
-              </a>
-            </div>
-
-            <p class="hero-handwritten">
-              made of memories &amp; mischief <span>♡</span>
-            </p>
-          </div>
-
-          <div class="hero-art">
-            <figure class="hero-photo hero-photo-main">
-              <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85"
-                alt="A group of friends spending time together"
-              />
-              <span class="photo-index">FIG. 01</span>
-              <figcaption>the people who made it count</figcaption>
-            </figure>
-
-            <figure class="hero-photo hero-photo-small">
-              <img
-                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85"
-                alt="A warm sunset over a landscape"
-              />
-              <figcaption>a view worth remembering</figcaption>
-            </figure>
-
-            <span class="hero-tape"></span>
-            <span class="hero-doodle hero-doodle-one">✳</span>
-            <span class="hero-doodle hero-doodle-two">↗</span>
-
-            <span class="hero-side-note">
-              same place,<br />different dreams.
-            </span>
-
-            <div class="hero-stamp">
-              INVICTUS<br />
-              <span>✳</span><br />
-              EST. 2026
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-bottomline">
-          <span>SCROLL TO LOOK BACK</span>
-          <span>↓</span>
-          <span>BUILT TO REMEMBER</span>
-        </div>
-      </section>
-
-      <!-- QUICK NAVIGATION -->
-      <section class="quick-strip" aria-label="Explore the archive">
-        <a href="#memories" class="quick-item">
-          <span class="quick-number">01 /</span>
-          <span class="quick-title">The memories</span>
-          <span class="quick-arrow">↗</span>
-        </a>
-
-        <a href="#gallery" class="quick-item">
-          <span class="quick-number">02 /</span>
-          <span class="quick-title">The gallery</span>
-          <span class="quick-arrow">↗</span>
-        </a>
-
-        <a href="#members" class="quick-item">
-          <span class="quick-number">03 /</span>
-          <span class="quick-title">The people</span>
-          <span class="quick-arrow">↗</span>
-        </a>
-
-        <a href="#achievements" class="quick-item">
-          <span class="quick-number">04 /</span>
-          <span class="quick-title">The milestones</span>
-          <span class="quick-arrow">↗</span>
-        </a>
-      </section>
-
-      <!-- MEMORIES -->
-      <section id="memories" class="memories-section section-wrap">
-        <div class="section-intro">
-          <div>
-            <p class="eyebrow">01 — The moments</p>
-            <h2>
-              Little things.<br />
-              <em>Big memories.</em>
-            </h2>
-          </div>
-
-          <div class="section-intro-aside">
-            <p>
-              Not every moment made it into a photograph. These are a few of the
-              ones that did.
-            </p>
-
-            <a href="#gallery" class="underlined-link">
-              Go to the gallery <span>→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="memory-layout">
-          <figure class="memory-feature">
-            <span class="tape tape-feature"></span>
-
-            <img
-              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85"
-              alt="Students gathered at an event"
-            />
-
-            <figcaption>
-              <span>01 / THE BIG DAYS</span>
-              <b>All of us, in one frame.</b>
-            </figcaption>
-          </figure>
-
-          <div class="memory-side">
-            <figure class="memory-small memory-small-top">
-              <span class="memory-label">THE IN-BETWEEN</span>
-              <img
-                src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=85"
-                alt="Friends walking together"
-              />
-              <figcaption>the ordinary days</figcaption>
-            </figure>
-
-            <figure class="memory-small memory-small-bottom">
-              <img
-                src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&q=85"
-                alt="A group playing football"
-              />
-              <figcaption>friendly competition</figcaption>
-            </figure>
-          </div>
-
-          <aside class="memory-note">
-            <span class="note-star">✳</span>
-            <p class="handwritten">
-              "Somehow, the little things became the big things."
-            </p>
-            <span class="note-credit">— A NOTE TO OURSELVES</span>
-          </aside>
-        </div>
-      </section>
-
-      <!-- FEATURED IMAGE + GALLERY -->
-      <section id="gallery" class="gallery-section">
-        <div class="gallery-heading">
-          <div>
-            <p class="eyebrow">02 — The archive</p>
-            <h2>
-              Moments in<br />
-              <em>the making.</em>
-            </h2>
-          </div>
-
-          <div class="gallery-heading-right">
-            <p>
-              A collection of snapshots, celebrations, and the everyday in
-              between. Add your own favourites as the years go by.
-            </p>
-            <span class="gallery-counter">
-              A FEW OF OUR FAVOURITES <b>✳</b>
-            </span>
-          </div>
-        </div>
-
-        <div class="featured-gallery">
-          <figure class="featured-image">
-            <img
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1500&q=85"
-              alt="Students smiling together in a group"
-            />
-
-            <figcaption>
-              <span>FEATURED FRAME / 001</span>
-              <b>Here, and nowhere else.</b>
-            </figcaption>
-
-            <span class="featured-corner">✳</span>
-          </figure>
-
-          <div class="gallery-thumbs">
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=700&q=85"
-                alt="Friends celebrating together"
-              />
-              <figcaption>02 — celebrations</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=700&q=85"
-                alt="Friends walking together"
-              />
-              <figcaption>03 — ordinary days</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=85"
-                alt="A classroom filled with desks"
-              />
-              <figcaption>04 — familiar places</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACHIEVEMENTS -->
-      <section id="achievements" class="achievements-section section-wrap">
-        <div class="section-intro">
-          <div>
-            <p class="eyebrow">03 — The milestones</p>
-            <h2>
-              Small wins.<br />
-              <em>Shared pride.</em>
-            </h2>
-          </div>
-
-          <div class="section-intro-aside">
-            <p>
-              Big stages, quiet progress, and everything worth celebrating.
-              Here's a preview of our achievements.
-            </p>
-
-            <a href="#achievement-list" class="underlined-link">
-              View all achievements <span>↗</span>
-            </a>
-          </div>
-        </div>
-
-        <div id="achievement-list" class="achievement-grid">
-          <article class="achievement-card achievement-card-dark">
-            <div class="achievement-top">
-              <span>01 / ACADEMIC</span>
-              <span>✳</span>
-            </div>
-
-            <div class="achievement-illustration illustration-book">
-              <span>Ａ</span>
-              <i>✦</i>
-            </div>
-
-            <p class="achievement-status">ADD YOUR MILESTONE</p>
-            <h3>Academic<br />achievement title</h3>
-            <p class="achievement-description">
-              Add a short description of the award, competition, or academic
-              milestone here.
-            </p>
-            <span class="achievement-date">YEAR / EVENT</span>
-          </article>
-
-          <article class="achievement-card">
-            <div class="achievement-top">
-              <span>02 / COMPETITION</span>
-              <span>✳</span>
-            </div>
-
-            <div class="achievement-illustration illustration-trophy">✧</div>
-
-            <p class="achievement-status">ADD YOUR MILESTONE</p>
-            <h3>Competition<br />achievement title</h3>
-            <p class="achievement-description">
-              Mention the competition, the participants, and what made this
-              moment special.
-            </p>
-            <span class="achievement-date">YEAR / EVENT</span>
-          </article>
-
-          <article class="achievement-card">
-            <div class="achievement-top">
-              <span>03 / COMMUNITY</span>
-              <span>✳</span>
-            </div>
-
-            <div class="achievement-illustration illustration-star">✳</div>
-
-            <p class="achievement-status">ADD YOUR MILESTONE</p>
-            <h3>Community<br />achievement title</h3>
-            <p class="achievement-description">
-              Celebrate a project, contribution, performance, or shared effort
-              from the class.
-            </p>
-            <span class="achievement-date">YEAR / EVENT</span>
-          </article>
-        </div>
-
-        <p class="section-footnote">
-          <span>NOTE</span>
-          Replace these sample cards with your actual class achievements.
-        </p>
-      </section>
-
-      <!-- MEMBERS -->
-      <section id="members" class="members-section">
-        <div class="members-inner">
-          <div class="section-intro">
-            <div>
-              <p class="eyebrow">04 — The people</p>
-              <h2>
-                Different paths.<br />
-                <em>One archive.</em>
-              </h2>
-            </div>
-
-            <div class="section-intro-aside">
-              <p>
-                The faces behind the stories. From the first day to the
-                unexpected plot twists, every person has a place here.
-              </p>
-
-              <span class="member-total">
-                <b>12</b> PEOPLE IN THIS SAMPLE DIRECTORY
-              </span>
-            </div>
-          </div>
-
-          <div class="member-toolbar">
-            <div class="filter-list" role="group" aria-label="Filter members">
-              <button
-                class="filter-chip is-selected"
-                type="button"
-                data-filter="all"
-                aria-pressed="true"
-              >
-                Everyone <span>12</span>
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-                data-filter="original"
-                aria-pressed="false"
-              >
-                Original <span>4</span>
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-                data-filter="joined"
-                aria-pressed="false"
-              >
-                Joined later <span>4</span>
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-                data-filter="transferred"
-                aria-pressed="false"
-              >
-                Transferred <span>4</span>
-              </button>
-            </div>
-
-            <button
-              class="view-all-button"
-              id="view-all-members"
-              type="button"
-              aria-expanded="false"
-            >
-              View all members <span>↗</span>
-            </button>
-          </div>
-
-          <div class="member-grid" id="member-grid" aria-live="polite">
-            <!-- Replace these sample names and portraits with actual members. -->
-
-            <article class="member-card" data-group="original">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 01"
-                />
-                <span>01</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 01</h3>
-                <p>ORIGINAL</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="original">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 02"
-                />
-                <span>02</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 02</h3>
-                <p>ORIGINAL</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="joined">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 03"
-                />
-                <span>03</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 03</h3>
-                <p>JOINED LATER</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="original">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 04"
-                />
-                <span>04</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 04</h3>
-                <p>ORIGINAL</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="transferred">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 05"
-                />
-                <span>05</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 05</h3>
-                <p>TRANSFERRED</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="joined">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 06"
-                />
-                <span>06</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 06</h3>
-                <p>JOINED LATER</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="original">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 07"
-                />
-                <span>07</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 07</h3>
-                <p>ORIGINAL</p>
-              </div>
-            </article>
-
-            <article class="member-card" data-group="transferred">
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 08"
-                />
-                <span>08</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 08</h3>
-                <p>TRANSFERRED</p>
-              </div>
-            </article>
-
-            <!-- Initially hidden members -->
-
-            <article
-              class="member-card member-extra"
-              data-group="joined"
-              hidden
-            >
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 09"
-                />
-                <span>09</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 09</h3>
-                <p>JOINED LATER</p>
-              </div>
-            </article>
-
-            <article
-              class="member-card member-extra"
-              data-group="transferred"
-              hidden
-            >
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 10"
-                />
-                <span>10</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 10</h3>
-                <p>TRANSFERRED</p>
-              </div>
-            </article>
-
-            <article
-              class="member-card member-extra"
-              data-group="joined"
-              hidden
-            >
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 11"
-                />
-                <span>11</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 11</h3>
-                <p>JOINED LATER</p>
-              </div>
-            </article>
-
-            <article
-              class="member-card member-extra"
-              data-group="transferred"
-              hidden
-            >
-              <div class="member-image">
-                <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=650&q=85"
-                  alt="Portrait placeholder for member 12"
-                />
-                <span>12</span>
-              </div>
-              <div class="member-meta">
-                <h3>Member 12</h3>
-                <p>TRANSFERRED</p>
-              </div>
-            </article>
-          </div>
-
-          <p class="member-empty" id="member-empty" hidden>
-            No members in this category yet.
-          </p>
-
-          <div class="members-bottom">
-            <span>EVERY FACE HAS A STORY.</span>
-            <span>INVICTUS / 2026</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="about-section">
-        <div class="about-left">
-          <p class="eyebrow">05 — A note from us</p>
-          <h2>
-            We were here.<br />
-            <em>We mattered.</em>
-          </h2>
-        </div>
-
-        <div class="about-right">
-          <p class="about-lead">
-            A class is more than a room, a timetable, or a list of names.
-          </p>
-
-          <p>
-            It's the people we met, the things we learned, the jokes that never
-            got old, and the moments we didn't realise we'd miss. INVICTUS is
-            our little time capsule — a reminder of where we started and the
-            stories we carry forward.
-          </p>
-
-          <span class="about-signature"> with love, INVICTUS <b>♡</b> </span>
-        </div>
-
-        <span class="about-asterisk">✳</span>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="site-footer">
-        <a href="#home" class="footer-brand"> INVICTUS<span>.</span> </a>
-
-        <p>One class. Countless stories. Always part of the same chapter.</p>
-
-        <div class="footer-bottom">
-          <span>© 2026 INVICTUS CLASS ARCHIVE</span>
-          <a href="#home">BACK TO TOP ↑</a>
-          <span>MADE TO REMEMBER</span>
-        </div>
-      </footer>
-    </main>
-
-    <!-- INTERACTIONS -->
-    <script>
-      // Mobile navigation
-      const menuToggle = document.querySelector(".menu-toggle");
-      const mobileNav = document.querySelector("#mobile-nav");
-
-      menuToggle.addEventListener("click", () => {
-        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-
-        menuToggle.setAttribute("aria-expanded", String(!isOpen));
-        menuToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Open navigation" : "Close navigation",
-        );
-
-        mobileNav.hidden = isOpen;
-      });
-
-      mobileNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileNav.hidden = true;
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open navigation");
-        });
-      });
-
-      // Member filtering
-      const filterButtons = [...document.querySelectorAll("[data-filter]")];
-
-      const memberCards = [...document.querySelectorAll(".member-card")];
-
-      const viewAllButton = document.querySelector("#view-all-members");
-      const emptyMessage = document.querySelector("#member-empty");
-
-      let activeFilter = "all";
-      let expandedMembers = false;
-
-      function renderMembers() {
-        let visibleCount = 0;
-
-        memberCards.forEach((card) => {
-          const matchesFilter =
-            activeFilter === "all" || card.dataset.group === activeFilter;
-
-          const isExtra = card.classList.contains("member-extra");
-
-          const shouldShow =
-            matchesFilter &&
-            (activeFilter !== "all" || expandedMembers || !isExtra);
-
-          card.hidden = !shouldShow;
-
-          if (shouldShow) visibleCount++;
-        });
-
-        emptyMessage.hidden = visibleCount !== 0;
-
-        viewAllButton.hidden = activeFilter !== "all";
-
-        viewAllButton.setAttribute("aria-expanded", String(expandedMembers));
-
-        viewAllButton.innerHTML = expandedMembers
-          ? "Show fewer <span>↑</span>"
-          : "View all members <span>↗</span>";
+    <style>
+      /* ===== 1. TOKENS =====
+   The logo is monochrome (near-black #111 / white / ghost grey #E8E8E8), so accents
+   come from the brief: indigo #6366F1 -> purple #A855F7. Logo is shown white on #0A0612. */
+      :root {
+        --bg: #0a0612;
+        --s1: #120b1f;
+        --s2: #1a1128;
+        --tx: #ede9f5;
+        --mu: #8b7fa8;
+        --st: #c4b5fd;
+        --pk: #f0abfc;
+        --g: linear-gradient(110deg, #6366f1, #a855f7);
+        --go: "Pirata One", Georgia, serif;
+        --sa: "Space Grotesk", system-ui, sans-serif;
+        --mo: "JetBrains Mono", ui-monospace, monospace;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: var(--bg);
+      }
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      body {
+        color: var(--tx);
+        font: 400 1.05rem/1.7 var(--sa);
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      :focus-visible {
+        outline: 2px solid var(--st);
+        outline-offset: 4px;
+      }
+      .skip {
+        position: absolute;
+        left: 1rem;
+        top: -5rem;
+        z-index: 2000;
+        background: var(--tx);
+        color: var(--bg);
+        padding: 0.7rem 1rem;
+      }
+      .skip:focus {
+        top: 1rem;
+      }
+      /* logo.png has a near-black square background: the SVG filter #kk turns it transparent, leaving only the white mark */
+      .logo {
+        filter: url(#kk);
       }
 
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          activeFilter = button.dataset.filter;
-          expandedMembers = false;
+      /* ===== 2. STARS: opacity-only twinkle, dots are filled in by JS ===== */
+      .stars {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .stars i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1px;
+        height: 1px;
+        animation: tw 8s ease-in-out infinite alternate;
+      }
+      .stars i + i {
+        animation-duration: 13s;
+        animation-delay: -5s;
+      }
+      @keyframes tw {
+        from {
+          opacity: 0.1;
+        }
+        to {
+          opacity: 0.55;
+        }
+      }
 
-          filterButtons.forEach((item) => {
-            const selected = item === button;
+      /* ===== 3. CURSOR: dot + delayed ring, difference blend, hidden on touch ===== */
+      .cur {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        pointer-events: none;
+        display: none;
+        mix-blend-mode: difference;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .ring {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid #fffa;
+        background: radial-gradient(circle, #a855f7, #6366f1b3 58%, #6366f100);
+        opacity: 0.55;
+        transition: opacity 0.3s;
+      }
+      .ring.on {
+        opacity: 1;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .cur {
+          display: block;
+        }
+        body,
+        a,
+        button,
+        #list li {
+          cursor: none;
+        }
+      }
 
-            item.classList.toggle("is-selected", selected);
-            item.setAttribute("aria-pressed", String(selected));
-          });
+      /* ===== 4. HEADER ===== */
+      header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.8rem 4vw;
+        background: linear-gradient(#0a0612d9, #0a061200);
+      }
+      header .logo {
+        width: 46px;
+        height: 46px;
+      }
+      nav {
+        display: flex;
+        gap: clamp(0.8rem, 2.4vw, 2rem);
+        font: 500 0.66rem var(--mo);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      nav a {
+        position: relative;
+        padding: 0.4rem 0;
+      }
+      nav a::after,
+      .links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: var(--g);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s;
+      }
+      nav a:hover::after,
+      nav a:focus-visible::after,
+      .links a:hover::after,
+      .links a:focus-visible::after {
+        transform: scaleX(1);
+      }
 
-          renderMembers();
+      /* ===== 5. HERO ===== */
+      main {
+        position: relative;
+        z-index: 1;
+      }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 7rem 4vw 5rem;
+        overflow: hidden;
+      }
+      #gl {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .wm {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: min(86vmin, 760px);
+        aspect-ratio: 1;
+        opacity: 0.07;
+        rotate: -8deg;
+      }
+      .in {
+        position: relative;
+        z-index: 2;
+      }
+      .eyebrow,
+      .sub,
+      .cue,
+      .lab {
+        font: 500 0.72rem var(--mo);
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+      .eyebrow {
+        color: var(--st);
+      }
+      h1 {
+        font: 400 clamp(4.2rem, 20vw, 19rem)/0.82 var(--go);
+        letter-spacing: 0.02em;
+        margin: 1.2rem 0 0.5rem;
+      }
+      h1 span {
+        display: inline-block;
+      }
+      /* echo of the logo's long diagonal swoosh */
+      h1::after {
+        content: "";
+        display: block;
+        width: 56%;
+        height: 0.08em;
+        margin: 0.03em 0 0 auto;
+        background: var(--g);
+        clip-path: polygon(0 38%, 100% 0, 0 100%);
+        rotate: -3deg;
+      }
+      .sub {
+        font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+        margin-top: 1.6rem;
+      }
+      .lead {
+        max-width: 30rem;
+        margin: 1.2rem auto 0;
+        color: var(--mu);
+      }
+      .cue {
+        position: absolute;
+        bottom: 1.6rem;
+        left: 50%;
+        translate: -50% 0;
+        z-index: 2;
+        color: var(--mu);
+        animation: up 1s 1s backwards;
+      }
+      .cue::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 2.4rem;
+        margin: 0.6rem auto 0;
+        background: var(--g);
+        transform-origin: top;
+        animation: cue 2.4s ease-in-out infinite;
+      }
+      @keyframes cue {
+        0% {
+          transform: scaleY(0);
+        }
+        60% {
+          transform: scaleY(1);
+        }
+        100% {
+          transform: scaleY(1);
+          opacity: 0;
+        }
+      }
+      /* first-paint intro is pure CSS, so text never waits for 3D or JS */
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(46px);
+        }
+      }
+      .in > :not(h1),
+      h1 span {
+        animation: up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+      }
+      .in > :nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      h1 span {
+        animation-delay: 0.2s;
+      }
+      .in > :nth-child(3) {
+        animation-delay: 0.45s;
+      }
+      .in > :nth-child(4) {
+        animation-delay: 0.6s;
+      }
+
+      /* ===== 6. SHARED SECTION BITS ===== */
+      section {
+        position: relative;
+        padding: clamp(5rem, 12vw, 11rem) 4vw;
+      }
+      .lab {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        color: var(--st);
+        margin-bottom: 1.6rem;
+      }
+      .lab::before {
+        content: "";
+        width: 3rem;
+        height: 0.4rem;
+        background: var(--g);
+        clip-path: polygon(0 40%, 100% 0, 0 100%);
+      }
+      h2 {
+        font: 400 clamp(2.8rem, 7.4vw, 7rem)/0.95 var(--go);
+        letter-spacing: 0.01em;
+        max-width: 14em;
+      }
+      .ph {
+        aspect-ratio: var(--a, 4/5);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(
+          135deg,
+          hsl(var(--h) 58% 34%),
+          hsl(calc(var(--h) + 28) 62% 16%)
+        );
+        color: #fff;
+        font: 500 0.72rem var(--mo);
+        letter-spacing: 0.2em;
+        transform: skewX(var(--k, -3deg));
+      }
+      .pol {
+        background: var(--tx);
+        color: #4b3f66;
+        padding: 0.55rem 0.55rem 0;
+        box-shadow:
+          0 24px 50px -10px #000a,
+          0 0 0 1px #fff2;
+        rotate: var(--r);
+      }
+      .pol figcaption {
+        padding: 0.7rem 0 0.8rem;
+        font: 500 0.62rem var(--mo);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      /* ===== 7. TENTANG KITA ===== */
+      .about {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 3rem 2rem;
+        align-items: start;
+      }
+      .tx {
+        grid-column: 1/8;
+      }
+      .bd {
+        font-size: clamp(1.12rem, 1.8vw, 1.5rem);
+        line-height: 1.6;
+        max-width: 34em;
+        margin-top: 2rem;
+        color: #d8d1e8;
+      }
+      blockquote {
+        margin-top: 3rem;
+        padding-left: 1.4rem;
+        border-left: 3px solid #8b5cf6;
+        font: 400 clamp(1.8rem, 3.6vw, 3.2rem)/1.1 var(--go);
+        max-width: 20em;
+      }
+      .stack {
+        grid-column: 8/13;
+        position: relative;
+        min-height: clamp(30rem, 50vw, 46rem);
+      }
+      .stack .pol {
+        position: absolute;
+        width: var(--w);
+        top: var(--t);
+        left: var(--l);
+      }
+      @media (max-width: 860px) {
+        .tx,
+        .stack {
+          grid-column: 1/-1;
+        }
+      }
+
+      /* ===== 8. ANGGOTA ===== */
+      .mem {
+        background: var(--s1);
+      }
+      .hint {
+        font: 500 0.72rem var(--mo);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--mu);
+        margin: 1.6rem 0 3rem;
+      }
+      #list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+        gap: 0.2rem 3rem;
+      }
+      #list li {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid #8b7fa81f;
+        overflow: hidden;
+        transition: opacity 0.3s;
+      }
+      #list .no {
+        font: 500 0.7rem var(--mo);
+        color: var(--mu);
+        letter-spacing: 0.1em;
+      }
+      #list .nm {
+        font: 500 clamp(1.5rem, 2.6vw, 2.4rem)/1.1 var(--sa);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      #list li::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background: var(--g);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #list li:hover::after,
+      #list li:focus-visible::after {
+        transform: scaleX(1);
+      }
+      #list li:hover .nm,
+      #list li:focus-visible .nm {
+        background: var(--g);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      #list:hover li {
+        opacity: 0.4;
+      }
+      #list li:hover,
+      #list li:focus-visible {
+        opacity: 1;
+      }
+      /* floating photo: moved only with transform (GSAP x/y), never left/top */
+      .peek {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 60;
+        width: 220px;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+        will-change: transform;
+      }
+      .peek .ph {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        transform: none;
+        --a: 4/5;
+        box-shadow:
+          0 30px 60px -12px #000c,
+          0 0 0 1px #fff3;
+      }
+      .peek span {
+        font: 700 1rem var(--sa);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ===== 9. ARSIP FOTO: scrapbook, irregular and overlapping ===== */
+      .scrap {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.2rem;
+        margin-top: 4rem;
+      }
+      .sc:nth-child(1) {
+        grid-column: 1/6;
+        --r: -3deg;
+      }
+      .sc:nth-child(2) {
+        grid-column: 6/11;
+        margin-top: 7vw;
+        --r: 4deg;
+      }
+      .sc:nth-child(3) {
+        grid-column: 3/8;
+        margin-top: -3vw;
+        --r: -2deg;
+        z-index: 2;
+      }
+      .sc:nth-child(4) {
+        grid-column: 8/13;
+        margin-top: 2vw;
+        --r: 3deg;
+      }
+      .sc:nth-child(5) {
+        grid-column: 1/6;
+        margin-top: -1vw;
+        --r: 2deg;
+        z-index: 2;
+      }
+      @media (max-width: 700px) {
+        .scrap {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .sc {
+          grid-column: span 3 !important;
+        }
+      }
+      .btn {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        display: inline-flex;
+        gap: 0.7rem;
+        margin-top: 4.5rem;
+        padding: 1.1rem 2.2rem;
+        border: 1px solid #c4b5fd66;
+        border-radius: 99px;
+        font: 500 0.78rem var(--mo);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: var(--g);
+        transform: translateY(101%);
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .btn:hover::before,
+      .btn:focus-visible::before {
+        transform: none;
+      }
+
+      /* ===== 10. MARQUEE: transform-only loop, pauses on hover ===== */
+      .mq {
+        overflow: hidden;
+        padding: 2rem 0;
+        margin: 2rem -3vw;
+        background: var(--s2);
+        border-block: 1px solid #8b7fa82a;
+        transform: rotate(-1.5deg);
+      }
+      .tr {
+        display: flex;
+        width: max-content;
+        animation: mq 55s linear infinite;
+      }
+      .mq:hover .tr {
+        animation-play-state: paused;
+      }
+      .tr span {
+        font: 400 clamp(3rem, 9vw, 8rem)/1 var(--go);
+        white-space: nowrap;
+        padding: 0 1.6rem;
+      }
+      .tr span:nth-child(4n + 3) {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--st);
+      }
+      .tr .logo {
+        width: clamp(3rem, 7vw, 6rem);
+        height: auto;
+        flex: none;
+        align-self: center;
+      }
+      @keyframes mq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== 11. FOOTER ===== */
+      footer {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(5rem, 10vw, 9rem) 4vw 0;
+        background: linear-gradient(var(--bg), var(--s1));
+      }
+      .fi {
+        display: grid;
+        gap: 2rem;
+        justify-items: start;
+      }
+      .fi .logo {
+        width: clamp(5rem, 9vw, 8rem);
+        height: auto;
+      }
+      .sign {
+        font: 400 clamp(2rem, 5vw, 4.4rem)/1 var(--go);
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem 2.4rem;
+        font: 500 0.74rem var(--mo);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .links a {
+        position: relative;
+        padding: 0.3rem 0;
+      }
+      .cr {
+        font: 500 0.66rem var(--mo);
+        letter-spacing: 0.14em;
+        color: var(--mu);
+        text-transform: uppercase;
+      }
+      .big {
+        font: 400 clamp(9rem, 37vw, 38rem)/0.9 var(--go);
+        text-align: center;
+        margin: 3rem 0 -0.1em;
+        user-select: none;
+        background: var(--g);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Keys out logo.png's near-black background (alpha from brightness) so only the white mark remains -->
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <filter id="kk" color-interpolation-filters="sRGB">
+        <feColorMatrix
+          type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  2 2 2 0 -.5"
+        />
+      </filter>
+    </svg>
+    <a class="skip" href="#isi">Lewati ke konten utama</a>
+    <div class="stars" aria-hidden="true"><i></i><i></i></div>
+    <div class="cur dot" aria-hidden="true"></div>
+    <div class="cur ring" aria-hidden="true"></div>
+    <div class="peek" id="peek" aria-hidden="true">
+      <div class="ph"><b></b><span></span></div>
+    </div>
+
+    <header id="top">
+      <!-- SWAP: put the real logo file next to this HTML and name it logo.png -->
+      <a href="#top"
+        ><img
+          class="logo"
+          src="logo.png"
+          width="46"
+          height="46"
+          decoding="async"
+          alt="Logo INVICTUS Gen 03 — kembali ke awal halaman"
+      /></a>
+      <nav aria-label="Navigasi utama">
+        <a href="#tentang">Tentang Kita</a><a href="#anggota">Anggota</a
+        ><a href="#arsip">Arsip Foto</a>
+      </nav>
+    </header>
+
+    <main id="isi" tabindex="-1">
+      <!-- HERO -->
+      <section class="hero" aria-label="Pembuka">
+        <canvas id="gl" aria-hidden="true"></canvas>
+        <img
+          class="wm logo"
+          src="logo.png"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+        />
+        <div class="in">
+          <p class="eyebrow">Angkatan 03 — Tak Terkalahkan</p>
+          <h1>
+            <span><img src="./logo.png" alt="" /></span>
+          </h1>
+          <p class="sub">Tak Terkalahkan / Gen 03</p>
+          <p class="lead">
+            Kami bukan yang paling rapi. Kami cuma yang paling susah dikalahkan.
+          </p>
+        </div>
+        <a class="cue" href="#tentang">Geser untuk lihat</a>
+      </section>
+
+      <!-- TENTANG KITA -->
+      <section id="tentang" class="about">
+        <div class="tx">
+          <p class="lab">Tentang Kita</p>
+          <h2 class="rv">Satu kelas. Tak ada yang tertinggal.</h2>
+          <p class="bd rv">
+            Tiga tahun di bangku yang sama, tiga puluh tiga cara berbeda untuk
+            salah, jatuh, lalu bangun lagi. Kami pernah remedial bareng, tertawa
+            di jam pelajaran paling sepi, dan pulang paling akhir karena belum
+            mau pisah. Nama Invictus tidak kami pilih karena terdengar keren.
+            Kami memilihnya karena begitulah yang terjadi.
+          </p>
+          <blockquote class="rv">
+            “Satu-satu, kami bisa kalah. Berdiri bareng, kami tak terkalahkan.”
+          </blockquote>
+        </div>
+        <!-- SWAP: replace each .ph block with an <img> when real photos exist -->
+        <div
+          class="stack"
+          role="group"
+          aria-label="Tiga foto kenangan (placeholder)"
+        >
+          <figure
+            class="pol"
+            style="--w: 62%; --t: 0; --l: 5%; --r: -5deg; --h: 262"
+          >
+            <div class="ph" style="--a: 4/5">[FOTO_01]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure
+            class="pol"
+            style="--w: 58%; --t: 24%; --l: 38%; --r: 4deg; --h: 292"
+          >
+            <div class="ph" style="--a: 1/1; --k: 3deg">[FOTO_02]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure
+            class="pol"
+            style="--w: 52%; --t: 56%; --l: 8%; --r: -2deg; --h: 238"
+          >
+            <div class="ph" style="--a: 5/4">[FOTO_03]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ANGGOTA: the list is generated from MEMBERS in the script -->
+      <section id="anggota" class="mem">
+        <p class="lab">ANGGOTA KAMI</p>
+        <h2 class="sk">Tiga puluh tiga nama, satu angkatan.</h2>
+        <p class="hint">Arahkan kursor ke nama</p>
+        <ul id="list" aria-label="Daftar 33 anggota angkatan"></ul>
+      </section>
+
+      <!-- ARSIP FOTO -->
+      <section id="arsip">
+        <p class="lab">Arsip Foto</p>
+        <h2 class="sk">Potongan yang tak sempat kami buang.</h2>
+        <div class="scrap">
+          <figure class="sc pol" style="--h: 255">
+            <div class="ph" style="--a: 4/5">[FOTO_04]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure class="sc pol" style="--h: 280">
+            <div class="ph" style="--a: 1/1; --k: 3deg">[FOTO_05]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure class="sc pol" style="--h: 300">
+            <div class="ph" style="--a: 3/4">[FOTO_06]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure class="sc pol" style="--h: 240">
+            <div class="ph" style="--a: 4/5; --k: -5deg">[FOTO_07]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+          <figure class="sc pol" style="--h: 270">
+            <div class="ph" style="--a: 1/1">[FOTO_08]</div>
+            <figcaption>Keterangan foto</figcaption>
+          </figure>
+        </div>
+        <a class="btn" href="#galeri"
+          >Lihat Galeri <span aria-hidden="true">→</span></a
+        >
+      </section>
+
+      <!-- MARQUEE: separators are the logo mark itself -->
+      <div class="mq" role="img" aria-label="INVICTUS, Gen 03, Tak Terkalahkan">
+        <div class="tr" id="tr" aria-hidden="true"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="fi">
+        <img
+          class="logo"
+          src="logo.png"
+          width="128"
+          height="128"
+          loading="lazy"
+          alt="Logo INVICTUS Gen 03 — tulisan kaligrafi putih bergaya grafiti"
+        />
+        <p class="sign">Tak Terkalahkan. Invictus.</p>
+        <nav class="links" aria-label="Tautan sekunder">
+          <a href="#">Instagram @invictus_ivcs</a><a href="#">#invictus</a
+          ><a href="#top">Kembali ke atas ↑</a>
+        </nav>
+        <p class="cr">© 2026 · Angkatan 03 · dibuat bareng-bareng</p>
+      </div>
+      <div class="big" aria-hidden="true">IVCS</div>
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"
+      defer
+    ></script>
+    <script>
+      /* ===== DATA: SWAP with real names (add/remove freely) ===== */
+      const MEMBERS = Array.from(
+        { length: 33 },
+        (_, i) => "Nama " + String(i + 1).padStart(2, "0"),
+      );
+      const pad = (n) => String(n).padStart(2, "0");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const $ = (s, c = document) => c.querySelector(s),
+          $$ = (s, c = document) => [...c.querySelectorAll(s)];
+        const { gsap: G, ScrollTrigger: ST, Lenis: L, THREE: T } = window;
+        const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+        const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+        const small = matchMedia("(max-width:768px)").matches || !fine; // degrade 3D on phones/tablets
+        let lenis;
+
+        /* ---- stars: random dots as box-shadows (colors from the palette) ---- */
+        $$(".stars i").forEach((el) => {
+          const s = [];
+          for (let j = 0; j < (small ? 30 : 60); j++)
+            s.push(
+              `${(Math.random() * 100).toFixed(1)}vw ${(Math.random() * 100).toFixed(1)}vh 0 ${Math.random() < 0.2 ? ".6px" : "0"} ${Math.random() < 0.5 ? "#C4B5FD" : "#F0ABFC"}`,
+            );
+          el.style.boxShadow = s.join();
         });
-      });
 
-      viewAllButton.addEventListener("click", () => {
-        expandedMembers = !expandedMembers;
-        renderMembers();
-      });
+        /* ---- marquee: INVICTUS / GEN 03 / TAK TERKALAHKAN, logo mark as separator ---- */
+        $("#tr").innerHTML = ["INVICTUS", "GEN 03", "TAK TERKALAHKAN"]
+          .map(
+            (w) =>
+              `<span>${w}</span><img class="logo" src="logo.png" alt="" loading="lazy">`,
+          )
+          .join("")
+          .repeat(4);
 
-      renderMembers();
+        /* ---- member list ---- */
+        const list = $("#list"),
+          peek = $("#peek");
+        list.innerHTML = MEMBERS.map(
+          (n, i) =>
+            `<li tabindex="0" data-i="${i}"><span class="no">${pad(i + 1)}</span><span class="nm">${n}</span></li>`,
+        ).join("");
+
+        if (G) {
+          /* ---- mouse-follow photo zoom (x/y via transform only) ---- */
+          const bi = $("b", peek),
+            sp = $("span", peek),
+            qx = G.quickTo(peek, "x", { duration: 0.55, ease: "power3" }),
+            qy = G.quickTo(peek, "y", { duration: 0.55, ease: "power3" });
+          let cur = null,
+            vis = false;
+          const pos = (x, y, jump) => {
+            const tx = x + 250 > innerWidth ? x - 250 : x + 30,
+              ty = Math.min(Math.max(y - 140, 10), innerHeight - 300);
+            jump ? G.set(peek, { x: tx, y: ty }) : (qx(tx), qy(ty));
+          };
+          const show = (li, x, y) => {
+            const i = +li.dataset.i;
+            cur = li;
+            peek.style.setProperty("--h", 250 + ((i * 13) % 80));
+            bi.textContent = `[FOTO_${pad(i + 1)}]`;
+            sp.textContent = MEMBERS[i];
+            if (vis) pos(x, y);
+            else {
+              pos(x, y, true);
+              G.set(peek, { scale: 0.8, rotation: -6 });
+            }
+            vis = true;
+            G.to(peek, {
+              autoAlpha: 1,
+              scale: 1.07,
+              rotation: i % 2 ? 3 : -3,
+              duration: 0.6,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          };
+          const hide = () => {
+            if (!vis) return;
+            cur = null;
+            vis = false;
+            G.to(peek, {
+              autoAlpha: 0,
+              scale: 0.9,
+              duration: 0.3,
+              ease: "power2.in",
+              overwrite: "auto",
+            });
+          };
+          list.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") return;
+            const li = e.target.closest("li");
+            if (!li) return hide();
+            li === cur
+              ? pos(e.clientX, e.clientY)
+              : show(li, e.clientX, e.clientY);
+          });
+          list.addEventListener("pointerleave", hide);
+          list.addEventListener("focusin", (e) => {
+            const li = e.target.closest("li");
+            if (li) {
+              const r = li.getBoundingClientRect();
+              show(li, r.left + r.width * 0.6, r.top + r.height / 2);
+            }
+          });
+          list.addEventListener("focusout", hide);
+
+          /* ---- custom cursor: ring stretches over hovered interactive element ---- */
+          if (fine) {
+            const dot = $(".dot"),
+              ring = $(".ring"),
+              o = { duration: 0.5, ease: "power3" };
+            G.set([dot, ring], {
+              xPercent: -50,
+              yPercent: -50,
+              x: -100,
+              y: -100,
+            });
+            const rx = G.quickTo(ring, "x", o),
+              ry = G.quickTo(ring, "y", o),
+              sx = G.quickTo(ring, "scaleX", o),
+              sy = G.quickTo(ring, "scaleY", o);
+            let mx = -100,
+              my = -100,
+              hov = null;
+            const fit = () => {
+              if (hov) {
+                const r = hov.getBoundingClientRect();
+                rx(r.left + r.width / 2);
+                ry(r.top + r.height / 2);
+                sx((r.width + 28) / 44);
+                sy((r.height + 18) / 44);
+              } else {
+                rx(mx);
+                ry(my);
+                sx(1);
+                sy(1);
+              }
+              ring.classList.toggle("on", !!hov);
+            };
+            addEventListener(
+              "pointermove",
+              (e) => {
+                mx = e.clientX;
+                my = e.clientY;
+                G.set(dot, { x: mx, y: my });
+                if (!hov) fit();
+              },
+              { passive: true },
+            );
+            document.addEventListener("pointerover", (e) => {
+              hov = e.target.closest("a,button,#list li");
+              fit();
+            });
+            addEventListener("scroll", () => hov && fit(), { passive: true });
+          }
+        }
+
+        /* ---- smooth scroll + scroll choreography ---- */
+        if (G && ST) {
+          G.registerPlugin(ST);
+          if (!reduce) {
+            if (L) {
+              lenis = new L({ lerp: 0.09 });
+              lenis.on("scroll", ST.update);
+              G.ticker.add((t) => lenis.raf(t * 1000));
+              G.ticker.lagSmoothing(0);
+            }
+            const hero = {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.8,
+            };
+            // INVICTUS wordmark tilts back and recedes: "moving deeper"
+            G.to(".hero h1", {
+              rotationX: 40,
+              rotationZ: -6,
+              scale: 0.42,
+              yPercent: -18,
+              opacity: 0.1,
+              transformPerspective: 900,
+              transformOrigin: "50% 100%",
+              ease: "none",
+              scrollTrigger: hero,
+            });
+            G.to(".wm", {
+              rotation: 28,
+              scale: 1.4,
+              ease: "none",
+              scrollTrigger: hero,
+            });
+            G.to(".in>:not(h1)", {
+              opacity: 0,
+              y: -40,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "45% top",
+                scrub: true,
+              },
+            });
+            // Tentang Kita: clip-path mask reveal
+            $$(".rv").forEach((el) =>
+              G.fromTo(
+                el,
+                { clipPath: "inset(0% 0% 100% 0%)", y: 50 },
+                {
+                  clipPath: "inset(-15% -2% -15% -2%)",
+                  y: 0,
+                  duration: 1.2,
+                  ease: "power4.out",
+                  clearProps: "clipPath",
+                  scrollTrigger: { trigger: el, start: "top 88%" },
+                },
+              ),
+            );
+            // stacked stickers drop in, then drift at different speeds
+            $$(".stack .pol").forEach((el, i) => {
+              G.from(el, {
+                y: 140,
+                rotation: i % 2 ? 14 : -14,
+                opacity: 0,
+                duration: 1.2,
+                delay: i * 0.12,
+                ease: "power3.out",
+                scrollTrigger: { trigger: ".stack", start: "top 80%" },
+              });
+              G.to(el, {
+                yPercent: i % 2 ? -14 : 12,
+                ease: "none",
+                scrollTrigger: { trigger: ".stack", scrub: true },
+              });
+            });
+            // headings of the other sections slide in slanted (echoes the logo's slant)
+            $$(".sk").forEach((el) =>
+              G.from(el, {
+                x: -70,
+                skewX: -14,
+                opacity: 0,
+                duration: 1.1,
+                ease: "power3.out",
+                scrollTrigger: { trigger: el, start: "top 88%" },
+              }),
+            );
+            G.from("#list li", {
+              yPercent: 70,
+              skewY: 7,
+              opacity: 0,
+              duration: 1,
+              stagger: 0.035,
+              ease: "power3.out",
+              clearProps: "all",
+              scrollTrigger: { trigger: "#list", start: "top 82%" },
+            });
+            // scrapbook photos: drop in with a wobble + parallax drift
+            $$(".sc").forEach((el, i) => {
+              G.from(el, {
+                y: 160,
+                rotation: i % 2 ? 10 : -10,
+                scale: 0.8,
+                opacity: 0,
+                duration: 1.3,
+                ease: "back.out(1.3)",
+                scrollTrigger: { trigger: el, start: "top 92%" },
+              });
+              G.to(el, {
+                yPercent: [0, -10, 8, -6, 12][i],
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  scrub: true,
+                  start: "top bottom",
+                  end: "bottom top",
+                },
+              });
+            });
+            // giant IVCS floats up from below
+            G.fromTo(
+              ".big",
+              { yPercent: 75 },
+              {
+                yPercent: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: "footer",
+                  start: "top bottom",
+                  end: "bottom bottom",
+                  scrub: true,
+                },
+              },
+            );
+          }
+          document.fonts && document.fonts.ready.then(() => ST.refresh());
+        }
+
+        /* ---- in-page links (Lenis-aware) ---- */
+        $$('a[href^="#"]:not(.skip)').forEach((a) =>
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            const id = a.getAttribute("href"),
+              el = id.length > 1 ? $(id) : null;
+            if (!el) return;
+            lenis
+              ? lenis.scrollTo(id === "#top" ? 0 : el)
+              : scrollTo({
+                  top: id === "#top" ? 0 : el.offsetTop,
+                  behavior: reduce ? "auto" : "smooth",
+                });
+          }),
+        );
+
+        /* ---- 3D hero: wireframe torus knot + particles (low-poly, dpr<=2, degraded on mobile) ---- */
+        const cv = $("#gl");
+        if (T && cv) {
+          try {
+            const R = new T.WebGLRenderer({
+              canvas: cv,
+              alpha: true,
+              antialias: !small,
+              powerPreference: "low-power",
+            });
+            R.setPixelRatio(small ? 1 : Math.min(devicePixelRatio, 2));
+            const sc = new T.Scene(),
+              cam = new T.PerspectiveCamera(45, 1, 0.1, 50),
+              grp = new T.Group();
+            cam.position.z = 5.2;
+            sc.add(grp);
+            const wf = new T.WireframeGeometry(
+              new T.TorusKnotGeometry(
+                1.25,
+                0.36,
+                small ? 56 : 110,
+                small ? 5 : 9,
+                2,
+                3,
+              ),
+            );
+            const ps = wf.attributes.position,
+              cl = new Float32Array(ps.count * 3),
+              a = new T.Color(0x6366f1),
+              b = new T.Color(0xa855f7),
+              c = new T.Color();
+            for (let i = 0; i < ps.count; i++) {
+              c.copy(a).lerp(b, (ps.getY(i) + 1.7) / 3.4);
+              c.toArray(cl, i * 3);
+            } // indigo -> purple by height
+            wf.setAttribute("color", new T.BufferAttribute(cl, 3));
+            grp.add(
+              new T.LineSegments(
+                wf,
+                new T.LineBasicMaterial({
+                  vertexColors: true,
+                  transparent: true,
+                  opacity: 0.65,
+                }),
+              ),
+            );
+            const n = small ? 160 : 380,
+              pp = new Float32Array(n * 3);
+            for (let i = 0; i < n; i++) {
+              const r = 2.5 + Math.random() * 2.5,
+                u = Math.random() * 6.283,
+                v = Math.acos(2 * Math.random() - 1);
+              pp.set(
+                [
+                  r * Math.sin(v) * Math.cos(u),
+                  r * Math.sin(v) * Math.sin(u),
+                  r * Math.cos(v),
+                ],
+                i * 3,
+              );
+            }
+            const pg = new T.BufferGeometry();
+            pg.setAttribute("position", new T.BufferAttribute(pp, 3));
+            const pts = new T.Points(
+              pg,
+              new T.PointsMaterial({
+                color: 0xc4b5fd,
+                size: 0.03,
+                transparent: true,
+                opacity: 0.7,
+              }),
+            );
+            sc.add(pts);
+            let sx = 0,
+              sy = 0,
+              mx = 0,
+              my = 0,
+              raf = 0,
+              run = true,
+              seen = true;
+            const t0 = performance.now();
+            if (!small)
+              addEventListener(
+                "pointermove",
+                (e) => {
+                  mx = e.clientX / innerWidth - 0.5;
+                  my = e.clientY / innerHeight - 0.5;
+                },
+                { passive: true },
+              );
+            const fitGL = () => {
+              const w = cv.clientWidth,
+                h = cv.clientHeight || 1,
+                r = w / h;
+              R.setSize(w, h, false);
+              cam.aspect = r;
+              cam.updateProjectionMatrix();
+              grp.position.x = r > 1.3 ? 1.9 : 0;
+              grp.scale.setScalar(r < 0.8 ? 0.72 : 1);
+              reduce && R.render(sc, cam);
+            };
+            const loop = () => {
+              raf = 0;
+              if (!run || !seen) return;
+              const t = (performance.now() - t0) / 1000;
+              sx += (mx - sx) * 0.05;
+              sy += (my - sy) * 0.05;
+              grp.rotation.y = t * 0.16 + sx * 0.8;
+              grp.rotation.x = t * 0.07 + sy * 0.5;
+              pts.rotation.y = -t * 0.025;
+              R.render(sc, cam);
+              raf = requestAnimationFrame(loop);
+            };
+            const kick = () => {
+              if (!raf && run && seen && !reduce)
+                raf = requestAnimationFrame(loop);
+            };
+            addEventListener("resize", fitGL);
+            fitGL();
+            // pause the render loop when the window loses focus, the tab hides, or the hero scrolls away
+            addEventListener("blur", () => (run = false));
+            addEventListener("focus", () => {
+              run = true;
+              kick();
+            });
+            document.addEventListener("visibilitychange", () => {
+              run = !document.hidden;
+              kick();
+            });
+            new IntersectionObserver(([e]) => {
+              seen = e.isIntersecting;
+              kick();
+            }).observe(cv);
+            kick();
+          } catch (err) {
+            cv.hidden = true;
+          }
+        }
+      });
     </script>
   </body>
 </html>
