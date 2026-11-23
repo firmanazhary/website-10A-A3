@@ -1,11 +1,1807 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INVICTUS — Angkatan 3</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #080a0c;
+    --bg2: #101316;
+    --surface: #15191d;
+    --surface2: #1b2025;
+    --white: #f4f3ee;
+    --muted: #858b90;
+    --accent: #c6a66a;
+    --accent2: #e4ca91;
+    --border: rgba(255,255,255,.09);
+    --font: 'Manrope', sans-serif;
+    --serif: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font);
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+::selection {
+    background: var(--accent);
+    color: #080a0c;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #383c40;
+    border-radius: 10px;
+}
+
+/* Background texture */
+.noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 22px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .4s;
+}
+
+.navbar.scrolled {
+    background: rgba(8,10,12,.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 15px 6%;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #a5a9ac;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent2);
+}
+
+.nav-cta {
+    border: 1px solid rgba(198,166,106,.5);
+    padding: 11px 18px;
+    color: var(--accent2) !important;
+    transition: .3s;
+}
+
+.nav-cta:hover {
+    background: var(--accent);
+    color: var(--bg) !important;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: 0;
+    font-size: 24px;
+}
+
+/* Hero */
+.hero {
+    min-height: 100svh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 130px 7% 70px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, #080a0c 0%, rgba(8,10,12,.94) 35%, rgba(8,10,12,.55) 72%, rgba(8,10,12,.8) 100%),
+        linear-gradient(0deg, #080a0c 0%, transparent 30%),
+        url("https://images.unsplash.com/photo-151968 We?auto=format&fit=crop&w=2000&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Replace the hero background image above with your own image URL */
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    right: -150px;
+    top: 5%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(181,143,77,.15), transparent 65%);
+    animation: glowPulse 7s ease-in-out infinite alternate;
+}
+
+.hero-orb {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: 15%;
+    top: 30%;
+    border: 1px solid rgba(198,166,106,.16);
+    border-radius: 50%;
+    animation: rotate 25s linear infinite;
+}
+
+.hero-orb::before,
+.hero-orb::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(198,166,106,.12);
+    border-radius: 50%;
+}
+
+.hero-orb::before {
+    inset: 25px;
+}
+
+.hero-orb::after {
+    inset: -25px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.hero-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: fadeUp 1s both;
+}
+
+.hero-label::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.hero h1 {
+    font-size: clamp(75px, 13vw, 180px);
+    font-weight: 800;
+    letter-spacing: -.09em;
+    line-height: .85;
+    animation: fadeUp 1s .15s both;
+}
+
+.hero h1 .outline {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(244,243,238,.55);
+    margin-left: 4%;
+}
+
+.hero h1 .gold {
+    color: var(--accent2);
+    display: inline-block;
+    background: linear-gradient(120deg, #b18b50, #f0d8a0, #b18b50);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradientFlow 5s linear infinite;
+}
+
+.hero-description {
+    max-width: 430px;
+    color: #a0a4a7;
+    font-size: 14px;
+    line-height: 2;
+    margin-top: 35px;
+    animation: fadeUp 1s .3s both;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    animation: fadeUp 1s .45s both;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 25px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.btn-primary {
+    color: #080a0c;
+    background: var(--accent);
+}
+
+.btn-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
+    color: #e0e0dc;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: 40px;
+    left: 7%;
+    right: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    color: #777d81;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.scroll-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scroll-line {
+    height: 1px;
+    width: 45px;
+    background: var(--accent);
+    animation: lineMove 2s infinite;
+}
+
+/* Intro */
+.intro {
+    padding: 130px 7%;
+    position: relative;
+}
+
+.intro-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.section-tag {
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.intro-title {
+    font-family: var(--serif);
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.intro-title em {
+    color: var(--accent2);
+}
+
+.intro-text {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2.2;
+    max-width: 450px;
+}
+
+.stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 35px;
+}
+
+.stat-number {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.stat-number span {
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* Classes */
+.classes {
+    padding: 100px 7%;
+    background: #0c0f11;
+    position: relative;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 65px;
+}
+
+.section-heading h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 75px);
+    line-height: 1;
+}
+
+.section-heading h2 span {
+    color: var(--accent);
+    font-style: italic;
+}
+
+.section-heading p {
+    max-width: 350px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.class-block {
+    margin-bottom: 100px;
+}
+
+.class-block:last-child {
+    margin-bottom: 0;
+}
+
+.class-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.class-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.class-title h3 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.class-title h3 span {
+    color: var(--accent);
+}
+
+.class-number {
+    font-family: var(--serif);
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.class-count {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* Student card */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.student-card {
+    position: relative;
+    background: var(--surface);
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform .25s ease, border .3s;
+    border: 1px solid rgba(255,255,255,.035);
+    opacity: 0;
+    transform: translateY(35px);
+}
+
+.student-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.student-card:hover {
+    border-color: rgba(198,166,106,.5);
+}
+
+.student-image {
+    position: relative;
+    height: 330px;
+    overflow: hidden;
+}
+
+.student-image img {
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform .7s, filter .5s;
+}
+
+.student-card:hover .student-image img {
+    transform: scale(1.08);
+    filter: grayscale(30%);
+}
+
+.student-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8,10,12,.95), transparent 65%);
+}
+
+.student-index {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 2;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent2);
+}
+
+.student-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px;
+    z-index: 3;
+}
+
+.student-name {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.student-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.student-open {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.student-open span:last-child {
+    font-size: 17px;
+    transition: .3s;
+}
+
+.student-card:hover .student-open span:last-child {
+    transform: translateX(5px);
+}
+
+/* Schedule */
+.schedule {
+    padding: 120px 7%;
+}
+
+.schedule-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.schedule-tab {
+    padding: 13px 25px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.schedule-tab.active,
+.schedule-tab:hover {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.schedule-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 22px 25px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.schedule-table th {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: #121619;
+    font-weight: 600;
+}
+
+.schedule-table td {
+    font-size: 12px;
+    color: #b3b7b9;
+}
+
+.schedule-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.schedule-table tr.today {
+    background: rgba(198,166,106,.08);
+}
+
+.schedule-table tr.today td:first-child {
+    color: var(--accent2);
+}
+
+.today-label {
+    font-size: 9px;
+    color: var(--accent);
+    margin-left: 8px;
+    letter-spacing: 1px;
+}
+
+/* Quote */
+.quote-section {
+    padding: 100px 7%;
+    background: linear-gradient(120deg, #14181b, #0c0f11);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-section::before {
+    content: "III";
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 300px;
+    color: rgba(198,166,106,.03);
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.quote-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: auto;
+}
+
+.quote-mark {
+    font-family: var(--serif);
+    font-size: 80px;
+    line-height: 1;
+    color: var(--accent);
+}
+
+.quote-text {
+    font-family: var(--serif);
+    font-size: clamp(25px, 4vw, 50px);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.quote-author {
+    margin-top: 30px;
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+/* Footer */
+.footer {
+    padding: 70px 7% 30px;
+    background: #070809;
+}
+
+.footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--border);
+}
+
+.footer-logo {
+    font-size: 45px;
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.footer-logo span {
+    color: var(--accent);
+}
+
+.footer-text {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+    max-width: 320px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 25px;
+    color: #5f6468;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(15px);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: #15191d;
+    border: 1px solid rgba(198,166,106,.25);
+    max-width: 750px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    transform: translateY(30px);
+    transition: .4s;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.modal.active .modal-box {
+    transform: translateY(0);
+}
+
+.modal-image {
+    min-height: 400px;
+}
+
+.modal-image img {
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(70%);
+}
+
+.modal-content {
+    padding: 45px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background: rgba(0,0,0,.5);
+    border: 1px solid var(--border);
+    color: white;
+    z-index: 2;
+    font-size: 20px;
+}
+
+.modal-class {
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.modal-name {
+    font-family: var(--serif);
+    font-size: 35px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.modal-quote {
+    color: #a6aaad;
+    font-family: var(--serif);
+    font-style: italic;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.modal-detail {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+    margin-top: 25px;
+}
+
+.modal-number {
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 30px;
+}
+
+/* Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s, transform .8s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    from { transform: scale(.9); opacity: .5; }
+    to { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes gradientFlow {
+    to { background-position: 200%; }
+}
+
+@keyframes lineMove {
+    0%,100% { width: 30px; opacity: .4; }
+    50% { width: 60px; opacity: 1; }
+}
+
+/* Responsive */
+@media(max-width: 1100px) {
+    .student-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .intro-inner {
+        gap: 50px;
+    }
+
+    .student-image {
+        height: 300px;
+    }
+}
+
+@media(max-width: 768px) {
+    .navbar {
+        padding: 18px 6%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(8,10,12,.97);
+        backdrop-filter: blur(20px);
+        max-height: 0;
+        overflow: hidden;
+        transition: .4s;
+    }
+
+    .nav-links.open {
+        max-height: 350px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 20px 6%;
+        border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+
+    .hero {
+        padding: 130px 6% 100px;
+    }
+
+    .hero h1 {
+        font-size: clamp(65px, 16vw, 110px);
+    }
+
+    .hero-orb {
+        right: -80px;
+        top: 20%;
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-bottom {
+        left: 6%;
+        right: 6%;
+    }
+
+    .intro {
+        padding: 90px 6%;
+    }
+
+    .intro-inner {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .classes,
+    .schedule {
+        padding: 85px 6%;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: start;
+        margin-bottom: 45px;
+    }
+
+    .student-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .student-image {
+        height: 270px;
+    }
+
+    .student-info {
+        padding: 16px;
+    }
+
+    .student-name {
+        font-size: 14px;
+    }
+
+    .student-quote {
+        font-size: 11px;
+    }
+
+    .class-block {
+        margin-bottom: 70px;
+    }
+
+    .class-title h3 {
+        font-size: 25px;
+    }
+
+    .quote-section {
+        padding: 80px 6%;
+    }
+
+    .footer {
+        padding: 60px 6% 25px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        align-items: start;
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .modal-box {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .modal-image {
+        min-height: 260px;
+        height: 260px;
+    }
+
+    .modal-content {
+        padding: 30px;
+    }
+}
+
+@media(max-width: 420px) {
+    .student-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .student-image {
+        height: 230px;
+    }
+
+    .student-open {
+        font-size: 8px;
+    }
+
+    .class-count {
+        font-size: 9px;
+    }
+
+    .stats {
+        gap: 35px;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .hero-bottom {
+        font-size: 8px;
+    }
+}
+</style>
 </head>
+
 <body>
-  <h1>hallo ini website satria</h1>
+
+<div class="noise"></div>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+    <a href="#home" class="logo">INV<span>.</span>3</a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#classes">Classes</a>
+        <a href="#schedule">Piket</a>
+        <a href="#footer" class="nav-cta">The Legacy</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-orb"></div>
+
+    <div class="hero-content">
+        <div class="hero-label">SMA PLUS ABU DZAR · GENERATION III</div>
+
+        <h1>
+            <span class="outline">THE</span>
+            <span class="gold">THIRD</span>
+            <span class="outline">CHAPTER.</span>
+        </h1>
+
+        <p class="hero-description">
+            Bukan sekadar angkatan. Sebuah perjalanan, persaudaraan,
+            cerita, dan jejak yang akan tetap hidup bahkan setelah
+            waktu membawa kita ke arah yang berbeda.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#classes" class="btn btn-primary">
+                Explore Us <span>↗</span>
+            </a>
+            <a href="#about" class="btn btn-outline">
+                Our Story
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-bottom">
+        <div>INVICTUS · ANGKATAN 3</div>
+        <div class="scroll-indicator">
+            SCROLL TO DISCOVER <span class="scroll-line"></span>
+        </div>
+        <div>2026 — ∞</div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="intro" id="about">
+    <div class="intro-inner">
+        <div class="reveal">
+            <div class="section-tag">01 / OUR STORY</div>
+
+            <h2 class="intro-title">
+                Three chapters.<br>
+                One <em>unforgettable</em><br>
+                story.
+            </h2>
+        </div>
+
+        <div class="reveal">
+            <p class="intro-text">
+                Kami adalah bagian dari perjalanan yang sama.
+                Dua kelas, banyak karakter, berbagai cerita,
+                dan satu nama yang menyatukan semuanya.
+                INVICTUS bukan hanya tentang siapa kita hari ini,
+                tetapi tentang apa yang akan kita tinggalkan
+                untuk masa depan.
+            </p>
+
+            <div class="stats">
+                <div>
+                    <div class="stat-number">02<span>.</span></div>
+                    <div class="stat-label">Classes</div>
+                </div>
+
+                <div>
+                    <div class="stat-number">26<span>+</span></div>
+                    <div class="stat-label">Members</div>
+                </div>
+
+                <div>
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Memories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLASSES -->
+<section class="classes" id="classes">
+    <div class="section-heading reveal">
+        <div>
+            <div class="section-tag">02 / THE MEMBERS</div>
+            <h2>Meet the <span>people.</span></h2>
+        </div>
+
+        <p>
+            Setiap orang memiliki cerita, keunikan,
+            dan perannya sendiri. Kenali mereka lebih dekat.
+        </p>
+    </div>
+
+    <!-- KELAS 10A -->
+    <div class="class-block">
+        <div class="class-header reveal">
+            <div class="class-title">
+                <span class="class-number">01</span>
+                <h3>Class <span>10A</span></h3>
+            </div>
+
+            <div class="class-count">14 MEMBERS</div>
+        </div>
+
+        <div class="student-grid" id="grid10A"></div>
+    </div>
+
+    <!-- KELAS 10B -->
+    <div class="class-block">
+        <div class="class-header reveal">
+            <div class="class-title">
+                <span class="class-number">02</span>
+                <h3>Class <span>10B</span></h3>
+            </div>
+
+            <div class="class-count">12 MEMBERS</div>
+        </div>
+
+        <div class="student-grid" id="grid10B"></div>
+    </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+    <div class="section-heading reveal">
+        <div>
+            <div class="section-tag">03 / RESPONSIBILITY</div>
+            <h2>Daily <span>rotation.</span></h2>
+        </div>
+
+        <p>
+            Kebersihan adalah tanggung jawab bersama.
+            Lihat jadwal piket kelas dan jangan lupa
+            menjalankan tugas masing-masing.
+        </p>
+    </div>
+
+    <div class="schedule-tabs reveal">
+        <button class="schedule-tab active" data-class="10A">CLASS 10A</button>
+        <button class="schedule-tab" data-class="10B">CLASS 10B</button>
+    </div>
+
+    <div class="schedule-table-wrap reveal">
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Duty Members</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+        </table>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+    <div class="quote-content reveal">
+        <div class="quote-mark">“</div>
+
+        <p class="quote-text">
+            We may walk different paths someday,
+            but we will always share the same beginning.
+        </p>
+
+        <div class="quote-author">INVICTUS · GENERATION III</div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+    <div class="footer-top">
+        <div>
+            <div class="footer-logo">INV<span>.</span>3</div>
+            <p class="footer-text">
+                A collection of people, moments, and memories.
+                Built together. Remembered forever.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="#home">HOME ↗</a>
+            <a href="#classes">MEMBERS ↗</a>
+            <a href="#schedule">SCHEDULE ↗</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 INVICTUS ANGKATAN 3</p>
+        <p>MADE WITH PURPOSE & MEMORIES.</p>
+    </div>
+</footer>
+
+<!-- MODAL DETAIL SANTRI -->
+<div class="modal" id="studentModal">
+    <div class="modal-box">
+        <button class="modal-close" id="modalClose">×</button>
+
+        <div class="modal-image">
+            <img src="" alt="Foto santri" id="modalImage">
+        </div>
+
+        <div class="modal-content">
+            <div class="modal-class" id="modalClass"></div>
+            <h2 class="modal-name" id="modalName"></h2>
+            <p class="modal-quote" id="modalQuote"></p>
+            <p class="modal-detail" id="modalDetail"></p>
+            <div class="modal-number" id="modalNumber"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==================================================
+// DATA SANTRI
+// Edit nama, quote, detail, dan foto di bagian ini.
+// ==================================================
+
+const students10A = [
+    {
+        name: "Ahmad",
+        quote: "Stay humble, keep growing.",
+        detail: "Seorang santri yang terus belajar, berkembang, dan berusaha menjadi pribadi yang lebih baik.",
+        photo: "https://i.pravatar.cc/600?img=11"
+    },
+    {
+        name: "Abdullah",
+        quote: "Make every moment count.",
+        detail: "Menghargai setiap kesempatan dan percaya bahwa proses adalah bagian dari perjalanan.",
+        photo: "https://i.pravatar.cc/600?img=12"
+    },
+    {
+        name: "Muhammad",
+        quote: "Small steps, big dreams.",
+        detail: "Memiliki semangat untuk meraih impian melalui langkah kecil yang konsisten.",
+        photo: "https://i.pravatar.cc/600?img=13"
+    },
+    {
+        name: "Rafi",
+        quote: "Progress over perfection.",
+        detail: "Percaya bahwa perkembangan lebih penting daripada menjadi sempurna.",
+        photo: "https://i.pravatar.cc/600?img=14"
+    },
+    {
+        name: "Faris",
+        quote: "Keep the spirit alive.",
+        detail: "Selalu berusaha menjaga semangat dalam belajar dan menjalani kehidupan.",
+        photo: "https://i.pravatar.cc/600?img=15"
+    },
+    {
+        name: "Zaid",
+        quote: "Be the reason to smile.",
+        detail: "Berusaha memberikan energi positif bagi orang-orang di sekitarnya.",
+        photo: "https://i.pravatar.cc/600?img=16"
+    },
+    {
+        name: "Ibrahim",
+        quote: "Dream without limits.",
+        detail: "Memiliki cita-cita besar dan berusaha mencapainya dengan penuh tanggung jawab.",
+        photo: "https://i.pravatar.cc/600?img=17"
+    },
+    {
+        name: "Haidar",
+        quote: "Trust the process.",
+        detail: "Menjalani proses dengan sabar dan terus berusaha memberikan yang terbaik.",
+        photo: "https://i.pravatar.cc/600?img=18"
+    },
+    {
+        name: "Khalid",
+        quote: "One team, one dream.",
+        detail: "Menjunjung kebersamaan dan percaya pada kekuatan kerja sama.",
+        photo: "https://i.pravatar.cc/600?img=19"
+    },
+    {
+        name: "Rayyan",
+        quote: "Create your own story.",
+        detail: "Ingin menjalani kehidupan dengan cerita dan pengalaman yang bermakna.",
+        photo: "https://i.pravatar.cc/600?img=20"
+    },
+    {
+        name: "Yusuf",
+        quote: "Never stop learning.",
+        detail: "Terus membuka diri terhadap ilmu, pengalaman, dan hal-hal baru.",
+        photo: "https://i.pravatar.cc/600?img=21"
+    },
+    {
+        name: "Ammar",
+        quote: "Be better than yesterday.",
+        detail: "Berusaha memperbaiki diri sedikit demi sedikit setiap hari.",
+        photo: "https://i.pravatar.cc/600?img=22"
+    },
+    {
+        name: "Bilal",
+        quote: "Stay focused.",
+        detail: "Belajar menjaga fokus dan konsistensi dalam mencapai tujuan.",
+        photo: "https://i.pravatar.cc/600?img=23"
+    },
+    {
+        name: "Naufal",
+        quote: "Memories are forever.",
+        detail: "Menghargai persahabatan dan kenangan yang tercipta bersama.",
+        photo: "https://i.pravatar.cc/600?img=24"
+    }
+];
+
+const students10B = [
+    {
+        name: "Fadhil",
+        quote: "Choose kindness.",
+        detail: "Percaya bahwa kebaikan sederhana dapat memberikan dampak besar.",
+        photo: "https://i.pravatar.cc/600?img=25"
+    },
+    {
+        name: "Danish",
+        quote: "Aim high.",
+        detail: "Selalu berusaha memiliki target dan semangat untuk berkembang.",
+        photo: "https://i.pravatar.cc/600?img=26"
+    },
+    {
+        name: "Akbar",
+        quote: "Stay true to yourself.",
+        detail: "Belajar menjadi pribadi yang jujur dan tetap berpegang pada prinsip.",
+        photo: "https://i.pravatar.cc/600?img=27"
+    },
+    {
+        name: "Rizqi",
+        quote: "Make it meaningful.",
+        detail: "Berusaha membuat setiap pengalaman menjadi pelajaran yang bermanfaat.",
+        photo: "https://i.pravatar.cc/600?img=28"
+    },
+    {
+        name: "Ilham",
+        quote: "Work in silence.",
+        detail: "Lebih memilih fokus pada proses dan membiarkan hasil berbicara.",
+        photo: "https://i.pravatar.cc/600?img=29"
+    },
+    {
+        name: "Fikri",
+        quote: "Be fearless.",
+        detail: "Belajar menghadapi tantangan dengan keberanian dan keyakinan.",
+        photo: "https://i.pravatar.cc/600?img=30"
+    },
+    {
+        name: "Salman",
+        quote: "Keep moving forward.",
+        detail: "Tidak mudah menyerah dan terus melangkah meskipun menghadapi kesulitan.",
+        photo: "https://i.pravatar.cc/600?img=31"
+    },
+    {
+        name: "Omar",
+        quote: "Good things take time.",
+        detail: "Memahami bahwa hasil terbaik membutuhkan proses dan kesabaran.",
+        photo: "https://i.pravatar.cc/600?img=32"
+    },
+    {
+        name: "Hafiz",
+        quote: "Knowledge is power.",
+        detail: "Menjadikan ilmu sebagai bekal untuk masa depan.",
+        photo: "https://i.pravatar.cc/600?img=33"
+    },
+    {
+        name: "Taufiq",
+        quote: "Be present.",
+        detail: "Menghargai waktu dan berusaha memberikan yang terbaik hari ini.",
+        photo: "https://i.pravatar.cc/600?img=34"
+    },
+    {
+        name: "Azka",
+        quote: "Always grateful.",
+        detail: "Belajar mensyukuri hal-hal kecil dalam setiap perjalanan.",
+        photo: "https://i.pravatar.cc/600?img=35"
+    },
+    {
+        name: "Syamil",
+        quote: "The story continues.",
+        detail: "Menjadi bagian dari cerita yang terus berkembang bersama angkatan.",
+        photo: "https://i.pravatar.cc/600?img=36"
+    }
+];
+
+// ==================================================
+// DATA JADWAL PIKET
+// Ganti anggota sesuai jadwal asli kelas.
+// ==================================================
+
+const schedules = {
+    "10A": [
+        { day: "Senin", members: "Ahmad, Rafi, Faris", task: "Menyapu & merapikan kelas" },
+        { day: "Selasa", members: "Abdullah, Zaid, Haidar", task: "Menyapu & menghapus papan" },
+        { day: "Rabu", members: "Muhammad, Ibrahim, Khalid", task: "Merapikan meja & kursi" },
+        { day: "Kamis", members: "Rayyan, Yusuf, Ammar", task: "Membersihkan area kelas" },
+        { day: "Jumat", members: "Bilal, Naufal", task: "Piket menyeluruh" }
+    ],
+
+    "10B": [
+        { day: "Senin", members: "Fadhil, Danish, Akbar", task: "Menyapu & merapikan kelas" },
+        { day: "Selasa", members: "Rizqi, Ilham", task: "Menyapu & menghapus papan" },
+        { day: "Rabu", members: "Fikri, Salman, Omar", task: "Merapikan meja & kursi" },
+        { day: "Kamis", members: "Hafiz, Taufiq", task: "Membersihkan area kelas" },
+        { day: "Jumat", members: "Azka, Syamil", task: "Piket menyeluruh" }
+    ]
+};
+
+// ==================================================
+// RENDER CARD SANTRI
+// ==================================================
+
+function renderStudents(data, className, containerId) {
+    const container = document.getElementById(containerId);
+
+    container.innerHTML = data.map((student, index) => `
+        <article class="student-card"
+            data-class="${className}"
+            data-index="${index}">
+
+            <div class="student-image">
+                <img
+                    src="${student.photo}"
+                    alt="${student.name}"
+                    loading="lazy">
+
+                <span class="student-index">
+                    ${String(index + 1).padStart(2, "0")} / ${className}
+                </span>
+            </div>
+
+            <div class="student-info">
+                <h4 class="student-name">${student.name}</h4>
+                <p class="student-quote">"${student.quote}"</p>
+
+                <div class="student-open">
+                    <span>Discover profile</span>
+                    <span>↗</span>
+                </div>
+            </div>
+        </article>
+    `).join("");
+
+    // Card click -> modal
+    container.querySelectorAll(".student-card").forEach(card => {
+        card.addEventListener("click", () => {
+            const index = Number(card.dataset.index);
+            openStudentModal(data[index], className, index + 1);
+        });
+    });
+}
+
+// Render semua card
+renderStudents(students10A, "10A", "grid10A");
+renderStudents(students10B, "10B", "grid10B");
+
+// ==================================================
+// MODAL DETAIL
+// ==================================================
+
+const modal = document.getElementById("studentModal");
+
+function openStudentModal(student, className, number) {
+    document.getElementById("modalImage").src = student.photo;
+    document.getElementById("modalName").textContent = student.name;
+    document.getElementById("modalClass").textContent =
+        `INVICTUS · CLASS ${className}`;
+
+    document.getElementById("modalQuote").textContent =
+        `"${student.quote}"`;
+
+    document.getElementById("modalDetail").textContent =
+        student.detail;
+
+    document.getElementById("modalNumber").textContent =
+        `MEMBER Nº ${String(number).padStart(2, "0")}`;
+
+    modal.classList.add("active");
+    document.body.classList.add("modal-open");
+}
+
+function closeModal() {
+    modal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+}
+
+document.getElementById("modalClose").addEventListener("click", closeModal);
+
+modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+});
+
+// ==================================================
+// JADWAL PIKET
+// ==================================================
+
+const scheduleBody = document.getElementById("scheduleBody");
+
+const dayNames = [
+    "Minggu",
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu"
+];
+
+function renderSchedule(className) {
+    const data = schedules[className];
+
+    const today = dayNames[new Date().getDay()];
+
+    scheduleBody.innerHTML = data.map(item => {
+        const isToday = item.day === today;
+
+        return `
+            <tr class="${isToday ? "today" : ""}">
+                <td>
+                    ${item.day}
+                    ${isToday ? '<span class="today-label">TODAY</span>' : ""}
+                </td>
+                <td>${item.members}</td>
+                <td>${item.task}</td>
+            </tr>
+        `;
+    }).join("");
+}
+
+renderSchedule("10A");
+
+document.querySelectorAll(".schedule-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document.querySelectorAll(".schedule-tab")
+            .forEach(t => t.classList.remove("active"));
+
+        tab.classList.add("active");
+
+        renderSchedule(tab.dataset.class);
+    });
+});
+
+// ==================================================
+// NAVBAR SCROLL EFFECT
+// ==================================================
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// ==================================================
+// MOBILE MENU
+// ==================================================
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuBtn.textContent = navLinks.classList.contains("open") ? "×" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+    });
+});
+
+// ==================================================
+// SCROLL REVEAL
+// ==================================================
+
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(el => {
+    revealObserver.observe(el);
+});
+
+// Card reveal with staggered timing
+const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll(".student-card");
+
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add("visible");
+                }, index * 65);
+            });
+
+            cardObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+document.querySelectorAll(".student-grid").forEach(grid => {
+    cardObserver.observe(grid);
+});
+
+// ==================================================
+// 3D TILT CARD EFFECT
+// ==================================================
+
+document.querySelectorAll(".student-card").forEach(card => {
+    card.addEventListener("mousemove", event => {
+        if (window.innerWidth < 768) return;
+
+        const rect = card.getBoundingClientRect();
+
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        card.style.transform =
+            `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.025)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+    });
+});
+
+// ==================================================
+// HERO PARALLAX
+// ==================================================
+
+const hero = document.querySelector(".hero");
+const heroGlow = document.querySelector(".hero-glow");
+const heroOrb = document.querySelector(".hero-orb");
+
+window.addEventListener("mousemove", event => {
+    if (window.innerWidth < 768) return;
+
+    const x = (event.clientX / window.innerWidth - 0.5);
+    const y = (event.clientY / window.innerHeight - 0.5);
+
+    heroGlow.style.transform = `translate(${x * 35}px, ${y * 35}px)`;
+    heroOrb.style.transform = `translate(${x * -25}px, ${y * -25}px) rotate(${x * 20}deg)`;
+});
+</script>
+
 </body>
 </html>
