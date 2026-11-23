@@ -1,11 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WEB | iBam</title>
-</head>
-<body>
-  <p>my name ibrahim</p>
-</body>
-</html>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>INVICTUS Batch 03</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: "#0A0A0A", surface: "#121212", surface2: "#1A1A1A",
+          accent: "#C6FF00", violet: "#7C3AED", fg: "#FAFAFA",
+          muted: "#8B8B8B", line: "#262626"
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+          sans: ["Inter", "system-ui", "sans-serif"],
+          mono: ['"JetBrains Mono"', "ui-monospace", "monospace"]
+        }
+      }
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<div class="noise" aria-hidden="true"></div>
+<div id="dot" class="pointer-events-none fixed left-0 top-0 z-[100]" style="display:none"><div class="-ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-accent"></div></div>
+<div id="ringwrap" class="pointer-events-none fixed left-0 top-0 z-[99]" style="display:none"><div id="ring" class="flex items-center justify-center rounded-full border border-accent/70 font-mono text-[10px] font-bold text-bg" style="width:34px;height:34px;margin:-17px 0 0 -17px"></div></div>
+<div id="curtain" aria-hidden="true"><span class="font-display text-[14vw] font-bold leading-none tracking-[-0.04em]">INVICTUS</span></div>
+
+<header class="fixed inset-x-0 top-0 z-50 flex items-center justify-between gutter mix-blend-difference" style="padding-top:calc(20px + env(safe-area-inset-top, 0px));padding-bottom:20px">
+  <a href="#home" data-go="home" class="font-display text-lg font-bold tracking-[-0.04em]">INVICTUS<span class="text-accent">.03</span></a>
+  <nav class="flex gap-5 font-mono text-[11px] tracking-widest md:gap-8">
+    <a href="#home" data-section="about" class="hover:text-accent">ABOUT</a>
+    <a href="#home" data-section="members" class="hover:text-accent">MEMBERS</a>
+    <a href="#home" data-section="piket" class="hover:text-accent">PIKET</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="relative flex min-h-[92vh] flex-col justify-between overflow-hidden">
+    <div class="absolute -left-32 top-10 h-[34rem] w-[34rem] max-w-full rounded-full bg-violet/40 blur-[140px]" style="animation:drift1 14s ease-in-out infinite"></div>
+    <div class="absolute -right-20 bottom-32 h-[28rem] w-[28rem] max-w-full rounded-full bg-accent/20 blur-[140px]" style="animation:drift2 11s ease-in-out infinite"></div>
+    <div class="relative z-10 flex flex-1 flex-col justify-center gutter pt-28">
+      <p class="mb-4 font-mono text-xs tracking-[0.3em] text-muted">( ANGKATAN 3 )</p>
+      <h1 id="heroTitle" class="font-display text-[17.5vw] font-bold leading-[0.8] tracking-[-0.04em]" aria-label="INVICTUS"></h1>
+      <p class="fade-up mt-8 max-w-xl font-display text-xl md:text-3xl" style="animation-delay:1.2s">Batch 03 — 26 Minds. <span class="text-accent">One Fire.</span></p>
+    </div>
+    <div class="absolute bottom-24 right-4 z-10 hidden flex-col items-center gap-2 font-mono text-[10px] tracking-widest text-muted md:flex">
+      <span style="writing-mode:vertical-rl">SCROLL</span>
+      <span class="text-accent" style="animation:bob 1.6s infinite">↓</span>
+    </div>
+    <div class="relative z-10" data-marquee="INVICTUS • BATCH 03 • 26 MEMBERS •"></div>
+  </section>
+
+  <section id="about" class="gutter py-28 md:py-44">
+    <p class="mb-10 font-mono text-xs tracking-[0.3em] text-accent">MANIFESTO</p>
+    <h2 class="max-w-6xl font-display text-4xl font-bold leading-[1.02] tracking-[-0.04em] md:text-7xl" style="text-wrap:balance">
+      Kami bukan sekadar satu angkatan. <span class="text-muted">Kami dua puluh enam kepala,</span> satu api yang <span class="text-accent">tak mau padam.</span>
+    </h2>
+    <div class="mt-20 grid grid-cols-1 border-t border-line md:grid-cols-3">
+      <div class="border-b border-line py-10 md:border-b-0 md:border-r md:pr-8"><div class="font-display text-8xl font-bold leading-none tracking-[-0.04em] md:text-[9rem]" data-count="26">0</div><div class="mt-3 font-mono text-xs tracking-[0.3em] text-muted">MEMBERS</div></div>
+      <div class="border-b border-line py-10 md:border-b-0 md:border-r md:px-8"><div class="font-display text-8xl font-bold leading-none tracking-[-0.04em] md:text-[9rem]" data-count="2">0</div><div class="mt-3 font-mono text-xs tracking-[0.3em] text-muted">CLASSES</div></div>
+      <div class="py-10 md:pl-8"><div class="font-display text-8xl font-bold leading-none tracking-[-0.04em] md:text-[9rem]" data-count="6">0</div><div class="mt-3 font-mono text-xs tracking-[0.3em] text-muted">PIKET DAYS</div></div>
+    </div>
+  </section>
+
+  <section id="members" class="gutter py-24 md:py-32">
+    <p class="mb-6 font-mono text-xs tracking-[0.3em] text-accent">MEMBERS</p>
+    <div class="mb-12 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <h2 class="font-display text-6xl font-bold leading-[0.85] tracking-[-0.04em] md:text-9xl">THE<br><span class="text-outline">CREW</span></h2>
+      <div id="tabs" class="flex flex-wrap gap-2"></div>
+    </div>
+    <p class="mb-6 font-mono text-[11px] tracking-widest text-muted">ARAHKAN KURSOR KE KARTU — KLIK UNTUK MEMBUKA PROFIL</p>
+    <div id="grid" class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 xl:grid-cols-4"></div>
+  </section>
+
+  <section id="piket" class="gutter py-24 md:py-32">
+    <p class="mb-6 font-mono text-xs tracking-[0.3em] text-accent">PIKET</p>
+    <h2 class="mb-14 font-display text-6xl font-bold leading-[0.85] tracking-[-0.04em] md:text-9xl">JADWAL<br><span class="text-outline">PIKET</span></h2>
+    <div id="piketGrid" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+  </section>
+</main>
+
+<main id="detail" hidden></main>
+
+<footer id="footer" class="overflow-hidden border-t border-line">
+  <div class="gutter pt-20">
+    <div class="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-10">
+      <div class="min-w-0 md:col-span-6">
+        <p class="mb-5 font-mono text-xs tracking-[0.3em] text-accent">SAMPAI KETEMU DI ATAS</p>
+        <p class="font-display text-4xl font-bold leading-[1] tracking-[-0.04em] md:text-6xl" style="text-wrap:balance">Dua puluh enam nama. <span class="text-outline">Satu api.</span></p>
+      </div>
+      <div class="grid min-w-0 grid-cols-2 gap-8 font-mono text-xs tracking-widest sm:grid-cols-3 md:col-span-6">
+        <div class="flex flex-col gap-3">
+          <span class="text-muted">NAVIGASI</span>
+          <a href="#home" data-section="about" class="flink w-fit">About</a>
+          <a href="#home" data-section="members" class="flink w-fit">Members</a>
+          <a href="#home" data-section="piket" class="flink w-fit">Piket</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="text-muted">KELAS</span>
+          <a href="#home" data-filter="A" class="flink w-fit">Kelas A · 14</a>
+          <a href="#home" data-filter="B" class="flink w-fit">Kelas B · 12</a>
+          <a href="#home" data-filter="ALL" class="flink w-fit">Semua · 26</a>
+        </div>
+        <div class="col-span-2 flex flex-col gap-3 sm:col-span-1">
+          <span class="text-muted">SOSIAL</span>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="flink w-fit">Instagram ↗</a>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="flink w-fit">GitHub ↗</a>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="flink w-fit">YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-6 border-y border-line py-6 font-mono text-xs tracking-widest">
+      <span class="text-muted">JAKARTA <span id="clock" class="text-fg" style="font-variant-numeric:tabular-nums">--:--:--</span> WIB</span>
+      <button id="toTop" class="totop" data-cursor="UP" aria-label="Kembali ke atas">
+        <svg class="ring-text" viewBox="0 0 132 132" aria-hidden="true">
+          <defs><path id="circ" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs>
+          <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3.4" fill="currentColor"><textPath href="#circ">BACK TO TOP • BACK TO TOP • BACK TO TOP •</textPath></text>
+        </svg>
+        <span class="arrow">↑</span>
+      </button>
+      <span class="text-muted">BATCH 03 — ANGKATAN 3</span>
+    </div>
+
+    <h2 id="footTitle" class="pt-10 font-display text-[19vw] font-bold leading-[0.8] tracking-[-0.04em] text-accent" aria-label="INVICTUS">INVICTUS</h2>
+
+    <div class="flex flex-col justify-between gap-3 py-8 font-mono text-[11px] tracking-widest text-muted md:flex-row">
+      <span>© 2026 INVICTUS. SEMUA HAK DILINDUNGI API.</span>
+      <span>DIBUAT OLEH 26 KEPALA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body></html>
