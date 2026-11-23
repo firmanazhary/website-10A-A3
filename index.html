@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="id">
   <head>
+    <script
+      type="text/javascript"
+      src="/___vscode_livepreview_injected_script"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/___vscode_livepreview_injected_script"
+    ></script>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -445,6 +453,16 @@
         font-weight: 500;
         font-size: 0.95rem;
       }
+
+      .mc .portfolio-hint {
+        display: inline-block;
+        margin-top: 0.8rem;
+        padding: 0.45rem 0.65rem;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
       .mc .bc h3 {
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
@@ -764,7 +782,9 @@
         border-top: 1px solid rgba(255, 255, 255, 0.07);
       }
       /* jadwal piket */
-      #piket { background: rgba(255,255,255,.025); }
+      #piket {
+        background: rgba(255, 255, 255, 0.025);
+      }
       .piket-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -776,17 +796,623 @@
         border: 1px solid var(--line);
         border-radius: 20px;
         background: var(--glass);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,.025);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
       }
       .piket-day h3 {
         color: var(--yl);
         font-size: 1.6rem;
         margin-bottom: 1rem;
       }
-      .piket-day ol { padding-left: 1.35rem; }
-      .piket-day li { padding: .3rem 0 .3rem .25rem; color: #f2efe8; }
-      .piket-day li::marker { color: var(--yl); font-weight: 800; }
-      .piket-note { margin-top: 1.2rem; opacity: .65; font-size: .9rem; }
+      .piket-day ol {
+        padding-left: 1.35rem;
+      }
+      .piket-day li {
+        padding: 0.3rem 0 0.3rem 0.25rem;
+        color: #f2efe8;
+      }
+      .piket-day li::marker {
+        color: var(--yl);
+        font-weight: 800;
+      }
+      .piket-note {
+        margin-top: 1.2rem;
+        opacity: 0.65;
+        font-size: 0.9rem;
+      }
+
+      .class-roster {
+        margin-top: 2.2rem;
+      }
+      .class-heading {
+        color: var(--yl);
+        font-size: clamp(1.5rem, 4vw, 2.4rem);
+        margin: 0 0 1rem;
+        letter-spacing: -0.03em;
+      }
+      .class-heading small {
+        display: inline-block;
+        margin-left: 0.55rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        opacity: 0.65;
+        vertical-align: middle;
+      }
+    </style>
+
+    <style id="invictus-enhancement">
+      /* INVICTUS UX refresh — visual hierarchy, responsive hero, and motion */
+      #home {
+        min-height: min(900px, 100svh);
+        min-height: max(760px, 100svh);
+        padding-top: clamp(115px, 15vh, 160px);
+        padding-bottom: 100px;
+        isolation: isolate;
+      }
+      #home::before {
+        content: "";
+        position: absolute;
+        width: min(58vw, 760px);
+        aspect-ratio: 1;
+        right: -8%;
+        top: 12%;
+        border: 1px solid rgba(255, 209, 102, 0.12);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 45px rgba(255, 209, 102, 0.025),
+          0 0 0 95px rgba(255, 209, 102, 0.018);
+        pointer-events: none;
+        animation: slowspin 48s linear infinite;
+      }
+      #home::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.18;
+        pointer-events: none;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.55) 0.7px,
+          transparent 0.7px
+        );
+        background-size: 25px 25px;
+        mask-image: linear-gradient(90deg, transparent, #000 70%);
+      }
+      #home .k {
+        color: var(--yl);
+        letter-spacing: 0.2em;
+        font-size: 0.72rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      #home .k::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--yl);
+      }
+      #h1 {
+        position: relative;
+        z-index: 2;
+        width: max-content;
+        max-width: 100%;
+        font-size: clamp(4rem, 14.8vw, 13.8rem);
+        letter-spacing: -0.025em;
+        line-height: 0.82;
+      }
+      #h1 span {
+        text-shadow: 0 12px 45px rgba(0, 0, 0, 0.18);
+      }
+      #home .s {
+        position: relative;
+        z-index: 2;
+        max-width: 420px;
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        line-height: 1.7;
+        color: rgba(242, 239, 232, 0.78);
+        margin-top: 1.9rem;
+      }
+      #home .hint {
+        position: relative;
+        z-index: 2;
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+        position: relative;
+        z-index: 5;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 22px;
+        padding: 13px 18px;
+        border-radius: 99px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 800;
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s;
+      }
+      .hero-cta:hover {
+        transform: translateY(-4px);
+      }
+      .hero-cta.primary {
+        color: #11142f;
+        background: var(--yl);
+        box-shadow: 0 10px 35px rgba(255, 209, 102, 0.18);
+      }
+      .hero-cta.primary:hover {
+        background: #ffe39a;
+      }
+      .hero-cta.secondary {
+        color: var(--wh);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.045);
+      }
+      .hero-cta.secondary:hover {
+        border-color: var(--yl);
+        color: var(--yl);
+      }
+      .hero-stage {
+        position: absolute;
+        width: min(43vw, 540px);
+        aspect-ratio: 1;
+        right: clamp(2rem, 9vw, 9rem);
+        top: 50%;
+        transform: translateY(-43%);
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+      .hero-orbit {
+        position: absolute;
+        inset: 7%;
+        border: 1px solid rgba(255, 209, 102, 0.25);
+        border-radius: 50%;
+      }
+      .orbit-one {
+        transform: rotate(-25deg) scaleY(0.72);
+        animation: orbit 18s linear infinite;
+      }
+      .orbit-two {
+        inset: 17%;
+        transform: rotate(35deg) scaleY(0.72);
+        border-style: dashed;
+        opacity: 0.55;
+        animation: orbit 28s linear infinite reverse;
+      }
+      .hero-seal {
+        width: 49%;
+        aspect-ratio: 1;
+        border: 1px solid rgba(255, 209, 102, 0.75);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--yl);
+        background: radial-gradient(
+          circle,
+          rgba(255, 209, 102, 0.12),
+          rgba(10, 13, 38, 0.28) 68%
+        );
+        box-shadow:
+          0 0 70px rgba(255, 209, 102, 0.1),
+          inset 0 0 35px rgba(255, 209, 102, 0.06);
+        transform: rotate(-8deg);
+        animation: sealfloat 6s ease-in-out infinite;
+      }
+      .hero-seal strong {
+        font-family: Georgia, serif;
+        font-size: clamp(4rem, 10vw, 8.5rem);
+        line-height: 0.95;
+        font-weight: 400;
+        letter-spacing: -0.08em;
+      }
+      .seal-top,
+      .seal-bottom {
+        font-size: clamp(0.48rem, 0.75vw, 0.68rem);
+        letter-spacing: 0.22em;
+        font-weight: 800;
+      }
+      .seal-line {
+        width: 35%;
+        height: 1px;
+        background: var(--yl);
+        opacity: 0.65;
+        margin: 9px 0;
+      }
+      .float-tag {
+        position: absolute;
+        color: var(--wh);
+        border: 1px solid rgba(255, 255, 255, 0.17);
+        background: rgba(15, 19, 54, 0.72);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-size: 0.65rem;
+        line-height: 1.45;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+        box-shadow: 0 12px 35px #0003;
+      }
+      .tag-left {
+        left: 2%;
+        top: 25%;
+        transform: rotate(-8deg);
+        animation: tagfloat 5s ease-in-out infinite;
+      }
+      .tag-right {
+        right: 0;
+        bottom: 22%;
+        color: var(--yl);
+        transform: rotate(7deg);
+        animation: tagfloat 6s ease-in-out infinite reverse;
+      }
+      .hero-spark {
+        position: absolute;
+        color: var(--yl);
+        text-shadow: 0 0 22px #ffd16688;
+      }
+      .spark-a {
+        right: 18%;
+        top: 10%;
+        font-size: 2rem;
+        animation: twinkle 3s ease-in-out infinite;
+      }
+      .spark-b {
+        left: 14%;
+        bottom: 14%;
+        font-size: 2.5rem;
+        animation: twinkle 4s ease-in-out infinite reverse;
+      }
+      .hero-bottomline {
+        position: absolute;
+        bottom: 28px;
+        left: clamp(1.1rem, 5vw, 4.5rem);
+        right: clamp(1.1rem, 5vw, 4.5rem);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: rgba(242, 239, 232, 0.48);
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+        font-weight: 800;
+      }
+      /* Scroll reveal: only animate once elements enter the viewport. */
+      .reveal-ready [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal-ready [data-reveal].revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      section h2 {
+        text-wrap: balance;
+      }
+      section .lead {
+        line-height: 1.75;
+      }
+      .stat,
+      .mc,
+      .piket-day,
+      .panel,
+      .note {
+        transition:
+          transform 0.28s ease,
+          border-color 0.28s ease,
+          box-shadow 0.28s ease;
+      }
+      .stat:hover,
+      .piket-day:hover {
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+      }
+      .mc:focus-visible,
+      .pol:focus-visible {
+        outline: 3px solid var(--yl);
+        outline-offset: 5px;
+      }
+      nav {
+        transition:
+          padding 0.25s,
+          background 0.25s;
+      }
+      nav.scrolled {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background: rgba(10, 13, 38, 0.92);
+      }
+      @keyframes slowspin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes orbit {
+        to {
+          rotate: 360deg;
+        }
+      }
+      @keyframes sealfloat {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+        50% {
+          translate: 0 -12px;
+        }
+      }
+      @keyframes tagfloat {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+        50% {
+          translate: 0 -9px;
+        }
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.45;
+          scale: 0.8;
+        }
+        50% {
+          opacity: 1;
+          scale: 1.2;
+        }
+      }
+      @media (max-width: 760px) {
+        #home {
+          min-height: 900px;
+          min-height: 100svh;
+          align-content: start;
+          padding-top: 130px;
+          padding-bottom: 120px;
+        }
+        #h1 {
+          font-size: clamp(3.55rem, 16vw, 7.8rem);
+        }
+        #home .s {
+          max-width: 34ch;
+        }
+        .hero-stage {
+          width: min(75vw, 390px);
+          right: 50%;
+          top: auto;
+          bottom: 70px;
+          transform: translateX(50%);
+          opacity: 0.88;
+        }
+        .hero-seal strong {
+          font-size: clamp(4rem, 17vw, 7rem);
+        }
+        .hero-bottomline {
+          bottom: 18px;
+          font-size: 0.5rem;
+          letter-spacing: 0.08em;
+        }
+        .hero-bottomline span:nth-child(2) {
+          display: none;
+        }
+        #home::before {
+          width: 100vw;
+          right: -38%;
+          top: 32%;
+        }
+      }
+      @media (max-width: 420px) {
+        .hero-cta {
+          padding: 11px 14px;
+          gap: 12px;
+          font-size: 0.82rem;
+        }
+        .hero-stage {
+          bottom: 64px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #home::before,
+        .orbit-one,
+        .orbit-two,
+        .hero-seal,
+        .float-tag,
+        .hero-spark {
+          animation: none !important;
+        }
+        .reveal-ready [data-reveal] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* ===== HALAMAN DETAIL ANGGOTA ===== */
+      .member-detail-page {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        overflow-y: auto;
+        background:
+          radial-gradient(
+            ellipse at 85% 8%,
+            rgba(255, 209, 102, 0.12),
+            transparent 38%
+          ),
+          radial-gradient(
+            ellipse at 8% 90%,
+            rgba(98, 92, 255, 0.16),
+            transparent 42%
+          ),
+          #0a0d26;
+        color: #f2efe8;
+        padding: 24px clamp(18px, 5vw, 72px) 56px;
+      }
+      .member-detail-page.open {
+        display: block;
+        animation: memberPageIn 0.35s ease both;
+      }
+      @keyframes memberPageIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .member-detail-top {
+        max-width: 1120px;
+        margin: 0 auto 34px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .member-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 17px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #f2efe8;
+        font-weight: 700;
+        transition: 0.25s;
+      }
+      .member-back:hover {
+        background: var(--yl);
+        color: #14163a;
+        transform: translateX(-3px);
+      }
+      .member-detail-brand {
+        color: var(--yl);
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        font-weight: 800;
+      }
+      .member-detail-card {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(28px, 6vw, 76px);
+        align-items: center;
+        padding: clamp(22px, 5vw, 58px);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.045);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 24px 80px #0005;
+      }
+      .member-detail-photo-wrap {
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #25295d, #141735);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .member-detail-photo {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .member-detail-eyebrow {
+        color: var(--yl);
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        font-weight: 800;
+      }
+      .member-detail-name {
+        margin: 15px 0 22px;
+        font-size: clamp(2.8rem, 7vw, 6.5rem);
+        line-height: 0.92;
+        letter-spacing: -0.055em;
+        overflow-wrap: anywhere;
+      }
+      .member-detail-meta {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 209, 102, 0.38);
+        color: var(--yl);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+      .member-detail-label {
+        margin: 28px 0 9px;
+        color: rgba(242, 239, 232, 0.58);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .member-detail-bio {
+        max-width: 55ch;
+        color: rgba(242, 239, 232, 0.86);
+        line-height: 1.8;
+      }
+      .member-portfolio-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 28px;
+        padding: 14px 20px;
+        border-radius: 999px;
+        background: var(--yl);
+        color: #14163a;
+        text-decoration: none;
+        font-weight: 800;
+        transition: 0.25s;
+      }
+      .member-portfolio-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px #ffd16635;
+      }
+      .member-portfolio-link.disabled {
+        background: rgba(255, 255, 255, 0.09);
+        color: rgba(242, 239, 232, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        pointer-events: none;
+      }
+      @media (max-width: 720px) {
+        .member-detail-card {
+          grid-template-columns: 1fr;
+        }
+        .member-detail-photo-wrap {
+          max-width: 420px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .member-detail-top {
+          margin-bottom: 22px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .member-detail-page.open {
+          animation: none;
+        }
+        .member-back,
+        .member-portfolio-link {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -799,8 +1425,8 @@
       >
       <div>
         <a href="#about">About</a><a href="#memories">Memories</a
-        ><a href="#members">Members</a><a href="#piket">Piket</a><a href="#timeline">Journey</a
-        ><a href="#wall">Wall</a>
+        ><a href="#members">Members</a><a href="#piket">Piket</a
+        ><a href="#timeline">Journey</a><a href="#wall">Wall</a>
       </div>
     </nav>
 
@@ -815,6 +1441,31 @@
         Gerakkan kursor atau sentuh hurufnya. Klik di mana saja untuk melempar
         bintang.
       </p>
+      <div class="hero-actions">
+        <a class="hero-cta primary" href="#about"
+          >Jelajahi angkatan <span>↗</span></a
+        >
+        <a class="hero-cta secondary" href="#memories"
+          >Lihat kenangan <span>✦</span></a
+        >
+      </div>
+      <div class="hero-stage" aria-label="Identitas angkatan INVICTUS">
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-seal">
+          <span class="seal-top">CLASS OF</span><strong>IV</strong
+          ><span class="seal-line"></span
+          ><span class="seal-bottom">INVICTUS · 2026—2028</span>
+        </div>
+        <span class="float-tag tag-left">✳ EST. 2026</span>
+        <span class="float-tag tag-right">ONE CREW<br />ONE STORY</span>
+        <span class="hero-spark spark-a">✦</span
+        ><span class="hero-spark spark-b">✧</span>
+      </div>
+      <div class="hero-bottomline">
+        <span>ABUDZAR BOARDING SCHOOL</span><span>SCROLL TO EXPLORE ↓</span
+        ><span>01 / 06</span>
+      </div>
     </section>
     <div class="mq" aria-hidden="true"><div id="mq"></div></div>
 
@@ -840,28 +1491,43 @@
 
     <section id="members" class="wrap">
       <h2>THE CLASS</h2>
+      <p class="lead">27 anggota INVICTUS, terbagi dalam dua kelas.</p>
       <div class="tools">
         <label for="q" style="position: absolute; left: -9999px"
           >Cari anggota</label
-        ><input id="q" type="search" placeholder="Cari nama anggota" /><span
-          id="grp"
-          class="tools"
-          style="margin: 0"
-        ></span
-        ><button class="btn" id="rnd">Pilih acak</button>
+        >
+        <input id="q" type="search" placeholder="Cari nama anggota" />
+        <span id="grp" class="tools" style="margin: 0"></span>
+        <button class="btn" id="rnd">Pilih acak</button>
       </div>
-      <div class="grid" id="grid"></div>
+      <div class="class-roster">
+        <h3 class="class-heading">KELAS 1 <small>14 ANGGOTA</small></h3>
+        <div class="grid" id="class1Grid"></div>
+      </div>
+      <div class="class-roster">
+        <h3 class="class-heading">KELAS 2 <small>13 ANGGOTA</small></h3>
+        <div class="grid" id="class2Grid"></div>
+      </div>
     </section>
 
     <section id="piket" class="wrap">
       <h2>ROSTER PIKET</h2>
-      <p class="lead">Jadwal piket mingguan INVICTUS. Anggota dibagi menjadi Kelas 1 dan Kelas 2. Dua nama Kelas 2 masih menunggu konfirmasi.</p>
-      <div class="tools">
-        <span class="btn on" aria-label="Jadwal piket lima hari sekolah">Senin — Jumat</span>
-        <span class="btn">27 Anggota · 2 Kelas · 5 Hari</span>
+      <p class="lead">
+        Jadwal piket mingguan INVICTUS dipisahkan berdasarkan kelas. Setiap hari
+        terdiri dari 2–3 orang untuk masing-masing kelas.
+      </p>
+      <div class="class-roster">
+        <h3 class="class-heading">PIKET KELAS 1 <small>14 ANGGOTA</small></h3>
+        <div class="piket-grid" id="piketGrid1" aria-live="polite"></div>
       </div>
-      <div class="piket-grid" id="piketGrid" aria-live="polite"></div>
-      <p class="piket-note">Jadwal contoh untuk 27 anggota: 6 orang pada Senin dan Selasa, lalu 5 orang pada Rabu, Kamis, dan Jumat. Nama yang belum diketahui ditandai sementara.</p>
+      <div class="class-roster">
+        <h3 class="class-heading">PIKET KELAS 2 <small>13 ANGGOTA</small></h3>
+        <div class="piket-grid" id="piketGrid2" aria-live="polite"></div>
+      </div>
+      <p class="piket-note">
+        Pembagian dibuat merata dari Senin sampai Sabtu. Nama anggota Kelas 2
+        yang belum dikonfirmasi masih menggunakan label sementara.
+      </p>
     </section>
 
     <section id="timeline" class="wrap">
@@ -905,18 +1571,57 @@
     </footer>
     <div id="egg"><p id="et"></p></div>
 
+    <main
+      id="memberDetailPage"
+      class="member-detail-page"
+      aria-hidden="true"
+      aria-label="Profil anggota INVICTUS"
+    >
+      <div class="member-detail-top">
+        <button type="button" class="member-back" id="memberBack">
+          <span aria-hidden="true">←</span> Kembali ke anggota
+        </button>
+        <span class="member-detail-brand">INVICTUS · MEMBER PROFILE</span>
+      </div>
+      <article class="member-detail-card">
+        <div class="member-detail-photo-wrap">
+          <img
+            id="memberDetailPhoto"
+            class="member-detail-photo"
+            src=""
+            alt="Foto anggota"
+          />
+        </div>
+        <div class="member-detail-content">
+          <span class="member-detail-eyebrow">MEET THE MEMBER</span>
+          <h1 id="memberDetailName" class="member-detail-name"></h1>
+          <span id="memberDetailClass" class="member-detail-meta"></span>
+          <p class="member-detail-label">Tentang anggota</p>
+          <p id="memberDetailBio" class="member-detail-bio"></p>
+          <a
+            id="memberPortfolioLink"
+            class="member-portfolio-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buka Portfolio <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </main>
+
     <script>
       /* ===== DATA YANG BISA DIEDIT ===== */
       const CONFIG = {
-        year: "[TAHUN ANGKATAN]",
-        school: "[NAMA SEKOLAH]",
-        motto: "[MOTTO ANGKATAN DI SINI]",
+        year: "2026 - 2028",
+        school: "Abudzar Boarding School",
         story:
           "[Tulis cerita singkat angkatan INVICTUS di sini: bagaimana kalian bertemu, apa yang membuat kalian berbeda, dan apa yang ingin diingat selamanya.]",
         stats: [
           ["27", "Anggota"],
-          ["[00]", "Kelas"],
-          ["[00]", "Tahun bersama"],
+          ["2", "Kelas"],
+          ["3", "Tahun bersama"],
           ["∞", "Kenangan"],
         ],
         secret:
@@ -966,29 +1671,206 @@
         },
       ];
       const CLASS_1 = [
-        "Haidar", "Baim", "Reza", "Raqilla", "Nabigh", "Vitto", "Hilmi",
-        "Hiraki", "Ibam", "Rhapip", "Apip", "Pakih", "Satria", "Ajam",
+        "Haidar",
+        "Baim",
+        "Reza",
+        "Raqilla",
+        "Nabigh",
+        "Vitto",
+        "Hilmi",
+        "Hiraki",
+        "Ibam",
+        "Rhapip",
+        "Apip",
+        "Pakih",
+        "Satria",
+        "Ajam",
       ];
       // Dua nama Kelas 2 belum diberikan, jadi sementara ditandai agar mudah diganti.
       const CLASS_2 = [
-        "Akmal", "Fatih", "Almer", "Qaisar", "Fajri", "Rafi", "Alzawawu",
-        "Aqrom", "Yusuf", "Fadhli", "Alfath", "Nama anggota 12 (belum diisi)",
+        "Akmal",
+        "Fatih",
+        "Almer",
+        "Qaisar",
+        "Fajri",
+        "Rafi",
+        "Alzawawu",
+        "Aqrom",
+        "Yusuf",
+        "Fadhli",
+        "Alfath",
+        "Nama anggota 12 (belum diisi)",
         "Nama anggota 13 (belum diisi)",
       ];
+      const MEMBER_PHOTOS = {
+        Ajam: "INVICTUS-assets/ajam.png",
+        Apip: "INVICTUS-assets/apip.jpg",
+        Pakih: "INVICTUS-assets/pakih.webp",
+        Haidar: "INVICTUS-assets/haidar.png",
+        Hilmi: "INVICTUS-assets/hilmi.webp",
+        Hiraki: "INVICTUS-assets/hiraki.jpg",
+        Satria: "INVICTUS-assets/satria.png",
+        Vitto: "INVICTUS-assets/vitto.png",
+      };
+      // EDIT DATA PROFIL DI BAGIAN INI: isi bio dan portfolioUrl untuk setiap anggota.
+      // Contoh portfolioUrl: "https://namasitus.com"
+      const MEMBER_PROFILES = {
+        Haidar: {
+          bio: "Tulis deskripsi singkat tentang Haidar di sini.",
+          portfolioUrl: "",
+        },
+        Baim: {
+          bio: "Tulis deskripsi singkat tentang Baim di sini.",
+          portfolioUrl: "",
+        },
+        Reza: {
+          bio: "Tulis deskripsi singkat tentang Reza di sini.",
+          portfolioUrl: "",
+        },
+        Raqilla: {
+          bio: "Tulis deskripsi singkat tentang Raqilla di sini.",
+          portfolioUrl: "",
+        },
+        Nabigh: {
+          bio: "Tulis deskripsi singkat tentang Nabigh di sini.",
+          portfolioUrl: "",
+        },
+        Vitto: {
+          bio: "Tulis deskripsi singkat tentang Vitto di sini.",
+          portfolioUrl: "",
+        },
+        Hilmi: {
+          bio: "Tulis deskripsi singkat tentang Hilmi di sini.",
+          portfolioUrl: "",
+        },
+        Hiraki: {
+          bio: "Tulis deskripsi singkat tentang Hiraki di sini.",
+          portfolioUrl: "",
+        },
+        Ibam: {
+          bio: "Tulis deskripsi singkat tentang Ibam di sini.",
+          portfolioUrl: "",
+        },
+        Rhapip: {
+          bio: "Tulis deskripsi singkat tentang Rhapip di sini.",
+          portfolioUrl: "",
+        },
+        Apip: {
+          bio: "Tulis deskripsi singkat tentang Apip di sini.",
+          portfolioUrl: "",
+        },
+        Pakih: {
+          bio: "Tulis deskripsi singkat tentang Pakih di sini.",
+          portfolioUrl: "",
+        },
+        Satria: {
+          bio: "Tulis deskripsi singkat tentang Satria di sini.",
+          portfolioUrl: "",
+        },
+        Ajam: {
+          bio: "Tulis deskripsi singkat tentang Ajam di sini.",
+          portfolioUrl: "",
+        },
+        Akmal: {
+          bio: "Tulis deskripsi singkat tentang Akmal di sini.",
+          portfolioUrl: "",
+        },
+        Fatih: {
+          bio: "Tulis deskripsi singkat tentang Fatih di sini.",
+          portfolioUrl: "",
+        },
+        Almer: {
+          bio: "Tulis deskripsi singkat tentang Almer di sini.",
+          portfolioUrl: "",
+        },
+        Qaisar: {
+          bio: "Tulis deskripsi singkat tentang Qaisar di sini.",
+          portfolioUrl: "",
+        },
+        Fajri: {
+          bio: "Tulis deskripsi singkat tentang Fajri di sini.",
+          portfolioUrl: "",
+        },
+        Rafi: {
+          bio: "Tulis deskripsi singkat tentang Rafi di sini.",
+          portfolioUrl: "",
+        },
+        Alzawawu: {
+          bio: "Tulis deskripsi singkat tentang Alzawawu di sini.",
+          portfolioUrl: "",
+        },
+        Aqrom: {
+          bio: "Tulis deskripsi singkat tentang Aqrom di sini.",
+          portfolioUrl: "",
+        },
+        Yusuf: {
+          bio: "Tulis deskripsi singkat tentang Yusuf di sini.",
+          portfolioUrl: "",
+        },
+        Fadhli: {
+          bio: "Tulis deskripsi singkat tentang Fadhli di sini.",
+          portfolioUrl: "",
+        },
+        Alfath: {
+          bio: "Tulis deskripsi singkat tentang Alfath di sini.",
+          portfolioUrl: "",
+        },
+        "Nama anggota 12 (belum diisi)": {
+          bio: "Tulis deskripsi singkat tentang Nama anggota 12 (belum diisi) di sini.",
+          portfolioUrl: "",
+        },
+        "Nama anggota 13 (belum diisi)": {
+          bio: "Tulis deskripsi singkat tentang Nama anggota 13 (belum diisi) di sini.",
+          portfolioUrl: "",
+        },
+      };
       const MEMBERS = [
-        ...CLASS_1.map((name) => ({ name, group: "Kelas 1", bio: "Anggota INVICTUS — Kelas 1." })),
-        ...CLASS_2.map((name) => ({ name, group: "Kelas 2", bio: "Anggota INVICTUS — Kelas 2." })),
+        ...CLASS_1.map((name) => ({
+          name,
+          group: "Kelas 1",
+          ...(MEMBER_PROFILES[name] || {}),
+          src: MEMBER_PHOTOS[name] || null,
+        })),
+        ...CLASS_2.map((name) => ({
+          name,
+          group: "Kelas 2",
+          ...(MEMBER_PROFILES[name] || {}),
+          src: MEMBER_PHOTOS[name] || null,
+        })),
       ];
-      // Jadwal contoh Senin–Jumat untuk seluruh 27 anggota.
-      const PIKET_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
-      const PIKET_COUNTS = [6, 6, 5, 5, 5];
-      function renderPiket() {
-        let cursor = 0;
-        $("#piketGrid").innerHTML = PIKET_DAYS.map((day, index) => {
-          const names = MEMBERS.slice(cursor, cursor + PIKET_COUNTS[index]);
-          cursor += PIKET_COUNTS[index];
-          return `<article class="piket-day"><h3>${day}</h3><ol>${names.map((m) => `<li>${m.name} <small>— ${m.group}</small></li>`).join("")}</ol></article>`;
+      // Jadwal Senin–Sabtu: setiap hari 2–3 orang per kelas.
+      const PIKET_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const PIKET_CLASS_1 = [
+        ["Haidar", "Baim", "Reza"],
+        ["Raqilla", "Nabigh"],
+        ["Vitto", "Hilmi"],
+        ["Hiraki", "Ibam"],
+        ["Rhapip", "Apip", "Pakih"],
+        ["Satria", "Ajam"],
+      ];
+      const PIKET_CLASS_2 = [
+        ["Akmal", "Fatih"],
+        ["Almer", "Qaisar"],
+        ["Fajri", "Rafi"],
+        ["Alzawawu", "Aqrom"],
+        ["Yusuf", "Fadhli"],
+        [
+          "Alfath",
+          "Nama anggota 12 (belum diisi)",
+          "Nama anggota 13 (belum diisi)",
+        ],
+      ];
+
+      function renderPiketGrid(targetId, schedule) {
+        $("#" + targetId).innerHTML = PIKET_DAYS.map((day, index) => {
+          const names = schedule[index];
+          return `<article class="piket-day"><h3>${day}</h3><ol>${names.map((name) => `<li>${name}</li>`).join("")}</ol></article>`;
         }).join("");
+      }
+
+      function renderPiket() {
+        renderPiketGrid("piketGrid1", PIKET_CLASS_1);
+        renderPiketGrid("piketGrid2", PIKET_CLASS_2);
       }
 
       const EVENTS = [
@@ -1193,19 +2075,26 @@
       let g = "Semua";
       function render() {
         const q = $("#q").value.toLowerCase();
-        const l = MEMBERS.map((m, i) => ({ ...m, i })).filter(
+        const filtered = MEMBERS.map((m, i) => ({ ...m, i })).filter(
           (m) =>
             (g === "Semua" || m.group === g) &&
             m.name.toLowerCase().includes(q),
         );
-        $("#grid").innerHTML = l.length
-          ? l
-              .map(
-                (m) =>
-                  `<button class="mc" data-i="${m.i}" aria-label="${m.name}, ketuk untuk membalik"><div class="in"><div class="fc"><img loading="lazy" src="${m.src || ph(m.i + 9, 500, 660)}" alt=""><div><h3>${m.name}</h3><small>${m.group}</small></div></div><div class="bc"><h3>${m.name}</h3>${m.bio}<br><small>${m.group}</small></div></div></button>`,
-              )
-              .join("")
-          : "<p>Tidak ada anggota yang cocok. Coba kata kunci lain atau pilih Semua.</p>";
+
+        const renderCards = (group) => {
+          const members = filtered.filter((m) => m.group === group);
+          return members.length
+            ? members
+                .map(
+                  (m) =>
+                    `<button class="mc" data-i="${m.i}" aria-label="${m.name}, ketuk untuk melihat detail"><div class="in"><div class="fc"><img loading="lazy" src="${m.src || ph(m.i + 9, 500, 660)}" alt="Foto ${m.name}"><div><h3>${m.name}</h3><small>${m.group}</small></div></div><div class="bc"><h3>${m.name}</h3>${m.bio}<br><small>${m.group}</small><span class="portfolio-hint">${m.portfolioUrl ? "Klik untuk membuka portfolio" : "Portfolio: tautan belum ditambahkan"}</span></div></div></button>`,
+                )
+                .join("")
+            : "<p>Tidak ada anggota yang cocok.</p>";
+        };
+
+        $("#class1Grid").innerHTML = renderCards("Kelas 1");
+        $("#class2Grid").innerHTML = renderCards("Kelas 2");
       }
       $("#q").oninput = render;
       chips(
@@ -1216,10 +2105,70 @@
           render();
         },
       );
-      $("#grid").onclick = (e) => {
-        const c = e.target.closest(".mc");
-        if (c) c.classList.toggle("fl");
-      };
+      /* Halaman profil: setiap kartu membuka detail anggota */
+      const memberDetailPage = $("#memberDetailPage");
+      const memberDetailPhoto = $("#memberDetailPhoto");
+      const memberDetailName = $("#memberDetailName");
+      const memberDetailClass = $("#memberDetailClass");
+      const memberDetailBio = $("#memberDetailBio");
+      const memberPortfolioLink = $("#memberPortfolioLink");
+
+      function openMemberProfile(memberIndex) {
+        const member = MEMBERS[Number(memberIndex)];
+        if (!member) return;
+
+        memberDetailName.textContent = member.name;
+        memberDetailClass.textContent = member.group;
+        memberDetailBio.textContent =
+          member.bio || "Deskripsi anggota belum ditambahkan.";
+        memberDetailPhoto.src =
+          member.src || ph(Number(memberIndex) + 9, 700, 900);
+        memberDetailPhoto.alt = "Foto " + member.name;
+
+        if (member.portfolioUrl && /^https?:\/\//i.test(member.portfolioUrl)) {
+          memberPortfolioLink.href = member.portfolioUrl;
+          memberPortfolioLink.classList.remove("disabled");
+          memberPortfolioLink.setAttribute("aria-disabled", "false");
+          memberPortfolioLink.innerHTML =
+            'Buka Portfolio <span aria-hidden="true">↗</span>';
+        } else {
+          memberPortfolioLink.removeAttribute("href");
+          memberPortfolioLink.classList.add("disabled");
+          memberPortfolioLink.setAttribute("aria-disabled", "true");
+          memberPortfolioLink.textContent = "Portfolio belum tersedia";
+        }
+
+        memberDetailPage.classList.add("open");
+        memberDetailPage.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        history.pushState(
+          { invictusMemberProfile: true },
+          "",
+          "#anggota-" +
+            encodeURIComponent(member.name.toLowerCase().replace(/\\s+/g, "-")),
+        );
+        memberDetailPage.scrollTop = 0;
+        $("#memberBack").focus();
+      }
+
+      function closeMemberProfile(useHistory = true) {
+        if (!memberDetailPage.classList.contains("open")) return;
+        memberDetailPage.classList.remove("open");
+        memberDetailPage.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        if (useHistory && history.state && history.state.invictusMemberProfile)
+          history.back();
+      }
+
+      $("#members").addEventListener("click", (e) => {
+        const card = e.target.closest(".mc");
+        if (card) openMemberProfile(card.dataset.i);
+      });
+      $("#memberBack").addEventListener("click", () => closeMemberProfile());
+      addEventListener("popstate", () => closeMemberProfile(false));
+      addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMemberProfile();
+      });
       $("#rnd").onclick = () => {
         const cs = [...document.querySelectorAll(".mc")];
         if (!cs.length) return;
@@ -1321,6 +2270,45 @@
         { rootMargin: "-45% 0px -50% 0px" },
       );
       document.querySelectorAll("section[id]").forEach((s) => so.observe(s));
+
+      /* UX polish: reveal on scroll, compact navigation, and hero pointer glow */
+      document.body.classList.add("reveal-ready");
+      document
+        .querySelectorAll("section:not(#home) > *")
+        .forEach((el) => el.setAttribute("data-reveal", ""));
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -35px 0px" },
+        );
+        document
+          .querySelectorAll("[data-reveal]")
+          .forEach((el) => revealObserver.observe(el));
+      } else
+        document
+          .querySelectorAll("[data-reveal]")
+          .forEach((el) => el.classList.add("revealed"));
+      const mainNav = document.querySelector("nav");
+      const updateNav = () =>
+        mainNav.classList.toggle("scrolled", window.scrollY > 28);
+      updateNav();
+      window.addEventListener("scroll", updateNav, { passive: true });
+      const heroArea = document.querySelector("#home");
+      if (!RM && matchMedia("(pointer:fine)").matches) {
+        heroArea.addEventListener("pointermove", (e) => {
+          const r = heroArea.getBoundingClientRect();
+          heroArea.style.setProperty("--mx", `${e.clientX - r.left}px`);
+          heroArea.style.setProperty("--my", `${e.clientY - r.top}px`);
+        });
+      }
+
       /* easter egg: klik logo 5x, atau klik statistik "Kenangan" */
       let n = 0,
         t;
