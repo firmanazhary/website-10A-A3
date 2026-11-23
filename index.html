@@ -76,7 +76,7 @@
       .skip:focus {
         top: 1rem;
       }
-      /* logo.png has a near-black square background: the SVG filter #kk turns it transparent, leaving only the white mark */
+      /* logo.svg has a near-black square background: the SVG filter #kk turns it transparent, leaving only the white mark */
       .logo {
         filter: url(#kk);
       }
@@ -111,6 +111,7 @@
       }
 
       /* ===== 3. CURSOR: dot + delayed ring, difference blend, hidden on touch ===== */
+      /* ===== 3. CURSOR: negative circle ===== */
       .cur {
         position: fixed;
         left: 0;
@@ -120,28 +121,19 @@
         display: none;
         mix-blend-mode: difference;
       }
-      .dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #fff;
-      }
+
       .ring {
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        border: 1px solid #fffa;
-        background: radial-gradient(circle, #a855f7, #6366f1b3 58%, #6366f100);
-        opacity: 0.55;
-        transition: opacity 0.3s;
+        background: #fff;
       }
-      .ring.on {
-        opacity: 1;
-      }
+
       @media (hover: hover) and (pointer: fine) {
         .cur {
           display: block;
         }
+
         body,
         a,
         button,
@@ -149,7 +141,6 @@
           cursor: none;
         }
       }
-
       /* ===== 4. HEADER ===== */
       header {
         position: fixed;
@@ -421,7 +412,7 @@
         }
       }
 
-      /* ===== 8. ANGGOTA ===== */
+      /* ===== 8. anggota ===== */
       .mem {
         background: var(--s1);
       }
@@ -511,6 +502,15 @@
         box-shadow:
           0 30px 60px -12px #000c,
           0 0 0 1px #fff3;
+        position: relative;
+        overflow: hidden;
+      }
+      .peek-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .peek span {
         font: 700 1rem var(--sa);
@@ -688,7 +688,7 @@
     </style>
   </head>
   <body>
-    <!-- Keys out logo.png's near-black background (alpha from brightness) so only the white mark remains -->
+    <!-- Keys out logo.svg's near-black background (alpha from brightness) so only the white mark remains -->
     <svg
       width="0"
       height="0"
@@ -705,20 +705,22 @@
     </svg>
     <a class="skip" href="#isi">Lewati ke konten utama</a>
     <div class="stars" aria-hidden="true"><i></i><i></i></div>
-    <div class="cur dot" aria-hidden="true"></div>
     <div class="cur ring" aria-hidden="true"></div>
     <div class="peek" id="peek" aria-hidden="true">
-      <div class="ph"><b></b><span></span></div>
+      <div class="ph">
+        <img class="peek-img" src="" alt="" />
+        <span></span>
+      </div>
     </div>
 
     <header id="top">
-      <!-- SWAP: put the real logo file next to this HTML and name it logo.png -->
+      <!-- SWAP: put the real logo file next to this HTML and name it logo.svg -->
       <a href="#top"
         ><img
           class="logo"
-          src="logo.png"
-          width="46"
-          height="46"
+          src="logo.svg"
+          width="100"
+          height="100"
           decoding="async"
           alt="Logo INVICTUS Gen 03 — kembali ke awal halaman"
       /></a>
@@ -734,7 +736,7 @@
         <canvas id="gl" aria-hidden="true"></canvas>
         <img
           class="wm logo"
-          src="logo.png"
+          src="logo.svg"
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -742,7 +744,7 @@
         <div class="in">
           <p class="eyebrow">Angkatan 03 — Tak Terkalahkan</p>
           <h1>
-            <span><img src="./logo.png" alt="" /></span>
+            <span><img src="./logo.svg" alt="" /></span>
           </h1>
           <p class="sub">Tak Terkalahkan / Gen 03</p>
           <p class="lead">
@@ -798,9 +800,9 @@
         </div>
       </section>
 
-      <!-- ANGGOTA: the list is generated from MEMBERS in the script -->
+      <!-- anggota: the list is generated from MEMBERS in the script -->
       <section id="anggota" class="mem">
-        <p class="lab">ANGGOTA KAMI</p>
+        <p class="lab">anggota</p>
         <h2 class="sk">Tiga puluh tiga nama, satu angkatan.</h2>
         <p class="hint">Arahkan kursor ke nama</p>
         <ul id="list" aria-label="Daftar 33 anggota angkatan"></ul>
@@ -847,7 +849,7 @@
       <div class="fi">
         <img
           class="logo"
-          src="logo.png"
+          src="logo.svg"
           width="128"
           height="128"
           loading="lazy"
@@ -881,10 +883,77 @@
     ></script>
     <script>
       /* ===== DATA: SWAP with real names (add/remove freely) ===== */
-      const MEMBERS = Array.from(
-        { length: 33 },
-        (_, i) => "Nama " + String(i + 1).padStart(2, "0"),
-      );
+      const MEMBERS = [
+        {
+          name: "Abdurrahman Afif",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1n1qNU1o1xZDGHgNWBC2hxlygnTwdYoh_",
+        },
+        {
+          name: "Azzam Al Ghifary",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1T-VCvixTKbIC8SY7TCVQ646zc_4XAKIm",
+        },
+        {
+          name: "Ghaisan Raqilla Manan",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1nSgNMSITTScoevaASllIRBwVa8mY1QVy",
+        },
+        {
+          name: "Hilmi Romzi Nagib",
+          photo:
+            "https://drive.google.com/uc?export=view&id=11yVZA-gLY9ADq1ckNuCo7ZdR4meVZGdZ",
+        },
+        {
+          name: "Ibrahim Omar",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1S03kl1WHIbesy-rOvpIwflWFeA_V0bUU",
+        },
+        {
+          name: "Syaelendra Ebrahim Kamil",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1u1n3mGk86XoGcEZ3wdBT4QPdfA0iIysp",
+        },
+        {
+          name: "Vittorio Veneto Setiyantara",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1hau_X1H1tUQAPlvy1OmFxNmsNFnRzcwf",
+        },
+        {
+          name: "Haidar Mahya Sabilillah",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1i4ZZtEXTf1SGyWsg2a5fy8u-CcdZJPua",
+        },
+        {
+          name: "Nabigh Habibie Ghany",
+          photo:
+            "https://drive.google.com/uc?export=view&id=19HM21tCUTDFXOXF--45p6Y477DOQ0jNi",
+        },
+        {
+          name: "Reza Khoirul Azzam",
+          photo:
+            "https://drive.google.com/uc?export=view&id=12bUciI2YOBjjMYGvQZfMINKzOzxeJAA4",
+        },
+        {
+          name: "Hiraki Prayata Ananggadipa",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1VL_ogPEY8rtlWtzgrub7bJglnBBYrsgE",
+        },
+        {
+          name: "Muhamad Rhafif Assidik",
+          photo: "",
+        },
+        {
+          name: "Muhammad Fakhril Fakih",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1poYFeTC_U6AB9QZqF0tCfaxMBKVSxzxc",
+        },
+        {
+          name: "Satria Rupawan",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1aIfXzuppGOEeLSd9q22TbqUppudne029",
+        },
+      ];
       const pad = (n) => String(n).padStart(2, "0");
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -910,7 +979,7 @@
         $("#tr").innerHTML = ["INVICTUS", "GEN 03", "TAK TERKALAHKAN"]
           .map(
             (w) =>
-              `<span>${w}</span><img class="logo" src="logo.png" alt="" loading="lazy">`,
+              `<span>${w}</span><img class="logo" src="logo.svg" alt="" loading="lazy">`,
           )
           .join("")
           .repeat(4);
@@ -919,13 +988,16 @@
         const list = $("#list"),
           peek = $("#peek");
         list.innerHTML = MEMBERS.map(
-          (n, i) =>
-            `<li tabindex="0" data-i="${i}"><span class="no">${pad(i + 1)}</span><span class="nm">${n}</span></li>`,
+          (member, i) =>
+            `<li tabindex="0" data-i="${i}">
+      <span class="no">${pad(i + 1)}</span>
+      <span class="nm">${member.name}</span>
+    </li>`,
         ).join("");
 
         if (G) {
           /* ---- mouse-follow photo zoom (x/y via transform only) ---- */
-          const bi = $("b", peek),
+          const photo = $(".peek-img", peek),
             sp = $("span", peek),
             qx = G.quickTo(peek, "x", { duration: 0.55, ease: "power3" }),
             qy = G.quickTo(peek, "y", { duration: 0.55, ease: "power3" });
@@ -940,8 +1012,9 @@
             const i = +li.dataset.i;
             cur = li;
             peek.style.setProperty("--h", 250 + ((i * 13) % 80));
-            bi.textContent = `[FOTO_${pad(i + 1)}]`;
-            sp.textContent = MEMBERS[i];
+            photo.src = MEMBERS[i].photo || "";
+            photo.style.display = MEMBERS[i].photo ? "block" : "none";
+            sp.textContent = MEMBERS[i].name;
             if (vis) pos(x, y);
             else {
               pos(x, y, true);
@@ -987,54 +1060,29 @@
           });
           list.addEventListener("focusout", hide);
 
-          /* ---- custom cursor: ring stretches over hovered interactive element ---- */
+          /* ---- custom cursor: negative circle ---- */
           if (fine) {
-            const dot = $(".dot"),
-              ring = $(".ring"),
-              o = { duration: 0.5, ease: "power3" };
-            G.set([dot, ring], {
+            const ring = $(".ring");
+            const o = { duration: 0.25, ease: "power3" };
+
+            G.set(ring, {
               xPercent: -50,
               yPercent: -50,
               x: -100,
               y: -100,
             });
-            const rx = G.quickTo(ring, "x", o),
-              ry = G.quickTo(ring, "y", o),
-              sx = G.quickTo(ring, "scaleX", o),
-              sy = G.quickTo(ring, "scaleY", o);
-            let mx = -100,
-              my = -100,
-              hov = null;
-            const fit = () => {
-              if (hov) {
-                const r = hov.getBoundingClientRect();
-                rx(r.left + r.width / 2);
-                ry(r.top + r.height / 2);
-                sx((r.width + 28) / 44);
-                sy((r.height + 18) / 44);
-              } else {
-                rx(mx);
-                ry(my);
-                sx(1);
-                sy(1);
-              }
-              ring.classList.toggle("on", !!hov);
-            };
+
+            const rx = G.quickTo(ring, "x", o);
+            const ry = G.quickTo(ring, "y", o);
+
             addEventListener(
               "pointermove",
               (e) => {
-                mx = e.clientX;
-                my = e.clientY;
-                G.set(dot, { x: mx, y: my });
-                if (!hov) fit();
+                rx(e.clientX);
+                ry(e.clientY);
               },
               { passive: true },
             );
-            document.addEventListener("pointerover", (e) => {
-              hov = e.target.closest("a,button,#list li");
-              fit();
-            });
-            addEventListener("scroll", () => hov && fit(), { passive: true });
           }
         }
 
