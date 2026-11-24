@@ -6,7 +6,7 @@
     <title>INVICTUS — Gen 03 · Tak Terkalahkan</title>
     <meta
       name="description"
-      content="Situs angkatan INVICTUS Gen 03: tiga puluh tiga anak SMP, satu nama, tak terkalahkan."
+      content="Situs angkatan INVICTUS Gen 03: dua puluh lima anak SMP, satu nama, tak terkalahkan."
     />
     <meta name="theme-color" content="#0A0612" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -429,6 +429,31 @@
         grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
         gap: 0.2rem 3rem;
       }
+
+      #list .group-label {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 3rem;
+        padding: 0 0 0.8rem;
+        border-bottom: 1px solid #c4b5fd55;
+        color: var(--st);
+        font: 500 0.8rem var(--mo);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: default;
+      }
+
+      #list .group-label:first-child {
+        margin-top: 0;
+      }
+
+      #list .group-label span:last-child {
+        color: var(--mu);
+        font-size: 0.65rem;
+      }
+
       #list li {
         position: relative;
         display: flex;
@@ -516,6 +541,18 @@
         font: 700 1rem var(--sa);
         letter-spacing: 0.1em;
         text-transform: uppercase;
+      }
+
+      .peek-quote {
+        margin-top: 0.9rem;
+        padding: 0.8rem 1rem;
+        background: var(--s2);
+        border-left: 2px solid var(--st);
+        color: var(--tx);
+        font: italic 400 0.85rem/1.6 var(--sa);
+        letter-spacing: 0.01em;
+        box-shadow: 0 15px 35px #0008;
+        max-width: 220px;
       }
 
       /* ===== 9. ARSIP FOTO: scrapbook, irregular and overlapping ===== */
@@ -706,11 +743,13 @@
     <a class="skip" href="#isi">Lewati ke konten utama</a>
     <div class="stars" aria-hidden="true"><i></i><i></i></div>
     <div class="cur ring" aria-hidden="true"></div>
+
     <div class="peek" id="peek" aria-hidden="true">
       <div class="ph">
         <img class="peek-img" src="" alt="" />
         <span></span>
       </div>
+      <p class="peek-quote"></p>
     </div>
 
     <header id="top">
@@ -760,7 +799,7 @@
           <p class="lab">Tentang Kita</p>
           <h2 class="rv">Satu kelas. Tak ada yang tertinggal.</h2>
           <p class="bd rv">
-            Tiga tahun di bangku yang sama, tiga puluh tiga cara berbeda untuk
+            Tiga tahun di bangku yang sama, Dua puluh lima cara berbeda untuk
             salah, jatuh, lalu bangun lagi. Kami pernah remedial bareng, tertawa
             di jam pelajaran paling sepi, dan pulang paling akhir karena belum
             mau pisah. Nama Invictus tidak kami pilih karena terdengar keren.
@@ -803,9 +842,9 @@
       <!-- anggota: the list is generated from MEMBERS in the script -->
       <section id="anggota" class="mem">
         <p class="lab">anggota</p>
-        <h2 class="sk">Tiga puluh tiga nama, satu angkatan.</h2>
+        <h2 class="sk">Dua puluh lima nama, satu angkatan.</h2>
         <p class="hint">Arahkan kursor ke nama</p>
-        <ul id="list" aria-label="Daftar 33 anggota angkatan"></ul>
+        <ul id="list" aria-label="Daftar 25 anggota angkatan"></ul>
       </section>
 
       <!-- ARSIP FOTO -->
@@ -883,77 +922,177 @@
     ></script>
     <script>
       /* ===== DATA: SWAP with real names (add/remove freely) ===== */
+
+      /* ===== DATA: MEMBERS, GROUPED BY CLASS ===== */
       const MEMBERS = [
+        // CLASS 10A — alphabetical
         {
           name: "Abdurrahman Afif",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1n1qNU1o1xZDGHgNWBC2hxlygnTwdYoh_",
+          quote: "Insert quote here...",
         },
         {
           name: "Azzam Al Ghifary",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1T-VCvixTKbIC8SY7TCVQ646zc_4XAKIm",
+          quote: "Insert quote here...",
         },
         {
           name: "Ghaisan Raqilla Manan",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1nSgNMSITTScoevaASllIRBwVa8mY1QVy",
-        },
-        {
-          name: "Hilmi Romzi Nagib",
-          photo:
-            "https://drive.google.com/uc?export=view&id=11yVZA-gLY9ADq1ckNuCo7ZdR4meVZGdZ",
-        },
-        {
-          name: "Ibrahim Omar",
-          photo:
-            "https://drive.google.com/uc?export=view&id=1S03kl1WHIbesy-rOvpIwflWFeA_V0bUU",
-        },
-        {
-          name: "Syaelendra Ebrahim Kamil",
-          photo:
-            "https://drive.google.com/uc?export=view&id=1u1n3mGk86XoGcEZ3wdBT4QPdfA0iIysp",
-        },
-        {
-          name: "Vittorio Veneto Setiyantara",
-          photo:
-            "https://drive.google.com/uc?export=view&id=1hau_X1H1tUQAPlvy1OmFxNmsNFnRzcwf",
+          quote: "Insert quote here...",
         },
         {
           name: "Haidar Mahya Sabilillah",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1i4ZZtEXTf1SGyWsg2a5fy8u-CcdZJPua",
+          quote: "Insert quote here...",
         },
         {
-          name: "Nabigh Habibie Ghany",
+          name: "Hilmi Romzi Nagib",
+          class: "10A",
           photo:
-            "https://drive.google.com/uc?export=view&id=19HM21tCUTDFXOXF--45p6Y477DOQ0jNi",
-        },
-        {
-          name: "Reza Khoirul Azzam",
-          photo:
-            "https://drive.google.com/uc?export=view&id=12bUciI2YOBjjMYGvQZfMINKzOzxeJAA4",
+            "https://drive.google.com/uc?export=view&id=11yVZA-gLY9ADq1ckNuCo7ZdR4meVZGdZ",
+          quote: "Insert quote here...",
         },
         {
           name: "Hiraki Prayata Ananggadipa",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1VL_ogPEY8rtlWtzgrub7bJglnBBYrsgE",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Ibrahim Omar",
+          class: "10A",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1S03kl1WHIbesy-rOvpIwflWFeA_V0bUU",
+          quote: "Insert quote here...",
         },
         {
           name: "Muhamad Rhafif Assidik",
+          class: "10A",
           photo: "",
+          quote: "Insert quote here...",
         },
         {
           name: "Muhammad Fakhril Fakih",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1poYFeTC_U6AB9QZqF0tCfaxMBKVSxzxc",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Nabigh Habibie Ghany",
+          class: "10A",
+          photo:
+            "https://drive.google.com/uc?export=view&id=19HM21tCUTDFXOXF--45p6Y477DOQ0jNi",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Reza Khoirul Azzam",
+          class: "10A",
+          photo:
+            "https://drive.google.com/uc?export=view&id=12bUciI2YOBjjMYGvQZfMINKzOzxeJAA4",
+          quote: "Insert quote here...",
         },
         {
           name: "Satria Rupawan",
+          class: "10A",
           photo:
             "https://drive.google.com/uc?export=view&id=1aIfXzuppGOEeLSd9q22TbqUppudne029",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Syaelendra Ebrahim Kamil",
+          class: "10A",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1u1n3mGk86XoGcEZ3wdBT4QPdfA0iIysp",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Vittorio Veneto Setiyantara",
+          class: "10A",
+          photo:
+            "https://drive.google.com/uc?export=view&id=1hau_X1H1tUQAPlvy1OmFxNmsNFnRzcwf",
+          quote: "Insert quote here...",
+        },
+
+        // CLASS 10B — alphabetical
+        {
+          name: "Ahmad Alfathussholeh",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Akmal Luqman Syamlan",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Arqam Wadud Affandi",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Fajri Ahmad",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Fatih Akbar Dhiyaa Ul Haq",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Muhamad Bahtiar Almer Tajusa",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Muhammad Bin Donald Arthur Muhammad",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Muhammad Fadhli",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Muhammad Qaishar Rasendrya",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Rafi Ardhani",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
+        },
+        {
+          name: "Yusuf Putra Rinadi",
+          class: "10B",
+          photo: "",
+          quote: "Insert quote here...",
         },
       ];
+
       const pad = (n) => String(n).padStart(2, "0");
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -984,23 +1123,50 @@
           .join("")
           .repeat(4);
 
-        /* ---- member list ---- */
+        /* ---- grouped member list ---- */
         const list = $("#list"),
           peek = $("#peek");
-        list.innerHTML = MEMBERS.map(
-          (member, i) =>
-            `<li tabindex="0" data-i="${i}">
-      <span class="no">${pad(i + 1)}</span>
-      <span class="nm">${member.name}</span>
-    </li>`,
-        ).join("");
+
+        const classes = ["10A", "10B"];
+
+        let memberIndex = 0;
+
+        list.innerHTML = classes
+          .map((className) => {
+            const members = MEMBERS.filter(
+              (member) => member.class === className,
+            );
+
+            return `
+    <li class="group-label">
+      <span>${className}</span>
+      <span>${String(members.length).padStart(2, "0")} MEMBERS</span>
+    </li>
+    ${members
+      .map((member) => {
+        const index = memberIndex++;
+
+        return `
+        <li tabindex="0" data-i="${index}">
+          <span class="no">${pad(index + 1)}</span>
+          <span class="nm">${member.name}</span>
+        </li>
+      `;
+      })
+      .join("")}
+  `;
+          })
+          .join("");
 
         if (G) {
           /* ---- mouse-follow photo zoom (x/y via transform only) ---- */
+
           const photo = $(".peek-img", peek),
-            sp = $("span", peek),
+            sp = $(".ph span", peek),
+            quote = $(".peek-quote", peek),
             qx = G.quickTo(peek, "x", { duration: 0.55, ease: "power3" }),
             qy = G.quickTo(peek, "y", { duration: 0.55, ease: "power3" });
+
           let cur = null,
             vis = false;
           const pos = (x, y, jump) => {
@@ -1014,7 +1180,12 @@
             peek.style.setProperty("--h", 250 + ((i * 13) % 80));
             photo.src = MEMBERS[i].photo || "";
             photo.style.display = MEMBERS[i].photo ? "block" : "none";
+
             sp.textContent = MEMBERS[i].name;
+
+            quote.textContent = MEMBERS[i].quote
+              ? `“${MEMBERS[i].quote}”`
+              : "No quote added yet.";
             if (vis) pos(x, y);
             else {
               pos(x, y, true);
@@ -1044,7 +1215,7 @@
           };
           list.addEventListener("pointermove", (e) => {
             if (e.pointerType === "touch") return;
-            const li = e.target.closest("li");
+            const li = e.target.closest("li[data-i]");
             if (!li) return hide();
             li === cur
               ? pos(e.clientX, e.clientY)
@@ -1052,7 +1223,7 @@
           });
           list.addEventListener("pointerleave", hide);
           list.addEventListener("focusin", (e) => {
-            const li = e.target.closest("li");
+            const li = e.target.closest("li[data-i]");
             if (li) {
               const r = li.getBoundingClientRect();
               show(li, r.left + r.width * 0.6, r.top + r.height / 2);
