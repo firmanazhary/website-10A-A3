@@ -62,15 +62,15 @@ const PF = [
   [8, 'Front-End Dev', 'Sedikit demi sedikit, jadi aplikasi.', 'https://raqilla.vercel.app/'],
   [9, 'Motion Designer', 'Dream big', ''],
   [10, 'Backend Enthusiast', 'Apa yang ditabur dengan sabar, akan dituai pada waktu yang tepat.', 'https://portofolio-hilmi-v2.vercel.app/'],
-  [11, 'Illustrator', 'To be a star, you must burn.', ''],
+  [11, 'Illustrator', 'To be a star, you must burn.', 'https://hirakoyy.github.io/Portfolio/'],
   [12, 'Game Dev', 'You never FAIL until You Stop Trying.', 'https://omarinspace.github.io/IbrahimOmar-Portfolio-V2/'],
-  [16, 'Full-Stack Dev', 'Keep learning, keep growing.', ''],
+  [16, 'Full-Stack Dev', 'Keep learning, keep growing.', 'https://murhfif.github.io/Portofolio/'],
   [17, 'Photo & Video', 'hanya meraka yang berani gagal, yang meraih banyak hal', 'https://veneto-portfolio.vercel.app/'],
   [25, 'Data Enthusiast', 'Upgrade your life in silence.', 'https://fakeeh.vercel.app/'],
-  [27, 'Content Creator',    'Bercerita dengan sepenuh hati.',          ''],
-  [30, 'Cyber Security',     'Aman itu kebiasaan.',                     ''],
-  [31, 'AI & ML',            'Belajar dari setiap kesalahan.',          ''],
-  [32, '3D & WebGL', 'BELIEVE IN YOUR DREAM', ''],
+  [27, 'Content Creator',    'Bercerita dengan sepenuh hati.',          'https://nabigh-portofolio.vercel.app/'],
+  [30, 'Cyber Security',     'Aman itu kebiasaan.',                     'https://rejaajha.github.io/New-Portfolio/'],
+  [31, 'AI & ML',            'Belajar dari setiap kesalahan.',          'https://my-portfolio-zeta-blush-13.vercel.app/'],
+  [32, '3D & WebGL', 'BELIEVE IN YOUR DREAM', 'https://syaelndr-portfolio-rhrj.vercel.app/'],
 ];
 const URLS = {}, MOTO = {}; PF.forEach(([no, , moto, url]) => { URLS[no] = url; MOTO[no] = moto; });
 const TASKS = ['Menyapu lantai', 'Mengepel', 'Membersihkan papan tulis', 'Merapikan meja', 'Membuang sampah'];
@@ -87,11 +87,17 @@ if (reduce) gsap.globalTimeline.timeScale(100); // animasi jadi instan, konten l
 const live = no => URLS[no] && URLS[no] !== '#';
 // Foto anggota: taruh di folder foto/ dengan nama nomor anggota (1.jpg, 2.jpg, ...). Kalau belum ada, tampil inisial.
 const EXT = ['jpg', 'jpeg', 'png', 'webp'];
-const ph = n => { const d = document.createElement('div'); d.className = 'flex h-full w-full items-center justify-center bg-sage-light font-display text-6xl text-ink-soft'; d.textContent = n.split(' ').map(w => w[0]).slice(0, 2).join(''); return d; };
+const MEMBER_PHOTOS = {
+  1: 'afif', 4: 'azam', 8: 'ghaisan', 9: 'haidar', 10: 'hilmi',
+  11: 'hiraki', 12: 'omar', 16: 'rhafif', 17: 'vitto', 25: 'fakih',
+  27: 'nabigh', 30: 'reza', 31: 'satria', 32: 'kamil'
+};
+const memberPhotoSrc = m => MEMBER_PHOTOS[m.no] ? `foto/${MEMBER_PHOTOS[m.no]}.webp` : (FOTO?.[m.no] || `foto/${m.no}.jpg`);
+const ph = n => { const d = document.createElement('div'); d.className = 'coming-soon-card flex h-full w-full flex-col items-center justify-center gap-2'; d.innerHTML = '<span class="coming-soon-title font-display text-3xl">Coming Soon</span><span class="coming-soon-label font-mono text-[10px] tracking-[.25em]">FOTO BELUM ADA</span>'; return d; };
 window.fb = img => { const k = +(img.dataset.k || 0) + 1; if (k < EXT.length) { img.dataset.k = k; img.src = `foto/${img.dataset.no}.${EXT[k]}`; } else img.replaceWith(ph(img.dataset.name)); };
-const photo = (m, c = '') => `<div class="${c} overflow-hidden bg-sage-light"><img src="foto/${m.no}.jpg" data-no="${m.no}" data-name="${m.name}" alt="Foto ${m.name}, siswa ${m.kelas}" loading="lazy" onerror="fb(this)" class="h-full w-full object-cover"></div>`;
-const pfBtn = no => live(no) ? `<a href="${URLS[no]}" target="_blank" rel="noopener noreferrer" aria-label="Buka portofolio ${M[no - 1].name} di tab baru" class="pb mt-4 inline-flex items-center gap-2 rounded-full border border-sage bg-canvas px-4 py-2 font-mono text-xs uppercase tracking-wider text-sage-deep transition-all duration-300 hover:border-sage-deep hover:bg-sage hover:text-canvas">Lihat Portofolio <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>`
-  : '<span class="mt-4 inline-flex cursor-not-allowed rounded-full border border-surface-2 px-4 py-2 font-mono text-xs uppercase tracking-wider opacity-50" aria-disabled="true">Segera hadir</span>';
+const photo = (m, c = '') => `<div class="${c} overflow-hidden bg-sage-light"><img src="${memberPhotoSrc(m)}" data-no="${m.no}" data-name="${m.name}" alt="Foto ${m.name}, siswa ${m.kelas}" loading="lazy" onerror="fb(this)" class="h-full w-full object-cover"></div>`;
+const pfBtn = no => live(no) ? `<a href="${URLS[no]}" target="_blank" rel="noopener noreferrer" aria-label="Buka portofolio ${M[no - 1].name} di tab baru" class="pf-card-link pb mt-4 inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-wider transition-all duration-300">Lihat Portofolio <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>`
+  : '<span class="pf-card-soon mt-4 inline-flex cursor-not-allowed rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-wider" aria-disabled="true">Segera hadir</span>';
 const pill = (el, items, on) => {
   el.innerHTML = items.map((t, i) => `<button data-v="${t}" aria-pressed="${!i}"></button>`).join('');
   const paint = () => $$('button', el).forEach(b => { b.className = 'rounded-full px-4 py-2 transition ' + (b.getAttribute('aria-pressed') === 'true' ? 'bg-ink text-canvas' : 'text-ink-soft hover:bg-surface-2'); });
@@ -115,20 +121,45 @@ gsap.to('#prog', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: document.b
 
 /* ===== PRELOADER ===== */
 const o = { v: 0 };
+const LOADER_PHOTOS = [
+  'kenangan/foto hero section.webp',
+  'kenangan/kebersamaan 1.jpg',
+  'kenangan/kegiatan 1.jpg',
+  'kenangan/Behind the scene 1.jpg',
+  'kenangan/kebersamaan 2.jpg'
+];
+$('#ldPhotos').innerHTML = LOADER_PHOTOS.map((src, i) => `<img class="ld-photo" data-load="${i}" src="${src}" alt="" loading="eager">`).join('');
 gsap.timeline({ onComplete: hero })
-  .to(o, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => $('#pn').textContent = Math.round(o.v) })
-  .to('#pb', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
-  .to('#pre > div:last-child', { opacity: 0, duration: .3 })
-  .set('#pre', { backgroundColor: 'transparent' })
-  .to('.cp', { yPercent: -100, duration: .9, stagger: .05, ease: 'power4.inOut' })
+  .set('.ld-photo[data-load="0"]', { opacity: 1, scale: 1.06 })
+  .to(o, { v: 100, duration: 1.25, ease: 'power2.inOut' })
+  .to('#pb', { scaleX: 1, duration: 1.25, ease: 'power2.inOut' }, 0)
+  .to('.ld-photo[data-load="0"]', { scale: 1, duration: 1.25, ease: 'power2.out' }, 0)
+  .to('.ld-photo[data-load="1"]', { opacity: 1, scale: 1.04, duration: .32 }, .18)
+  .to('.ld-photo[data-load="1"]', { opacity: 0, duration: .18 }, .46)
+  .to('.ld-photo[data-load="2"]', { opacity: 1, scale: 1.04, duration: .32 }, .48)
+  .to('.ld-photo[data-load="2"]', { opacity: 0, duration: .18 }, .76)
+  .to('.ld-photo[data-load="3"]', { opacity: 1, scale: 1.04, duration: .32 }, .78)
+  .to('.ld-photo[data-load="3"]', { opacity: 0, duration: .18 }, 1.02)
+  .to('.ld-photo[data-load="4"]', { opacity: 1, scale: 1.04, duration: .32 }, 1.04)
+  .to('.ld-brand', { y: 24, opacity: 0, duration: .24 }, 1.12)
+  .to('#pre', { opacity: 0, duration: .28, ease: 'power2.in' })
   .set('#pre', { display: 'none' });
 
 /* ===== HERO: collage foto bareng-bareng =====
-   HERO = nomor anggota yang tampil (foto diambil dari foto/<nomor>.jpg). Tambah/kurangi nomornya sesuka hati. */
-const HERO = [1, 4, 9, 17, 25], TILT = [-8, 5, -3, 7, -6], RISE = ['mt-0', '-mt-6', 'mt-4', '-mt-4', 'mt-2'];
-$('#hf').innerHTML = HERO.map((no, i) => { const m = M[no - 1]; return `<figure class="hf group relative w-20 shrink-0 cursor-grab touch-none select-none overflow-hidden rounded-3xl border-4 border-canvas bg-surface shadow-lift sm:w-28 md:w-40 ${RISE[i % 5]}" style="aspect-ratio:4/5">${photo(m, 'pointer-events-none h-full w-full')}
-  <figcaption class="absolute inset-x-2 bottom-2 truncate rounded-full bg-canvas/90 px-2 py-0.5 text-center font-mono text-[10px] opacity-0 transition group-hover:opacity-100">${m.name.split(' ')[0]}</figcaption></figure>`; }).join('');
-gsap.set('.hf', { rotation: i => TILT[i % 5] });
+   HERO_MEMORY memakai foto dari folder kenangan/. */
+const HERO_MEMORY = [
+  ['kenangan/kebersamaan 1.jpg', 'KENANGAN', '-rotate-6 -mt-3'],
+  ['kenangan/kegiatan 1.jpg', 'KEBERSAMAAN', 'rotate-3 mt-3'],
+  ['kenangan/foto hero section.webp', 'INVICTUS GEN 3', '-rotate-2 -mt-5'],
+  ['kenangan/Behind the scene 1.jpg', 'BERSAMA', 'rotate-5 mt-2'],
+  ['kenangan/kebersamaan 2.jpg', 'CERITA KITA', '-rotate-4 -mt-2']
+];
+$('#hf').innerHTML = HERO_MEMORY.map(([src, label, tilt], i) => `
+  <figure class="hf group relative shrink-0 cursor-grab touch-none select-none rounded-[1.25rem] border-4 border-canvas bg-surface shadow-lift ${tilt} ${i === 2 ? 'z-20 w-28 sm:w-44 md:w-52' : 'z-10 w-16 sm:w-24 md:w-36'}" style="aspect-ratio:4/5">
+    <img src="${src}" alt="${label}" loading="lazy" draggable="false" class="pointer-events-none h-full w-full rounded-[.75rem] object-cover">
+    <figcaption class="absolute inset-x-2 bottom-2 rounded-full bg-canvas/90 px-2 py-1 text-center font-mono text-[9px] tracking-wider opacity-0 backdrop-blur transition group-hover:opacity-100">${label}</figcaption>
+  </figure>`).join('');
+gsap.set('.hf', { transformOrigin: '50% 70%' });
 function heroPhotos() {
   gsap.from('.hf', { y: 100, opacity: 0, rotation: 0, duration: 1.2, ease: 'power4.out', stagger: .1, delay: .35 });
   Draggable.create('.hf', { type: 'x,y', inertia: true, onPress() { gsap.set(this.target, { zIndex: 20 }); }, onRelease() { gsap.to(this.target, { x: 0, y: 0, duration: 1.6, ease: 'elastic.out(1,.4)', overwrite: true, onComplete: () => gsap.set(this.target, { zIndex: 'auto' }) }); } });
@@ -159,10 +190,10 @@ gsap.fromTo(SplitText.create('#narasi', { type: 'words' }).words, { opacity: .1,
 let F = 'Semua', Q = '';
 const pass = m => (F === 'Keluar' ? m.status === 'keluar' : m.status !== 'keluar') && (F === 'Baru' ? m.status === 'baru' : /^10/.test(F) ? m.kelas === F : true) && m.name.toLowerCase().includes(Q);
 const card = m => m.status === 'keluar'
-  ? `<li data-flip-id="m${m.no}" class="rounded-4xl bg-surface p-5 opacity-30 grayscale"><p class="font-mono text-xs">No. ${m.no}</p><p class="mt-6 font-display text-2xl leading-tight">${m.name}</p><p class="mt-2 font-mono text-xs">— sudah berpindah</p></li>`
-  : `<li data-flip-id="m${m.no}"><button data-no="${m.no}" class="relative block w-full rounded-4xl border border-surface-2 bg-surface p-3 text-left shadow-soft transition hover:-translate-y-1 hover:shadow-lift">${photo(m, 'aspect-[4/5] rounded-3xl')}
-  ${m.status === 'baru' ? '<span class="absolute right-5 top-5 animate-pulse rounded-full bg-dust/20 px-2.5 py-1 font-mono text-xs text-dust-deep backdrop-blur">NEW</span>' : ''}
-  <span class="mt-3 block px-2 font-mono text-xs text-clay">No. ${String(m.no).padStart(2, '0')} · Kelas ${m.kelas}</span><span class="block px-2 font-display text-xl leading-tight">${m.name}</span>${MOTO[m.no] ? `<span class="block px-2 pb-2 pt-1 text-sm italic text-muted">“${MOTO[m.no]}”</span>` : '<span class="block pb-2"></span>'}</button></li>`;
+  ? `<li data-flip-id="m${m.no}" class="member-card p-5 opacity-35 grayscale"><p class="member-card-meta font-mono text-[10px] tracking-widest">NO. ${String(m.no).padStart(2,'0')}</p><p class="mt-8 font-display text-2xl leading-tight text-[#F2F0EA]">${m.name}</p><p class="mt-3 font-mono text-[10px] text-[#aaa69d]">SUDAH BERPINDAH</p></li>`
+  : `<li data-flip-id="m${m.no}"><button data-no="${m.no}" class="member-card relative block w-full text-left shadow-soft transition hover:-translate-y-1 hover:shadow-lift">${photo(m, 'member-card-photo w-full overflow-hidden')}
+  ${m.status === 'baru' ? '<span class="absolute right-4 top-4 rounded-full border border-[#AFA4FF]/30 bg-[#111113]/90 px-2.5 py-1 font-mono text-[9px] text-[#AFA4FF] backdrop-blur">BARU</span>' : ''}
+  <span class="member-card-body block"><span class="member-card-meta block font-mono text-[10px] tracking-widest">NO. ${String(m.no).padStart(2,'0')} · KELAS ${m.kelas}</span><span class="member-card-name mt-2 block font-display">${m.name}</span>${MOTO[m.no] ? `<span class="member-card-motto mt-2 block line-clamp-2 text-sm leading-snug italic">“${MOTO[m.no]}”</span>` : ''}</span></button></li>`;
 const renderM = anim => { const st = Flip.getState('#mg li'); $('#mg').innerHTML = M.filter(pass).map(card).join('') || '<li class="text-muted">Tidak ada nama yang cocok.</li>';
   if (anim) Flip.from(st, { duration: .6, ease: 'power3.inOut', stagger: .02, absolute: true, onEnter: e => gsap.from(e, { opacity: 0, scale: .92, duration: .4 }) }); };
 pill($('#mf'), ['Semua', '10A', '10B', 'Baru', 'Keluar'], v => { F = v; renderM(true); });
@@ -173,10 +204,10 @@ $('#left').innerHTML = M.filter(m => m.status === 'keluar').map(m => `<li class=
 
 /* ===== PORTFOLIO HUB 10A ===== */
 $('#pg').innerHTML = PF.map(([no, role, moto], i) => { const m = M[no - 1];
-  return `<article class="pf group overflow-hidden rounded-4xl border border-surface-2 bg-surface shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
+  return `<article class="pf member-card group shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
   <div class="aspect-[3/4] overflow-hidden [&_img]:transition-all [&_img]:duration-700 [&_img]:grayscale-[30%] group-hover:[&_img]:scale-105 group-hover:[&_img]:grayscale-0">${photo(m, 'h-full w-full')}</div>
-  <div class="p-5"><p class="font-mono text-xs text-clay">No. ${String(i + 1).padStart(2, '0')}</p><h3 class="mt-1 font-display text-xl leading-tight">${m.name}</h3><p class="font-mono text-xs text-muted">${role}</p>
-  <p class="mt-3 font-display text-lg italic leading-snug text-sage-deep">“${moto}”</p>${pfBtn(no)}</div></article>`; }).join('');
+  <div class="pf-card-head min-h-[13.5rem] p-5"><p class="member-card-meta font-mono text-[10px] tracking-widest">NO. ${String(i + 1).padStart(2, '0')}</p><h3 class="pf-card-name mt-2 font-display text-xl leading-tight">${m.name}</h3><p class="pf-card-role mt-1 font-mono text-[10px]">${role.toUpperCase()}</p>
+  <p class="pf-card-motto mt-3 font-display text-base italic leading-snug">“${moto}”</p><div class="mt-4">${pfBtn(no)}</div></div></article>`; }).join('');
 gsap.fromTo('.pf', { y: 60, opacity: 0 }, { y: 0, opacity: 1, stagger: .08, duration: .9, ease: 'power3.out', immediateRender: false, scrollTrigger: { trigger: '#pg', start: 'top 90%', once: true } });
 $$('.pb').forEach(b => { mag(b); b.addEventListener('click', () => gsap.fromTo(b, { scale: .95 }, { scale: 1, duration: .2 })); });
 
@@ -231,8 +262,8 @@ async function loadG() {
   renderG(false); ScrollTrigger.refresh();
 }
 const renderG = anim => { const st = Flip.getState('#gg li'); list = G.filter(g => GF === 'Semua' || g.cat === GF);
-  $('#gg').innerHTML = list.map(g => `<li data-flip-id="g${G.indexOf(g)}" class="mb-4 break-inside-avoid"><button data-i="${list.indexOf(g)}" class="group relative block w-full overflow-hidden rounded-4xl" aria-label="Buka foto ${g.t}"><img src="${g.src}" alt="${g.t}" loading="lazy" class="w-full transition duration-700 group-hover:scale-105">
-  <span class="absolute inset-0 bg-ink/0 transition group-hover:bg-ink/20"></span><span class="absolute inset-x-3 bottom-3 translate-y-full rounded-full bg-canvas px-4 py-2 text-sm transition group-hover:translate-y-0">${g.t}</span></button></li>`).join('');
+  $('#gg').innerHTML = list.map(g => `<li data-flip-id="g${G.indexOf(g)}" class="gallery-card break-inside-avoid"><button data-i="${list.indexOf(g)}" class="group relative block w-full overflow-hidden" aria-label="Buka foto ${g.t}"><img src="${g.src}" alt="${g.t}" loading="lazy" class="transition duration-700 group-hover:scale-105">
+  <span class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-60 transition group-hover:opacity-90"></span><span class="gallery-card-label"><span class="gallery-card-cat">${g.cat}</span><span class="gallery-card-title">${g.t}</span></span></button></li>`).join('');
   if (anim) Flip.from(st, { duration: .6, ease: 'power3.inOut', absolute: true, onEnter: e => gsap.from(e, { opacity: 0, duration: .4 }) }); };
 const lb = $('#lb'), show = i => { cur = (i + list.length) % list.length; const g = list[cur]; $('#li').src = g.src; $('#li').alt = g.t; $('#lc').textContent = `${g.t} · ${cur + 1}/${list.length}`; };
 $('#gg').onclick = e => { const b = e.target.closest('button'); if (!b) return; show(+b.dataset.i); lb.showModal(); gsap.from('#li', { scale: .92, opacity: 0, duration: .5, ease: 'power3.out' }); };
@@ -257,10 +288,23 @@ cr.onclick = e => { const b = e.target.closest('button'); if (b) run(+b.dataset.
 cmd.onclick = e => { if (e.target === cmd) cmd.close(); };
 
 /* ===== NAVBAR, MENU, FOOTER ===== */
-const ny = gsap.quickTo('#nav', 'yPercent', { duration: .4, ease: 'power3' }), nav = $('#nav');
-ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => { ny(s.direction === 1 && s.scroll() > 200 ? -110 : 0); nav.classList.toggle('bg-canvas/80', s.scroll() > 40); nav.classList.toggle('backdrop-blur-md', s.scroll() > 40); } });
+const nav = $('#nav');
+const updateNav = () => nav.classList.toggle('is-scrolled', scrollY > 120);
+updateNav();
+addEventListener('scroll', updateNav, { passive: true });
 $('#burger').onclick = e => { const m = $('#mnav'), open = m.classList.contains('hidden'); m.classList.toggle('hidden', !open); m.classList.toggle('flex', open); e.target.setAttribute('aria-expanded', open); e.target.textContent = open ? 'Tutup' : 'Menu';
   if (open) gsap.from('#mnav a', { y: 40, opacity: 0, stagger: .07, duration: .6, ease: 'power3.out' }); };
 mag($('#top-btn'), 12); $('#top-btn').onclick = () => go('#top');
 
 addEventListener('load', () => ScrollTrigger.refresh()); // hitung ulang posisi setelah semua gambar & font selesai
+
+const cursor = $('#invictus-cursor');
+if (cursor && matchMedia('(pointer:fine)').matches) {
+  addEventListener('pointermove', e => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: .18, overwrite: true });
+  });
+  document.querySelectorAll('a,button,[role="button"],.hf').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
+  });
+}

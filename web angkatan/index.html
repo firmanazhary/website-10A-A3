@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Generasi 03 · Kelas 10A — Angkatan 2024/2025</title>
-<meta name="description" content="Profil angkatan Generasi 03, Kelas 10A: anggota, portfolio, jadwal piket, dan galeri kenangan.">
-<meta property="og:title" content="Generasi 03 · Kelas 10A"><meta property="og:description" content="Dua kelas, satu cerita. Profil angkatan 2024/2025."><meta property="og:type" content="website">
+<title>Invictus Gen 3 · Kelas 10A — Angkatan 2024/2025</title>
+<meta name="description" content="Profil angkatan Invictus Gen 3, Kelas 10A: anggota, portfolio, jadwal piket, dan galeri kenangan.">
+<meta property="og:title" content="Invictus Gen 3 · Kelas 10A"><meta property="og:description" content="Dua kelas, satu cerita. Profil angkatan 2024/2025."><meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#F7F5F0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23A3B18A'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='%23F7F5F0'%3EG3%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,14 +31,109 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
 #jbarw{display:none}.hz{height:100vh;display:flex;align-items:center}.hz #track{flex-direction:row;width:max-content;align-items:stretch}.hz .pn{width:55vw;flex-shrink:0}.hz #jbarw{display:block}
 .cols{columns:2 12rem;column-gap:1rem}@media(min-width:1024px){.cols{columns:3}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.invictus-cursor{position:fixed;z-index:100;width:18px;height:18px;border:1px solid rgba(242,240,234,.75);border-radius:999px;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:difference}
+.invictus-cursor.is-hover{width:52px;height:52px;background:rgba(107,76,255,.28)}
+body{background:#080808!important;color:#F2F0EA!important}
+body::before{opacity:.035;z-index:65!important}
+#nav{background:rgba(8,8,8,.82);border-bottom:1px solid rgba(242,240,234,.08);backdrop-filter:blur(16px)}
+#nav a,#nav button,#nav span{color:#F2F0EA}
+#nav{transition:left .55s cubic-bezier(.16,1,.3,1),right .55s cubic-bezier(.16,1,.3,1),top .55s cubic-bezier(.16,1,.3,1),width .55s cubic-bezier(.16,1,.3,1),padding .55s cubic-bezier(.16,1,.3,1),border-radius .55s cubic-bezier(.16,1,.3,1),background .35s,border-color .35s,box-shadow .35s}
+#nav.is-scrolled{left:50%!important;right:auto!important;top:12px;width:min(760px,calc(100% - 24px));transform:translateX(-50%)!important;padding:.65rem 1rem!important;border:1px solid rgba(242,240,234,.12);border-radius:999px;background:rgba(8,8,8,.92)!important;box-shadow:0 12px 40px rgba(0,0,0,.38)}
+#nav.is-scrolled nav{gap:1.15rem}
+#nav.is-scrolled nav a{font-size:.78rem}
+#nav.is-scrolled nav>span{display:none}
+#nav.is-scrolled>button{min-height:32px}
+#mnav{background:#080808!important;color:#F2F0EA}
+.hero-dark{background:radial-gradient(circle at 68% 42%,rgba(107,76,255,.12),transparent 28%),radial-gradient(circle at 20% 78%,rgba(242,240,234,.05),transparent 24%),#080808}
+.hero-dark h1{text-shadow:0 8px 50px rgba(0,0,0,.35)}
+#hf{perspective:1200px}
+.hf{border-color:rgba(242,240,234,.16)!important;background:#121214!important;box-shadow:0 24px 70px rgba(0,0,0,.55)!important}
+.hf img{filter:saturate(.82) contrast(1.04)}
+#narasi,#jalan h2,#anggota h2,#portofolio h2,#piket h2,#galeri h2,footer p{color:#F2F0EA}
+#anggota li,#portofolio article,#piket #pk>div{background:#111113!important;border-color:rgba(242,240,234,.11)!important}
+#anggota button span,#portofolio article p,#piket #pk span{color:#D7D4CB}
+dialog{background:#111113!important;color:#F2F0EA!important}
+#mf,#gf{background:#17171A!important;border:1px solid rgba(242,240,234,.08)}
+footer{background:#080808!important;border-color:rgba(242,240,234,.11)!important}
+.text-muted,.text-ink-soft,.text-redup,.text-clay,.text-dust-deep{color:#aaa69d!important}
+.text-sage-deep,.text-dust,.text-sage{color:#AFA4FF!important}
+.text-canvas,.text-ink{color:#F2F0EA!important}
+.st,.pn{color:#F2F0EA!important}
+.st>p,.pn>p{color:#F2F0EA!important}
+.st .text-muted,.pn .text-ink-soft{color:#aaa69d!important}
+.pn{background:#111113!important;border:1px solid rgba(242,240,234,.11)!important}
+.st{background:#111113!important;border-color:rgba(242,240,234,.11)!important}
+#q,#ci{background:rgba(242,240,234,.06)!important;border-color:rgba(242,240,234,.14)!important;color:#F2F0EA!important}
+#q::placeholder,#ci::placeholder{color:#aaa69d!important}
+#mf button,#gf button,#cr button{color:#aaa69d!important}
+#mf button[aria-pressed=true],#gf button[aria-pressed=true]{background:#6B4CFF!important;color:#fff!important}
+#cr button:hover{background:rgba(107,76,255,.22)!important}
+#pk .ck-b{color:#F2F0EA!important}
+#pk .ck-b.text-muted{color:#aaa69d!important}
+#pk .border-sage{border-color:#6B4CFF!important}
+#allDone{background:#6B4CFF!important;color:#fff!important}
+#top-btn{background:#6B4CFF!important;color:#fff!important}
+#dx,#lx,#lp,#ln{color:#F2F0EA!important}
+.member-card{background:#111113!important;border:1px solid rgba(242,240,234,.11)!important;border-radius:1.5rem!important;overflow:hidden}
+.member-card:hover{border-color:rgba(175,164,255,.55)!important}
+.member-card-photo{aspect-ratio:4/5;background:#17171A}
+.member-card-body{min-height:7.25rem;padding:.85rem 1rem 1rem}
+.member-card-name{color:#F2F0EA!important;font-size:1.05rem;line-height:1.15}
+.member-card-meta{color:#AFA4FF!important}
+.member-card-motto{color:#aaa69d!important}
+.pf-card-head{border-top:1px solid rgba(242,240,234,.08)}
+.pf-card-name{color:#F2F0EA!important}
+.pf-card-role{color:#AFA4FF!important}
+.pf-card-motto{color:#aaa69d!important}
+.pf-card-link{background:#6B4CFF!important;border-color:#6B4CFF!important;color:#fff!important}
+.pf-card-soon{border-color:rgba(242,240,234,.12)!important;color:#aaa69d!important}
+@media(pointer:fine){body,*{cursor:none!important}.invictus-cursor{display:block}}
+@media(pointer:coarse){.invictus-cursor{display:none}}
+@media(max-width:767px){.hf{border-width:2px!important}.hero-dark{background:radial-gradient(circle at 70% 38%,rgba(107,76,255,.13),transparent 32%),#080808}}
+@media(max-width:767px){#nav.is-scrolled{top:8px;width:calc(100% - 16px);padding:.55rem .8rem!important}}
+#pre{background:#080808!important}
+#pre .ld-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:contrast(1.05) saturate(.78)}
+#pre .ld-shade{position:absolute;inset:0;background:linear-gradient(110deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.38) 55%,rgba(8,8,8,.76) 100%)}
+#pre .ld-brand{position:absolute;left:clamp(1.25rem,4vw,4rem);bottom:clamp(1.25rem,5vw,4rem);z-index:2}
+#pre #pn{color:#F2F0EA;font-size:clamp(3rem,8vw,7rem)}
+#pre #pb{background:#AFA4FF}
+#pre .ld-kicker{color:#AFA4FF}
+#pre .ld-name{color:#F2F0EA}
+#pre #pn{display:none}
+.coming-soon-card{background:radial-gradient(circle at 70% 25%,rgba(175,164,255,.12),transparent 30%),#17171A!important}
+.coming-soon-card .coming-soon-title{color:#F2F0EA!important}
+.coming-soon-card .coming-soon-label{color:#AFA4FF!important}
+#gf button{background:transparent;border:1px solid transparent}
+#gf button[aria-pressed=true]{background:#6B4CFF!important;border-color:#6B4CFF;color:#fff!important}
+#lb{background:#080808!important}
+#lb #li{border:1px solid rgba(242,240,234,.12)}
+#lb>div>div:last-child{background:rgba(17,17,19,.96)!important;border:1px solid rgba(242,240,234,.12);color:#F2F0EA}
+#lp,#ln,#lx{background:#17171A!important;border:1px solid rgba(242,240,234,.14)!important;color:#F2F0EA!important}
+#gf{background:#17171A!important;border:1px solid rgba(242,240,234,.10)!important;border-radius:999px!important;padding:.35rem!important}
+#gf button{min-height:38px;padding:.55rem .9rem!important;border-radius:999px!important;color:#B7B3AA!important;font-family:"JetBrains Mono",monospace;font-size:.75rem}
+#gf button[aria-pressed=true]{background:#6B4CFF!important;border-color:#6B4CFF!important;color:#fff!important;box-shadow:0 8px 24px rgba(107,76,255,.22)}
+#gg{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem!important}
+.gallery-card{break-inside:auto!important;margin:0!important;overflow:hidden;border:1px solid rgba(242,240,234,.10);border-radius:1.25rem;background:#111113}
+.gallery-card button{height:100%;border-radius:1.25rem!important}
+.gallery-card img{height:clamp(220px,30vw,380px)!important;width:100%;object-fit:cover}
+.gallery-card-label{position:absolute!important;left:.75rem!important;right:.75rem!important;bottom:.75rem!important;transform:none!important;z-index:3;border:1px solid rgba(242,240,234,.12)!important;border-radius:.75rem!important;background:rgba(8,8,8,.88)!important;color:#F2F0EA!important;padding:.65rem .8rem!important;text-align:left;font-size:.78rem!important;backdrop-filter:blur(10px)}
+.gallery-card-cat{display:block;color:#AFA4FF;font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase}
+.gallery-card-title{display:block;margin-top:.25rem;color:#F2F0EA}
+@media(min-width:1024px){#gg{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:639px){#gg{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="font-sans antialiased">
+<div id="invictus-cursor" class="invictus-cursor" aria-hidden="true"></div>
 
 <div id="pre" class="fixed inset-0 z-[80] bg-canvas" aria-live="polite">
-  <div class="absolute inset-0 grid grid-cols-4"><i class="cp bg-surface"></i><i class="cp bg-surface"></i><i class="cp bg-surface"></i><i class="cp bg-surface"></i></div>
-  <div class="relative flex h-full flex-col items-center justify-center"><span id="pn" class="font-display text-[clamp(5rem,16vw,12rem)] leading-none">0</span>
-  <div class="mt-4 h-px w-48 bg-surface-2"><div id="pb" class="h-px origin-left scale-x-0 bg-sage"></div></div></div>
+  <div id="ldPhotos" class="absolute inset-0"></div>
+  <div class="ld-shade"></div>
+  <div class="ld-brand">
+    <p class="ld-kicker font-mono text-[10px] tracking-[.35em]">INVICTUS GEN 3</p>
+    <div class="mt-3"><span class="ld-name font-mono text-xs tracking-[.2em]">MEMORY LOADING</span></div>
+    <div class="mt-4 h-px w-52 overflow-hidden bg-white/15"><div id="pb" class="h-px origin-left scale-x-0"></div></div>
+  </div>
 </div>
 <div id="prog" class="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-sage"></div>
 <div id="blob" aria-hidden="true" class="pointer-events-none fixed left-0 top-0 z-0 h-80 w-80 rounded-full bg-sage/30 blur-3xl"></div>
@@ -46,6 +141,7 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
 <header id="nav" class="fixed inset-x-0 top-0 z-[56] flex items-center justify-between px-5 py-4 transition-colors md:px-10">
   <a href="#top" class="flex items-center gap-3 font-mono text-sm" aria-label="Ke atas"><svg class="h-6 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 422.0 232.0" role="img" aria-label="Logo IVCS" xmlns:c2pa="http://c2pa.org/manifest"><path fill="currentColor" fill-rule="evenodd" d="M326.2 158.5L325.8 158.0L324.2 158.0L108.8 212.0L106.2 213.0L102.2 217.5L100.5 220.2L99.0 224.5L98.5 229.2L99.0 229.8L100.8 229.8L111.2 227.2L171.5 209.2L325.5 160.2L326.2 159.8ZM352.2 104.2L351.2 106.5L350.5 111.0L351.0 115.0L353.2 119.2L357.0 123.2L362.5 126.2L368.8 128.0L375.0 127.5L378.8 125.8L379.2 123.8L379.2 116.2L378.8 113.0L376.5 107.5L373.2 103.5L371.2 102.0L366.2 100.0L361.8 100.0L356.5 101.5ZM392.8 94.2L391.0 100.2L391.2 104.0L393.0 108.2L397.5 113.5L402.8 116.2L408.8 118.0L413.0 118.0L415.8 117.5L419.2 115.8L419.8 114.2L419.8 106.0L419.0 102.5L416.5 96.8L412.8 92.8L408.2 90.5L402.8 90.0L398.5 91.0L394.8 92.8ZM166.2 63.8L164.2 61.2L158.2 55.8L154.5 53.8L152.5 54.0L121.0 107.2L101.5 142.2L90.5 163.2L88.5 166.0L88.0 165.8L88.0 164.0L92.0 150.0L98.8 128.5L105.0 110.5L104.2 108.8L99.0 103.5L94.8 101.0L90.2 99.5L87.8 99.8L82.8 102.5L77.2 104.8L46.8 120.8L23.2 134.8L2.2 148.5L2.0 150.5L3.0 155.8L5.2 163.2L8.2 169.8L13.2 177.8L14.2 178.8L15.0 178.2L16.8 172.5L18.2 169.5L38.8 152.0L62.8 134.0L83.2 120.8L86.0 119.5L86.5 120.0L86.0 121.8L79.2 136.8L66.2 168.5L61.0 184.5L61.0 188.0L62.0 190.8L68.0 200.2L71.0 204.0L75.5 208.5L79.5 211.2L81.2 211.5L82.5 210.0L118.0 148.8L143.5 107.2L153.2 93.0L160.0 84.2L166.5 77.5L171.0 74.5L171.2 73.5L169.8 69.5ZM128.0 54.5L125.0 53.5L122.2 53.2L120.8 54.8L112.2 66.8L103.2 83.0L101.2 87.2L101.0 88.8L104.8 92.8L108.8 95.2L110.5 95.2L112.5 93.2L120.5 83.2L129.8 70.0L134.2 62.2L134.2 61.0L132.2 57.8L130.5 56.0ZM207.5 37.0L204.8 36.8L202.8 38.5L202.0 41.2L202.0 43.8L204.2 56.2L210.8 77.8L210.8 79.0L210.0 79.5L201.5 75.0L192.8 72.0L186.8 71.8L182.8 73.2L181.2 74.2L178.2 77.5L174.5 84.5L173.2 90.5L174.0 97.8L176.0 103.8L182.0 114.2L187.2 120.8L195.0 128.5L204.0 135.8L212.2 141.2L223.0 147.2L233.2 151.5L233.8 152.5L232.8 153.2L214.5 155.8L154.5 161.2L153.8 160.5L155.0 142.5L154.5 131.8L153.2 128.8L151.0 127.0L148.5 127.0L145.5 128.0L143.2 129.5L140.2 132.5L136.2 137.8L127.2 152.8L122.2 162.8L115.0 180.8L112.0 189.8L111.0 194.0L111.0 197.5L111.8 198.5L113.0 198.8L121.2 197.5L159.5 189.5L193.5 181.2L225.8 172.2L244.8 166.0L261.0 159.5L269.5 154.8L274.5 150.0L275.0 147.8L274.2 147.0L268.0 146.8L262.0 145.8L251.2 142.8L241.0 138.5L227.5 131.0L216.8 123.5L206.8 115.0L198.0 106.0L192.0 97.8L190.0 93.5L189.5 90.8L190.2 88.5L191.8 87.8L197.0 89.8L209.0 97.2L213.0 99.2L219.5 101.2L222.5 101.0L225.2 99.5L227.5 96.0L228.5 93.0L228.8 87.0L227.8 80.5L223.5 66.5L220.5 59.0L214.8 47.5L209.8 39.5ZM413.2 17.0L407.5 18.0L396.0 21.8L385.2 26.0L367.2 34.0L338.8 48.0L312.8 61.8L292.0 73.5L290.0 74.0L288.5 71.8L280.2 53.8L280.2 52.5L282.0 49.2L284.8 45.5L289.0 41.2L299.0 34.8L305.0 34.8L312.0 36.8L313.2 36.5L313.8 35.5L314.2 31.8L314.0 27.8L311.5 17.0L305.5 3.0L304.5 2.0L302.8 2.8L295.2 7.8L287.8 13.5L283.5 17.2L277.0 24.2L269.2 35.2L261.2 50.5L263.2 57.2L271.8 79.2L272.5 82.8L269.5 85.2L231.2 111.2L230.2 112.2L230.5 113.2L238.2 122.0L246.5 128.5L254.8 133.2L267.0 138.2L280.5 142.2L294.8 145.5L296.0 145.5L302.8 143.5L308.0 141.2L311.8 138.8L314.5 135.8L317.8 130.5L318.5 128.8L318.5 127.5L297.8 90.8L298.0 89.2L317.0 79.8L337.5 70.5L354.5 63.8L368.2 59.5L379.2 57.5L389.0 57.8L395.0 59.5L398.8 61.5L402.5 64.5L403.5 64.5L405.5 62.5L408.5 57.5L410.8 51.8L413.8 40.5L414.8 34.0L415.0 23.8L414.5 19.2ZM277.8 98.8L278.5 98.8L279.8 100.8L286.8 119.8L286.0 120.8L283.2 120.5L278.5 117.5L275.2 114.2L270.8 108.5L270.8 106.5Z"/><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo4ZWEzZmE0Mi00NjMzLTRiYjUtOTgzYi1iNDNlMDg3YWYxYWMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaIsw/MEAkeR1+SJ9vq0r2jQAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ZDcwZTA4OS1mOTQwLTRiYTAtOWQ3ZC1iZWE2ZmY0MGQzYzFscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNodWt2qZaqciE1ibzCwhDBPQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggw1NjiwiNt6MrAvt+aUdQ2rbOLetQ6GJOtS74rJ+QF0qkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaIIvlHZM+/JABPuP+QH/lHkAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIEUQIbCWih4k515oEDgSiwlOyRXcxLXCUQhPfF4zvxFKZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQ4IZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjhlYTNmYTQyLTQ2MzMtNGJiNS05ODNiLWI0M2UwODdhZjFhYy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjU0YjUyNjliLWNlN2EtNDEyMS1iYWYwLWNkZGY1ZGY4ZWVjM3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDDU2OLCI23oysC+35pR1Dats4t61DoYk61Lvisn5AXSqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJSu2dwdENobilQZ8HdS3JbfLOyGe6BefZ3MjqEW8xnKiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgggNxWNLP8p1WgzSzbr0s/WeQ/uFZXtZo3q2B6y6hTFLx0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQHiAbcqiTMkSWcEQVXKYEtcYLSp4o63psNEJDT8m6fmKV7wRY9vHAmHa0Pp4A4cFzwu2C8NmjYBDll0neEJWNxg=</c2pa:manifest></metadata></svg><span>G03 · 10A</span></a>
   <nav class="hidden gap-7 text-sm text-ink-soft md:flex" aria-label="Menu utama"><a href="#anggota">Anggota</a><a href="#portofolio">Portofolio</a><a href="#piket">Piket</a><a href="#galeri">Galeri</a><a href="#kontak">Kontak</a>
+  <span class="rounded-full border border-white/15 px-3 py-1 font-mono text-[10px] tracking-[.18em] text-white/70">INVICTUS · 03</span>
   <button id="kbtn" class="rounded-full border border-surface-2 px-3 py-0.5 font-mono text-xs text-muted" aria-label="Buka pencarian cepat">Ctrl K</button></nav>
   <button id="burger" class="font-mono text-sm md:hidden" aria-expanded="false" aria-controls="mnav">Menu</button>
 </header>
@@ -54,15 +150,15 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
 </nav>
 
 <main id="top" class="relative z-10">
-<section class="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-28">
+<section class="hero-dark relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-28">
   <div aria-hidden="true" class="absolute -right-24 top-24 h-[26rem] w-[26rem] rounded-full bg-sage-light/60 blur-3xl"></div>
   <div aria-hidden="true" class="absolute -left-24 bottom-32 h-80 w-80 rounded-full bg-dust/20 blur-3xl"></div>
   <div class="relative px-5 md:px-10">
-    <h1 id="judul" class="font-display text-[clamp(4rem,14vw,16rem)] leading-[.9]" aria-label="Generasi 03">GENERASI 03</h1>
+    <h1 id="judul" class="font-display text-[clamp(4rem,14vw,16rem)] leading-[.9]" aria-label="Invictus Gen 3">INVICTUS GEN 3</h1>
     <p class="mt-6 font-mono text-sm text-muted">Kelas 10A · Angkatan 2024/2025 · 41 nama · 14 portofolio</p>
     <p class="mt-2 text-sm text-ink-soft">Seret hurufnya, atau foto-fotonya. Berani?</p>
   </div>
-  <div id="hf" role="group" aria-label="Foto anggota Generasi 03" class="relative z-10 flex items-center justify-center -space-x-7 px-5 py-10 sm:-space-x-6 md:-space-x-8"></div>
+  <div id="hf" role="group" aria-label="Foto anggota Invictus Gen 3" class="relative z-10 flex items-center justify-center -space-x-7 px-5 py-10 sm:-space-x-6 md:-space-x-8"></div>
   <div class="relative">
     <div class="mb-6 flex items-center gap-3 px-5 font-mono text-xs text-muted md:px-10"><span class="h-2 w-2 animate-bounce rounded-full bg-sage"></span>Scroll to explore</div>
     <div class="overflow-hidden border-y border-surface-2 py-4" aria-hidden="true"><div id="mq" class="flex w-max gap-10 whitespace-nowrap font-mono text-sm text-ink-soft"></div></div>
@@ -70,7 +166,7 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
 </section>
 
 <section class="grid gap-12 px-5 py-32 md:grid-cols-2 md:px-10">
-  <p id="narasi" class="font-display text-3xl leading-snug md:text-4xl">Generasi 03 berawal dari dua kelas SMP. 15 orang melanjutkan di tempat lain, dan 8 teman baru bergabung di SMA. Nama yang redup adalah yang sudah keluar; yang lanjut ditandai kelas SMA-nya sekarang.</p>
+  <p id="narasi" class="font-display text-3xl leading-snug md:text-4xl">Invictus Gen 3 berawal dari dua kelas SMP. 15 orang melanjutkan di tempat lain, dan 8 teman baru bergabung di SMA. Nama yang redup adalah yang sudah keluar; yang lanjut ditandai kelas SMA-nya sekarang.</p>
   <div class="grid gap-4">
     <div class="st rounded-4xl border border-surface-2 bg-surface p-8 shadow-soft transition hover:scale-[1.02] hover:shadow-lift"><p class="font-display text-7xl" data-n="33">0</p><p class="text-sm text-muted">Total di SMP (17 A + 16 B)</p></div>
     <div class="st rounded-4xl border border-surface-2 bg-surface p-8 shadow-soft transition hover:scale-[1.02] hover:shadow-lift"><p class="font-display text-7xl" data-n="18">0</p><p class="text-sm text-muted">Masih bersama di SMA (dari SMP)</p></div>
@@ -78,7 +174,7 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
   </div>
 </section>
 
-<section id="jalan" class="relative" aria-label="Perjalanan Generasi 03">
+<section id="jalan" class="relative" aria-label="Perjalanan Invictus Gen 3">
   <div id="jwrap" class="px-5 py-24 md:px-10"><div id="track" class="flex flex-col gap-6">
     <div class="pn flex flex-col justify-center md:pr-24"><h2 class="font-display text-5xl leading-none md:text-8xl">Dari SMP ke SMA. Satu perjalanan.</h2><p class="mt-6 font-mono text-sm text-muted">Gulir untuk menyusuri ceritanya.</p></div>
     <div class="pn rounded-5xl border border-surface-2 bg-surface p-10 shadow-soft"><p class="big font-display text-[clamp(6rem,16vw,14rem)] leading-none">33</p><p class="mt-4 font-display text-3xl">Dua kelas SMP, satu angkatan.</p><p class="mt-2 text-ink-soft">17 dari SMP-A dan 16 dari SMP-B.</p></div>
@@ -122,7 +218,7 @@ dialog::backdrop{background:rgba(42,42,38,.5);backdrop-filter:blur(6px)}
 
 <footer id="kontak" class="relative z-10 border-t border-surface-2 bg-surface px-5 pb-10 pt-28 md:px-10">
   <p class="font-display text-[clamp(3rem,11vw,10rem)] leading-[.9]">SEE YOU AT THE REUNION.</p>
-  <div class="mt-16 flex items-end justify-between"><p class="font-mono text-sm text-muted">Generasi 03 · 10A · 2024/2025</p>
+  <div class="mt-16 flex items-end justify-between"><p class="font-mono text-sm text-muted">Invictus Gen 3 · 10A · 2024/2025</p>
   <button id="top-btn" class="rounded-full bg-canvas px-6 py-4 text-sm hover:bg-sage hover:text-canvas" aria-label="Kembali ke atas">Ke atas</button></div>
 </footer>
 
@@ -207,15 +303,15 @@ const PF = [
   [8, 'Front-End Dev', 'Sedikit demi sedikit, jadi aplikasi.', 'https://raqilla.vercel.app/'],
   [9, 'Motion Designer', 'Dream big', ''],
   [10, 'Backend Enthusiast', 'Apa yang ditabur dengan sabar, akan dituai pada waktu yang tepat.', 'https://portofolio-hilmi-v2.vercel.app/'],
-  [11, 'Illustrator', 'To be a star, you must burn.', ''],
+  [11, 'Illustrator', 'To be a star, you must burn.', 'https://hirakoyy.github.io/Portfolio/'],
   [12, 'Game Dev', 'You never FAIL until You Stop Trying.', 'https://omarinspace.github.io/IbrahimOmar-Portfolio-V2/'],
-  [16, 'Full-Stack Dev', 'Keep learning, keep growing.', ''],
+  [16, 'Full-Stack Dev', 'Keep learning, keep growing.', 'https://murhfif.github.io/Portofolio/'],
   [17, 'Photo & Video', 'hanya meraka yang berani gagal, yang meraih banyak hal', 'https://veneto-portfolio.vercel.app/'],
   [25, 'Data Enthusiast', 'Upgrade your life in silence.', 'https://fakeeh.vercel.app/'],
-  [27, 'Content Creator',    'Bercerita dengan sepenuh hati.',          ''],
-  [30, 'Cyber Security',     'Aman itu kebiasaan.',                     ''],
-  [31, 'AI & ML',            'Belajar dari setiap kesalahan.',          ''],
-  [32, '3D & WebGL', 'BELIEVE IN YOUR DREAM', ''],
+  [27, 'Content Creator',    'Bercerita dengan sepenuh hati.',          'https://nabigh-portofolio.vercel.app/'],
+  [30, 'Cyber Security',     'Aman itu kebiasaan.',                     'https://rejaajha.github.io/New-Portfolio/'],
+  [31, 'AI & ML',            'Belajar dari setiap kesalahan.',          'https://my-portfolio-zeta-blush-13.vercel.app/'],
+  [32, '3D & WebGL', 'BELIEVE IN YOUR DREAM', 'https://syaelndr-portfolio-rhrj.vercel.app/'],
 ];
 const URLS = {}, MOTO = {}; PF.forEach(([no, , moto, url]) => { URLS[no] = url; MOTO[no] = moto; });
 const TASKS = ['Menyapu lantai', 'Mengepel', 'Membersihkan papan tulis', 'Merapikan meja', 'Membuang sampah'];
@@ -232,11 +328,17 @@ if (reduce) gsap.globalTimeline.timeScale(100); // animasi jadi instan, konten l
 const live = no => URLS[no] && URLS[no] !== '#';
 // Foto anggota: taruh di folder foto/ dengan nama nomor anggota (1.jpg, 2.jpg, ...). Kalau belum ada, tampil inisial.
 const EXT = ['jpg', 'jpeg', 'png', 'webp'];
-const ph = n => { const d = document.createElement('div'); d.className = 'flex h-full w-full items-center justify-center bg-sage-light font-display text-6xl text-ink-soft'; d.textContent = n.split(' ').map(w => w[0]).slice(0, 2).join(''); return d; };
+const MEMBER_PHOTOS = {
+  1: 'afif', 4: 'azam', 8: 'ghaisan', 9: 'haidar', 10: 'hilmi',
+  11: 'hiraki', 12: 'omar', 16: 'rhafif', 17: 'vitto', 25: 'fakih',
+  27: 'nabigh', 30: 'reza', 31: 'satria', 32: 'kamil'
+};
+const memberPhotoSrc = m => MEMBER_PHOTOS[m.no] ? `foto/${MEMBER_PHOTOS[m.no]}.webp` : (FOTO[m.no] || 'data:,');
+const ph = n => { const d = document.createElement('div'); d.className = 'coming-soon-card flex h-full w-full flex-col items-center justify-center gap-2'; d.innerHTML = '<span class="coming-soon-title font-display text-3xl">Coming Soon</span><span class="coming-soon-label font-mono text-[10px] tracking-[.25em]">FOTO BELUM ADA</span>'; return d; };
 window.fb = img => img.replaceWith(ph(img.dataset.name));
-const photo = (m, c = '') => `<div class="${c} overflow-hidden bg-sage-light"><img src="${FOTO[m.no] || 'data:,'}" data-no="${m.no}" data-name="${m.name}" alt="Foto ${m.name}, siswa ${m.kelas}" loading="lazy" onerror="fb(this)" class="h-full w-full object-cover"></div>`;
-const pfBtn = no => live(no) ? `<a href="${URLS[no]}" target="_blank" rel="noopener noreferrer" aria-label="Buka portofolio ${M[no - 1].name} di tab baru" class="pb mt-4 inline-flex items-center gap-2 rounded-full border border-sage bg-canvas px-4 py-2 font-mono text-xs uppercase tracking-wider text-sage-deep transition-all duration-300 hover:border-sage-deep hover:bg-sage hover:text-canvas">Lihat Portofolio <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>`
-  : '<span class="mt-4 inline-flex cursor-not-allowed rounded-full border border-surface-2 px-4 py-2 font-mono text-xs uppercase tracking-wider opacity-50" aria-disabled="true">Segera hadir</span>';
+const photo = (m, c = '') => `<div class="${c} overflow-hidden bg-sage-light"><img src="${memberPhotoSrc(m)}" data-no="${m.no}" data-name="${m.name}" alt="Foto ${m.name}, siswa ${m.kelas}" loading="lazy" onerror="fb(this)" class="h-full w-full object-cover"></div>`;
+const pfBtn = no => live(no) ? `<a href="${URLS[no]}" target="_blank" rel="noopener noreferrer" aria-label="Buka portofolio ${M[no - 1].name} di tab baru" class="pf-card-link pb mt-4 inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-wider transition-all duration-300">Lihat Portofolio <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>`
+  : '<span class="pf-card-soon mt-4 inline-flex cursor-not-allowed rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-wider" aria-disabled="true">Segera hadir</span>';
 const pill = (el, items, on) => {
   el.innerHTML = items.map((t, i) => `<button data-v="${t}" aria-pressed="${!i}"></button>`).join('');
   const paint = () => $$('button', el).forEach(b => { b.className = 'rounded-full px-4 py-2 transition ' + (b.getAttribute('aria-pressed') === 'true' ? 'bg-ink text-canvas' : 'text-ink-soft hover:bg-surface-2'); });
@@ -260,20 +362,45 @@ gsap.to('#prog', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: document.b
 
 /* ===== PRELOADER ===== */
 const o = { v: 0 };
+const LOADER_PHOTOS = [
+  'kenangan/foto hero section.webp',
+  'kenangan/kebersamaan 1.jpg',
+  'kenangan/kegiatan 1.jpg',
+  'kenangan/Behind the scene 1.jpg',
+  'kenangan/kebersamaan 2.jpg'
+];
+$('#ldPhotos').innerHTML = LOADER_PHOTOS.map((src, i) => `<img class="ld-photo" data-load="${i}" src="${src}" alt="" loading="eager">`).join('');
 gsap.timeline({ onComplete: hero })
-  .to(o, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => $('#pn').textContent = Math.round(o.v) })
-  .to('#pb', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
-  .to('#pre > div:last-child', { opacity: 0, duration: .3 })
-  .set('#pre', { backgroundColor: 'transparent' })
-  .to('.cp', { yPercent: -100, duration: .9, stagger: .05, ease: 'power4.inOut' })
+  .set('.ld-photo[data-load="0"]', { opacity: 1, scale: 1.06 })
+  .to(o, { v: 100, duration: 1.25, ease: 'power2.inOut' })
+  .to('#pb', { scaleX: 1, duration: 1.25, ease: 'power2.inOut' }, 0)
+  .to('.ld-photo[data-load="0"]', { scale: 1, duration: 1.25, ease: 'power2.out' }, 0)
+  .to('.ld-photo[data-load="1"]', { opacity: 1, scale: 1.04, duration: .32 }, .18)
+  .to('.ld-photo[data-load="1"]', { opacity: 0, duration: .18 }, .46)
+  .to('.ld-photo[data-load="2"]', { opacity: 1, scale: 1.04, duration: .32 }, .48)
+  .to('.ld-photo[data-load="2"]', { opacity: 0, duration: .18 }, .76)
+  .to('.ld-photo[data-load="3"]', { opacity: 1, scale: 1.04, duration: .32 }, .78)
+  .to('.ld-photo[data-load="3"]', { opacity: 0, duration: .18 }, 1.02)
+  .to('.ld-photo[data-load="4"]', { opacity: 1, scale: 1.04, duration: .32 }, 1.04)
+  .to('.ld-brand', { y: 24, opacity: 0, duration: .24 }, 1.12)
+  .to('#pre', { opacity: 0, duration: .28, ease: 'power2.in' })
   .set('#pre', { display: 'none' });
 
 /* ===== HERO: collage foto bareng-bareng =====
-   HERO = nomor anggota yang tampil (foto diambil dari foto/<nomor>.jpg). Tambah/kurangi nomornya sesuka hati. */
-const HERO = [1, 4, 9, 17, 25], TILT = [-8, 5, -3, 7, -6], RISE = ['mt-0', '-mt-6', 'mt-4', '-mt-4', 'mt-2'];
-$('#hf').innerHTML = HERO.map((no, i) => { const m = M[no - 1]; return `<figure class="hf group relative w-20 shrink-0 cursor-grab touch-none select-none overflow-hidden rounded-3xl border-4 border-canvas bg-surface shadow-lift sm:w-28 md:w-40 ${RISE[i % 5]}" style="aspect-ratio:4/5">${photo(m, 'pointer-events-none h-full w-full')}
-  <figcaption class="absolute inset-x-2 bottom-2 truncate rounded-full bg-canvas/90 px-2 py-0.5 text-center font-mono text-[10px] opacity-0 transition group-hover:opacity-100">${m.name.split(' ')[0]}</figcaption></figure>`; }).join('');
-gsap.set('.hf', { rotation: i => TILT[i % 5] });
+   HERO_MEMORY memakai foto dari folder kenangan/. */
+const HERO_MEMORY = [
+  ['kenangan/kebersamaan 1.jpg', 'KENANGAN', '-rotate-6 -mt-3'],
+  ['kenangan/kegiatan 1.jpg', 'KEBERSAMAAN', 'rotate-3 mt-3'],
+  ['kenangan/foto hero section.webp', 'INVICTUS GEN 3', '-rotate-2 -mt-5'],
+  ['kenangan/Behind the scene 1.jpg', 'BERSAMA', 'rotate-5 mt-2'],
+  ['kenangan/kebersamaan 2.jpg', 'CERITA KITA', '-rotate-4 -mt-2']
+];
+$('#hf').innerHTML = HERO_MEMORY.map(([src, label, tilt], i) => `
+  <figure class="hf group relative shrink-0 cursor-grab touch-none select-none rounded-[1.25rem] border-4 border-canvas bg-surface shadow-lift ${tilt} ${i === 2 ? 'z-20 w-28 sm:w-44 md:w-52' : 'z-10 w-16 sm:w-24 md:w-36'}" style="aspect-ratio:4/5">
+    <img src="${src}" alt="${label}" loading="lazy" draggable="false" class="pointer-events-none h-full w-full rounded-[.75rem] object-cover">
+    <figcaption class="absolute inset-x-2 bottom-2 rounded-full bg-canvas/90 px-2 py-1 text-center font-mono text-[9px] tracking-wider opacity-0 backdrop-blur transition group-hover:opacity-100">${label}</figcaption>
+  </figure>`).join('');
+gsap.set('.hf', { transformOrigin: '50% 70%' });
 function heroPhotos() {
   gsap.from('.hf', { y: 100, opacity: 0, rotation: 0, duration: 1.2, ease: 'power4.out', stagger: .1, delay: .35 });
   Draggable.create('.hf', { type: 'x,y', inertia: true, onPress() { gsap.set(this.target, { zIndex: 20 }); }, onRelease() { gsap.to(this.target, { x: 0, y: 0, duration: 1.6, ease: 'elastic.out(1,.4)', overwrite: true, onComplete: () => gsap.set(this.target, { zIndex: 'auto' }) }); } });
@@ -304,10 +431,10 @@ gsap.fromTo(SplitText.create('#narasi', { type: 'words' }).words, { opacity: .1,
 let F = 'Semua', Q = '';
 const pass = m => (F === 'Keluar' ? m.status === 'keluar' : m.status !== 'keluar') && (F === 'Baru' ? m.status === 'baru' : /^10/.test(F) ? m.kelas === F : true) && m.name.toLowerCase().includes(Q);
 const card = m => m.status === 'keluar'
-  ? `<li data-flip-id="m${m.no}" class="rounded-4xl bg-surface p-5 opacity-30 grayscale"><p class="font-mono text-xs">No. ${m.no}</p><p class="mt-6 font-display text-2xl leading-tight">${m.name}</p><p class="mt-2 font-mono text-xs">— sudah berpindah</p></li>`
-  : `<li data-flip-id="m${m.no}"><button data-no="${m.no}" class="relative block w-full rounded-4xl border border-surface-2 bg-surface p-3 text-left shadow-soft transition hover:-translate-y-1 hover:shadow-lift">${photo(m, 'aspect-[4/5] rounded-3xl')}
-  ${m.status === 'baru' ? '<span class="absolute right-5 top-5 animate-pulse rounded-full bg-dust/20 px-2.5 py-1 font-mono text-xs text-dust-deep backdrop-blur">NEW</span>' : ''}
-  <span class="mt-3 block px-2 font-mono text-xs text-clay">No. ${String(m.no).padStart(2, '0')} · Kelas ${m.kelas}</span><span class="block px-2 font-display text-xl leading-tight">${m.name}</span>${MOTO[m.no] ? `<span class="block px-2 pb-2 pt-1 text-sm italic text-muted">“${MOTO[m.no]}”</span>` : '<span class="block pb-2"></span>'}</button></li>`;
+  ? `<li data-flip-id="m${m.no}" class="member-card p-5 opacity-35 grayscale"><p class="member-card-meta font-mono text-[10px] tracking-widest">NO. ${String(m.no).padStart(2,'0')}</p><p class="mt-8 font-display text-2xl leading-tight text-[#F2F0EA]">${m.name}</p><p class="mt-3 font-mono text-[10px] text-[#aaa69d]">SUDAH BERPINDAH</p></li>`
+  : `<li data-flip-id="m${m.no}"><button data-no="${m.no}" class="member-card relative block w-full text-left shadow-soft transition hover:-translate-y-1 hover:shadow-lift">${photo(m, 'member-card-photo w-full overflow-hidden')}
+  ${m.status === 'baru' ? '<span class="absolute right-4 top-4 rounded-full border border-[#AFA4FF]/30 bg-[#111113]/90 px-2.5 py-1 font-mono text-[9px] text-[#AFA4FF] backdrop-blur">BARU</span>' : ''}
+  <span class="member-card-body block"><span class="member-card-meta block font-mono text-[10px] tracking-widest">NO. ${String(m.no).padStart(2,'0')} · KELAS ${m.kelas}</span><span class="member-card-name mt-2 block font-display">${m.name}</span>${MOTO[m.no] ? `<span class="member-card-motto mt-2 block line-clamp-2 text-sm leading-snug italic">“${MOTO[m.no]}”</span>` : ''}</span></button></li>`;
 const renderM = anim => { const st = Flip.getState('#mg li'); $('#mg').innerHTML = M.filter(pass).map(card).join('') || '<li class="text-muted">Tidak ada nama yang cocok.</li>';
   if (anim) Flip.from(st, { duration: .6, ease: 'power3.inOut', stagger: .02, absolute: true, onEnter: e => gsap.from(e, { opacity: 0, scale: .92, duration: .4 }) }); };
 pill($('#mf'), ['Semua', '10A', '10B', 'Baru', 'Keluar'], v => { F = v; renderM(true); });
@@ -318,10 +445,10 @@ $('#left').innerHTML = M.filter(m => m.status === 'keluar').map(m => `<li class=
 
 /* ===== PORTFOLIO HUB 10A ===== */
 $('#pg').innerHTML = PF.map(([no, role, moto], i) => { const m = M[no - 1];
-  return `<article class="pf group overflow-hidden rounded-4xl border border-surface-2 bg-surface shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
+  return `<article class="pf member-card group shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
   <div class="aspect-[3/4] overflow-hidden [&_img]:transition-all [&_img]:duration-700 [&_img]:grayscale-[30%] group-hover:[&_img]:scale-105 group-hover:[&_img]:grayscale-0">${photo(m, 'h-full w-full')}</div>
-  <div class="p-5"><p class="font-mono text-xs text-clay">No. ${String(i + 1).padStart(2, '0')}</p><h3 class="mt-1 font-display text-xl leading-tight">${m.name}</h3><p class="font-mono text-xs text-muted">${role}</p>
-  <p class="mt-3 font-display text-lg italic leading-snug text-sage-deep">“${moto}”</p>${pfBtn(no)}</div></article>`; }).join('');
+  <div class="pf-card-head min-h-[13.5rem] p-5"><p class="member-card-meta font-mono text-[10px] tracking-widest">NO. ${String(i + 1).padStart(2, '0')}</p><h3 class="pf-card-name mt-2 font-display text-xl leading-tight">${m.name}</h3><p class="pf-card-role mt-1 font-mono text-[10px]">${role.toUpperCase()}</p>
+  <p class="pf-card-motto mt-3 font-display text-base italic leading-snug">“${moto}”</p><div class="mt-4">${pfBtn(no)}</div></div></article>`; }).join('');
 gsap.fromTo('.pf', { y: 60, opacity: 0 }, { y: 0, opacity: 1, stagger: .08, duration: .9, ease: 'power3.out', immediateRender: false, scrollTrigger: { trigger: '#pg', start: 'top 90%', once: true } });
 $$('.pb').forEach(b => { mag(b); b.addEventListener('click', () => gsap.fromTo(b, { scale: .95 }, { scale: 1, duration: .2 })); });
 
@@ -361,23 +488,32 @@ gsap.fromTo('#pk > div', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: .08
    Upload foto bernama 1.jpg, 2.jpg, 3.jpg, ... (jpg/jpeg/png/webp) ke folder kenangan/. Selesai.
    Opsional: kenangan/info.json -> {"1":{"cat":"Kegiatan","t":"Study tour"}} untuk kategori & keterangan. */
 let G = [], GF = 'Semua', cur = 0, list = [];
+const KENANGAN = [
+  ['kenangan/foto hero section.webp', 'Kebersamaan', 'Foto Hero Section'],
+  ['kenangan/kegiatan 1.jpg', 'Kegiatan', 'Kegiatan 1'],
+  ['kenangan/kegiatan 2.jpg', 'Kegiatan', 'Kegiatan 2'],
+  ['kenangan/kegiatan 3.jpg', 'Kegiatan', 'Kegiatan 3'],
+  ['kenangan/kegiatan 4.jpg', 'Kegiatan', 'Kegiatan 4'],
+  ['kenangan/kebersamaan 1.jpg', 'Kebersamaan', 'Kebersamaan 1'],
+  ['kenangan/kebersamaan 2.jpg', 'Kebersamaan', 'Kebersamaan 2'],
+  ['kenangan/kebersamaan 3.jpg', 'Kebersamaan', 'Kebersamaan 3'],
+  ['kenangan/Behind the scene 1.jpg', 'Behind the scene', 'Behind the scene 1'],
+  ['kenangan/Behind the scene 2.jpg', 'Behind the scene', 'Behind the scene 2'],
+  ['kenangan/Behind the scene 3.jpg', 'Behind the scene', 'Behind the scene 3'],
+];
 const probe = base => new Promise(res => { let i = 0; const t = () => { if (i >= EXT.length) return res(null); const im = new Image(), u = `${base}.${EXT[i++]}`; im.onload = () => res(u); im.onerror = t; im.src = u; }; t(); });
 const demoSvg = (i, h) => { const c = [['#C8D3BC', '#A3B18A'], ['#E7D9D1', '#C4A99A'], ['#C9D6E0', '#8EA6B8']][i % 3]; return 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='${h}' viewBox='0 0 600 ${h}'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${c[0]}'/><stop offset='1' stop-color='${c[1]}'/></linearGradient></defs><rect width='600' height='${h}' fill='url(#g)'/><text x='300' y='${h / 2 + 24}' font-family='serif' font-size='72' text-anchor='middle' fill='#F7F5F0' fill-opacity='.85'>G03</text></svg>`); };
 async function loadG() {
-  let info = {}; try { info = await (await fetch('kenangan/info.json')).json(); } catch (e) { }
-  const found = [];
-  for (let s = 1; s <= 0; s += 12) { const r = await Promise.all(Array.from({ length: 12 }, (_, i) => probe(`kenangan/${s + i}`).then(u => u && { n: s + i, src: u })));
-    found.push(...r.filter(Boolean)); if (!r.some(Boolean)) break; }
-  if (found.length) G = found.map(f => ({ src: f.src, cat: info[f.n]?.cat || 'Kenangan', t: info[f.n]?.t || `Kenangan ${f.n}` }));
-  else { G = Array.from({ length: 10 }, (_, i) => { const h = [600, 800, 500, 700][i % 4]; return { demo: 1, cat: CATS[i % 3], t: `${CATS[i % 3]} ${Math.floor(i / 3) + 1}`, src: demoSvg(i, h) }; });
+  G = KENANGAN.map(([src, cat, t]) => ({ src, cat, t }));
+  if (!G.length) { G = Array.from({ length: 10 }, (_, i) => { const h = [600, 800, 500, 700][i % 4]; return { demo: 1, cat: CATS[i % 3], t: `${CATS[i % 3]} ${Math.floor(i / 3) + 1}`, src: demoSvg(i, h) }; });
     $('#gnote').textContent = 'Galeri contoh. Foto kenangan asli belum ditambahkan.'; }
   const cats = [...new Set(G.map(g => g.cat))];
   if (cats.length > 1) pill($('#gf'), ['Semua', ...cats], v => { GF = v; renderG(true); }); else $('#gf').remove();
   renderG(false); ScrollTrigger.refresh();
 }
 const renderG = anim => { const st = Flip.getState('#gg li'); list = G.filter(g => GF === 'Semua' || g.cat === GF);
-  $('#gg').innerHTML = list.map(g => `<li data-flip-id="g${G.indexOf(g)}" class="mb-4 break-inside-avoid"><button data-i="${list.indexOf(g)}" class="group relative block w-full overflow-hidden rounded-4xl" aria-label="Buka foto ${g.t}"><img src="${g.src}" alt="${g.t}" loading="lazy" class="w-full transition duration-700 group-hover:scale-105">
-  <span class="absolute inset-0 bg-ink/0 transition group-hover:bg-ink/20"></span><span class="absolute inset-x-3 bottom-3 translate-y-full rounded-full bg-canvas px-4 py-2 text-sm transition group-hover:translate-y-0">${g.t}</span></button></li>`).join('');
+  $('#gg').innerHTML = list.map(g => `<li data-flip-id="g${G.indexOf(g)}" class="gallery-card break-inside-avoid"><button data-i="${list.indexOf(g)}" class="group relative block w-full overflow-hidden" aria-label="Buka foto ${g.t}"><img src="${g.src}" alt="${g.t}" loading="lazy" class="transition duration-700 group-hover:scale-105">
+  <span class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-60 transition group-hover:opacity-90"></span><span class="gallery-card-label"><span class="gallery-card-cat">${g.cat}</span><span class="gallery-card-title">${g.t}</span></span></button></li>`).join('');
   if (anim) Flip.from(st, { duration: .6, ease: 'power3.inOut', absolute: true, onEnter: e => gsap.from(e, { opacity: 0, duration: .4 }) }); };
 const lb = $('#lb'), show = i => { cur = (i + list.length) % list.length; const g = list[cur]; $('#li').src = g.src; $('#li').alt = g.t; $('#lc').textContent = `${g.t} · ${cur + 1}/${list.length}`; };
 $('#gg').onclick = e => { const b = e.target.closest('button'); if (!b) return; show(+b.dataset.i); lb.showModal(); gsap.from('#li', { scale: .92, opacity: 0, duration: .5, ease: 'power3.out' }); };
@@ -402,13 +538,26 @@ cr.onclick = e => { const b = e.target.closest('button'); if (b) run(+b.dataset.
 cmd.onclick = e => { if (e.target === cmd) cmd.close(); };
 
 /* ===== NAVBAR, MENU, FOOTER ===== */
-const ny = gsap.quickTo('#nav', 'yPercent', { duration: .4, ease: 'power3' }), nav = $('#nav');
-ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => { ny(s.direction === 1 && s.scroll() > 200 ? -110 : 0); nav.classList.toggle('bg-canvas/80', s.scroll() > 40); nav.classList.toggle('backdrop-blur-md', s.scroll() > 40); } });
+const nav = $('#nav');
+const updateNav = () => nav.classList.toggle('is-scrolled', scrollY > 120);
+updateNav();
+addEventListener('scroll', updateNav, { passive: true });
 $('#burger').onclick = e => { const m = $('#mnav'), open = m.classList.contains('hidden'); m.classList.toggle('hidden', !open); m.classList.toggle('flex', open); e.target.setAttribute('aria-expanded', open); e.target.textContent = open ? 'Tutup' : 'Menu';
   if (open) gsap.from('#mnav a', { y: 40, opacity: 0, stagger: .07, duration: .6, ease: 'power3.out' }); };
 mag($('#top-btn'), 12); $('#top-btn').onclick = () => go('#top');
 
 addEventListener('load', () => ScrollTrigger.refresh()); // hitung ulang posisi setelah semua gambar & font selesai
+
+const cursor = $('#invictus-cursor');
+if (cursor && matchMedia('(pointer:fine)').matches) {
+  addEventListener('pointermove', e => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: .18, overwrite: true });
+  });
+  document.querySelectorAll('a,button,[role="button"],.hf').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
+  });
+}
 </script>
 </body>
 </html>
