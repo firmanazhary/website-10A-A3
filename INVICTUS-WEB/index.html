@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVICTUS — Profil Resmi Angkatan</title>
+    <meta
+      name="description"
+      content="Website profil resmi angkatan INVICTUS. 27 Anggota Aktif dari SMP Kelas A, SMP Kelas B, dan Baru di SMA."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4.3 Browser CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-chrome: #EAECEF;
+        --color-silver: #F4F6FA;
+        --color-cobalt: #0044FF;
+        --color-lime: #CCFF00;
+        --color-magenta: #FF007A;
+        --color-ink: #0F172A;
+
+        --font-heading: "Archivo Black", "Anton", sans-serif;
+        --font-sans: "Poppins", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+
+        --animate-marquee: marquee 28s linear infinite;
+
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      }
+
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+          background-color: #EAECEF;
+          color: #0F172A;
+          font-family: var(--font-sans);
+        }
+      }
+
+      .brutal-card {
+        background: #FFFFFF;
+        border: 2px solid #0F172A;
+        box-shadow: 5px 5px 0px #0F172A;
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .brutal-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0px #0044FF;
+      }
+
+      .brutal-btn {
+        border: 2px solid #0F172A;
+        box-shadow: 4px 4px 0px #0F172A;
+        transition: all 0.2s ease;
+      }
+
+      .brutal-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px #0F172A;
+      }
+
+      .brutal-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #0F172A;
+      }
+
+      .bg-grid-pattern {
+        background-size: 36px 36px;
+        background-image: 
+          linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+      }
+
+      .node-bubble {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      }
+      .node-bubble:hover {
+        transform: scale(1.12) translateY(-4px);
+        z-index: 20;
+      }
+    </style>
+  </head>
+
+  <body class="bg-chrome text-ink antialiased selection:bg-lime selection:text-ink overflow-x-hidden">
+    <!-- Top Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 z-[70] h-1.5 bg-ink/10">
+      <div id="scroll-progress" class="h-full w-0 bg-cobalt"></div>
+    </div>
+
+    <!-- 1. PRELOADER -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink text-white px-6"
+    >
+      <div class="w-full max-w-md text-center">
+        <div id="loader-logo" class="mx-auto w-44 sm:w-52 mb-6 opacity-0 scale-90">
+          <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+            <path d="M55 165L125 110L105 185L170 105L188 118L115 215L92 195L108 142L62 182L55 165Z" fill="#CCFF00"/>
+            <path d="M128 85L152 60L166 72L142 97L128 85Z" fill="#CCFF00"/>
+            <path d="M235 88C210 92 195 112 204 132C212 150 245 152 252 168C258 182 225 190 175 192L165 214C225 212 285 196 280 165C275 138 235 136 230 120C226 108 242 102 252 105L235 88Z" fill="#FFFFFF"/>
+            <path d="M335 45C295 65 282 115 305 150C322 175 355 178 375 162L360 142C346 152 328 148 320 132C312 116 322 86 348 72L335 45Z" fill="#CCFF00"/>
+            <path d="M275 142L425 75C435 92 432 115 418 128L405 115C375 112 325 135 288 158L275 142Z" fill="#FFFFFF"/>
+            <circle cx="402" cy="158" r="14" fill="#CCFF00"/>
+            <circle cx="442" cy="148" r="13" fill="#CCFF00"/>
+            <path d="M135 245L365 178L370 186L130 262L135 245Z" fill="#CCFF00"/>
+          </svg>
+        </div>
+
+        <p class="font-mono text-xs tracking-[0.22em] text-lime uppercase mb-3">
+          MEMUAT PROFIL ANGKATAN INVICTUS
+        </p>
+
+        <div class="w-full h-3 bg-white/15 rounded-full overflow-hidden border border-white/25 p-0.5">
+          <div id="loader-bar" class="h-full w-0 bg-lime rounded-full"></div>
+        </div>
+        <div class="mt-2 flex justify-between font-mono text-xs text-slate-300">
+          <span>27 ANGGOTA AKTIF</span>
+          <span id="loader-percent" class="text-lime font-bold">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <header
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-chrome/90 backdrop-blur-md border-b-2 border-ink"
+    >
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-3">
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-12 h-9 flex items-center justify-center rounded-lg bg-ink px-1.5 py-1 border-2 border-ink group-hover:bg-cobalt transition-colors">
+            <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <path d="M55 165L125 110L105 185L170 105L188 118L115 215L92 195L108 142L62 182L55 165Z" fill="#CCFF00"/>
+              <path d="M128 85L152 60L166 72L142 97L128 85Z" fill="#CCFF00"/>
+              <path d="M235 88C210 92 195 112 204 132C212 150 245 152 252 168C258 182 225 190 175 192L165 214C225 212 285 196 280 165C275 138 235 136 230 120C226 108 242 102 252 105L235 88Z" fill="#FFFFFF"/>
+              <path d="M335 45C295 65 282 115 305 150C322 175 355 178 375 162L360 142C346 152 328 148 320 132C312 116 322 86 348 72L335 45Z" fill="#CCFF00"/>
+              <path d="M275 142L425 75C435 92 432 115 418 128L405 115C375 112 325 135 288 158L275 142Z" fill="#FFFFFF"/>
+              <circle cx="402" cy="158" r="14" fill="#CCFF00"/>
+              <circle cx="442" cy="148" r="13" fill="#CCFF00"/>
+              <path d="M135 245L365 178L370 186L130 262L135 245Z" fill="#CCFF00"/>
+            </svg>
+          </div>
+          <span class="font-heading text-xl sm:text-2xl tracking-wider uppercase text-ink">
+            INVICTUS
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-7 text-xs font-bold tracking-wider uppercase text-ink">
+          <a href="#about" class="hover:text-cobalt transition-colors">Tentang</a>
+          <a href="#stats" class="hover:text-cobalt transition-colors">Statistik</a>
+          <a href="#members" class="hover:text-cobalt transition-colors">Anggota (27)</a>
+          <a href="#piket" class="hover:text-cobalt transition-colors">Piket 10A</a>
+          <a href="#chronicles" class="hover:text-cobalt transition-colors">Arsip & FAQ</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="#members"
+            class="brutal-btn hidden sm:inline-flex items-center gap-2 rounded-xl bg-lime px-4 py-2 text-xs font-bold uppercase text-ink hover:bg-cobalt hover:text-white"
+          >
+            <span>Lihat Anggota</span>
+            <span>↗</span>
+          </a>
+
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="md:hidden brutal-btn rounded-xl bg-white p-2 text-ink"
+            aria-label="Menu"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden border-t-2 border-ink bg-white px-6 py-4 space-y-3">
+        <a href="#about" class="mobile-nav-link block py-1.5 text-xs font-bold uppercase text-ink hover:text-cobalt">Tentang Angkatan</a>
+        <a href="#stats" class="mobile-nav-link block py-1.5 text-xs font-bold uppercase text-ink hover:text-cobalt">Statistik</a>
+        <a href="#members" class="mobile-nav-link block py-1.5 text-xs font-bold uppercase text-ink hover:text-cobalt">Daftar 27 Anggota</a>
+        <a href="#piket" class="mobile-nav-link block py-1.5 text-xs font-bold uppercase text-ink hover:text-cobalt">Jadwal Piket 10A</a>
+        <a href="#chronicles" class="mobile-nav-link block py-1.5 text-xs font-bold uppercase text-ink hover:text-cobalt">Timeline, Galeri & FAQ</a>
+      </div>
+    </header>
+
+    <main class="bg-grid-pattern">
+      <!-- 3. HERO SECTION -->
+      <section
+        id="hero"
+        class="relative min-h-screen flex flex-col justify-center items-center px-5 sm:px-8 pt-28 pb-16 text-center overflow-hidden"
+      >
+        <div class="relative z-10 max-w-5xl mx-auto">
+          <div class="hero-reveal inline-flex items-center gap-2 rounded-full border-2 border-ink bg-white px-4 py-1.5 text-xs font-bold tracking-wider uppercase shadow-[3px_3px_0px_#0F172A] mb-6">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 border border-ink"></span>
+            ANGKATAN INVICTUS // SMP A · SMP B · SMA
+          </div>
+
+          <div class="hero-reveal mx-auto w-56 sm:w-72 md:w-80 mb-4 drop-shadow-[6px_6px_0px_rgba(15,23,42,0.18)]">
+            <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <path d="M55 165L125 110L105 185L170 105L188 118L115 215L92 195L108 142L62 182L55 165Z" fill="#0F172A"/>
+              <path d="M128 85L152 60L166 72L142 97L128 85Z" fill="#0044FF"/>
+              <path d="M235 88C210 92 195 112 204 132C212 150 245 152 252 168C258 182 225 190 175 192L165 214C225 212 285 196 280 165C275 138 235 136 230 120C226 108 242 102 252 105L235 88Z" fill="#0F172A"/>
+              <path d="M335 45C295 65 282 115 305 150C322 175 355 178 375 162L360 142C346 152 328 148 320 132C312 116 322 86 348 72L335 45Z" fill="#0044FF"/>
+              <path d="M275 142L425 75C435 92 432 115 418 128L405 115C375 112 325 135 288 158L275 142Z" fill="#0F172A"/>
+              <circle cx="402" cy="158" r="14" fill="#FF007A"/>
+              <circle cx="442" cy="148" r="13" fill="#0044FF"/>
+              <path d="M135 245L365 178L370 186L130 262L135 245Z" fill="#0F172A"/>
+            </svg>
+          </div>
+
+          <h1 class="hero-reveal font-heading text-5xl sm:text-7xl md:text-8xl tracking-tight uppercase text-ink leading-[0.95]">
+            INVICTUS
+          </h1>
+
+          <div class="hero-reveal mt-4 inline-block rounded-xl border-2 border-ink bg-lime px-5 py-2 shadow-[4px_4px_0px_#0F172A]">
+            <p class="font-heading text-base sm:text-xl tracking-wider uppercase text-ink">
+              27 ANGGOTA AKTIF · KELAS 10A & 10B
+            </p>
+          </div>
+
+          <p class="hero-reveal mx-auto mt-6 max-w-2xl text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
+            Dua puluh tujuh nama yang tergabung dalam satu angkatan. Berasal dari SMP Kelas A, SMP Kelas B, hingga anggota baru di jenjang SMA—kini aktif bersama di kelas 10A dan 10B.
+          </p>
+
+          <div class="hero-reveal mt-9 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#members"
+              class="brutal-btn inline-flex items-center gap-2.5 rounded-2xl bg-cobalt px-7 py-4 text-xs sm:text-sm font-bold tracking-wider text-white uppercase hover:bg-ink"
+            >
+              <span>Jelajahi 27 Anggota</span>
+              <span>→</span>
+            </a>
+
+            <a
+              href="#piket"
+              class="brutal-btn inline-flex items-center gap-2.5 rounded-2xl bg-white px-7 py-4 text-xs sm:text-sm font-bold tracking-wider text-ink uppercase hover:bg-lime"
+            >
+              <span>Jadwal Piket 10A</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE TICKER -->
+      <div class="border-y-2 border-ink bg-ink text-white py-3.5 overflow-hidden select-none">
+        <div class="flex w-max animate-marquee gap-8 whitespace-nowrap font-heading text-lg sm:text-xl tracking-widest uppercase">
+          <span>ANGKATAN INVICTUS</span>
+          <span class="text-lime">★</span>
+          <span>27 ANGGOTA AKTIF</span>
+          <span class="text-magenta">★</span>
+          <span>SMP KELAS A · SMP KELAS B · BARU DI SMA</span>
+          <span class="text-lime">★</span>
+          <span>KELAS 10A (14) & KELAS 10B (13)</span>
+          <span class="text-magenta">★</span>
+          <span>SOLIDARITAS & PRESTASI</span>
+          <span class="text-lime">★</span>
+          <span>ANGKATAN INVICTUS</span>
+          <span class="text-lime">★</span>
+          <span>27 ANGGOTA AKTIF</span>
+          <span class="text-magenta">★</span>
+          <span>SMP KELAS A · SMP KELAS B · BARU DI SMA</span>
+          <span class="text-lime">★</span>
+          <span>KELAS 10A (14) & KELAS 10B (13)</span>
+          <span class="text-magenta">★</span>
+          <span>SOLIDARITAS & PRESTASI</span>
+          <span class="text-lime">★</span>
+        </div>
+      </div>
+
+      <!-- 4. TENTANG INVICTUS -->
+      <section id="about" class="py-20 sm:py-28 px-5 sm:px-8 max-w-7xl mx-auto">
+        <div class="brutal-card rounded-3xl p-7 sm:p-12 bg-white">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-5 reveal-up">
+              <span class="inline-block rounded-lg border-2 border-ink bg-lime px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+                01 // TENTANG KAMI
+              </span>
+              <h2 class="mt-4 font-heading text-3xl sm:text-5xl leading-tight uppercase text-ink">
+                SATU ANGKATAN, TIGA ASAL KELOMPOK.
+              </h2>
+            </div>
+
+            <div class="lg:col-span-7 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed reveal-up">
+              <p>
+                <strong class="text-ink font-bold">INVICTUS</strong> adalah identitas angkatan kami yang menyatukan rekan-rekan dari tiga latar belakang: alumni <span class="font-semibold text-cobalt">SMP Kelas A</span>, alumni <span class="font-semibold text-cobalt">SMP Kelas B</span>, serta rekan-rekan yang <span class="font-semibold text-cobalt">Baru di SMA</span>.
+              </p>
+              <p>
+                Saat ini terdapat <strong class="text-ink font-bold">27 anggota aktif</strong> yang tersebar di dua kelas utama yaitu <strong class="text-ink font-bold">Kelas 10A</strong> (14 anggota) dan <strong class="text-ink font-bold">Kelas 10B</strong> (13 anggota). Seluruh anggota berkolaborasi dalam kegiatan akademik, organisasi, hingga menjaga kebersihan kelas melalui jadwal piket rutin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. STATISTIK ANGKATAN -->
+      <section id="stats" class="py-8 sm:py-14 px-5 sm:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="brutal-card rounded-2xl p-6 bg-white reveal-up">
+            <p class="font-mono text-xs font-bold uppercase text-slate-500">Total Anggota Aktif</p>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="counter font-heading text-5xl sm:text-6xl text-ink" data-target="27">0</span>
+              <span class="text-xs font-bold uppercase text-cobalt">Orang</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-600">Tercatat aktif di jenjang SMA</p>
+          </div>
+
+          <div class="brutal-card rounded-2xl p-6 bg-lime reveal-up">
+            <p class="font-mono text-xs font-bold uppercase text-ink/70">Asal Kelompok</p>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="counter font-heading text-5xl sm:text-6xl text-ink" data-target="3">0</span>
+              <span class="text-xs font-bold uppercase text-ink">Kelompok</span>
+            </div>
+            <p class="mt-2 text-xs text-ink/80">SMP A (11), SMP B (8), Baru SMA (8)</p>
+          </div>
+
+          <div class="brutal-card rounded-2xl p-6 bg-white reveal-up">
+            <p class="font-mono text-xs font-bold uppercase text-slate-500">Kelas 10A</p>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="counter font-heading text-5xl sm:text-6xl text-cobalt" data-target="14">0</span>
+              <span class="text-xs font-bold uppercase text-cobalt">Anggota</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-600">Terjadwal dalam piket mingguan 10A</p>
+          </div>
+
+          <div class="brutal-card rounded-2xl p-6 bg-white reveal-up">
+            <p class="font-mono text-xs font-bold uppercase text-slate-500">Kelas 10B</p>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="counter font-heading text-5xl sm:text-6xl text-magenta" data-target="13">0</span>
+              <span class="text-xs font-bold uppercase text-magenta">Anggota</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-600">Aktif dalam kegiatan angkatan</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. DAFTAR 27 ANGGOTA -->
+      <section id="members" class="py-20 sm:py-28 px-5 sm:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal-up">
+          <div>
+            <span class="inline-block rounded-lg border-2 border-ink bg-cobalt px-3 py-1 font-mono text-xs font-bold uppercase text-white">
+              02 // DIREKTORI ANGGOTA
+            </span>
+            <h2 class="mt-3 font-heading text-4xl sm:text-6xl uppercase text-ink">
+              27 ANGGOTA INVICTUS
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 max-w-md font-medium">
+            Klik pada foto atau kartu anggota untuk membuka pop-up profil lengkap berisi foto, moto, dan tautan web portfolio masing-masing.
+          </p>
+        </div>
+
+        <!-- Filter & View Mode Toolbar -->
+        <div class="brutal-card rounded-2xl p-4 sm:p-6 mb-10 bg-white reveal-up">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div id="filter-buttons" class="flex flex-wrap gap-2">
+              <button
+                data-filter="Semua"
+                class="filter-btn active rounded-xl border-2 border-ink bg-ink px-4 py-2 text-xs font-bold uppercase text-white transition-all"
+              >
+                Semua (27)
+              </button>
+              <button
+                data-filter="SMP Kelas A"
+                class="filter-btn rounded-xl border-2 border-ink bg-white px-4 py-2 text-xs font-bold uppercase text-ink hover:bg-lime transition-all"
+              >
+                SMP Kelas A (11)
+              </button>
+              <button
+                data-filter="SMP Kelas B"
+                class="filter-btn rounded-xl border-2 border-ink bg-white px-4 py-2 text-xs font-bold uppercase text-ink hover:bg-lime transition-all"
+              >
+                SMP Kelas B (8)
+              </button>
+              <button
+                data-filter="Baru di SMA"
+                class="filter-btn rounded-xl border-2 border-ink bg-white px-4 py-2 text-xs font-bold uppercase text-ink hover:bg-lime transition-all"
+              >
+                Baru di SMA (8)
+              </button>
+              <button
+                data-filter="10A"
+                class="filter-btn rounded-xl border-2 border-ink bg-cobalt/10 px-4 py-2 text-xs font-bold uppercase text-cobalt hover:bg-cobalt hover:text-white transition-all"
+              >
+                Kelas 10A (14)
+              </button>
+              <button
+                data-filter="10B"
+                class="filter-btn rounded-xl border-2 border-ink bg-magenta/10 px-4 py-2 text-xs font-bold uppercase text-magenta hover:bg-magenta hover:text-white transition-all"
+              >
+                Kelas 10B (13)
+              </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div class="relative w-full sm:w-64">
+                <input
+                  id="member-search"
+                  type="text"
+                  placeholder="Cari nama / kelas..."
+                  class="w-full rounded-xl border-2 border-ink bg-silver py-2 pl-9 pr-4 text-xs sm:text-sm font-medium text-ink placeholder-slate-500 focus:bg-white focus:outline-none"
+                />
+                <svg class="w-4 h-4 text-ink absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                </svg>
+              </div>
+
+              <div class="inline-flex rounded-xl border-2 border-ink overflow-hidden bg-silver">
+                <button
+                  id="view-cluster-btn"
+                  type="button"
+                  class="px-3.5 py-2 text-xs font-bold uppercase bg-lime text-ink border-r-2 border-ink transition-colors"
+                >
+                  Susunan Bulat
+                </button>
+                <button
+                  id="view-grid-btn"
+                  type="button"
+                  class="px-3.5 py-2 text-xs font-bold uppercase bg-white text-ink transition-colors"
+                >
+                  Kartu Grid
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t-2 border-ink/10 flex items-center justify-between text-xs font-semibold text-slate-600">
+            <span>Menampilkan <strong id="visible-count" class="text-ink">27</strong> dari 27 anggota aktif</span>
+            <span class="hidden sm:inline font-mono text-[11px] text-cobalt">KLIK FOTO ANGGOTA UNTUK DETAIL & PORTFOLIO</span>
+          </div>
+        </div>
+
+        <!-- VIEW 1: CLUSTER BUBBLE HIERARCHY -->
+        <div id="members-cluster-wrapper" class="brutal-card rounded-3xl p-6 sm:p-10 bg-ink text-white relative overflow-hidden">
+          <div class="max-w-3xl mx-auto mb-6 hidden sm:block">
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 rounded-full bg-lime border-2 border-white"></div>
+              <div class="w-0.5 h-6 bg-white/30"></div>
+              <div class="w-full h-0.5 bg-white/30 relative">
+                <div class="absolute left-0 top-0 w-0.5 h-6 bg-white/30"></div>
+                <div class="absolute left-1/4 top-0 w-0.5 h-6 bg-white/30"></div>
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 h-6 bg-lime"></div>
+                <div class="absolute right-1/4 top-0 w-0.5 h-6 bg-white/30"></div>
+                <div class="absolute right-0 top-0 w-0.5 h-6 bg-white/30"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="members-cluster" class="flex flex-col items-center gap-3 sm:gap-4 py-2"></div>
+        </div>
+
+        <!-- VIEW 2: GRID CARDS -->
+        <div
+          id="members-grid"
+          class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+        ></div>
+
+        <!-- Empty State -->
+        <div id="empty-members" class="hidden text-center py-14 brutal-card rounded-2xl bg-white">
+          <p class="font-heading text-2xl uppercase text-ink">Anggota Tidak Ditemukan</p>
+          <p class="mt-2 text-xs sm:text-sm text-slate-600">
+            Coba ubah kata kunci pencarian atau pilih filter kelompok lainnya.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. JADWAL PIKET KELAS 10A -->
+      <section id="piket" class="py-20 sm:py-28 px-5 sm:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal-up">
+          <div>
+            <span class="inline-block rounded-lg border-2 border-ink bg-lime px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+              03 // KEBERSIHAN KELAS 10A
+            </span>
+            <h2 class="mt-3 font-heading text-4xl sm:text-6xl uppercase text-ink">
+              JADWAL PIKET KELAS 10A
+            </h2>
+          </div>
+
+          <div class="inline-flex items-center gap-2.5 rounded-xl border-2 border-ink bg-white px-4 py-3 text-xs font-bold text-ink shadow-[3px_3px_0px_#0F172A]">
+            <span class="h-2.5 w-2.5 rounded-full bg-cobalt"></span>
+            <span>Khusus 14 anggota aktif Kelas 10A (Senin – Jumat).</span>
+          </div>
+        </div>
+
+        <div id="piket-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5"></div>
+      </section>
+
+      <!-- 8. TIMELINE, PILAR, GALERI & FAQ -->
+      <section id="chronicles" class="py-20 sm:py-28 px-5 sm:px-8 max-w-7xl mx-auto space-y-24">
+        <div>
+          <div class="mb-10 reveal-up">
+            <span class="inline-block rounded-lg border-2 border-ink bg-white px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+              04 // PERJALANAN ANGKATAN
+            </span>
+            <h2 class="mt-3 font-heading text-4xl sm:text-6xl uppercase text-ink">
+              JEJAK LANGKAH INVICTUS
+            </h2>
+          </div>
+          <div id="timeline-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+
+        <div>
+          <div class="mb-10 reveal-up">
+            <span class="inline-block rounded-lg border-2 border-ink bg-lime px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+              05 // NILAI UTAMA
+            </span>
+            <h2 class="mt-3 font-heading text-4xl sm:text-6xl uppercase text-ink">
+              PILAR ANGKATAN
+            </h2>
+          </div>
+          <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal-up">
+            <div>
+              <span class="inline-block rounded-lg border-2 border-ink bg-cobalt px-3 py-1 font-mono text-xs font-bold uppercase text-white">
+                06 // DOKUMENTASI
+              </span>
+              <h2 class="mt-3 font-heading text-4xl sm:text-6xl uppercase text-ink">
+                GALERI MOMEN
+              </h2>
+            </div>
+            <p class="text-xs font-semibold text-slate-600">Klik foto untuk memperbesar tampilan</p>
+          </div>
+          <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5 space-y-5 reveal-up">
+            <div>
+              <span class="inline-block rounded-lg border-2 border-ink bg-white px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+                07 // CATATAN
+              </span>
+              <h2 class="mt-3 font-heading text-3xl sm:text-5xl uppercase text-ink">
+                PESAN ANGKATAN
+              </h2>
+            </div>
+            <div id="quotes-container" class="space-y-4"></div>
+          </div>
+
+          <div class="lg:col-span-7 reveal-up">
+            <div class="mb-5">
+              <span class="inline-block rounded-lg border-2 border-ink bg-lime px-3 py-1 font-mono text-xs font-bold uppercase text-ink">
+                08 // TANYA JAWAB
+              </span>
+              <h2 class="mt-3 font-heading text-3xl sm:text-5xl uppercase text-ink">
+                FAQ INVICTUS
+              </h2>
+            </div>
+            <div id="faq-container" class="space-y-3"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 9. FOOTER -->
+    <footer class="border-t-2 border-ink bg-ink text-white pt-16 pb-10 px-5 sm:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/15">
+          <div class="md:col-span-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-14 h-10 flex items-center justify-center rounded-xl bg-white/10 p-1.5 border border-white/20">
+                <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                  <path d="M55 165L125 110L105 185L170 105L188 118L115 215L92 195L108 142L62 182L55 165Z" fill="#CCFF00"/>
+                  <path d="M128 85L152 60L166 72L142 97L128 85Z" fill="#CCFF00"/>
+                  <path d="M235 88C210 92 195 112 204 132C212 150 245 152 252 168C258 182 225 190 175 192L165 214C225 212 285 196 280 165C275 138 235 136 230 120C226 108 242 102 252 105L235 88Z" fill="#FFFFFF"/>
+                  <path d="M335 45C295 65 282 115 305 150C322 175 355 178 375 162L360 142C346 152 328 148 320 132C312 116 322 86 348 72L335 45Z" fill="#CCFF00"/>
+                  <path d="M275 142L425 75C435 92 432 115 418 128L405 115C375 112 325 135 288 158L275 142Z" fill="#FFFFFF"/>
+                  <circle cx="402" cy="158" r="14" fill="#CCFF00"/>
+                  <circle cx="442" cy="148" r="13" fill="#CCFF00"/>
+                  <path d="M135 245L365 178L370 186L130 262L135 245Z" fill="#CCFF00"/>
+                </svg>
+              </div>
+              <span class="font-heading text-3xl tracking-wider text-white">INVICTUS</span>
+            </div>
+            <p class="max-w-md text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Website profil resmi angkatan INVICTUS. Memuat direktori 27 anggota aktif dari SMP Kelas A, SMP Kelas B, dan Baru di SMA serta jadwal piket Kelas 10A.
+            </p>
+          </div>
+
+          <div class="md:col-span-3 space-y-2.5">
+            <h3 class="font-heading text-base tracking-wider text-lime uppercase">Navigasi</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+              <li><a href="#about" class="hover:text-lime transition-colors">Tentang INVICTUS</a></li>
+              <li><a href="#stats" class="hover:text-lime transition-colors">Statistik Angkatan</a></li>
+              <li><a href="#members" class="hover:text-lime transition-colors">Daftar 27 Anggota</a></li>
+              <li><a href="#piket" class="hover:text-lime transition-colors">Jadwal Piket 10A</a></li>
+              <li><a href="#chronicles" class="hover:text-lime transition-colors">Timeline & FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-3 flex flex-col justify-between items-start md:items-end">
+            <div class="md:text-right">
+              <p class="font-mono text-xs font-bold text-lime uppercase">DATA ANGKATAN</p>
+              <p class="mt-1 text-xs text-slate-300">27 Aktif · Kelas 10A (14) & 10B (13)</p>
+            </div>
+
+            <button
+              id="back-to-top"
+              type="button"
+              class="mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-lime bg-lime px-4 py-2.5 text-xs font-bold uppercase text-ink hover:bg-white transition-colors"
+            >
+              <span>Kembali ke Atas</span>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>&copy; <span id="year-now"></span> ANGKATAN INVICTUS. Hak Cipta Dilindungi.</p>
+          <p class="font-mono text-[11px] uppercase">KELAS 10A & 10B</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- POP-UP MODAL PROFIL ANGGOTA -->
+    <div
+      id="member-modal"
+      class="fixed inset-0 z-[80] hidden items-center justify-center p-4 sm:p-6 bg-ink/80 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        id="member-modal-card"
+        class="relative w-full max-w-lg rounded-3xl border-2 border-ink bg-white p-6 sm:p-8 shadow-[10px_10px_0px_#CCFF00]"
+      >
+        <button
+          id="close-member-modal"
+          type="button"
+          class="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-silver font-bold text-ink hover:bg-magenta hover:text-white transition-colors"
+          aria-label="Tutup Pop-up"
+        >
+          ✕
+        </button>
+
+        <div id="modal-body-content"></div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX GALERI -->
+    <div
+      id="gallery-lightbox"
+      class="fixed inset-0 z-[85] hidden items-center justify-center p-4 sm:p-8 bg-ink/85 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        id="lightbox-card"
+        class="relative w-full max-w-2xl rounded-3xl border-2 border-ink bg-white overflow-hidden shadow-[10px_10px_0px_#0044FF]"
+      >
+        <button
+          id="close-lightbox"
+          type="button"
+          class="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-white font-bold text-ink hover:bg-magenta hover:text-white transition-colors"
+          aria-label="Tutup Galeri"
+        >
+          ✕
+        </button>
+        <div id="lightbox-content"></div>
+      </div>
+    </div>
+
+    <!-- GSAP 3 + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      const INVICTUS_MEMBERS = [
+        // SMP KELAS A (11 Anggota Aktif)
+        { id: "IVCS-01", name: "Abdurrahman Afif", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=AbdurrahmanAfif&backgroundColor=b6e3f4", moto: "Konsistensi kecil setiap hari melahirkan pencapaian besar.", portfolio: "https://github.com" },
+        { id: "IVCS-02", name: "Azzam Al Ghifary", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=AzzamAlGhifary&backgroundColor=c0aede", moto: "Berani melangkah lebih dulu sebelum orang lain siap.", portfolio: "https://github.com" },
+        { id: "IVCS-03", name: "Ghaisan Raqilla", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=GhaisanRaqilla&backgroundColor=d1d4f9", moto: "Bangun karya nyata, biarkan hasil yang berbicara.", portfolio: "https://github.com/firmanazhary" },
+        { id: "IVCS-04", name: "Haidar Mahya", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=HaidarMahya&backgroundColor=ffd5dc", moto: "Tenang dalam tekanan, tajam dalam mengambil keputusan.", portfolio: "https://github.com" },
+        { id: "IVCS-05", name: "Hilmi Romzi", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=HilmiRomzi&backgroundColor=ffdfbf", moto: "Belajar tanpa henti, bertumbuh tanpa batas.", portfolio: "https://github.com" },
+        { id: "IVCS-06", name: "Hiraki Prayata", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=HirakiPrayata&backgroundColor=b6e3f4", moto: "Kreativitas adalah cara terbaik menyelesaikan masalah.", portfolio: "https://github.com" },
+        { id: "IVCS-07", name: "Ibrahim Omar", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=IbrahimOmar&backgroundColor=c0aede", moto: "Disiplin adalah jembatan antara cita-cita dan kenyataan.", portfolio: "https://github.com" },
+        { id: "IVCS-08", name: "M. Rhafif", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MRhafif&backgroundColor=d1d4f9", moto: "Tetap solid dalam keadaan apa pun.", portfolio: "https://github.com" },
+        { id: "IVCS-09", name: "Vittorio Veneto", group: "SMP Kelas A", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=VittorioVeneto&backgroundColor=ffd5dc", moto: "Fokus pada proses, nikmati setiap tantangannya.", portfolio: "https://github.com" },
+        { id: "IVCS-10", name: "M. Alif", group: "SMP Kelas A", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MAlif&backgroundColor=ffdfbf", moto: "Setiap hari adalah kesempatan baru untuk menjadi lebih baik.", portfolio: "https://github.com" },
+        { id: "IVCS-11", name: "M. Husein", group: "SMP Kelas A", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MHusein&backgroundColor=b6e3f4", moto: "Sederhana dalam sikap, maksimal dalam usaha.", portfolio: "https://github.com" },
+
+        // SMP KELAS B (8 Anggota Aktif)
+        { id: "IVCS-12", name: "M. Fakhril Fakih", group: "SMP Kelas B", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MFakhrilFakih&backgroundColor=c0aede", moto: "Kerja keras tidak pernah mengkhianati hasil akhir.", portfolio: "https://github.com" },
+        { id: "IVCS-13", name: "Nabigh Habibie", group: "SMP Kelas B", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=NabighHabibie&backgroundColor=d1d4f9", moto: "Inovasi lahir dari rasa ingin tahu yang tinggi.", portfolio: "https://github.com" },
+        { id: "IVCS-14", name: "Reza Khoirul", group: "SMP Kelas B", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=RezaKhoirul&backgroundColor=ffd5dc", moto: "Jaga integritas dan tanggung jawab di mana pun berada.", portfolio: "https://github.com" },
+        { id: "IVCS-15", name: "Satria Rupawan", group: "SMP Kelas B", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=SatriaRupawan&backgroundColor=ffdfbf", moto: "Pantang menyerah sebelum garis finis terlewati.", portfolio: "https://github.com" },
+        { id: "IVCS-16", name: "Syalendra Ebrahim", group: "SMP Kelas B", kelas: "10A", photo: "https://api.dicebear.com/9.x/micah/svg?seed=SyalendraEbrahim&backgroundColor=b6e3f4", moto: "Kebersamaan adalah kekuatan terbesar angkatan kita.", portfolio: "https://github.com" },
+        { id: "IVCS-17", name: "M. Fadli", group: "SMP Kelas B", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MFadli&backgroundColor=c0aede", moto: "Langkah kecil hari ini menentukan masa depan esok.", portfolio: "https://github.com" },
+        { id: "IVCS-18", name: "M. Farhan", group: "SMP Kelas B", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MFarhan&backgroundColor=d1d4f9", moto: "Terus bergerak maju meski rintangan menghadang.", portfolio: "https://github.com" },
+        { id: "IVCS-19", name: "M. Rayyan", group: "SMP Kelas B", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=MRayyan&backgroundColor=ffd5dc", moto: "Jadilah pribadi yang bermanfaat bagi sekitar.", portfolio: "https://github.com" },
+
+        // BARU DI SMA (8 Anggota Aktif)
+        { id: "IVCS-20", name: "Ahmad Zaki", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=AhmadZaki&backgroundColor=ffdfbf", moto: "Adaptasi cepat dan kontribusi nyata di lingkungan baru.", portfolio: "https://github.com" },
+        { id: "IVCS-21", name: "Alvaro Naufal", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=AlvaroNaufal&backgroundColor=b6e3f4", moto: "Setiap pertemuan membawa peluang kolaborasi baru.", portfolio: "https://github.com" },
+        { id: "IVCS-22", name: "Bima Sakti", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=BimaSakti&backgroundColor=c0aede", moto: "Berani bermimpi besar dan mewujudkannya secara nyata.", portfolio: "https://github.com" },
+        { id: "IVCS-23", name: "Daffa Pratama", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=DaffaPratama&backgroundColor=d1d4f9", moto: "Fokus, tekun, dan selalu siap menghadapi tantangan.", portfolio: "https://github.com" },
+        { id: "IVCS-24", name: "Farel Ardiansyah", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=FarelArdiansyah&backgroundColor=ffd5dc", moto: "Kualitas diri dibentuk dari kebiasaan positif.", portfolio: "https://github.com" },
+        { id: "IVCS-25", name: "Gilang Ramadhan", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=GilangRamadhan&backgroundColor=ffdfbf", moto: "Solidaritas tanpa batas untuk INVICTUS.", portfolio: "https://github.com" },
+        { id: "IVCS-26", name: "Keanu Raffa", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=KeanuRaffa&backgroundColor=b6e3f4", moto: "Tetap rendah hati dan terus mengasah kemampuan.", portfolio: "https://github.com" },
+        { id: "IVCS-27", name: "Naufal Dzaky", group: "Baru di SMA", kelas: "10B", photo: "https://api.dicebear.com/9.x/micah/svg?seed=NaufalDzaky&backgroundColor=c0aede", moto: "Bersama kita kuat, bersatu kita tak terkalahkan.", portfolio: "https://github.com" }
+      ];
+
+      const PIKET_10A_SCHEDULE = [
+        { day: "Senin", accent: "bg-lime", members: ["Abdurrahman Afif", "Azzam Al Ghifary", "Ghaisan Raqilla"] },
+        { day: "Selasa", accent: "bg-cobalt text-white", members: ["Haidar Mahya", "Hilmi Romzi", "Hiraki Prayata"] },
+        { day: "Rabu", accent: "bg-magenta text-white", members: ["Ibrahim Omar", "M. Rhafif", "Vittorio Veneto"] },
+        { day: "Kamis", accent: "bg-lime", members: ["M. Fakhril Fakih", "Nabigh Habibie", "Reza Khoirul"] },
+        { day: "Jumat", accent: "bg-ink text-white", members: ["Satria Rupawan", "Syalendra Ebrahim"] }
+      ];
+
+      const TIMELINE_DATA = [
+        { phase: "TAHAP 01 // MASA SMP", title: "Awal Kebersamaan SMP Kelas A & B", desc: "Terbentuknya fondasi persahabatan dari dua kelas utama di jenjang SMP yang menjadi cikal bakal lahirnya angkatan INVICTUS." },
+        { phase: "TAHAP 02 // TRANSISI SMA", title: "Bergabungnya Anggota Baru di SMA", desc: "Delapan rekan baru bergabung memperkuat angkatan saat memasuki jenjang SMA, melengkapi formasi 27 anggota aktif." },
+        { phase: "TAHAP 03 // KELAS 10A & 10B", title: "Sinergi Aktif Angkatan INVICTUS", desc: "Seluruh 27 anggota aktif berkontribusi bersama di Kelas 10A (14 anggota) dan Kelas 10B (13 anggota) dalam akademik maupun kegiatan sekolah." }
+      ];
+
+      const PILLARS_DATA = [
+        { num: "01", title: "SOLIDARITAS ANGKATAN", desc: "Menjaga kekompakan lintas kelompok asal (SMP A, SMP B, dan Baru SMA) tanpa membeda-bedakan latar belakang." },
+        { num: "02", title: "KEDISIPLINAN & TANGGUNG JAWAB", desc: "Menjalankan tugas harian termasuk pembagian jadwal piket kelas 10A secara teratur dan konsisten." },
+        { num: "03", title: "KARYA & PORTFOLIO DIGITAL", desc: "Mendorong setiap anggota untuk terus berkembang dan mendokumentasikan karya melalui web portfolio masing-masing." }
+      ];
+
+      const GALLERY_DATA = [
+        { title: "Kebersamaan Kelas 10A & 10B", tag: "DOKUMENTASI", bg: "from-cobalt to-ink", desc: "Momen foto bersama seluruh personel aktif angkatan INVICTUS." },
+        { title: "Kegiatan Akademik & Diskusi", tag: "KEGIATAN", bg: "from-ink to-slate-800", desc: "Kolaborasi belajar kelompok dan persiapan proyek sekolah." },
+        { title: "Piket & Kebersihan Kelas 10A", tag: "RUTINITAS", bg: "from-magenta to-ink", desc: "Pelaksanaan piket harian anggota Kelas 10A untuk kenyamanan belajar." },
+        { title: "Momen Kebersamaan Angkatan", tag: "ARSIP", bg: "from-emerald-600 to-ink", desc: "Dokumentasi acara angkatan dan kegiatan luar kelas." }
+      ];
+
+      const QUOTES_DATA = [
+        { text: "INVICTUS bukan hanya nama angkatan, tetapi rumah tempat 27 karakter berbeda saling menguatkan.", author: "Perwakilan Angkatan INVICTUS" },
+        { text: "Dari SMP A, SMP B, hingga bertemu di SMA—perbedaan asal justru membuat langkah kita semakin solid.", author: "Koordinator Kelas 10A & 10B" }
+      ];
+
+      const FAQ_DATA = [
+        { q: "Berapa jumlah anggota aktif INVICTUS saat ini?", a: "Saat ini tercatat 27 anggota aktif yang terdiri dari 11 anggota asal SMP Kelas A, 8 anggota asal SMP Kelas B, dan 8 anggota baru di jenjang SMA." },
+        { q: "Bagaimana pembagian kelas anggota INVICTUS di SMA?", a: "Dari total 27 anggota aktif, sebanyak 14 anggota berada di Kelas 10A dan 13 anggota berada di Kelas 10B." },
+        { q: "Siapa saja yang masuk dalam jadwal piket di halaman ini?", a: "Jadwal piket mingguan (Senin–Jumat) disusun khusus untuk 14 anggota aktif yang berada di Kelas 10A." },
+        { q: "Bagaimana cara melihat moto dan web portfolio setiap anggota?", a: "Klik pada foto bulat atau kartu nama anggota di bagian Direktori Anggota untuk membuka pop-up profil lengkap beserta tombol tautan ke web portfolio mereka." }
+      ];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+        document.getElementById("year-now").textContent = new Date().getFullYear();
+
+        const loaderBar = document.getElementById("loader-bar");
+        const loaderPercent = document.getElementById("loader-percent");
+        const loaderLogo = document.getElementById("loader-logo");
+        const preloader = document.getElementById("preloader");
+
+        gsap.to(loaderLogo, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" });
+
+        const loadObj = { val: 0 };
+        gsap.to(loadObj, {
+          val: 100,
+          duration: 1.4,
+          ease: "power2.inOut",
+          onUpdate: () => {
+            const p = Math.round(loadObj.val);
+            loaderBar.style.width = p + "%";
+            loaderPercent.textContent = p + "%";
+          },
+          onComplete: () => {
+            gsap.to(preloader, {
+              yPercent: -100,
+              duration: 0.65,
+              ease: "power3.inOut",
+              onComplete: () => {
+                preloader.style.display = "none";
+                initScrollAnimations();
+              }
+            });
+          }
+        });
+
+        window.addEventListener("scroll", () => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          document.getElementById("scroll-progress").style.width = progress + "%";
+        });
+
+        const mobileBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+        document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+          link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+        });
+
+        document.getElementById("back-to-top").addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        let currentFilter = "Semua";
+        let currentSearch = "";
+        let viewMode = "cluster";
+
+        const clusterContainer = document.getElementById("members-cluster");
+        const clusterWrapper = document.getElementById("members-cluster-wrapper");
+        const gridContainer = document.getElementById("members-grid");
+        const emptyState = document.getElementById("empty-members");
+        const visibleCountEl = document.getElementById("visible-count");
+
+        function getGroupBadgeColor(group) {
+          if (group === "SMP Kelas A") return "bg-lime text-ink";
+          if (group === "SMP Kelas B") return "bg-cobalt text-white";
+          return "bg-magenta text-white";
+        }
+
+        function renderMembers() {
+          const filtered = INVICTUS_MEMBERS.filter((m) => {
+            const matchesFilter = currentFilter === "Semua" || m.group === currentFilter || m.kelas === currentFilter;
+            const q = currentSearch.toLowerCase().trim();
+            const matchesSearch = !q || m.name.toLowerCase().includes(q) || m.kelas.toLowerCase().includes(q) || m.group.toLowerCase().includes(q);
+            return matchesFilter && matchesSearch;
+          });
+
+          visibleCountEl.textContent = filtered.length;
+
+          if (filtered.length === 0) {
+            clusterWrapper.classList.add("hidden");
+            gridContainer.classList.add("hidden");
+            emptyState.classList.remove("hidden");
+            return;
+          }
+
+          emptyState.classList.add("hidden");
+
+          clusterContainer.innerHTML = "";
+          const rowPattern = [2, 4, 5, 6, 5, 5];
+          let idx = 0;
+          let r = 0;
+
+          while (idx < filtered.length) {
+            const countInRow = rowPattern[r % rowPattern.length];
+            const slice = filtered.slice(idx, idx + countInRow);
+            idx += countInRow;
+            r++;
+
+            const rowDiv = document.createElement("div");
+            rowDiv.className = "flex flex-wrap justify-center items-center gap-3 sm:gap-5";
+
+            slice.forEach((member) => {
+              const ringColor = member.kelas === "10A" ? "border-lime" : "border-cobalt";
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.className = "node-bubble group relative flex flex-col items-center focus:outline-none";
+              btn.title = `${member.name} (${member.kelas}) — Klik untuk profil`;
+
+              btn.innerHTML = `
+                <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-4 ${ringColor} bg-white overflow-hidden shadow-lg">
+                  <img
+                    src="${member.photo}"
+                    alt="${member.name}"
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=0044FF&color=fff&bold=true'"
+                  />
+                  <div class="absolute inset-0 bg-ink/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-1 text-center">
+                    <span class="font-mono text-[10px] font-bold text-lime">${member.kelas}</span>
+                    <span class="text-[10px] font-bold text-white leading-tight line-clamp-2">${member.name}</span>
+                  </div>
+                </div>
+                <span class="mt-1.5 max-w-[84px] sm:max-w-[96px] truncate rounded-md bg-white/10 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-white group-hover:bg-lime group-hover:text-ink transition-colors">
+                  ${member.name.split(" ")[0]}
+                </span>
+              `;
+
+              btn.addEventListener("click", () => openMemberModal(member));
+              rowDiv.appendChild(btn);
+            });
+
+            clusterContainer.appendChild(rowDiv);
+          }
+
+          gridContainer.innerHTML = "";
+          filtered.forEach((member) => {
+            const card = document.createElement("div");
+            card.className = "brutal-card rounded-2xl p-5 bg-white cursor-pointer flex flex-col justify-between";
+            card.innerHTML = `
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <span class="rounded-lg border border-ink px-2.5 py-0.5 text-[11px] font-bold uppercase ${getGroupBadgeColor(member.group)}">
+                    ${member.group}
+                  </span>
+                  <span class="rounded-lg border border-ink bg-silver px-2.5 py-0.5 font-mono text-xs font-bold text-ink">
+                    ${member.kelas}
+                  </span>
+                </div>
+
+                <div class="flex items-center gap-3.5">
+                  <img
+                    src="${member.photo}"
+                    alt="${member.name}"
+                    class="w-16 h-16 rounded-2xl border-2 border-ink object-cover bg-silver shrink-0"
+                    onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=0044FF&color=fff&bold=true'"
+                  />
+                  <div>
+                    <p class="font-mono text-[11px] font-bold text-slate-400">${member.id}</p>
+                    <h3 class="font-heading text-lg uppercase text-ink leading-snug">${member.name}</h3>
+                  </div>
+                </div>
+
+                <p class="mt-4 text-xs text-slate-600 italic line-clamp-2">
+                  "${member.moto}"
+                </p>
+              </div>
+
+              <div class="mt-5 pt-3 border-t-2 border-ink/10 flex items-center justify-between text-xs font-bold text-cobalt">
+                <span>Lihat Profil & Portfolio</span>
+                <span>↗</span>
+              </div>
+            `;
+            card.addEventListener("click", () => openMemberModal(member));
+            gridContainer.appendChild(card);
+          });
+
+          if (viewMode === "cluster") {
+            clusterWrapper.classList.remove("hidden");
+            gridContainer.classList.add("hidden");
+            gridContainer.classList.remove("grid");
+          } else {
+            clusterWrapper.classList.add("hidden");
+            gridContainer.classList.remove("hidden");
+            gridContainer.classList.add("grid");
+          }
+        }
+
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter-btn").forEach((b) => {
+              b.classList.remove("bg-ink", "text-white");
+              b.classList.add("bg-white", "text-ink");
+            });
+            btn.classList.remove("bg-white", "text-ink");
+            btn.classList.add("bg-ink", "text-white");
+            currentFilter = btn.dataset.filter;
+            renderMembers();
+          });
+        });
+
+        document.getElementById("member-search").addEventListener("input", (e) => {
+          currentSearch = e.target.value;
+          renderMembers();
+        });
+
+        const viewClusterBtn = document.getElementById("view-cluster-btn");
+        const viewGridBtn = document.getElementById("view-grid-btn");
+
+        viewClusterBtn.addEventListener("click", () => {
+          viewMode = "cluster";
+          viewClusterBtn.classList.replace("bg-white", "bg-lime");
+          viewGridBtn.classList.replace("bg-lime", "bg-white");
+          renderMembers();
+        });
+
+        viewGridBtn.addEventListener("click", () => {
+          viewMode = "grid";
+          viewGridBtn.classList.replace("bg-white", "bg-lime");
+          viewClusterBtn.classList.replace("bg-lime", "bg-white");
+          renderMembers();
+        });
+
+        renderMembers();
+
+        const memberModal = document.getElementById("member-modal");
+        const memberModalCard = document.getElementById("member-modal-card");
+        const modalBody = document.getElementById("modal-body-content");
+
+        function openMemberModal(member) {
+          modalBody.innerHTML = `
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+              <div class="relative shrink-0">
+                <img
+                  src="${member.photo}"
+                  alt="${member.name}"
+                  class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl border-2 border-ink object-cover bg-silver shadow-[4px_4px_0px_#0F172A]"
+                  onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=0044FF&color=fff&bold=true'"
+                />
+                <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 rounded-lg border-2 border-ink bg-lime px-2.5 py-0.5 font-mono text-[11px] font-bold text-ink whitespace-nowrap">
+                  KELAS ${member.kelas}
+                </span>
+              </div>
+
+              <div class="text-center sm:text-left flex-1">
+                <div class="inline-flex flex-wrap justify-center sm:justify-start gap-2 mb-2">
+                  <span class="rounded-md border border-ink bg-silver px-2 py-0.5 font-mono text-[11px] font-bold text-ink">
+                    ${member.id}
+                  </span>
+                  <span class="rounded-md border border-ink px-2.5 py-0.5 text-[11px] font-bold uppercase ${getGroupBadgeColor(member.group)}">
+                    ${member.group}
+                  </span>
+                </div>
+
+                <h3 class="font-heading text-2xl sm:text-3xl uppercase text-ink leading-tight">
+                  ${member.name}
+                </h3>
+                <p class="mt-1 text-xs font-semibold text-emerald-600">
+                  ● Status: Anggota Aktif INVICTUS
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl border-2 border-ink bg-silver p-4">
+              <p class="font-mono text-[11px] font-bold uppercase text-slate-500 mb-1">
+                MOTO HIDUP
+              </p>
+              <p class="text-sm sm:text-base font-semibold text-ink italic">
+                "${member.moto}"
+              </p>
+            </div>
+
+            <div class="mt-6">
+              <a
+                href="${member.portfolio}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="brutal-btn w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-cobalt px-6 py-3.5 text-xs sm:text-sm font-bold tracking-wider text-white uppercase hover:bg-ink"
+              >
+                <span>Kunjungi Web Portfolio</span>
+                <span>↗</span>
+              </a>
+            </div>
+          `;
+
+          memberModal.classList.remove("hidden");
+          memberModal.classList.add("flex");
+          gsap.fromTo(
+            memberModalCard,
+            { scale: 0.85, opacity: 0, y: 20 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }
+          );
+        }
+
+        function closeMemberModal() {
+          gsap.to(memberModalCard, {
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+              memberModal.classList.add("hidden");
+              memberModal.classList.remove("flex");
+            }
+          });
+        }
+
+        document.getElementById("close-member-modal").addEventListener("click", closeMemberModal);
+        memberModal.addEventListener("click", (e) => {
+          if (e.target === memberModal) closeMemberModal();
+        });
+
+        const piketGrid = document.getElementById("piket-grid");
+        PIKET_10A_SCHEDULE.forEach((slot) => {
+          const card = document.createElement("div");
+          card.className = "brutal-card rounded-2xl overflow-hidden bg-white reveal-up flex flex-col";
+          card.innerHTML = `
+            <div class="border-b-2 border-ink px-5 py-3.5 flex items-center justify-between ${slot.accent}">
+              <h3 class="font-heading text-xl uppercase tracking-wide">${slot.day}</h3>
+              <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-black/15">
+                ${slot.members.length} Org
+              </span>
+            </div>
+            <ul class="p-5 space-y-2.5 flex-1">
+              ${slot.members
+                .map(
+                  (name, i) => `
+                <li class="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-ink">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-ink bg-silver font-mono text-[11px] font-bold">
+                    0${i + 1}
+                  </span>
+                  <span>${name}</span>
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+          `;
+          piketGrid.appendChild(card);
+        });
+
+        const timelineContainer = document.getElementById("timeline-container");
+        TIMELINE_DATA.forEach((item) => {
+          const el = document.createElement("div");
+          el.className = "brutal-card rounded-2xl p-6 bg-white reveal-up";
+          el.innerHTML = `
+            <span class="font-mono text-xs font-bold text-cobalt">${item.phase}</span>
+            <h3 class="mt-2 font-heading text-xl uppercase text-ink">${item.title}</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">${item.desc}</p>
+          `;
+          timelineContainer.appendChild(el);
+        });
+
+        const achievementsGrid = document.getElementById("achievements-grid");
+        PILLARS_DATA.forEach((p) => {
+          const el = document.createElement("div");
+          el.className = "brutal-card rounded-2xl p-6 bg-white reveal-up";
+          el.innerHTML = `
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl border-2 border-ink bg-lime font-heading text-lg text-ink">
+              ${p.num}
+            </div>
+            <h3 class="mt-4 font-heading text-xl uppercase text-ink">${p.title}</h3>
+            <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">${p.desc}</p>
+          `;
+          achievementsGrid.appendChild(el);
+        });
+
+        const galleryGrid = document.getElementById("gallery-grid");
+        const lightbox = document.getElementById("gallery-lightbox");
+        const lightboxContent = document.getElementById("lightbox-content");
+
+        GALLERY_DATA.forEach((g) => {
+          const el = document.createElement("div");
+          el.className = "brutal-card rounded-2xl overflow-hidden bg-white cursor-pointer group reveal-up";
+          el.innerHTML = `
+            <div class="h-44 bg-gradient-to-br ${g.bg} p-5 flex flex-col justify-between text-white border-b-2 border-ink">
+              <span class="self-start rounded-md bg-lime px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase text-ink">
+                ${g.tag}
+              </span>
+              <p class="font-heading text-lg uppercase leading-snug group-hover:translate-x-1 transition-transform">
+                ${g.title}
+              </p>
+            </div>
+            <div class="p-4 text-xs text-slate-600 font-medium">
+              ${g.desc}
+            </div>
+          `;
+          el.addEventListener("click", () => {
+            lightboxContent.innerHTML = `
+              <div class="h-64 sm:h-80 bg-gradient-to-br ${g.bg} p-8 flex flex-col justify-end text-white border-b-2 border-ink">
+                <span class="self-start rounded-md bg-lime px-3 py-1 font-mono text-xs font-bold uppercase text-ink mb-3">
+                  ${g.tag}
+                </span>
+                <h3 class="font-heading text-2xl sm:text-4xl uppercase">${g.title}</h3>
+              </div>
+              <div class="p-6 text-sm text-slate-700 font-medium">${g.desc}</div>
+            `;
+            lightbox.classList.remove("hidden");
+            lightbox.classList.add("flex");
+          });
+          galleryGrid.appendChild(el);
+        });
+
+        document.getElementById("close-lightbox").addEventListener("click", () => {
+          lightbox.classList.add("hidden");
+          lightbox.classList.remove("flex");
+        });
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+          }
+        });
+
+        const quotesContainer = document.getElementById("quotes-container");
+        QUOTES_DATA.forEach((q) => {
+          const el = document.createElement("div");
+          el.className = "brutal-card rounded-2xl p-6 bg-white";
+          el.innerHTML = `
+            <p class="text-sm sm:text-base font-semibold text-ink italic">"${q.text}"</p>
+            <p class="mt-3 font-mono text-xs font-bold text-cobalt uppercase">— ${q.author}</p>
+          `;
+          quotesContainer.appendChild(el);
+        });
+
+        const faqContainer = document.getElementById("faq-container");
+        FAQ_DATA.forEach((item) => {
+          const wrapper = document.createElement("div");
+          wrapper.className = "brutal-card rounded-2xl bg-white overflow-hidden";
+          wrapper.innerHTML = `
+            <button type="button" class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-ink">
+              <span>${item.q}</span>
+              <span class="faq-icon font-mono text-lg font-bold text-cobalt">+</span>
+            </button>
+            <div class="faq-answer hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-ink/10 pt-3">
+              ${item.a}
+            </div>
+          `;
+          const toggle = wrapper.querySelector(".faq-toggle");
+          const answer = wrapper.querySelector(".faq-answer");
+          const icon = wrapper.querySelector(".faq-icon");
+          toggle.addEventListener("click", () => {
+            const isOpen = !answer.classList.contains("hidden");
+            answer.classList.toggle("hidden");
+            icon.textContent = isOpen ? "+" : "−";
+          });
+          faqContainer.appendChild(wrapper);
+        });
+
+        function initScrollAnimations() {
+          gsap.from(".hero-reveal", {
+            y: 28,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power3.out"
+          });
+
+          gsap.utils.toArray(".reveal-up").forEach((el) => {
+            gsap.from(el, {
+              scrollTrigger: {
+                trigger: el,
+                start: "top 88%",
+                once: true
+              },
+              y: 28,
+              opacity: 0,
+              duration: 0.65,
+              ease: "power2.out"
+            });
+          });
+
+          document.querySelectorAll(".counter").forEach((counter) => {
+            const target = parseInt(counter.dataset.target, 10);
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: target,
+              duration: 1.5,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: counter,
+                start: "top 90%",
+                once: true
+              },
+              onUpdate: () => {
+                counter.textContent = Math.round(obj.val);
+              }
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

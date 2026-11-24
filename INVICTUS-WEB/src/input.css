@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-chrome: #EAECEF;
+  --color-silver: #F4F6FA;
+  --color-cobalt: #0044FF;
+  --color-lime: #CCFF00;
+  --color-magenta: #FF007A;
+  --color-ink: #0F172A;
+
+  --font-heading: "Archivo Black", "Anton", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #EAECEF;
+    color: #0F172A;
+    font-family: var(--font-sans);
+  }
+}
+
+.brutal-card {
+  background: #FFFFFF;
+  border: 2px solid #0F172A;
+  box-shadow: 5px 5px 0px #0F172A;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brutal-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px #0044FF;
+}
+
+.brutal-btn {
+  border: 2px solid #0F172A;
+  box-shadow: 4px 4px 0px #0F172A;
+  transition: all 0.2s ease;
+}
+
+.brutal-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0F172A;
+}
+
+.brutal-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #0F172A;
+}
+
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+}
+
+.node-bubble {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.node-bubble:hover {
+  transform: scale(1.12) translateY(-4px);
+  z-index: 20;
+}

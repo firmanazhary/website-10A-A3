@@ -1,0 +1,13 @@
+﻿{
+  "name": "invictus-profile",
+  "version": "2.0.0",
+  "description": "Website profil resmi angkatan INVICTUS dengan Tailwind CSS v4.3 dan GSAP",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
+}
