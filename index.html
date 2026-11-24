@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>INVICTUS gnn — One Generation, Endless Memories</title>
+    <meta
+      name="description"
+      content="Rumah digital angkatan INVICTUS: anggota, galeri, perjalanan, dan pesan."
+    />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+
+    <!-- Font dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tampilan (warna, layout, animasi CSS) -->
+    <!-- Leaflet (peta) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+       PRELOADER: layar loading 0-100% saat website dibuka
+       ===================================================== -->
+    <div id="preloader" role="status" aria-live="polite">
+      <img
+        class="pre-logo"
+        src="assets/images/logo.png"
+        onerror="
+          this.onerror = null;
+          this.src = 'logo.png';
+        "
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="pre-bar"><span id="preBar"></span></div>
+      <div class="pre-count"><span id="preNum">0</span>%</div>
+    </div>
+
+    <!-- Lapisan latar: partikel putih + tekstur noise -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- =====================================================
+       NAVBAR: menu di bagian atas
+       Setiap href="#..." menuju ke section dengan id yang sama
+       ===================================================== -->
+    <header class="nav" id="nav">
+      <a href="#home" class="nav-logo" aria-label="INVICTUS — ke atas">
+        <img
+          src="assets/images/logo.png"
+          onerror="
+            this.onerror = null;
+            this.src = 'logo.png';
+          "
+          alt=""
+        />
+        <span>INVICTUS</span>
+      </a>
+
+      <!-- Tombol hamburger (hanya tampil di HP) -->
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Buka menu"
+        aria-expanded="false"
+        aria-controls="menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="menu" class="menu" aria-label="Navigasi utama">
+        <a href="#home" class="active">HOME</a>
+        <a href="#members">MEMBERS</a>
+        <a href="#gallery">GALLERY</a>
+        <a href="#journey">JOURNEY</a>
+        <a href="#map">MEMBER MAP</a>
+        <a href="#piket">DUTY SCHEDULE</a>
+        <span class="nav-indicator" id="navInd" aria-hidden="true"></span>
+      </nav>
+    </header>
+
+    <main>
+      <!-- =====================================================
+         1. HOME: halaman utama (hero)
+         ===================================================== -->
+      <section id="home" class="hero">
+        <!-- Lapisan visual di belakang tulisan -->
+        <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+        <div class="aurora" aria-hidden="true"></div>
+        <div class="grid" aria-hidden="true"></div>
+        <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+        <!-- Isi hero -->
+        <div class="hero-inner">
+          <img
+            class="hero-logo"
+            src="assets/images/logo.png"
+            onerror="
+              this.onerror = null;
+              this.src = 'logo.png';
+            "
+            alt="Logo INVICTUS"
+          />
+          <h1 class="hero-title" id="heroTitle" aria-label="INVICTUS">
+            INVICTUS
+          </h1>
+          <p class="tagline">ONE GENERATION, ENDLESS MEMORIES.</p>
+          <p class="hero-info">
+            Rumah digital angkatan kelas XII — tempat kami menyimpan wajah,
+            cerita, dan kenangan satu sama lain.
+          </p>
+          <a href="#members" class="btn magnetic" id="exploreBtn"
+            ><span>Explore Our Generation</span></a
+          >
+        </div>
+
+        <!-- Indikator scroll -->
+        <a href="#stats" class="scroll-ind" aria-label="Gulir ke bawah"
+          ><span></span
+        ></a>
+      </section>
+
+      <!-- =====================================================
+         STATISTIK
+         Ubah angka lewat atribut data-count (nilai awal hanya contoh)
+         ===================================================== -->
+      <section id="stats" class="stats">
+        <div class="stat">
+          <b data-count="14" data-key="members">0</b>
+          <span>Total Members</span>
+        </div>
+        <div class="stat">
+          <b data-count="12" data-key="activities">0</b>
+          <span>Total Activities</span>
+        </div>
+        <div class="stat">
+          <b data-count="120" data-key="memories">0</b>
+          <span>Memories Collected</span>
+        </div>
+        <div class="stat">
+          <b data-count="3" data-key="years">0</b>
+          <span>Years Together</span>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         2. MEMBERS: direktori anggota
+         Daftar kartu dibuat otomatis oleh script.js
+         (data ada di array MEMBERS)
+         ===================================================== -->
+      <section id="members" class="members">
+        <div class="sec-head">
+          <h2>The Members</h2>
+          <p>
+            Setiap wajah di INVICTUS punya cerita. Cari, saring, lalu buka
+            profilnya.
+          </p>
+        </div>
+
+        <!-- Kolom pencarian + tombol filter -->
+        <div class="tools">
+          <label class="search">
+            <span class="sr">Cari nama anggota</span>
+            <input
+              type="search"
+              id="mSearch"
+              placeholder="Cari nama anggota"
+              autocomplete="off"
+            />
+          </label>
+          <div
+            class="chips"
+            id="mFilters"
+            role="group"
+            aria-label="Filter kelas atau kelompok"
+          ></div>
+        </div>
+
+        <p class="count" id="mCount" aria-live="polite"></p>
+        <div class="m-grid" id="mGrid"></div>
+        <p class="empty" id="mEmpty" hidden>
+          Tidak ada anggota yang cocok. Coba nama lain atau pilih Semua.
+        </p>
+      </section>
+
+      <!-- Jendela profil anggota (muncul saat kartu diklik) -->
+      <div
+        class="modal"
+        id="mModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mdName"
+        hidden
+      >
+        <div class="modal-box">
+          <button class="modal-x" id="mClose" aria-label="Tutup profil">
+            ✕
+          </button>
+          <div class="modal-photo" id="mdPhoto"></div>
+          <div class="modal-body">
+            <h3 id="mdName"></h3>
+            <p class="md-group" id="mdGroup"></p>
+            <p id="mdBio"></p>
+            <blockquote id="mdQuote"></blockquote>
+            <p class="md-area" id="mdArea"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         3. GALLERY: galeri kenangan
+         Foto dibuat otomatis oleh script.js
+         (data ada di array GALLERY)
+         ===================================================== -->
+      <section id="gallery" class="gallery">
+        <div class="sec-head">
+          <h2>Memory Gallery</h2>
+          <p>Potongan kecil dari hari-hari yang kami lewati bersama.</p>
+        </div>
+
+        <div
+          class="chips g-filters"
+          id="gFilters"
+          role="group"
+          aria-label="Filter kategori galeri"
+        ></div>
+        <div class="g-grid" id="gGrid"></div>
+        <p class="empty" id="gEmpty" hidden>Belum ada foto di kategori ini.</p>
+      </section>
+
+      <!-- Penampil foto besar (muncul saat foto diklik) -->
+      <div
+        class="lightbox"
+        id="lb"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Penampil foto"
+        hidden
+      >
+        <button class="lb-btn lb-x" id="lbClose" aria-label="Tutup">✕</button>
+        <button class="lb-btn lb-prev" id="lbPrev" aria-label="Foto sebelumnya">
+          ‹
+        </button>
+        <figure class="lb-fig">
+          <img id="lbImg" alt="" />
+          <figcaption>
+            <b id="lbCap"></b>
+            <span id="lbMeta"></span>
+          </figcaption>
+        </figure>
+        <button class="lb-btn lb-next" id="lbNext" aria-label="Foto berikutnya">
+          ›
+        </button>
+      </div>
+
+      <!-- =====================================================
+         4. JOURNEY: timeline perjalanan angkatan
+         Momen dibuat otomatis oleh script.js
+         ===================================================== -->
+      <section id="journey" class="journey">
+        <div class="sec-head">
+          <h2>Journey of INVICTUS</h2>
+          <p>
+            Dari hari pertama sampai sekarang. Klik sebuah momen untuk melihat
+            detailnya.
+          </p>
+        </div>
+        <div class="tl" id="tl">
+          <div class="tl-line" aria-hidden="true">
+            <span id="tlFill"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jendela detail momen (muncul saat momen diklik) -->
+      <div
+        class="modal"
+        id="jModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="jdTitle"
+        hidden
+      >
+        <div class="modal-box j-box">
+          <button class="modal-x" id="jClose" aria-label="Tutup detail">
+            ✕
+          </button>
+          <div class="modal-photo" id="jdPhoto"></div>
+          <div class="modal-body">
+            <p class="md-group" id="jdDate"></p>
+            <h3 id="jdTitle"></h3>
+            <p id="jdDetail"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         5. MEMBER MAP: peta persebaran anggota (Leaflet + OpenStreetMap)
+         Marker dibuat otomatis oleh script.js (data di array MAP_MEMBERS)
+         Hanya wilayah umum (kota/kecamatan), bukan alamat rumah
+         ===================================================== -->
+
+      <section id="map" class="mapsec">
+        <div class="sec-head">
+          <h2>Member Map</h2>
+          <p>
+            Dari mana saja kami berasal. Hanya wilayah umum yang ditampilkan,
+            bukan alamat rumah.
+          </p>
+        </div>
+
+        <div class="tools">
+          <label class="search">
+            <span class="sr">Cari anggota di peta</span>
+            <input
+              type="search"
+              id="mapSearch"
+              placeholder="Cari nama anggota"
+              autocomplete="off"
+            />
+          </label>
+          <div
+            class="chips"
+            id="mapFilters"
+            role="group"
+            aria-label="Filter wilayah"
+          ></div>
+        </div>
+
+        <p class="count" id="mapCount" aria-live="polite"></p>
+
+        <div class="map-wrap">
+          <div
+            id="leafletMap"
+            role="region"
+            aria-label="Peta persebaran anggota"
+          ></div>
+          <aside class="map-stats" aria-label="Statistik anggota per wilayah">
+            <h3>Per Wilayah</h3>
+            <div id="mapStats"></div>
+          </aside>
+        </div>
+        <p class="empty" id="mapEmpty" hidden>
+          Tidak ada anggota yang cocok di peta.
+        </p>
+      </section>
+    </main>
+
+    <!-- Tombol kembali ke atas -->
+    <button class="to-top" id="toTop" aria-label="Kembali ke atas">↑</button>
+
+    <!-- =====================================================
+     WEEKLY DUTY SCHEDULE
+     ===================================================== -->
+    <section id="piket" class="piket">
+      <div class="sec-head">
+        <span class="piket-label">INVICTUS / WEEKLY ROUTINE</span>
+        <h2>Weekly Duty Schedule</h2>
+        <p>
+          Small responsibilities, shared memories. Jadwal piket mingguan anggota
+          INVICTUS.
+        </p>
+      </div>
+
+      <div class="piket-info">
+        <div>
+          <span class="piket-info-label">TOTAL MEMBERS</span>
+          <h3>14</h3>
+        </div>
+        <div>
+          <span class="piket-info-label">DUTY DAYS</span>
+          <h3>05</h3>
+        </div>
+        <div>
+          <span class="piket-info-label">SCHEDULE</span>
+          <h3>WEEKLY</h3>
+        </div>
+      </div>
+
+      <div class="piket-grid">
+        <article class="piket-card">
+          <span class="piket-number">01</span>
+          <div class="piket-day">MONDAY</div>
+          <h3>Senin</h3>
+          <div class="piket-members">
+            <span>Hiraki</span>
+            <span>Hilmi</span>
+            <span>Nabigh</span>
+          </div>
+        </article>
+
+        <article class="piket-card">
+          <span class="piket-number">02</span>
+          <div class="piket-day">TUESDAY</div>
+          <h3>Selasa</h3>
+          <div class="piket-members">
+            <span>Raqilla</span>
+            <span>Reza</span>
+            <span>Baim</span>
+          </div>
+        </article>
+
+        <article class="piket-card">
+          <span class="piket-number">03</span>
+          <div class="piket-day">WEDNESDAY</div>
+          <h3>Rabu</h3>
+          <div class="piket-members">
+            <span>Haidar</span>
+            <span>Azzam</span>
+            <span>Satria</span>
+          </div>
+        </article>
+
+        <article class="piket-card">
+          <span class="piket-number">04</span>
+          <div class="piket-day">THURSDAY</div>
+          <h3>Kamis</h3>
+          <div class="piket-members">
+            <span>Fakih</span>
+            <span>Afif</span>
+            <span>Rhafif</span>
+          </div>
+        </article>
+
+        <article class="piket-card">
+          <span class="piket-number">05</span>
+          <div class="piket-day">FRIDAY</div>
+          <h3>Jumat</h3>
+          <div class="piket-members">
+            <span>Ibam</span>
+            <span>Vitto</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="piket-footer">
+        <span>INVICTUS</span>
+        <p>One Generation, One Responsibility.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       SCRIPT (urutan penting: GSAP dulu, baru script.js)
+       ===================================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
